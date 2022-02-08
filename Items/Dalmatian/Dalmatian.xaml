@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="GUI.Items.Dalmatian.Dalmatian"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI.Items.Dalmatian"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="850">
+   <StackPanel>
+      <!-- Select Instruction File -->
+      <Border Style="{StaticResource BorderStyle}" Padding="3">
+         <UserControl x:Name="SelectPanel"/>
+      </Border>
+      <!-- Work grid -->
+      <Grid>
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+         </Grid.ColumnDefinitions>
+         <!-- Filter settings -->
+         <StackPanel x:Name="FilterOptions" Grid.Column="0">
+            <!-- Create/Save xml -->
+            <Border Style="{StaticResource BorderStyle}">
+               <UserControl x:Name="OpenSavePanel"/>
+            </Border>
+            <!-- Standard Filter -->
+            <Border Style="{StaticResource BorderStyle}">
+               <StackPanel x:Name="StandardFilter" Grid.Row="0">
+                  <CheckBox Grid.Row="0" x:Name="StandardFilterEnabel" Style="{StaticResource HeaderText}"
+                            IsChecked="{Binding Path=sfilterOnValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Content="Standard filter" Template="{StaticResource NewCheckBoxControlTemplate}" />
+                  <TextBlock Text="Set Lowpass and Hipass parameters" Style="{StaticResource TextBlockStyle}" />
+                  <Grid>
+                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition />
+                     </Grid.ColumnDefinitions>
+                     <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                     </Grid.RowDefinitions>
+
+                     <!-- Lowpass param value -->
+                     <TextBlock Grid.Column="0" Grid.Row="0" Height = "20"
+                             Text="Lowpass value :" Style="{StaticResource TextBlockStyle}" />
+                     <TextBox x:Name="LowpassValue" Grid.Column="1" Grid.Row="0" Height = "20" Width = "60"
+                              Text="{Binding Path = sfilterLowpass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                     <!-- Hipass param value -->
+                     <TextBlock x:Name="HipassValue" Grid.Column="0" Grid.Row="1" Height = "20"
+                             Text="Hipass value :" Style="{StaticResource TextBlockStyle}"/>
+                     <TextBox Grid.Column="1" Grid.Row="1" Height = "20" Width = "60"
+                              Text="{Binding Path = sfilterHipass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}"/>
+                  </Grid>
+               </StackPanel>
+            </Border>
+            <!-- Treshold -->
+            <Border Style="{StaticResource BorderStyle}">
+               <StackPanel x:Name="Treshold" Grid.Row="0">
+                  <CheckBox Grid.Row="0" x:Name="TresholdEnable" Style="{StaticResource HeaderText}"
+                            IsChecked="{Binding Path=trsholdOnValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Content="Treshold" Template="{StaticResource NewCheckBoxControlTemplate}" />
+                  <TextBlock Text="Set treshold parameter" Style="{StaticResource TextBlockStyle}" />
+                  <Grid>
+                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition />
+                     </Grid.ColumnDefinitions>
+
+                     <!-- Treshold param value -->
+                     <TextBlock Grid.Column="0" Grid.Row="0" Height = "20"
+                             Text="Threshold value :" Style="{StaticResource TextBlockStyle}" />
+                     <TextBox x:Name="ThresholdValue" Grid.Column="1" Grid.Row="0" Height = "20" Width = "60"
+                              Text="{Binding Path = trshold, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                  </Grid>
+               </StackPanel>
+            </Border>
+            <!-- Median filter -->
+            <Border Style="{StaticResource BorderStyle}">
+               <StackPanel x:Name="MedianFilter" Grid.Row="0">
+                  <CheckBox Grid.Row="0" x:Name="MedianFilterEnable" Style="{StaticResource HeaderText}"
+                            IsChecked="{Binding Path=mfilterOnValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Content="Median filter" Template="{StaticResource NewCheckBoxControlTemplate}" />
+                  <TextBlock Text="Set the radius of the block in which the median is calculated" 
+                             Style="{StaticResource TextBlockStyle}" />
+                  <Grid>
+                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition />
+                     </Grid.ColumnDefinitions>
+                     <!--MedianFilter param value -->
+                     <TextBlock Grid.Column="0" Grid.Row="0" Height = "20"
+                             Text="Radius value :" Style="{StaticResource TextBlockStyle}" />
+                     <TextBox x:Name="MedianFilterRValue" Grid.Column="1" Grid.Row="0" Height = "20" Width = "60"
+                              Text="{Binding Path = mfilterRad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                  </Grid>
+               </StackPanel>
+            </Border>
+            <!-- Сell counting -->
+            <Border Style="{StaticResource BorderStyle}">
+               <StackPanel x:Name="СellCounting" Grid.Row="0">
+                  <TextBlock Grid.Row="0" Style="{StaticResource HeaderText}"
+                             Text="Сell counting" />
+                  <TextBlock Text="Set the parameters to calculate cells" 
+                             Style="{StaticResource TextBlockStyle}" />
+                  <Grid>
+                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition />
+                     </Grid.ColumnDefinitions>
+                     <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                     </Grid.RowDefinitions>
+
+                     <!-- MinRegionValue -->
+                     <TextBlock Grid.Column="0" Grid.Row="0" Height = "20"
+                             Text="Min Region :" Style="{StaticResource TextBlockStyle}" />
+                     <TextBox x:Name="MinRegionValue" Grid.Column="1" Grid.Row="0" Height = "20" Width = "60"
+                             Text="{Binding Path = countMinRegion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                     <!-- ConfLvl -->
+                     <TextBlock Grid.Column="0" Grid.Row="1" Height = "20"
+                             Text="ConfLvl :" Style="{StaticResource TextBlockStyle}" />
+                     <TextBox x:Name="ConfLvlValue" Grid.Column="1" Grid.Row="1" Height = "20" Width = "60"
+                              Text="{Binding Path = countConfLvl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                     <!-- Rmin -->
+                     <TextBlock Grid.Column="0" Grid.Row="2" Height = "20"
+                             Text="Rmin :" Style="{StaticResource TextBlockStyle}" />
+                     <TextBox x:Name="RminValue" Grid.Column="1" Grid.Row="2" Height = "20" Width = "60"
+                              Text="{Binding Path = countRMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                     <!-- Rmax -->
+                     <TextBlock Grid.Column="0" Grid.Row="3" Height = "20"
+                             Text="Rmax :" Style="{StaticResource TextBlockStyle}" />
+                     <TextBox x:Name="RmaxValue" Grid.Column="1" Grid.Row="3" Height = "20" Width = "60"
+                              Text="{Binding Path = countRMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                     <!-- k -->
+                     <TextBlock Grid.Column="0" Grid.Row="4" Height = "20"
+                             Text="k :" Style="{StaticResource TextBlockStyle}" />
+                     <TextBox x:Name="kValue" Grid.Column="1" Grid.Row="4" Height = "20" Width = "60"
+                              Text="{Binding Path = countk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                     <!-- Start -->
+                     <Button  Grid.Column="0" Grid.Row="5" x:Name="CountStartButton" Content="Сount"  HorizontalAlignment="Left"
+                              Style="{StaticResource BaseStyle}" Width="100" Margin="0,10,0,0"
+                              Template="{StaticResource NewButtonControlTemplate}"
+                              Command = "{Binding ProcessorStartCommand}"/>
+                     <!-- Start -->
+                     <Button  Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"
+                              x:Name="SelectedCountStartButton" Content="Сount selected samples"  HorizontalAlignment="Left"
+                              Style="{StaticResource BaseStyle}" Width="150" Margin="0,10,0,0"
+                              Template="{StaticResource NewButtonControlTemplate}"/>
+                  </Grid>
+               </StackPanel>
+            </Border>
+         </StackPanel>
+         <!--Grid panel-->
+         <Border Style="{StaticResource BorderStyle}" Grid.Column="1">
+            <UserControl x:Name="GridAndProcessPanel"/>
+         </Border>
+      </Grid>
+   </StackPanel>
+</UserControl>

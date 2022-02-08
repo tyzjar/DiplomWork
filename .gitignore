@@ -8,5 +8,7 @@
 MatlabReferences/gui_cellcount/*
 MatlabReferences/gui_morph/*
 MatlabReferences/gui_preproc/*
+packages/*
 obj/*
 bin/*
+.vs/*

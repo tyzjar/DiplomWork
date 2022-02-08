@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{24ED5AE7-25BC-461F-90DF-A9663C905FA3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GUI</RootNamespace>
+    <AssemblyName>GUI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlusFree, Version=4.5.3.8, Culture=neutral, PublicKeyToken=85bfa0499e2db48a, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlusFree.4.5.3.8\lib\net40\EPPlusFree.dll</HintPath>
+    </Reference>
+    <Reference Include="gui_cellcount">
+      <HintPath>MatlabReferences\gui_cellcount\for_redistribution_files_only\gui_cellcount.dll</HintPath>
+    </Reference>
+    <Reference Include="gui_morph, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>MatlabReferences\gui_morph\for_redistribution_files_only\gui_morph.dll</HintPath>
+    </Reference>
+    <Reference Include="gui_preproc">
+      <HintPath>MatlabReferences\gui_preproc\for_redistribution_files_only\gui_preproc.dll</HintPath>
+    </Reference>
+    <Reference Include="MWArray, Version=2.20.1.0, Culture=neutral, PublicKeyToken=e1d84a0da19db86f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>MatlabReferences\MWArray.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Items\Dalmatian\Dalmatian.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\Dalmatian\GridPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\Framework\View\AddFolderPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\Framework\View\OpenSavePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\Framework\View\SelectedPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\Morph\GridPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\Morph\Morph.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\Preprocessing\GridPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\Framework\View\LoadScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\Preprocessing\Preprocessing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Dalmatian\CellCountProcessor.cs" />
+    <Compile Include="Items\Dalmatian\Dalmatian.xaml.cs">
+      <DependentUpon>Dalmatian.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Dalmatian\GridPanel.xaml.cs">
+      <DependentUpon>GridPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Framework\ConfigReader.cs" />
+    <Compile Include="Items\Framework\Data\FolderData.cs" />
+    <Compile Include="Items\Dalmatian\CellCountConfig.cs" />
+    <Compile Include="Items\Framework\Data\DataGrid\DataGrid.cs" />
+    <Compile Include="Items\Framework\Data\DataGrid\GridItem.cs" />
+    <Compile Include="Items\Framework\Data\DataGrid\PreprocState.cs" />
+    <Compile Include="Items\Framework\Data\MainData.cs" />
+    <Compile Include="Items\Framework\Data\OpenSaveEvents.cs" />
+    <Compile Include="Items\Framework\Data\SelectedData.cs" />
+    <Compile Include="Items\Framework\DelegateCommand.cs" />
+    <Compile Include="Items\Framework\IFormConfig.cs" />
+    <Compile Include="Items\Framework\MatlabProcessor\IMatlab.cs" />
+    <Compile Include="Items\Framework\MatlabProcessor\Objects\PictureObject.cs" />
+    <Compile Include="Items\Framework\MatlabProcessor\Objects\ProgressbarObject.cs" />
+    <Compile Include="Items\Framework\MatlabProcessor\Synchronizer.cs" />
+    <Compile Include="Items\Framework\MatlabProcessor\Objects\ISynchObject.cs" />
+    <Compile Include="Items\Framework\MatlabProcessor\Objects\TextBlocObject.cs" />
+    <Compile Include="Items\Framework\ViewModelBase.cs" />
+    <Compile Include="Items\Framework\View\AddFolderPanel.xaml.cs">
+      <DependentUpon>AddFolderPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Framework\View\OpenSavePanel.xaml.cs">
+      <DependentUpon>OpenSavePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Framework\View\ProgressBarSmoother.cs" />
+    <Compile Include="Items\Framework\View\SelectedPanel.xaml.cs">
+      <DependentUpon>SelectedPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Morph\GridPanel.xaml.cs">
+      <DependentUpon>GridPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Morph\MorphConfig.cs" />
+    <Compile Include="Items\Morph\Morph.xaml.cs">
+      <DependentUpon>Morph.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Framework\View\LoadScreen.xaml.cs">
+      <DependentUpon>LoadScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Preprocessing\PreprocConfig.cs" />
+    <Compile Include="Items\Morph\MorphProcessor.cs" />
+    <Compile Include="Items\Preprocessing\GridPanel.xaml.cs">
+      <DependentUpon>GridPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Preprocessing\Preprocessing.xaml.cs">
+      <DependentUpon>Preprocessing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Preprocessing\PreprocProcessor.cs" />
+    <Compile Include="Items\Preprocessing\SynchObject.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Styles\BaseStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\ButtonTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\CheckBoxTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\TabControlTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include=".editorconfig" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fonts\" />
+    <Folder Include="Imagis\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Items\Framework\View\6os.gif" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,320 @@
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Crop process
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;1
+Operation@Creating Mask
+SampleName@
+Progressbar@0;1
+SampleName@P:\DiplomRabota\Test_1

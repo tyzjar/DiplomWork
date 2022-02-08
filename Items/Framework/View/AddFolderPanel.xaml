@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="GUI.Items.Framework.AddFolderPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI.Items.Framework"
+             mc:Ignorable="d" >
+   <StackPanel>
+      <TextBlock Text="Add all samples from folder :" Style="{StaticResource HeaderText}"/>
+      <!--Add folder-->
+      <TextBlock Text="Folder :" Style="{StaticResource TextBlockStyle}"/>
+      <TextBox x:Name="XmlAddFolder" Style="{StaticResource TextBoxStyle}" Text="{Binding Path=XmlAddFolder , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+      <!--Add subfolder-->
+      <!--Add inSample-->
+      <TextBlock Text="Morph into sample :" Style="{StaticResource TextBlockStyle}"/>
+      <TextBox x:Name="XmlAddInSample" Style="{StaticResource TextBoxStyle}" Text="{Binding Path=XmlInSample, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+      <Button  x:Name="XmlAddInButton" Content="Add"  HorizontalAlignment="Left"
+                Style="{StaticResource BaseStyle}" Width="100" Margin="0,10" Template="{StaticResource NewButtonControlTemplate}"
+                Command = "{Binding AddFolderCommand}"/>
+   </StackPanel>
+</UserControl>

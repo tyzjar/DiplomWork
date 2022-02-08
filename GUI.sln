@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI.csproj", "{24ED5AE7-25BC-461F-90DF-A9663C905FA3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4C2326AE-9557-4767-8906-30B9E565CAAB}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24ED5AE7-25BC-461F-90DF-A9663C905FA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24ED5AE7-25BC-461F-90DF-A9663C905FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24ED5AE7-25BC-461F-90DF-A9663C905FA3}.Debug|x64.ActiveCfg = Debug|x64
+		{24ED5AE7-25BC-461F-90DF-A9663C905FA3}.Debug|x64.Build.0 = Debug|x64
+		{24ED5AE7-25BC-461F-90DF-A9663C905FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24ED5AE7-25BC-461F-90DF-A9663C905FA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24ED5AE7-25BC-461F-90DF-A9663C905FA3}.Release|x64.ActiveCfg = Release|x64
+		{24ED5AE7-25BC-461F-90DF-A9663C905FA3}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {45356E47-3893-417E-A8C2-27FCD09AF8E8}
+	EndGlobalSection
+EndGlobal
