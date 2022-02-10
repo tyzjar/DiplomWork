@@ -11,8 +11,9 @@ namespace GUI.Items.Framework.MatlabProcessor
    {
       protected IMatlab(string tempFileName_)
       {
+         folder = Directory.GetCurrentDirectory() + @"\Temp\";
          tempFileName = @folder + @tempFileName_ + @".xlsx";
-         synchronizer = new Synchronizer(folder + tempFileName_ + ".txt");
+         synchronizer = new Synchronizer(@folder + @tempFileName_ + ".txt");
          EventProcessEnd += synchronizer.Stop;
       }
 
@@ -83,10 +84,11 @@ namespace GUI.Items.Framework.MatlabProcessor
       public delegate void ProcessStateHandler();
       public event ProcessStateHandler EventProcessEnd = () => { };
       public event ProcessStateHandler EventProcessStart = () => { };
+      public string Folder { get => folder; }
       protected string tempFileName { get; set; }
       protected Synchronizer synchronizer;
       protected Thread mainThread;
       protected volatile bool working = false;
-      public const string folder = @"Temp\";
+      protected string folder;
    }
 }

@@ -12,7 +12,7 @@
                                GridLinesVisibility="Horizontal"
                                AutoGenerateColumns="False" MaxHeight="540">
          <DataGrid.Columns>
-            <DataGridTextColumn Binding="{Binding SampleName, Mode=TwoWay}" Header="Morph sample" MinWidth="200" Width="*"/>
+            <DataGridTextColumn Binding="{Binding SampleName, Mode=TwoWay}" Header="Samples" MinWidth="200" Width="*"/>
          </DataGrid.Columns>
       </DataGrid>
    </ScrollViewer >

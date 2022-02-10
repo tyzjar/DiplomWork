@@ -106,7 +106,8 @@
     </fileset.classes>
     <fileset.resources />
     <fileset.depfun>
-      <file>P:\DiplomRabota\Dalmatian\Rload.m</file>
+      <file>${PROJECT_ROOT}\LogProcess.m</file>
+      <file>P:\DiplomRabota\MatlabProgs\Rload.m</file>
       <file>P:\DiplomRabota\MatlabProgs\Shuvaev_v3\mcov.m</file>
       <file>P:\DiplomRabota\MatlabProgs\Shuvaev_v3\mlog.m</file>
       <file>P:\DiplomRabota\MatlabProgs\Shuvaev_v3\mnlinsiman_resize.m</file>

@@ -3,13 +3,6 @@ function gui_preproc(logfile, expname, subfolder, midlvl)
 yes = 'y';
 done = 'd';
 
-fileO=fopen('newlog2.txt','a');
-str = strcat(logfile,',', expname, ',', subfolder);
-fprintf(fileO,'%s, %f.',str, midlvl);
-fclose(fileO);
-
-
-
 SettingsColumn = 1;
 SampleColumn = 2;
 SubtractionColumn = 3;

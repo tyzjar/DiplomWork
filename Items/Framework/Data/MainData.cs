@@ -29,10 +29,12 @@ namespace GUI.Items.Framework.Data
          configReader = new ConfigReader();
 
          ///Связывание элементов событий для их обработки.
+         configReader.AddItem(folderData);
          configReader.AddItem(dataGrid);
          openSaveEvents.InstructionSaveEvent += saveXML;
          openSaveEvents.InstructionSaveAsEvent += saveAsXML;
          openSaveEvents.InstructionCreateEvent += CreateXML;
+         openSaveEvents.SubfolderSettingsEvent += SubfolderSettingsStart;
          selectedFile.InstructionOpenEvent += openXML;
          folderData.AddFolderEvent += AddFolder;
       }
@@ -125,6 +127,16 @@ namespace GUI.Items.Framework.Data
          {
             MessageBox.Show(ex.Message, "Exeption",
                MessageBoxButton.OK, MessageBoxImage.Error);
+         }
+      }
+
+      void SubfolderSettingsStart()
+      {
+         var sWindow = new View.SubfoldersSettings(folderData);
+         sWindow.ShowDialog();
+         foreach (var item in dataGrid.Data)
+         {
+            item.udpateStates(folderData);
          }
       }
 

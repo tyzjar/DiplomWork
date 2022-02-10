@@ -26,8 +26,8 @@
     <param.support.packages />
     <param.namespace />
     <param.classorg />
-    <param.web.mcr>false</param.web.mcr>
-    <param.package.mcr>true</param.package.mcr>
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
     <param.no.mcr>false</param.no.mcr>
     <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
     <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
@@ -73,6 +73,8 @@
       <param.support.packages />
       <param.namespace />
       <param.classorg />
+      <param.web.mcr />
+      <param.package.mcr />
       <param.no.mcr />
       <param.web.mcr.name />
       <param.package.mcr.name />
@@ -110,7 +112,9 @@
       <file>P:\DiplomRabota\Dalmatian\sgauss.m</file>
       <file>P:\DiplomRabota\Dalmatian\sselect.m</file>
       <file>P:\DiplomRabota\Dalmatian\sstat.m</file>
+      <file>${PROJECT_ROOT}\LogProcess.m</file>
       <file>P:\DiplomRabota\MatlabProgs\block.m</file>
+      <file>P:\DiplomRabota\MatlabProgs\vol2proj.m</file>
     </fileset.depfun>
     <fileset.package />
     <fileset.examples />

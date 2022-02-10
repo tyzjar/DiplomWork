@@ -1,18 +1,65 @@
 ﻿using System.Windows.Input;
-using System.Windows;
+using OfficeOpenXml;
 
 namespace GUI.Items.Framework.Data
 {
-   public class FolderData : ViewModelBase
+   public class FolderData : ConfigItem
    {
-      public FolderData()
+      public FolderData():
+         base("FolderData")
       {
          AddFolderCommand = new DelegateCommand((object param) => { AddFolderEvent(); });
       }
 
+      public override void LoadConfig(ExcelWorksheet worksheet)
+      {
+         if ((worksheet != null) && (worksheet.Dimension != null))
+         {
+            for (int i = 1; i <= worksheet.Dimension.End.Row; i++)
+            {
+               setByName(worksheet.Cells[i, 1].Text, worksheet.Cells[i, 2].Text);
+            }
+         }
+      }
+
+      public override void SaveConfig(ExcelWorksheet worksheet)
+      {
+         var len = fieldNames.Length;
+         var values = getAsRow();
+
+         for (int i = 0; i < len; ++i)
+         {
+            worksheet.Cells[i + 1, 1].Value = fieldNames[i];
+            worksheet.Cells[i + 1, 2].Value = values[i];
+         }
+      }
+
+      public string[] getAsRow()
+      {
+         string[] row = new[]{ MorphSubfolder,MaskSubfolder,
+         SampleSubfolder, CropSubfolder, IntensitySubfolder,
+         SubtractionSubfolder, CellCountSubfolder};
+         return row;
+      }
+      public void setByName(string paramName, string value)
+      {
+         switch (paramName)
+         {
+            case nameof(MorphSubfolder): MorphSubfolder = value; break;
+            case nameof(MaskSubfolder): MaskSubfolder = value; break;
+            case nameof(SampleSubfolder): SampleSubfolder = value; break;
+            case nameof(CropSubfolder): CropSubfolder = value; break;
+            case nameof(IntensitySubfolder): IntensitySubfolder = value; break;
+            case nameof(SubtractionSubfolder): SubtractionSubfolder = value; break;
+            case nameof(CellCountSubfolder): CellCountSubfolder = value; break;
+         }
+      }
+
+      #region events
       public delegate void AddFolderDelegate();
       public event AddFolderDelegate AddFolderEvent = () => { };
       public ICommand AddFolderCommand { get; private set; }
+      #endregion
 
       public string XmlAddFolder 
       {
@@ -134,14 +181,34 @@ namespace GUI.Items.Framework.Data
             }
          }
       }
+      public string CellCountSubfolder
+      {
+         get
+         {
+            return CellCountSubfolderValue;
+         }
+         set
+         {
+            if (value != CellCountSubfolderValue)
+            {
+               CellCountSubfolderValue = value;
+               OnPropertyChanged(nameof(CellCountSubfolder));
+            }
+         }
+      }
 
-      public string XmlAddFolderValue { get; set; } = "";
-      public string XmlInSampleValue { get; set; } = "";
-      public string MorphSubfolderValue { get; set; } = "Morph";
-      public string MaskSubfolderValue { get; set; } = "Masked";
-      public string SampleSubfolderValue { get; set; } = "Pattern 1";
-      public string CropSubfolderValue { get; set; } = "Crop";
-      public string IntensitySubfolderValue { get; set; } = "Without_aberration";
-      public string SubtractionSubfolderValue { get; set; } = "Subtraction_picture";
+      private string XmlAddFolderValue { get; set; } = "";
+      private string XmlInSampleValue { get; set; } = "";
+      private string MorphSubfolderValue { get; set; } = "Morph";
+      private string MaskSubfolderValue { get; set; } = "Masked";
+      private string SampleSubfolderValue { get; set; } = "Pattern 1";
+      private string CropSubfolderValue { get; set; } = "Crop";
+      private string IntensitySubfolderValue { get; set; } = "Without_aberration";
+      private string SubtractionSubfolderValue { get; set; } = "Subtraction_picture";
+      private string CellCountSubfolderValue { get; set; } = "Masked";
+
+      public static string[] fieldNames = new[]{ nameof(MorphSubfolder), nameof(MaskSubfolder),
+         nameof(SampleSubfolder), nameof(CropSubfolder), nameof(IntensitySubfolder),
+         nameof(SubtractionSubfolder), nameof(CellCountSubfolder) };
    }
 }

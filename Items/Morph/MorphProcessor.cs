@@ -36,7 +36,8 @@ namespace GUI.Items.Morph
       protected override void MatlabThread()
       {
          MorphMatlab mMorph = new MorphMatlab();
-         mMorph.gui_morph(0, new MWCharArray(tempFileName),
+         mMorph.gui_morph(0, new MWCharArray(synchronizer.getSynchFileName),
+            new MWCharArray(tempFileName),
             new MWCharArray(config.mainData.folderData.MaskSubfolder),
             new MWCharArray(config.mainData.folderData.MorphSubfolder),
             new MWCharArray(config.AgeValue));

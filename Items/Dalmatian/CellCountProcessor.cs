@@ -37,7 +37,9 @@ namespace GUI.Items.Dalmatian
       protected override void MatlabThread()
       {
          CellCountMatlab mccount = new CellCountMatlab();
-         mccount.gui_cellcount(0, new MWCharArray(tempFileName), config.sfilterHipassValue,
+         mccount.gui_cellcount(0, new MWCharArray(synchronizer.getSynchFileName),
+            new MWCharArray(tempFileName), config.mainData.folderData.CellCountSubfolder,
+            config.sfilterHipassValue,
             config.sfilterLowpassValue, config.trsholdValue,
             config.countMinRegionValue, config.countConfLvlValue,
             config.countRMinValue, config.countRMaxValue,

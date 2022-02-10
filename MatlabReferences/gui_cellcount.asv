@@ -47,8 +47,7 @@ for u=1:Ng
     %считывать файл каждый раз
     
     LogProcess(logfile,'SampleName',myList{u,1});
-    tmp = strcat(myList{u,1},'\',subfolder);
-    chdir(tmp);
+    chdir(strcat(myList{u,1},'\',subfolder));
     Imarisfolder = strcat(myList{u,1},'\',imsubfolder,'\');
     
     fol=dir('*.tif');
@@ -120,16 +119,16 @@ for u=1:Ng
 
     %Output total image with detected spots
     
-    IM = gui_Rload(strcat(tmp,'\*.tif'), strcat(tmp,'\') ,1.6,1.6);
-    image(vol2proj(IM),'CDataMapping','scaled');
+    IN = gui_Rload(strcat(myList{u,1},'\',subfolder,'\*.tif'), strcat(myList{u,1},'\',subfolder,'\') ,1.6,1.6);
+    image(vol2proj(IN),'CDataMapping','scaled');
     axis image
     colormap(jet) %parula
     colorbar();
     title(myList{u,1});
     hold on    
     Z= Z .* koef;
-    plot(Y, X+size(IM,3), 'r+', 'MarkerSize', 10, 'linewidth', 0.5);
-    plot(X+size(IM,2),Z, 'r+', 'MarkerSize', 10, 'linewidth', 0.5);
+    plot(Y, X+size(IN,3), 'r+', 'MarkerSize', 10, 'linewidth', 0.5);
+    plot(X+size(IN,2),Z, 'r+', 'MarkerSize', 10, 'linewidth', 0.5);
     plot(Y, Z, 'r+', 'MarkerSize', 10, 'linewidth', 0.5);    
     hold off
     drawnow

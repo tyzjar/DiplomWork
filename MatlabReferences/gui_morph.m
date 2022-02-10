@@ -11,9 +11,7 @@ else
     InF  = varargin{1} % name of INPUT  subfolder 
     OutF = varargin{2} % name of OUTPUT subfolder
     age  = varargin{3}
-end; 
-
-
+end
 
 LogProcess(logfile,'Progressbar',num2str(0),num2str(Ng));
 
@@ -25,8 +23,8 @@ for i=1:Ng
     st=strfind(br_name1,'\');
     br_name1=br_name1(st(end)+1:end);
     
-    LogProcess(logfile,'Operation',strcat('Sample ',cell2mat(t{i,1})));
-    LogProcess(logfile,'SampleName',strcat('morphing in sample ', cell2mat(t{i,2})));
+    LogProcess(logfile,'Operation',strcat('Sample', 32, '"', cell2mat(t{i,1}), '"'));
+    LogProcess(logfile,'SampleName',strcat('morphing in sample', 32, '"',cell2mat(t{i,2}), '"'));
     
     IN=Rload(strcat(cell2mat(t{i,2}),'\',OutF,'\*.tif'),1,1)/65535;
     [M,N,L]=size(IN);
@@ -54,9 +52,10 @@ for i=1:Ng
            [m,n,l]=size(im);
        end
        
-       if minDelta > 0
+       if minDelta >= 0
          break;
        end
+       
     end
     
     tic

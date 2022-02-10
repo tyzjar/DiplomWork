@@ -118,6 +118,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Items\Framework\View\SubfoldersSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\Framework\View\ToolsSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Items\Morph\GridPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -180,6 +188,9 @@
     <Compile Include="Items\Framework\View\ProgressBarSmoother.cs" />
     <Compile Include="Items\Framework\View\SelectedPanel.xaml.cs">
       <DependentUpon>SelectedPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Framework\View\SubfoldersSettings.xaml.cs">
+      <DependentUpon>SubfoldersSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Items\Morph\GridPanel.xaml.cs">
       <DependentUpon>GridPanel.xaml</DependentUpon>

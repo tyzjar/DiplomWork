@@ -223,15 +223,15 @@ namespace GUI.Items.Dalmatian
          }
       }
 
-      public double sfilterLowpassValue { get; set; }
-      public double sfilterHipassValue { get; set; }
-      public double trsholdValue { get; set; }
-      public double mfilterRadValue { get; set; }
-      public double countMinRegionValue { get; set; }
-      public double countConfLvlValue { get; set; }
-      public double countRMinValue { get; set; }
-      public double countRMaxValue { get; set; }
-      public double countkValue { get; set; }
+      public double sfilterLowpassValue { get; set; } = 2;
+      public double sfilterHipassValue { get; set; } = 100;
+      public double trsholdValue { get; set; } = 0;
+      public double mfilterRadValue { get; set; } = 3;
+      public double countMinRegionValue { get; set; } = 100;
+      public double countConfLvlValue { get; set; } = 0.1;
+      public double countRMinValue { get; set; } = 0;
+      public double countRMaxValue { get; set; } = 15;
+      public double countkValue { get; set; } = 1;
       public bool sfilterOnValue { get; set; } = true;
       public bool trsholdOnValue { get; set; } = true;
       public bool mfilterOnValue { get; set; } = false;

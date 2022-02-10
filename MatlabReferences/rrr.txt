@@ -1,0 +1,12 @@
+Progressbar@0;1
+Operation@SampleP:\DiplomRabota\Test_1
+SampleName@morphing in sampleP:\DiplomRabota\Test_2
+Progressbar@0;1
+Operation@SampleP:\DiplomRabota\Test_1
+SampleName@morphing in sampleP:\DiplomRabota\Test_2
+Progressbar@0;1
+Operation@SampleP:\DiplomRabota\Test_1
+SampleName@morphing in sampleP:\DiplomRabota\Test_2
+Progressbar@1;1
+Progressbar@0;1
+Progressbar@0;1
