@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using System.Windows.Controls;
 using OfficeOpenXml;
+using System.Windows;
 
 namespace GUI.Items.Dalmatian
 {
@@ -17,6 +18,24 @@ namespace GUI.Items.Dalmatian
          gridPanel = new GridPanel();
          gridPanel.SamplesDataGrid.ItemsSource = mainData.dataGrid.Data;
          processor = new CellCountProcessor(this, "CellCount");
+         commonPreview = new Preview.CommonPreview(this, "CommonPreview");
+         sfilterPreview = new Preview.sFilterPreview(this, "sFilterPreview");
+         thresholdPreview = new Preview.ThresholdPreview(this, "ThresholdPreview");
+         originalView = new Preview.OriginalView(this, "OriginalView");
+
+         /// Filters preview events
+         CommonPreviewCommand = new Framework.DelegateCommand((object param) => {
+            commonPreview.StartProcess();
+         });
+         sFilterPreviewCommand = new Framework.DelegateCommand((object param) => {
+            sfilterPreview.StartProcess();
+         });
+         ThresholdCommand = new Framework.DelegateCommand((object param) => {
+            thresholdPreview.StartProcess();
+         });
+         OriginalViewCommand = new Framework.DelegateCommand((object param) => {
+            originalView.StartProcess();
+         });
       }
       protected override void swapToView()
       {
@@ -76,8 +95,18 @@ namespace GUI.Items.Dalmatian
          }
       }
 
+      public ICommand CommonPreviewCommand { get; private set; }
+      public ICommand sFilterPreviewCommand { get; private set; }
+      public ICommand ThresholdCommand { get; private set; }
+      public ICommand OriginalViewCommand { get; private set; }
+      
+
       #region Values
       public GridPanel gridPanel;
+      private Preview.CommonPreview commonPreview;
+      private Preview.sFilterPreview sfilterPreview;
+      private Preview.ThresholdPreview thresholdPreview;
+      private Preview.OriginalView originalView;
       public string sfilterLowpass
       {
          get
@@ -142,11 +171,11 @@ namespace GUI.Items.Dalmatian
       {
          get
          {
-            return mfilterRadValue.ToString();
+            return countConfLvlValue.ToString();
          }
          set
          {
-            mfilterRadValue = Convert.ToDouble(value);
+            countConfLvlValue = Convert.ToDouble(value);
             OnPropertyChanged(nameof(countConfLvl));
          }
       }

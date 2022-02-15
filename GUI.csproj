@@ -68,6 +68,9 @@
     <Reference Include="gui_preproc">
       <HintPath>MatlabReferences\gui_preproc\for_redistribution_files_only\gui_preproc.dll</HintPath>
     </Reference>
+    <Reference Include="gui_preview">
+      <HintPath>MatlabReferences\gui_preview\for_redistribution_files_only\gui_preview.dll</HintPath>
+    </Reference>
     <Reference Include="MWArray, Version=2.20.1.0, Culture=neutral, PublicKeyToken=e1d84a0da19db86f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>MatlabReferences\MWArray.dll</HintPath>
@@ -161,6 +164,10 @@
     <Compile Include="Items\Dalmatian\GridPanel.xaml.cs">
       <DependentUpon>GridPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Items\Dalmatian\Preview\CommonPreview.cs" />
+    <Compile Include="Items\Dalmatian\Preview\OriginalView.cs" />
+    <Compile Include="Items\Dalmatian\Preview\sFilterPreview.cs" />
+    <Compile Include="Items\Dalmatian\Preview\ThresholdPreview.cs" />
     <Compile Include="Items\Framework\ConfigReader.cs" />
     <Compile Include="Items\Framework\Data\FolderData.cs" />
     <Compile Include="Items\Dalmatian\CellCountConfig.cs" />

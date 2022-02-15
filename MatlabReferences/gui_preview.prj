@@ -1,6 +1,6 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="649431065" file="P:\DiplomRabota\GUI\MatlabReferences\gui_cellcount.prj" location="P:\DiplomRabota\GUI\MatlabReferences" name="gui_cellcount" preferred-package-location="P:\DiplomRabota\GUI\MatlabReferences\gui_cellcount\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.library" target-name="Library Compiler">
-    <param.appname>gui_cellcount</param.appname>
+  <configuration build-checksum="58410873" file="P:\DiplomRabota\GUI\MatlabReferences\gui_preview.prj" location="P:\DiplomRabota\GUI\MatlabReferences" name="gui_preview" preferred-package-location="P:\DiplomRabota\GUI\MatlabReferences\gui_preview\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.library" target-name="Library Compiler">
+    <param.appname>gui_preview</param.appname>
     <param.icon />
     <param.icons />
     <param.version>1.0</param.version>
@@ -11,15 +11,15 @@
     <param.description />
     <param.screenshot />
     <param.guid />
-    <param.installpath.string>\gui_cellcount\</param.installpath.string>
+    <param.installpath.string>\gui_preview\</param.installpath.string>
     <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
     <param.logo />
     <param.install.notes />
     <param.target.install.notes />
-    <param.intermediate>${PROJECT_ROOT}\gui_cellcount\for_testing</param.intermediate>
-    <param.files.only>${PROJECT_ROOT}\gui_cellcount\for_redistribution_files_only</param.files.only>
-    <param.output>${PROJECT_ROOT}\gui_cellcount\for_redistribution</param.output>
-    <param.logdir>${PROJECT_ROOT}\gui_cellcount</param.logdir>
+    <param.intermediate>${PROJECT_ROOT}\gui_preview\for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}\gui_preview\for_redistribution_files_only</param.files.only>
+    <param.output>${PROJECT_ROOT}\gui_preview\for_redistribution</param.output>
+    <param.logdir>${PROJECT_ROOT}\gui_preview</param.logdir>
     <param.enable.clean.build>false</param.enable.clean.build>
     <param.user.defined.mcr.options />
     <param.target.type>subtarget.net.component</param.target.type>
@@ -43,7 +43,7 @@
     <param.net.tsa.assembly />
     <param.net.tsa.interface />
     <param.net.tsa.namespace />
-    <param.net.tsa.superclass>CellCountMatlab</param.net.tsa.superclass>
+    <param.net.tsa.superclass>MatlabPreview</param.net.tsa.superclass>
     <param.net.tsa.metadata />
     <param.net.tsa.metadata.assembly>P:\DiplomRabota\GUI\MatlabReferences</param.net.tsa.metadata.assembly>
     <param.net.saved.interface />
@@ -97,33 +97,34 @@
       <param.cpp.api />
     </unset>
     <fileset.exports>
-      <file>${PROJECT_ROOT}\gui_cellcount.m</file>
+      <file>${PROJECT_ROOT}\gui_originalView.m</file>
+      <file>${PROJECT_ROOT}\gui_preview.m</file>
+      <file>${PROJECT_ROOT}\gui_sfilterPreview.m</file>
+      <file>${PROJECT_ROOT}\gui_thresholdPreview.m</file>
     </fileset.exports>
     <fileset.classes>
       <entity.package name="">
-        <entity.class name="CellCountMatlab">
-          <file>${PROJECT_ROOT}\gui_cellcount.m</file>
+        <entity.class name="MatlabPreview">
+          <file>${PROJECT_ROOT}\gui_originalView.m</file>
+          <file>${PROJECT_ROOT}\gui_preview.m</file>
+          <file>${PROJECT_ROOT}\gui_sfilterPreview.m</file>
+          <file>${PROJECT_ROOT}\gui_thresholdPreview.m</file>
         </entity.class>
       </entity.package>
     </fileset.classes>
     <fileset.resources />
     <fileset.depfun>
-      <file>P:\DiplomRabota\Dalmatian\sbootstrap.m</file>
       <file>P:\DiplomRabota\Dalmatian\sgauss.m</file>
-      <file>P:\DiplomRabota\Dalmatian\sselect.m</file>
-      <file>P:\DiplomRabota\Dalmatian\sstat.m</file>
-      <file>${PROJECT_ROOT}\gui_Rload.m</file>
-      <file>${PROJECT_ROOT}\LogProcess.m</file>
-      <file>P:\DiplomRabota\MatlabProgs\block.m</file>
+      <file>P:\DiplomRabota\MatlabProgs\Rload.m</file>
       <file>P:\DiplomRabota\MatlabProgs\vol2proj.m</file>
     </fileset.depfun>
     <fileset.package />
     <fileset.examples />
     <fileset.documentation />
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\gui_cellcount\for_testing" name="gui_cellcount_overview.html" optional="false">P:\DiplomRabota\GUI\MatlabReferences\gui_cellcount\for_testing\gui_cellcount_overview.html</file>
-      <file location="${PROJECT_ROOT}\gui_cellcount\for_testing" name="gui_cellcount.dll" optional="false">P:\DiplomRabota\GUI\MatlabReferences\gui_cellcount\for_testing\gui_cellcount.dll</file>
-      <file location="${PROJECT_ROOT}\gui_cellcount\for_testing" name="gui_cellcountNative.dll" optional="false">P:\DiplomRabota\GUI\MatlabReferences\gui_cellcount\for_testing\gui_cellcountNative.dll</file>
+      <file location="${PROJECT_ROOT}\gui_preview\for_testing" name="gui_preview.dll" optional="false">P:\DiplomRabota\GUI\MatlabReferences\gui_preview\for_testing\gui_preview.dll</file>
+      <file location="${PROJECT_ROOT}\gui_preview\for_testing" name="gui_preview_overview.html" optional="false">P:\DiplomRabota\GUI\MatlabReferences\gui_preview\for_testing\gui_preview_overview.html</file>
+      <file location="${PROJECT_ROOT}\gui_preview\for_testing" name="gui_previewNative.dll" optional="false">P:\DiplomRabota\GUI\MatlabReferences\gui_preview\for_testing\gui_previewNative.dll</file>
     </build-deliverables>
     <workflow />
     <matlab>

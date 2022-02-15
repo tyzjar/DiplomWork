@@ -25,10 +25,16 @@
             </Border>
             <!-- Standard Filter -->
             <Border Style="{StaticResource BorderStyle}">
-               <StackPanel x:Name="StandardFilter" Grid.Row="0">
-                  <CheckBox Grid.Row="0" x:Name="StandardFilterEnabel" Style="{StaticResource HeaderText}"
-                            IsChecked="{Binding Path=sfilterOnValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            Content="Standard filter" Template="{StaticResource NewCheckBoxControlTemplate}" />
+               <StackPanel x:Name="StandardFilter">
+                  <Grid>
+                     <TextBlock Style="{StaticResource HeaderText}"
+                               Text="Standard filter" />
+                     <!-- Preview -->
+                     <Button Content="preview" 
+                             Style="{StaticResource BaseStyle}" Width="60" HorizontalAlignment="Right"
+                             Template="{StaticResource NewButtonControlTemplate}"
+                             Command = "{Binding sFilterPreviewCommand}" Height="23" VerticalAlignment="Bottom"/>
+                  </Grid>
                   <TextBlock Text="Set Lowpass and Hipass parameters" Style="{StaticResource TextBlockStyle}" />
                   <Grid>
                      <Grid.ColumnDefinitions>
@@ -57,10 +63,17 @@
             </Border>
             <!-- Treshold -->
             <Border Style="{StaticResource BorderStyle}">
-               <StackPanel x:Name="Treshold" Grid.Row="0">
-                  <CheckBox Grid.Row="0" x:Name="TresholdEnable" Style="{StaticResource HeaderText}"
-                            IsChecked="{Binding Path=trsholdOnValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            Content="Treshold" Template="{StaticResource NewCheckBoxControlTemplate}" />
+               <StackPanel x:Name="Treshold">
+                  <Grid>
+                     <TextBlock Grid.Row="0" x:Name="TresholdEnable" Style="{StaticResource HeaderText}"
+                               HorizontalAlignment="Left"
+                               Text="Treshold" />
+                     <!-- Preview -->
+                     <Button  Grid.Column="1" Content="preview" 
+                                 Style="{StaticResource BaseStyle}" Width="60" HorizontalAlignment="Right"
+                                 Template="{StaticResource NewButtonControlTemplate}"
+                                 Command = "{Binding ThresholdCommand}"/>
+                  </Grid>
                   <TextBlock Text="Set treshold parameter" Style="{StaticResource TextBlockStyle}" />
                   <Grid>
                      <Grid.ColumnDefinitions>
@@ -80,9 +93,16 @@
             <!-- Median filter -->
             <Border Style="{StaticResource BorderStyle}">
                <StackPanel x:Name="MedianFilter" Grid.Row="0">
-                  <CheckBox Grid.Row="0" x:Name="MedianFilterEnable" Style="{StaticResource HeaderText}"
+                  <Grid>
+                     <CheckBox Grid.Row="0" x:Name="MedianFilterEnable" Style="{StaticResource HeaderText}"
                             IsChecked="{Binding Path=mfilterOnValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Content="Median filter" Template="{StaticResource NewCheckBoxControlTemplate}" />
+                     <!-- Preview -->
+                     <Button  Grid.Column="1" Content="preview" 
+                                    Style="{StaticResource BaseStyle}" Width="60" HorizontalAlignment="Right"
+                                    Template="{StaticResource NewButtonControlTemplate}"
+                                    />
+                  </Grid>
                   <TextBlock Text="Set the radius of the block in which the median is calculated" 
                              Style="{StaticResource TextBlockStyle}" />
                   <Grid>
@@ -112,6 +132,7 @@
                         <ColumnDefinition />
                      </Grid.ColumnDefinitions>
                      <Grid.RowDefinitions>
+                        <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -151,13 +172,13 @@
                               Text="{Binding Path = countk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
                      <!-- Start -->
-                     <Button  Grid.Column="0" Grid.Row="5" x:Name="CountStartButton" Content="Сount"  HorizontalAlignment="Left"
+                     <Button  Grid.Column="0" Grid.Row="6" x:Name="CountStartButton" Content="Сount"  HorizontalAlignment="Left"
                               Style="{StaticResource BaseStyle}" Width="100" Margin="0,10,0,0"
                               Template="{StaticResource NewButtonControlTemplate}"
                               Command = "{Binding ProcessorStartCommand}"/>
                      <!-- Start -->
-                     <Button  Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"
-                              x:Name="SelectedCountStartButton" Content="Сount selected samples"  HorizontalAlignment="Left"
+                     <Button  Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2"
+                              Content="Сount selected samples"  HorizontalAlignment="Left"
                               Style="{StaticResource BaseStyle}" Width="150" Margin="0,10,0,0"
                               Template="{StaticResource NewButtonControlTemplate}"/>
                   </Grid>

@@ -8,12 +8,21 @@
              d:DesignHeight="450" d:DesignWidth="800">
    <ScrollViewer VerticalScrollBarVisibility="Auto">
       <DataGrid VerticalAlignment="Top"
-                               x:Name="SamplesDataGrid" 
-                               GridLinesVisibility="Horizontal"
-                               AutoGenerateColumns="False" MaxHeight="540">
+                x:Name="SamplesDataGrid" 
+                GridLinesVisibility="Horizontal"
+                AutoGenerateColumns="False" MaxHeight="540">
          <DataGrid.Columns>
             <DataGridTextColumn Binding="{Binding SampleName, Mode=TwoWay}" Header="Samples" MinWidth="200" Width="*"/>
          </DataGrid.Columns>
+         <DataGrid.ContextMenu>
+            <ContextMenu>
+               <MenuItem Header="Original view" Command="{Binding OriginalViewCommand}"></MenuItem>
+               <MenuItem Header="Standart filter preview" Command="{Binding sFilterPreviewCommand}"></MenuItem>
+               <MenuItem Header="Treshold preview" Command="{Binding ThresholdCommand}"></MenuItem>
+               <MenuItem Header="Median filter preview" ></MenuItem>
+               <MenuItem Header="Common preview" Command="{Binding CommonPreviewCommand}"></MenuItem>
+            </ContextMenu>
+         </DataGrid.ContextMenu>
       </DataGrid>
    </ScrollViewer >
 </UserControl>
