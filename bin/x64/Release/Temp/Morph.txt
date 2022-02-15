@@ -1,0 +1,3 @@
+Progressbar@0;1
+Operation@Sample "P:\DiplomRabota\Test_1"
+SampleName@morphing in sample "P:\DiplomRabota\Test_2"
