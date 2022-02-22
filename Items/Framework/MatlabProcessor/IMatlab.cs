@@ -50,6 +50,8 @@ namespace GUI.Items.Framework.MatlabProcessor
          {
             MessageBox.Show(ex.Message, "Exeption",
                MessageBoxButton.OK, MessageBoxImage.Error);
+            EventProcessEnd();
+            working = false;
          }
       }
       protected void Work(object state)

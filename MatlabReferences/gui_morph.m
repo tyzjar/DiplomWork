@@ -26,7 +26,7 @@ for i=1:Ng
     LogProcess(logfile,'Operation',strcat('Sample', 32, '"', cell2mat(t{i,1}), '"'));
     LogProcess(logfile,'SampleName',strcat('morphing in sample', 32, '"',cell2mat(t{i,2}), '"'));
     
-    IN=Rload(strcat(cell2mat(t{i,2}),'\',OutF,'\*.tif'),1,1)/65535;
+    IN=Rload(strcat(cell2mat(t{i,2}),'\*.tif'),1,1)/65535;
     [M,N,L]=size(IN);
     im=Rload(strcat(cell2mat(t{i,1}),'\',InF,'\*.tif'),1,1)/65535;
     [m,n,l]=size(im);

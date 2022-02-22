@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="1461916681" file="P:\DiplomRabota\GUI\MatlabReferences\gui_preproc.prj" location="P:\DiplomRabota\GUI\MatlabReferences" name="gui_preproc" preferred-package-location="P:\DiplomRabota\GUI\MatlabReferences\gui_preproc\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.library" target-name="Library Compiler">
+  <configuration build-checksum="321993908" file="P:\DiplomRabota\GUI\MatlabReferences\gui_preproc.prj" location="P:\DiplomRabota\GUI\MatlabReferences" name="gui_preproc" preferred-package-location="P:\DiplomRabota\GUI\MatlabReferences\gui_preproc\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.library" target-name="Library Compiler">
     <param.appname>gui_preproc</param.appname>
     <param.icon />
     <param.icons />
@@ -26,8 +26,8 @@
     <param.support.packages />
     <param.namespace />
     <param.classorg />
-    <param.web.mcr>false</param.web.mcr>
-    <param.package.mcr>true</param.package.mcr>
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
     <param.no.mcr>false</param.no.mcr>
     <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
     <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
@@ -73,6 +73,8 @@
       <param.support.packages />
       <param.namespace />
       <param.classorg />
+      <param.web.mcr />
+      <param.package.mcr />
       <param.no.mcr />
       <param.web.mcr.name />
       <param.package.mcr.name />
@@ -108,7 +110,6 @@
     <fileset.depfun>
       <file>${PROJECT_ROOT}\gui_Rload.m</file>
       <file>${PROJECT_ROOT}\LogProcess.m</file>
-      <file>${PROJECT_ROOT}\newlog2.txt</file>
       <file>P:\DiplomRabota\MatlabProgs\samlev.m</file>
       <file>P:\DiplomRabota\MatlabProgs\Shuvaev_v3\mgauss.m</file>
       <file>P:\DiplomRabota\MatlabProgs\Vcrop.m</file>

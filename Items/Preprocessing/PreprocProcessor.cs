@@ -31,6 +31,7 @@ namespace GUI.Items.Preprocessing
          synchronizer.AddSynchObject(nameof(Progressbar), Progressbar);
 
          EventProcessStart += PrepareLoad;
+         EventProcessEnd += UpdateTable;
       }
       protected override void MatlabThread()
       {
@@ -91,6 +92,13 @@ namespace GUI.Items.Preprocessing
          Operation.UpdateSource("Waiting initialize synchronizer");
          SampleName.UpdateSource("");
          Progressbar.UpdateSource("0;1");
+      }
+      void UpdateTable()
+      {
+         foreach (var item in config.mainData.dataGrid.Data)
+         {
+            item.udpateStates(config.mainData.folderData);
+         }
       }
 
       PreprocConfig config;

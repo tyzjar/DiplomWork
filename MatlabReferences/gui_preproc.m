@@ -71,19 +71,22 @@ for i=1:Ng
         end 
     end
     
-    files=dir(strcat(tmp,'\*tif'));
-    for j=1:length(files)
-        IN=double(imread(strcat(tmp,'\',files(j).name)));
-        %Subtraction picture
-        if(SubtractionPicture)
-            IN=IN.*(BG<8);
-            imwrite(uint16(IN),strcat(sample,'\',folnameSubtraction,'\',files(j).name));
-        end
-        %Leveling Intensity
-        if(LevelingIntensity)
-            imwrite(uint16(IN./G),strcat(sample,'\',folnameIntensity,'\',files(j).name));              
+    if(SubtractionPicture || LevelingIntensity)
+        files=dir(strcat(tmp,'\*tif'));
+        for j=1:length(files)
+            IN=double(imread(strcat(tmp,'\',files(j).name)));
+            %Subtraction picture
+            if(SubtractionPicture)
+                IN=IN.*(BG<8);
+                imwrite(uint16(IN),strcat(sample,'\',folnameSubtraction,'\',files(j).name));
+            end
+            %Leveling Intensity
+            if(LevelingIntensity)
+                imwrite(uint16(IN./G),strcat(sample,'\',folnameIntensity,'\',files(j).name));              
+            end
         end
     end
+    
     LogProcess(logfile,'Progressbar',num2str(i),num2str(Ng));
 end
 
@@ -102,6 +105,7 @@ for i=1:Ng
         figure('Name',LoadTmp(i),'NumberTitle','off')
         [~,r]=imcrop(upview);
         title('Chanel');
+        close
         Vcrop(LoadTmp(i),strcat(sample,'\',folnameCrop),r);
         LoadTmp(i) = strcat(sample,'\',folnameCrop);
     else

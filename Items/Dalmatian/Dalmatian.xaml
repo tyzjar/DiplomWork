@@ -27,15 +27,18 @@
             <Border Style="{StaticResource BorderStyle}">
                <StackPanel x:Name="StandardFilter">
                   <Grid>
-                     <TextBlock Style="{StaticResource HeaderText}"
-                               Text="Standard filter" />
+                     <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource HeaderText}"
+                                   Text="Standard filter" />
+                     </StackPanel>
                      <!-- Preview -->
                      <Button Content="preview" 
                              Style="{StaticResource BaseStyle}" Width="60" HorizontalAlignment="Right"
                              Template="{StaticResource NewButtonControlTemplate}"
-                             Command = "{Binding sFilterPreviewCommand}" Height="23" VerticalAlignment="Bottom"/>
+                             Command = "{Binding sFilterPreviewCommand}" Height="23" />
                   </Grid>
-                  <TextBlock Text="Set Lowpass and Hipass parameters" Style="{StaticResource TextBlockStyle}" />
+                  <TextBlock Text="Remove unwanted background."
+                             Style="{StaticResource TextBlockStyle}" />
                   <Grid>
                      <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
@@ -74,7 +77,7 @@
                                  Template="{StaticResource NewButtonControlTemplate}"
                                  Command = "{Binding ThresholdCommand}"/>
                   </Grid>
-                  <TextBlock Text="Set treshold parameter" Style="{StaticResource TextBlockStyle}" />
+                  <TextBlock Text="Remove unwanted background." Style="{StaticResource TextBlockStyle}" />
                   <Grid>
                      <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>

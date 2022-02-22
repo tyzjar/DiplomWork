@@ -73,6 +73,7 @@ namespace GUI.Items.Framework.Data.DataGrid
       {
          GridItem item = new GridItem();
          item.PropertyChanged += UpdateItem;
+         item.udpateStates(folderData);
          return item;
       }
 
@@ -80,6 +81,7 @@ namespace GUI.Items.Framework.Data.DataGrid
       {
          GridItem item = new GridItem(row);
          item.PropertyChanged += UpdateItem;
+         item.udpateStates(folderData);
          return item;
       }
 

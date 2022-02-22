@@ -1,0 +1,18 @@
+Operation@Leveling Intensity and Subtraction picture process
+SampleName@
+Progressbar@0;2
+Progressbar@1;2
+Progressbar@2;2
+Operation@Crop process
+SampleName@
+Progressbar@0;2
+SampleName@P:\DiplomRabota\Test_1
+Progressbar@1;2
+SampleName@P:\DiplomRabota\Test_2
+Progressbar@2;2
+Operation@Creating Mask
+SampleName@
+Progressbar@0;2
+Progressbar@1;2
+SampleName@P:\DiplomRabota\Test_2
+Progressbar@2;2

@@ -110,7 +110,7 @@ for u=1:Ng
     mkdir(myList{u,1},imsubfolder);
     
     ImarisMatrix = zeros(N,M,L);
-    for s=1:size(X)
+    for s=1:size(X,2)
         ImarisMatrix(X(s),Y(s),Z(s)) = 1*65535;
     end
     
@@ -120,7 +120,8 @@ for u=1:Ng
 
     %Output total image with detected spots
     
-    IM = gui_Rload(strcat(tmp,'\*.tif'), strcat(tmp,'\') ,1.6,1.6);
+    IM = gui_Rload(strcat(tmp,'\*.tif'), strcat(tmp,'\') ,1,1);
+    figure
     image(vol2proj(IM),'CDataMapping','scaled');
     axis image
     colormap(jet) %parula
