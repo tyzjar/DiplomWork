@@ -10,6 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dalmatian", "Dalmatian\Dalmatian.csproj", "{9B704514-7717-465C-89B0-BAA4130434AE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{24ED5AE7-25BC-461F-90DF-A9663C905FA3} = {24ED5AE7-25BC-461F-90DF-A9663C905FA3}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +31,14 @@ Global
 		{24ED5AE7-25BC-461F-90DF-A9663C905FA3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24ED5AE7-25BC-461F-90DF-A9663C905FA3}.Release|x64.ActiveCfg = Release|x64
 		{24ED5AE7-25BC-461F-90DF-A9663C905FA3}.Release|x64.Build.0 = Release|x64
+		{9B704514-7717-465C-89B0-BAA4130434AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B704514-7717-465C-89B0-BAA4130434AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B704514-7717-465C-89B0-BAA4130434AE}.Debug|x64.ActiveCfg = Debug|x64
+		{9B704514-7717-465C-89B0-BAA4130434AE}.Debug|x64.Build.0 = Debug|x64
+		{9B704514-7717-465C-89B0-BAA4130434AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B704514-7717-465C-89B0-BAA4130434AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B704514-7717-465C-89B0-BAA4130434AE}.Release|x64.ActiveCfg = Release|x64
+		{9B704514-7717-465C-89B0-BAA4130434AE}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,31 +14,18 @@
       <!-- Work grid -->
       <Grid>
          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="190"/>
             <ColumnDefinition/>
          </Grid.ColumnDefinitions>
          <!-- Filter settings -->
          <StackPanel x:Name="FilterOptions" Grid.Column="0">
-            <!-- Create/Save xml -->
-            <Border Style="{StaticResource BorderStyle}">
-               <UserControl x:Name="OpenSavePanel"/>
-            </Border>
             <!-- Standard Filter -->
             <Border Style="{StaticResource BorderStyle}">
-               <StackPanel x:Name="StandardFilter">
-                  <Grid>
-                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource HeaderText}"
-                                   Text="Standard filter" />
-                     </StackPanel>
-                     <!-- Preview -->
-                     <Button Content="preview" 
-                             Style="{StaticResource BaseStyle}" Width="60" HorizontalAlignment="Right"
-                             Template="{StaticResource NewButtonControlTemplate}"
-                             Command = "{Binding sFilterPreviewCommand}" Height="23" />
-                  </Grid>
-                  <TextBlock Text="Remove unwanted background."
-                             Style="{StaticResource TextBlockStyle}" />
+               <StackPanel x:Name="StandardFilter" Grid.Column="0">
+                  <StackPanel Orientation="Horizontal">
+                     <TextBlock Style="{StaticResource HeaderText}"
+                                 Text="Standard filter" />
+                  </StackPanel>
                   <Grid>
                      <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
@@ -51,33 +38,36 @@
 
                      <!-- Lowpass param value -->
                      <TextBlock Grid.Column="0" Grid.Row="0" Height = "20"
-                             Text="Lowpass value :" Style="{StaticResource TextBlockStyle}" />
+                           Text="Lowpass value :" Style="{StaticResource TextBlockStyle}" />
                      <TextBox x:Name="LowpassValue" Grid.Column="1" Grid.Row="0" Height = "20" Width = "60"
-                              Text="{Binding Path = sfilterLowpass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                           Text="{Binding Path = sfilterLowpass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                           HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
                      <!-- Hipass param value -->
                      <TextBlock x:Name="HipassValue" Grid.Column="0" Grid.Row="1" Height = "20"
-                             Text="Hipass value :" Style="{StaticResource TextBlockStyle}"/>
+                           Text="Hipass value :" Style="{StaticResource TextBlockStyle}"/>
                      <TextBox Grid.Column="1" Grid.Row="1" Height = "20" Width = "60"
-                              Text="{Binding Path = sfilterHipass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}"/>
+                           Text="{Binding Path = sfilterHipass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                           HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}"/>
                   </Grid>
+                  <!-- Preview Help-->
+                  <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                     <Button Content="help" Margin="0,5"
+                              Style="{StaticResource BaseStyle}" Width="60" HorizontalAlignment="Center"
+                              Template="{StaticResource NewButtonControlTemplate}"
+                              Command = "{Binding sFilterPreviewCommand}" Height="23" />
+                     <Button Content="preview" Margin="10,5"
+                              Style="{StaticResource BaseStyle}" Width="60" HorizontalAlignment="Center"
+                              Template="{StaticResource NewButtonControlTemplate}"
+                              Command = "{Binding sFilterPreviewCommand}" Height="23" />
+                  </StackPanel>
                </StackPanel>
             </Border>
             <!-- Treshold -->
             <Border Style="{StaticResource BorderStyle}">
                <StackPanel x:Name="Treshold">
-                  <Grid>
-                     <TextBlock Grid.Row="0" x:Name="TresholdEnable" Style="{StaticResource HeaderText}"
+                  <TextBlock Grid.Row="0" x:Name="TresholdEnable" Style="{StaticResource HeaderText}"
                                HorizontalAlignment="Left"
                                Text="Treshold" />
-                     <!-- Preview -->
-                     <Button  Grid.Column="1" Content="preview" 
-                                 Style="{StaticResource BaseStyle}" Width="60" HorizontalAlignment="Right"
-                                 Template="{StaticResource NewButtonControlTemplate}"
-                                 Command = "{Binding ThresholdCommand}"/>
-                  </Grid>
-                  <TextBlock Text="Remove unwanted background." Style="{StaticResource TextBlockStyle}" />
                   <Grid>
                      <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
@@ -86,11 +76,22 @@
 
                      <!-- Treshold param value -->
                      <TextBlock Grid.Column="0" Grid.Row="0" Height = "20"
-                             Text="Threshold value :" Style="{StaticResource TextBlockStyle}" />
+                           Text="Threshold value :" Style="{StaticResource TextBlockStyle}" />
                      <TextBox x:Name="ThresholdValue" Grid.Column="1" Grid.Row="0" Height = "20" Width = "60"
-                              Text="{Binding Path = trshold, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                           Text="{Binding Path = trshold, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                           HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
                   </Grid>
+                  <!-- Preview Help-->
+                  <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                     <Button Content="help" Margin="0,5"
+                              Style="{StaticResource BaseStyle}" Width="60" HorizontalAlignment="Center"
+                              Template="{StaticResource NewButtonControlTemplate}"
+                              Command = "{Binding sFilterPreviewCommand}" Height="23" />
+                     <Button Content="preview" Margin="10,5"
+                              Style="{StaticResource BaseStyle}" Width="60" HorizontalAlignment="Center"
+                              Template="{StaticResource NewButtonControlTemplate}"
+                              Command = "{Binding ThresholdCommand}" Height="23" />
+                  </StackPanel>
                </StackPanel>
             </Border>
             <!-- Median filter -->
@@ -101,13 +102,7 @@
                             IsChecked="{Binding Path=mfilterOnValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Content="Median filter" Template="{StaticResource NewCheckBoxControlTemplate}" />
                      <!-- Preview -->
-                     <Button  Grid.Column="1" Content="preview" 
-                                    Style="{StaticResource BaseStyle}" Width="60" HorizontalAlignment="Right"
-                                    Template="{StaticResource NewButtonControlTemplate}"
-                                    />
                   </Grid>
-                  <TextBlock Text="Set the radius of the block in which the median is calculated" 
-                             Style="{StaticResource TextBlockStyle}" />
                   <Grid>
                      <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
@@ -127,8 +122,6 @@
                <StackPanel x:Name="СellCounting" Grid.Row="0">
                   <TextBlock Grid.Row="0" Style="{StaticResource HeaderText}"
                              Text="Сell counting" />
-                  <TextBlock Text="Set the parameters to calculate cells" 
-                             Style="{StaticResource TextBlockStyle}" />
                   <Grid>
                      <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
@@ -174,17 +167,31 @@
                      <TextBox x:Name="kValue" Grid.Column="1" Grid.Row="4" Height = "20" Width = "60"
                               Text="{Binding Path = countk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
-                     <!-- Start -->
-                     <Button  Grid.Column="0" Grid.Row="6" x:Name="CountStartButton" Content="Сount"  HorizontalAlignment="Left"
-                              Style="{StaticResource BaseStyle}" Width="100" Margin="0,10,0,0"
+                  </Grid>
+                  <!-- Start -->
+                  <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center">
+                     <Button Content="help" Margin="0,5"
+                              Style="{StaticResource BaseStyle}" Width="60" HorizontalAlignment="Center"
+                              Template="{StaticResource NewButtonControlTemplate}"
+                              Command = "{Binding sFilterPreviewCommand}" Height="23" />
+                     <Button  Grid.Column="0" Margin="10,5"
+                              Content="Сount" HorizontalAlignment="Center"
+                              Style="{StaticResource BaseStyle}" Width="60" Height="23"
                               Template="{StaticResource NewButtonControlTemplate}"
                               Command = "{Binding ProcessorStartCommand}"/>
-                     <!-- Start -->
-                     <Button  Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2"
-                              Content="Сount selected samples"  HorizontalAlignment="Left"
-                              Style="{StaticResource BaseStyle}" Width="150" Margin="0,10,0,0"
-                              Template="{StaticResource NewButtonControlTemplate}"/>
-                  </Grid>
+                  </StackPanel>
+                  <!-- Segmentation -->
+                  <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center">
+                     <Button Content="Segments" Margin="0,5"
+                              Style="{StaticResource BaseStyle}" Width="60" HorizontalAlignment="Center"
+                              Template="{StaticResource NewButtonControlTemplate}"
+                              Command = "{Binding sFilterPreviewCommand}" Height="23" />
+                     <Button  Grid.Column="0" Margin="10,5"
+                              Content="Export" HorizontalAlignment="Center"
+                              Style="{StaticResource BaseStyle}" Width="60" Height="23"
+                              Template="{StaticResource NewButtonControlTemplate}"
+                              Command = "{Binding ProcessorStartCommand}"/>
+                  </StackPanel>
                </StackPanel>
             </Border>
          </StackPanel>

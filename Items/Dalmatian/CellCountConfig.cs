@@ -8,15 +8,17 @@ namespace GUI.Items.Dalmatian
 {
    class CellCountConfig : Framework.IFormConfig
    {
-      public CellCountConfig(Framework.Data.MainData mainData_, UserControl gridAndProcessPanel_) :
+      public CellCountConfig(Framework.Data.MainData mainData_, UserControl gridAndProcessPanel_, object segmentationPanel_) :
          base(mainData_, gridAndProcessPanel_, "CellCountConfig")
       {
+         segmentationPanel = segmentationPanel_;
+         gridPanel = new GridPanel(segmentationPanel);
+         gridPanel.SamplesDataGrid.ItemsSource = mainData.dataGrid.Data;
+         swapToView();
       }
 
       protected override void Initialize()
       {
-         gridPanel = new GridPanel();
-         gridPanel.SamplesDataGrid.ItemsSource = mainData.dataGrid.Data;
          processor = new CellCountProcessor(this, "CellCount");
          commonPreview = new Preview.CommonPreview(this, "CommonPreview");
          sfilterPreview = new Preview.sFilterPreview(this, "sFilterPreview");
@@ -103,6 +105,7 @@ namespace GUI.Items.Dalmatian
 
       #region Values
       public GridPanel gridPanel;
+      public object segmentationPanel;
       private Preview.CommonPreview commonPreview;
       private Preview.sFilterPreview sfilterPreview;
       private Preview.ThresholdPreview thresholdPreview;

@@ -24,6 +24,7 @@ namespace GUI.Items.Framework
       {
          InitializeComponent();
          this.DataContext = selectedData;
+         this.OpenSaveButtons.Content = new OpenSavePanel(selectedData);
       }
    }
 }

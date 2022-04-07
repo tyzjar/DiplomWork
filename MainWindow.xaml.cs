@@ -21,11 +21,11 @@ namespace GUI
 
       void componentsFactory()
       {
-         var selectedFile = new GUI.Items.Framework.Data.SelectedData();
+         var selectedFile = new Items.Framework.Data.SelectedData();
          mainData = new Items.Framework.Data.MainData();
 
          Preprocessing.Content = new Items.Preprocessing.Preprocessing(mainData);
-         Dalmatian.Content = new Items.Dalmatian.Dalmatian(mainData);
+         Dalmatian.Content = new Items.Dalmatian.Dalmatian(mainData, new Items.Dalmatian.SegmentationPanel());
          Morph.Content = new Items.Morph.Morph(mainData);
       }
    }

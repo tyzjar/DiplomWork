@@ -109,6 +109,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Items\Dalmatian\SegmentationPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Items\Framework\View\AddFolderPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,6 +172,9 @@
     <Compile Include="Items\Dalmatian\Preview\OriginalView.cs" />
     <Compile Include="Items\Dalmatian\Preview\sFilterPreview.cs" />
     <Compile Include="Items\Dalmatian\Preview\ThresholdPreview.cs" />
+    <Compile Include="Items\Dalmatian\SegmentationPanel.xaml.cs">
+      <DependentUpon>SegmentationPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Items\Framework\ConfigReader.cs" />
     <Compile Include="Items\Framework\Data\FolderData.cs" />
     <Compile Include="Items\Dalmatian\CellCountConfig.cs" />

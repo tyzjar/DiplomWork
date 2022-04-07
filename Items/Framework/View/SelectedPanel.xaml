@@ -12,12 +12,9 @@
          <ColumnDefinition/>
       </Grid.ColumnDefinitions>
       <TextBlock Grid.Column="0" Text="Selected Instruction File :" Style="{StaticResource TextBlockStyle}"
-            HorizontalAlignment="Left" Margin="15,0,0,0"/>
+            HorizontalAlignment="Left"/>
       <TextBlock Grid.Column="1" x:Name="SelectedMorph" Text="{Binding SelectedXmlFile}" Style="{StaticResource TextBlockStyle}"
             HorizontalAlignment="Center"/>
-      <Button  Grid.Column="2" Content="Open Instruction file" Style="{StaticResource BaseStyle}"
-            Command = "{Binding OpenCommand}"
-            HorizontalAlignment="Right" Margin="0,0,7,0"
-            Template="{StaticResource NewButtonControlTemplate}"/>
+      <UserControl Grid.Column="2" x:Name="OpenSaveButtons" HorizontalAlignment="Right"/>
    </Grid>
 </UserControl>

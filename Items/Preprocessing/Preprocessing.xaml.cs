@@ -16,8 +16,7 @@ namespace GUI.Items.Preprocessing
 
          this.DataContext = config;
          AddFolder.Content = new GUI.Items.Framework.AddFolderPanel(mainData_.folderData);
-         SelectPanel.Content = new GUI.Items.Framework.SelectedPanel(mainData_.selectedFile);
-         OpenSavePanel.Content = new GUI.Items.Framework.OpenSavePanel(mainData_.openSaveEvents);
+         SelectPanel.Content = new GUI.Items.Framework.SelectedPanel(mainData_.openSaveEvents);
 
       }
 

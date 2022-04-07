@@ -12,7 +12,6 @@ namespace GUI.Items.Framework.Data
 {
    public class MainData : ViewModelBase
    {
-      public SelectedData selectedFile;
       public FolderData folderData;
       public DataGrid.DataGrid dataGrid;
       public OpenSaveEvents openSaveEvents;
@@ -24,7 +23,6 @@ namespace GUI.Items.Framework.Data
          folderData = new FolderData();
          dataGrid = new DataGrid.DataGrid(folderData);
 
-         selectedFile = new SelectedData();
          openSaveEvents = new OpenSaveEvents();
          configReader = new ConfigReader();
 
@@ -35,7 +33,7 @@ namespace GUI.Items.Framework.Data
          openSaveEvents.InstructionSaveAsEvent += saveAsXML;
          openSaveEvents.InstructionCreateEvent += CreateXML;
          openSaveEvents.SubfolderSettingsEvent += SubfolderSettingsStart;
-         selectedFile.InstructionOpenEvent += openXML;
+         openSaveEvents.InstructionOpenEvent += openXML;
          folderData.AddFolderEvent += AddFolder;
       }
 
@@ -47,8 +45,8 @@ namespace GUI.Items.Framework.Data
 
          if(openFileDialog.ShowDialog() == true)
          {
-            selectedFile.SelectedXmlFile = openFileDialog.FileName;
-            configReader.OpenXml(selectedFile.SelectedXmlFile);
+            openSaveEvents.SelectedXmlFile = openFileDialog.FileName;
+            configReader.OpenXml(openSaveEvents.SelectedXmlFile);
          }
       }
 
@@ -56,7 +54,7 @@ namespace GUI.Items.Framework.Data
       {
          try
          {
-            configReader.SaveXml(selectedFile.SelectedXmlFile);
+            configReader.SaveXml(openSaveEvents.SelectedXmlFile);
          }
          catch (Exception ex)
          {
@@ -72,12 +70,12 @@ namespace GUI.Items.Framework.Data
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Instruction File | *.xlsx";
             saveFileDialog.DefaultExt = "xlsx";
-            saveFileDialog.FileName = Path.GetFileName(selectedFile.SelectedXmlFile);
+            saveFileDialog.FileName = Path.GetFileName(openSaveEvents.SelectedXmlFile);
 
             if (saveFileDialog.ShowDialog() == true)
             {
-               selectedFile.SelectedXmlFile = saveFileDialog.FileName;
-               configReader.SaveXml(selectedFile.SelectedXmlFile);
+               openSaveEvents.SelectedXmlFile = saveFileDialog.FileName;
+               configReader.SaveXml(openSaveEvents.SelectedXmlFile);
             }
          }
          catch (Exception ex)
@@ -96,7 +94,7 @@ namespace GUI.Items.Framework.Data
 
          if(saveFileDialog.ShowDialog() == true)
          {
-            selectedFile.SelectedXmlFile = saveFileDialog.FileName;
+            openSaveEvents.SelectedXmlFile = saveFileDialog.FileName;
             dataGrid.Data.Clear();
          }
       }

@@ -1,0 +1,16 @@
+P:\DiplomRabota\GUI\Dalmatian\bin\Release\Dalmatian.exe.config
+P:\DiplomRabota\GUI\Dalmatian\bin\Release\Dalmatian.exe
+P:\DiplomRabota\GUI\Dalmatian\bin\Release\Dalmatian.pdb
+P:\DiplomRabota\GUI\Dalmatian\obj\Release\Dalmatian.csproj.AssemblyReference.cache
+P:\DiplomRabota\GUI\Dalmatian\obj\Release\MainWindow.g.cs
+P:\DiplomRabota\GUI\Dalmatian\obj\Release\App.g.cs
+P:\DiplomRabota\GUI\Dalmatian\obj\Release\Dalmatian_MarkupCompile.cache
+P:\DiplomRabota\GUI\Dalmatian\obj\Release\Dalmatian_MarkupCompile.lref
+P:\DiplomRabota\GUI\Dalmatian\obj\Release\App.baml
+P:\DiplomRabota\GUI\Dalmatian\obj\Release\MainWindow.baml
+P:\DiplomRabota\GUI\Dalmatian\obj\Release\Dalmatian.g.resources
+P:\DiplomRabota\GUI\Dalmatian\obj\Release\Dalmatian.Properties.Resources.resources
+P:\DiplomRabota\GUI\Dalmatian\obj\Release\Dalmatian.csproj.GenerateResource.cache
+P:\DiplomRabota\GUI\Dalmatian\obj\Release\Dalmatian.csproj.CoreCompileInputs.cache
+P:\DiplomRabota\GUI\Dalmatian\obj\Release\Dalmatian.exe
+P:\DiplomRabota\GUI\Dalmatian\obj\Release\Dalmatian.pdb

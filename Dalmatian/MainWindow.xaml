@@ -1,0 +1,13 @@
+﻿<Window x:Class="Dalmatian.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dalmatian"
+               mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" Background="{StaticResource MyColor1}"
+        Title="MainWindow" MinHeight="660" Height="660" Width="940">
+   <Border  Grid.Column="1">
+      <UserControl x:Name="GridAndProcessPanel"/>
+   </Border>
+</Window>

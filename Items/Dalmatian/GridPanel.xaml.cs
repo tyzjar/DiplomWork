@@ -20,9 +20,10 @@ namespace GUI.Items.Dalmatian
    /// </summary>
    public partial class GridPanel : UserControl
    {
-      public GridPanel()
+      public GridPanel(object segmentationPanel)
       {
          InitializeComponent();
+         SegmantationPanel.Content = segmentationPanel;
       }
    }
 }

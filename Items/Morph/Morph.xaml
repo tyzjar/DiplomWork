@@ -19,10 +19,6 @@
          </Grid.ColumnDefinitions>
          <!-- Control panel -->
          <StackPanel  Grid.Column="0">
-            <!-- Create/Save xml -->
-            <Border Style="{StaticResource BorderStyle}">
-               <UserControl x:Name="OpenSavePanel"/>
-            </Border>
             <!-- Edit xml -->
             <Border Style="{StaticResource BorderStyle}">
                <UserControl x:Name="AddFolder"/>
