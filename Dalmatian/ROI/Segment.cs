@@ -1,23 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace Dalmatian.ROI
 {
-   class Dot
-   {
-      public Dot() { }
-      public Dot(double x_, double y_)
-      {
-         x = x_;
-         y = y_;
-      }
-
-      public double x = 0;
-      public double y = 0;
-   }
 
    class UnorderMap
    {
@@ -45,21 +33,25 @@ namespace Dalmatian.ROI
    }
    class Segment
    {
-      public void AddDots(List<Dot> newDots)
+      public void AddPoint(double x, double y)
       {
-         orderDots.AddRange(newDots);
+         orderPoints.Add(new Point(x,y));
+      }
+      public void AddPoints(List<Point> newPoints)
+      {
+         orderPoints.AddRange(newPoints);
       }
 
-      public void Count(List<Dot> cellDots)
+      public void Count(List<Point> cellPoints)
       {
          UnorderMap searchTable = new UnorderMap();
-         orderDots.ForEach((Dot a) => { searchTable.Add(a.x, a.y); });
+         orderPoints.ForEach((Point a) => { searchTable.Add(a.X, a.Y); });
 
          int count = 0;
 
-         foreach (var cell in cellDots)
+         foreach (var cell in cellPoints)
          {
-            if (checkDot(searchTable[cell.x], cell.y))
+            if (checkPoint(searchTable[cell.X], cell.Y))
             {
                count++;
             }
@@ -67,13 +59,34 @@ namespace Dalmatian.ROI
 
          cellCount = count;
       }
+      public Path DrawSegment()
+      {
+         Path newSegment = new Path();
+         GeometryGroup gGroup = new GeometryGroup();
+         newSegment.StrokeStartLineCap = PenLineCap.Round;
+         newSegment.StrokeEndLineCap = PenLineCap.Round;
+         newSegment.StrokeThickness = 1;
+         newSegment.Stroke = Brushes.Black;
 
-      // Check that dot is in contur
-      private bool checkDot(List<double> l, double y)
+         var x1 = orderPoints.GetEnumerator();
+         var x2 = x1;
+         while (x2.MoveNext())
+         {
+            gGroup.Children.Add(new LineGeometry(x1.Current, x2.Current));
+         }
+         gGroup.Children.Add(new LineGeometry(x2.Current, x1.Current));
+
+         newSegment.Data = gGroup;
+
+         return newSegment;
+      }
+
+      // Check that Point is in contur
+      private bool checkPoint(List<double> l, double y)
       {
          if (l.Count > 0)
          {
-            // Numbers of y above and below dot
+            // Numbers of y above and below Point
             int greaterСount = 0;
             int smallerСount = 0;
 
@@ -100,7 +113,7 @@ namespace Dalmatian.ROI
       public string Name { get; set; }
       public int CellCount { get { return cellCount; } }
 
-      private List<Dot> orderDots = new List<Dot>();
+      private List<Point> orderPoints = new List<Point>();
       private int cellCount;
    }
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace Dalmatian.ROI
 {
@@ -20,7 +20,7 @@ namespace Dalmatian.ROI
          // create list of images
          try
          {
-            imageNames = Directory.GetFiles(folder, "*.tif");
+            imageNames = System.IO.Directory.GetFiles(folder, "*.tif");
          }
          catch (Exception ex)
          {
@@ -50,17 +50,30 @@ namespace Dalmatian.ROI
          mainImage.Source = new BitmapImage(new Uri(imageNames[ImageIndex]));
 
          // load Segments
+         SegmentsList.ForEach((Segment a) => { mainCanvas.Children.Add(a.DrawSegment()); });
       }
+
       private void ScaleAll()
       {
-         double positionX = (mainCanvas.ActualWidth - imStartWidth * scaleValue) / 2;
-         double positionY = (mainCanvas.ActualHeight - imStartHeight * scaleValue) / 2;
+         var dw = imStartWidth * scaleValue;
+         var dh = imStartHeight * scaleValue;
+
+         double positionX = (mainCanvas.ActualWidth - dw) / 2;
+         double positionY = (mainCanvas.ActualHeight - dh) / 2;
+
+         foreach (var item in mainCanvas.Children)
+         {
+            Canvas.SetLeft((item as UIElement), positionX);
+            Canvas.SetTop((item as UIElement), positionY);
+            (item as FrameworkElement).Width = dw;
+            (item as FrameworkElement).Height = dh;
+         }
 
          // Image scale&move
-         mainImage.Width = imStartWidth * scaleValue;
-         mainImage.Height = imStartHeight * scaleValue;
-         Canvas.SetLeft(mainImage, positionX);
-         Canvas.SetTop(mainImage, positionY);
+         //mainImage.Width = dw;
+         //mainImage.Height = dh;
+         //Canvas.SetLeft(mainImage, positionX);
+         //Canvas.SetTop(mainImage, positionY);
 
          // Segments scale&move
       }
@@ -112,8 +125,8 @@ namespace Dalmatian.ROI
 
       private Canvas mainCanvas;
       private Image mainImage;
-      private double imStartWidth;
-      private double imStartHeight;
+      private double imStartWidth = 0;
+      private double imStartHeight = 0;
       private string[] imageNames;
       private int imageIndex = 0;
       private double scaleValue = 1; 

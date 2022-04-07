@@ -24,43 +24,25 @@ namespace Dalmatian.ROI
       {
          InitializeComponent();
          SegmantationPanel.Content = segmentationPanel;
-         imView = new ImageView(@"P:\DiplomRabota\Test_1\Masked", new List<Segment>());
 
-         //var a  =MainCanvas.Children.Add(new Line { X1 = 1, Y1 = 1, X2 = 10000, Y2 = 10000,
-         //   StrokeStartLineCap = PenLineCap.Round,
-         //   StrokeEndLineCap = PenLineCap.Round,
-         //   StrokeThickness = 1,
-         //   Stroke = Brushes.Black
-         //});
-         //MainCanvas.Children.Remove
+         var l = new List<Segment>();
+         var s = new Segment();
+         s.AddPoint(1,1);
+         s.AddPoint(300, 1);
+         s.AddPoint(100, 100);
+
+         imView = new ImageView(@"P:\DiplomRabota\Test_1\Masked", l);
 
          imView.StartRender(MainCanvas);
-         this.AddHandler(MainWindow.MouseWheelEvent, new RoutedEventHandler(this.MouseWheel_1), true);
+         this.AddHandler(MainWindow.MouseWheelEvent, new RoutedEventHandler(this.MouseWheelHandler), true);
       }
-      protected override void OnMouseWheel(MouseWheelEventArgs e)
-      {
-         e.Handled = true;
-         base.OnMouseWheel(e);
-         if (e.Delta > 0)
-            imView.IncreaseScale();
-         else
-            imView.DecreaseScale();
-      }
-      void MouseWheel_1(object sender, RoutedEventArgs e)
+
+      void MouseWheelHandler(object sender, RoutedEventArgs e)
       {
          if ((e as MouseWheelEventArgs).Delta > 0)
             imView.IncreaseScale();
          else
             imView.DecreaseScale();
-      }
-
-      void MouseWheelHandler(object sender, MouseWheelEventArgs e)
-      {
-
-         //if (e.Delta > 0)
-         //   imView.IncreaseScale();
-         //else
-         //   imView.DecreaseScale();
       }
    }
 }
