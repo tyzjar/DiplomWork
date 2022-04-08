@@ -30,10 +30,16 @@ namespace Dalmatian.ROI
          s.AddPoint(1,1);
          s.AddPoint(300, 1);
          s.AddPoint(100, 100);
+         s.AddPoint(112, 40);
+         s.AddPoint(100, 11);
+         s.AddPoint(500, 344);
+         s.AddPoint(700, 20);
+
+         l.Add(s);
 
          imView = new ImageView(@"P:\DiplomRabota\Test_1\Masked", l);
-
          imView.StartRender(MainCanvas);
+
          this.AddHandler(MainWindow.MouseWheelEvent, new RoutedEventHandler(this.MouseWheelHandler), true);
       }
 

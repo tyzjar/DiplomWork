@@ -68,13 +68,15 @@ namespace Dalmatian.ROI
          newSegment.StrokeThickness = 1;
          newSegment.Stroke = Brushes.Black;
 
-         var x1 = orderPoints.GetEnumerator();
+         var start = orderPoints.GetEnumerator();
+         var x1 = start;
          var x2 = x1;
          while (x2.MoveNext())
          {
             gGroup.Children.Add(new LineGeometry(x1.Current, x2.Current));
+            x1 = x2;
          }
-         gGroup.Children.Add(new LineGeometry(x2.Current, x1.Current));
+         gGroup.Children.Add(new LineGeometry(x1.Current, start.Current));
 
          newSegment.Data = gGroup;
 
