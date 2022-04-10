@@ -5,9 +5,10 @@
 # Каждая строчка — это шаблон, по которому происходит игнорирование
 
 # Игнорируется файл в любой директории проекта
-MatlabReferences/gui_cellcount/*
-MatlabReferences/gui_morph/*
-MatlabReferences/gui_preproc/*
+MatlabReferences/gui_cellcount/for_redistribution/*
+MatlabReferences/gui_morph/for_redistribution/*
+MatlabReferences/gui_preproc/for_redistribution/*
+MatlabReferences/gui_preview/for_redistribution/*
 packages/*
 obj/*
 .vs/*
