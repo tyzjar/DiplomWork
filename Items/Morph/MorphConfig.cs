@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
 using System.Windows.Input;
 using OfficeOpenXml;
 
@@ -19,10 +20,14 @@ namespace GUI.Items.Morph
          processor = new MorphProcessor(this, "Morph");
       }
 
-      public override void LoadConfig(ExcelWorksheet worksheet)
-      { }
-      public override void SaveConfig(ExcelWorksheet worksheet)
-      { }
+      public override List<GUI.Items.Framework.ConfigItem> LoadConfig(ExcelWorksheet worksheet)
+      {
+         return null;
+      }
+      public override List<GUI.Items.Framework.ConfigItem> SaveConfig(ExcelWorksheet worksheet)
+      {
+         return null;
+      }
       protected override void swapToView()
       {
          gridAndProcessPanel.Content = gridPanel;

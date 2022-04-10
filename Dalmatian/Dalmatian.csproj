@@ -104,6 +104,7 @@
     <Compile Include="ROI\SegmentationPanel.xaml.cs">
       <DependentUpon>SegmentationPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ROI\SegmentListControl.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

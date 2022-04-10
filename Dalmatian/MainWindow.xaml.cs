@@ -1,26 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace Dalmatian
 {
+   public class PanelWithCommand : GUI.Items.Dalmatian.IPanelWithCommand
+   {
+      public PanelWithCommand(object panel_)
+      {
+         panel = panel_ as ROI.SegmentationPanel;
+      }
+      public override object GetPanel()
+      {
+         return panel;
+      }
+      public override void UpdatePanel(GUI.Items.Framework.ConfigItem segments)
+      {
+         //if ((segments as ROI.SegmentListControl).segmentsList != null)
+         //{
+         //   panel.SegmentsDataGrid.ItemsSource =
+         //   (segments as ROI.SegmentListControl).segmentsList;
+         //}
+      }
+      public override void Comand(object param, string s)
+      {
+         var p = (param as GUI.Items.Framework.Data.DataGrid.GridItem);
+         var folder = p.SampleName + @"\" + s + @"\";
+         try
+         {
+            ROI.ROIEdit sWindow = new ROI.ROIEdit(folder,
+            (p.Segments as ROI.SegmentListControl).segmentsList);
+            sWindow.ShowDialog();
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+         }
+      }
+
+      private ROI.SegmentationPanel panel;
+   }
 
    /// <summary>
    /// Interaction logic for MainWindow.xaml
    /// </summary>
    public partial class MainWindow : Window
    {
+      PanelWithCommand panel;
       public MainWindow()
       {
          InitializeComponent();
@@ -32,12 +59,10 @@ namespace Dalmatian
       void componentsFactory()
       {
          var selectedFile = new GUI.Items.Framework.Data.SelectedData();
-         mainData = new GUI.Items.Framework.Data.MainData();
+         panel = new PanelWithCommand(new ROI.SegmentationPanel());
 
-         this.Content = new GUI.Items.Dalmatian.Dalmatian(mainData, new ROI.SegmentationPanel());
-
-         var sWindow = new ROI.ROIEdit(new ROI.SegmentationPanel());
-         sWindow.ShowDialog();
+         mainData = new GUI.Items.Framework.Data.MainData(ROI.SegmentListControl.SegmentListControlCreate);
+         this.Content = new GUI.Items.Dalmatian.Dalmatian(mainData, panel);
       }
    }
 }

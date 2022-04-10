@@ -17,11 +17,11 @@ namespace GUI.Items.Framework.Data
       public OpenSaveEvents openSaveEvents;
       public ConfigReader configReader;
 
-      public MainData()
+      public MainData(DataGrid.SegmentsCreator screator)
       {
          /// Основные элементы хранилища
          folderData = new FolderData();
-         dataGrid = new DataGrid.DataGrid(folderData);
+         dataGrid = new DataGrid.DataGrid(folderData, screator);
 
          openSaveEvents = new OpenSaveEvents();
          configReader = new ConfigReader();
@@ -29,9 +29,10 @@ namespace GUI.Items.Framework.Data
          ///Связывание элементов событий для их обработки.
          configReader.AddItem(folderData);
          configReader.AddItem(dataGrid);
+
          openSaveEvents.InstructionSaveEvent += saveXML;
          openSaveEvents.InstructionSaveAsEvent += saveAsXML;
-         openSaveEvents.InstructionCreateEvent += CreateXML;
+         openSaveEvents.InstructionCreateEvent += createXML;
          openSaveEvents.SubfolderSettingsEvent += SubfolderSettingsStart;
          openSaveEvents.InstructionOpenEvent += openXML;
          folderData.AddFolderEvent += AddFolder;
@@ -85,7 +86,7 @@ namespace GUI.Items.Framework.Data
          }
       }
 
-      void CreateXML()
+      void createXML()
       {
          SaveFileDialog saveFileDialog = new SaveFileDialog();
          saveFileDialog.Filter = "Instruction File | *.xlsx";

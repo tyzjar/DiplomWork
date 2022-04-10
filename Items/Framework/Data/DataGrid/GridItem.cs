@@ -3,6 +3,7 @@
 /// </summary>
 /// 
 
+using System.Collections.Generic;
 using System.Windows;
 
 namespace GUI.Items.Framework.Data.DataGrid
@@ -120,7 +121,7 @@ namespace GUI.Items.Framework.Data.DataGrid
       public PreprocState CropStateValue;
       public PreprocState IntensityStateValue;
       public PreprocState SubtractionStateValue;
-
+      public ConfigItem Segments;
 
       public void setByName(string paramName, string value)
       {

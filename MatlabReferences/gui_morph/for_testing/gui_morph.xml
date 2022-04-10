@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>gui_morph</name>
+    </assembly>
+    <members>
+        <member name="T:gui_morph.MorphMatlab">
+            <summary>
+            The MorphMatlab class provides a CLS compliant, MWArray interface to the MATLAB
+            functions contained in the files:
+            <newpara></newpara>
+            P:\DiplomRabota\GUI\MatlabReferences\gui_morph.m
+            </summary>
+            <remarks>
+            @Version 1.0
+            </remarks>
+        </member>
+        <member name="M:gui_morph.MorphMatlab.#cctor">
+            <summary internal= "true">
+            The static constructor instantiates and initializes the MATLAB Runtime instance.
+            </summary>
+        </member>
+        <member name="M:gui_morph.MorphMatlab.#ctor">
+            <summary>
+            Constructs a new instance of the MorphMatlab class.
+            </summary>
+        </member>
+        <member name="M:gui_morph.MorphMatlab.Finalize">
+            <summary internal= "true">
+            Class destructor called by the CLR garbage collector.
+            </summary>
+        </member>
+        <member name="M:gui_morph.MorphMatlab.Dispose">
+            <summary>
+            Frees the native resources associated with this object
+            </summary>
+        </member>
+        <member name="M:gui_morph.MorphMatlab.Dispose(System.Boolean)">
+            <summary internal= "true">
+            Internal dispose function
+            </summary>
+        </member>
+        <member name="M:gui_morph.MorphMatlab.gui_morph">
+             <summary>
+             Provides a void output, 0-input MWArrayinterface to the gui_morph MATLAB
+             function.
+             </summary>
+             <remarks>
+             M-Documentation:
+             folder - path to the experiment folder
+             order - cell 2xN order{i,1}{j} brains are to be morphed to order{i,2}
+             </remarks>
+            
+        </member>
+        <member name="M:gui_morph.MorphMatlab.gui_morph(MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a void output, 1-input MWArrayinterface to the gui_morph MATLAB
+             function.
+             </summary>
+             <remarks>
+             M-Documentation:
+             folder - path to the experiment folder
+             order - cell 2xN order{i,1}{j} brains are to be morphed to order{i,2}
+             </remarks>
+             <param name="logfile">Input argument #1</param>
+            
+        </member>
+        <member name="M:gui_morph.MorphMatlab.gui_morph(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a void output, 2-input MWArrayinterface to the gui_morph MATLAB
+             function.
+             </summary>
+             <remarks>
+             M-Documentation:
+             folder - path to the experiment folder
+             order - cell 2xN order{i,1}{j} brains are to be morphed to order{i,2}
+             </remarks>
+             <param name="logfile">Input argument #1</param>
+             <param name="expname">Input argument #2</param>
+            
+        </member>
+        <member name="M:gui_morph.MorphMatlab.gui_morph(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray[])">
+             <summary>
+             Provides a void output, 3-input MWArrayinterface to the gui_morph MATLAB
+             function.
+             </summary>
+             <remarks>
+             M-Documentation:
+             folder - path to the experiment folder
+             order - cell 2xN order{i,1}{j} brains are to be morphed to order{i,2}
+             </remarks>
+             <param name="logfile">Input argument #1</param>
+             <param name="expname">Input argument #2</param>
+             <param name="varargin">Array of MWArrays representing the input arguments 3
+             through varargin.length+2</param>
+            
+        </member>
+        <member name="M:gui_morph.MorphMatlab.gui_morph(System.Int32)">
+             <summary>
+             Provides the standard 0-input MWArray interface to the gui_morph MATLAB function.
+             </summary>
+             <remarks>
+             M-Documentation:
+             folder - path to the experiment folder
+             order - cell 2xN order{i,1}{j} brains are to be morphed to order{i,2}
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:gui_morph.MorphMatlab.gui_morph(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 1-input MWArray interface to the gui_morph MATLAB function.
+             </summary>
+             <remarks>
+             M-Documentation:
+             folder - path to the experiment folder
+             order - cell 2xN order{i,1}{j} brains are to be morphed to order{i,2}
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="logfile">Input argument #1</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:gui_morph.MorphMatlab.gui_morph(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 2-input MWArray interface to the gui_morph MATLAB function.
+             </summary>
+             <remarks>
+             M-Documentation:
+             folder - path to the experiment folder
+             order - cell 2xN order{i,1}{j} brains are to be morphed to order{i,2}
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="logfile">Input argument #1</param>
+             <param name="expname">Input argument #2</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:gui_morph.MorphMatlab.gui_morph(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray[])">
+             <summary>
+             Provides the standard 3-input MWArray interface to the gui_morph MATLAB function.
+             </summary>
+             <remarks>
+             M-Documentation:
+             folder - path to the experiment folder
+             order - cell 2xN order{i,1}{j} brains are to be morphed to order{i,2}
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="logfile">Input argument #1</param>
+             <param name="expname">Input argument #2</param>
+             <param name="varargin">Array of MWArrays representing the input arguments 3
+             through varargin.length+2</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:gui_morph.MorphMatlab.WaitForFiguresToDie">
+             <summary>
+             This method will cause a MATLAB figure window to behave as a modal dialog box.
+             The method will not return until all the figure windows associated with this
+             component have been closed.
+             </summary>
+             <remarks>
+             An application should only call this method when required to keep the
+             MATLAB figure window from disappearing.  Other techniques, such as calling
+             Console.ReadLine() from the application should be considered where
+             possible.</remarks>
+            
+        </member>
+    </members>
+</doc>

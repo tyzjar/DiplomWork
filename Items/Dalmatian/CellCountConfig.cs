@@ -3,18 +3,58 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using OfficeOpenXml;
 using System.Windows;
+using System.Collections.Generic;
 
 namespace GUI.Items.Dalmatian
 {
+   public abstract class IPanelWithCommand
+   {
+      public abstract object GetPanel();
+      public abstract void UpdatePanel(Framework.ConfigItem segments);
+      public abstract void Comand(object param, string s);
+   }
+
+   public class PanelWithCommand : IPanelWithCommand
+   {
+      public PanelWithCommand(object panel_)
+      {
+         panel = panel_;
+      }
+      public override object GetPanel()
+      {
+         return panel;
+      }
+      public override void UpdatePanel(Framework.ConfigItem segments)
+      { }
+      public override void Comand(object param, string s)
+      { }
+
+      private object panel;
+   }
+
    class CellCountConfig : Framework.IFormConfig
    {
-      public CellCountConfig(Framework.Data.MainData mainData_, UserControl gridAndProcessPanel_, object segmentationPanel_) :
+      public CellCountConfig(Framework.Data.MainData mainData_, UserControl gridAndProcessPanel_, IPanelWithCommand segmentationPanel_) :
          base(mainData_, gridAndProcessPanel_, "CellCountConfig")
       {
          segmentationPanel = segmentationPanel_;
-         gridPanel = new GridPanel(segmentationPanel);
+         SegmentCommand = new Framework.DelegateCommand((object param) => {
+            segmentationPanel_.Comand(gridPanel.SamplesDataGrid.SelectedItem,
+               mainData.folderData.CellCountSubfolder);
+         });
+
+         gridPanel = new GridPanel(segmentationPanel.GetPanel());
          gridPanel.SamplesDataGrid.ItemsSource = mainData.dataGrid.Data;
-         swapToView();
+
+         gridPanel.SamplesDataGrid.SelectionChanged += (object sender, SelectionChangedEventArgs e) => {
+            if ((gridPanel.SamplesDataGrid.SelectedItem != null))
+            {
+               var r = (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem);
+               segmentationPanel.UpdatePanel(
+                 (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem).Segments);
+            }
+         };
+      swapToView();
       }
 
       protected override void Initialize()
@@ -37,6 +77,10 @@ namespace GUI.Items.Dalmatian
          });
          OriginalViewCommand = new Framework.DelegateCommand((object param) => {
             originalView.StartProcess();
+         });
+         SelectedChangedCommand = new Framework.DelegateCommand((object param) => {
+            segmentationPanel.UpdatePanel(
+               (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem).Segments);
          });
       }
       protected override void swapToView()
@@ -75,7 +119,7 @@ namespace GUI.Items.Dalmatian
          return row;
       }
 
-      public override void LoadConfig(ExcelWorksheet worksheet)
+      public override List<GUI.Items.Framework.ConfigItem> LoadConfig(ExcelWorksheet worksheet)
       {
          if ((worksheet != null) && (worksheet.Dimension != null))
          {
@@ -84,8 +128,10 @@ namespace GUI.Items.Dalmatian
                setByName(worksheet.Cells[i, 1].Text, worksheet.Cells[i, 2].Text);
             }
          }
+
+         return null;
       }
-      public override void SaveConfig(ExcelWorksheet worksheet)
+      public override List<GUI.Items.Framework.ConfigItem> SaveConfig(ExcelWorksheet worksheet)
       {
          var len = fieldNames.Length;
          var values = getAsRow();
@@ -95,17 +141,20 @@ namespace GUI.Items.Dalmatian
             worksheet.Cells[i + 1, 1].Value = fieldNames[i];
             worksheet.Cells[i + 1, 2].Value = values[i];
          }
+
+         return null;
       }
 
       public ICommand CommonPreviewCommand { get; private set; }
       public ICommand sFilterPreviewCommand { get; private set; }
       public ICommand ThresholdCommand { get; private set; }
       public ICommand OriginalViewCommand { get; private set; }
-      
+      public ICommand SegmentCommand { get; private set; }
+      public ICommand SelectedChangedCommand { get; private set; }
 
       #region Values
       public GridPanel gridPanel;
-      public object segmentationPanel;
+      public IPanelWithCommand segmentationPanel;
       private Preview.CommonPreview commonPreview;
       private Preview.sFilterPreview sfilterPreview;
       private Preview.ThresholdPreview thresholdPreview;

@@ -20,6 +20,7 @@ namespace Dalmatian.ROI
    /// </summary>
    public partial class SegmentationPanel : UserControl
    {
+     
       public SegmentationPanel()
       {
          InitializeComponent();

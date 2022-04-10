@@ -185,7 +185,7 @@
                      <Button Content="Segments" Margin="0,5"
                               Style="{StaticResource BaseStyle}" Width="60" HorizontalAlignment="Center"
                               Template="{StaticResource NewButtonControlTemplate}"
-                              Command = "{Binding sFilterPreviewCommand}" Height="23" />
+                              Command = "{Binding SegmentCommand}" Height="23" />
                      <Button  Grid.Column="0" Margin="10,5"
                               Content="Export" HorizontalAlignment="Center"
                               Style="{StaticResource BaseStyle}" Width="60" Height="23"

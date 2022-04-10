@@ -32,10 +32,7 @@
          </StackPanel>
       </Border>
       <Border Style="{StaticResource BorderStyle}" Grid.Column="1">
-         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
-                       PreviewMouseWheel="MouseWheelHandler">
-            <UserControl x:Name="MainCanvas"/>
-         </ScrollViewer>
+         <UserControl x:Name="MainCanvas"/>
       </Border>
    </Grid>
 </Window>

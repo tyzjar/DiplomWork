@@ -5,12 +5,15 @@ using System.Windows;
 
 namespace GUI.Items.Framework.Data.DataGrid
 {
+   public delegate ConfigItem SegmentsCreator(string sampleName);
+
    public class DataGrid : ConfigItem
    {
-      public DataGrid(FolderData folderData_) :
+      public DataGrid(FolderData folderData_, SegmentsCreator screator_) :
          base("SamplesInfo")
       {
          folderData = folderData_;
+         screator = screator_;
 
          Data = new BindingList<GridItem>();
          Data.AllowNew = true;
@@ -23,8 +26,10 @@ namespace GUI.Items.Framework.Data.DataGrid
          Data.Add(NewGridItem(row));
       }
 
-      public override void LoadConfig(ExcelWorksheet worksheet)
+      public override List<GUI.Items.Framework.ConfigItem> LoadConfig(ExcelWorksheet worksheet)
       {
+         List<ConfigItem> segmentsConfigs = new List<ConfigItem>();
+
          Data.Clear();
 
          if ( (worksheet != null)&&(worksheet.Dimension != null) )
@@ -44,14 +49,18 @@ namespace GUI.Items.Framework.Data.DataGrid
                {
                   item.setByName(columnNames[cell.Start.Column - 1],cell.Text);
                }
+
+               item.Segments = screator(item.SampleName);
                Data.Add(item);
+               segmentsConfigs.Add(item.Segments);
             }
          }
-        
-      }
 
-      public override void SaveConfig(ExcelWorksheet worksheet)
+         return segmentsConfigs;
+      }
+      public override List<ConfigItem> SaveConfig(ExcelWorksheet worksheet)
       {
+         List<ConfigItem> segmentsConfigs = new List<ConfigItem>();
          var row = 2;
          var column = 1;
          var len = GridItem.fieldNames.Length;
@@ -64,9 +73,12 @@ namespace GUI.Items.Framework.Data.DataGrid
             worksheet.Cells[row, column, row, column + len].LoadFromArrays(
                new object[][]{ item.getAsRow() });
             row++;
-         }
-      }
 
+            segmentsConfigs.Add(item.Segments);
+         }
+
+         return segmentsConfigs;
+      }
 
       /// Work with GridItem
       GridItem NewGridItem()
@@ -74,6 +86,7 @@ namespace GUI.Items.Framework.Data.DataGrid
          GridItem item = new GridItem();
          item.PropertyChanged += UpdateItem;
          item.udpateStates(folderData);
+         item.Segments = screator(item.SampleName);
          return item;
       }
 
@@ -82,6 +95,7 @@ namespace GUI.Items.Framework.Data.DataGrid
          GridItem item = new GridItem(row);
          item.PropertyChanged += UpdateItem;
          item.udpateStates(folderData);
+         item.Segments = screator(item.SampleName);
          return item;
       }
 
@@ -92,7 +106,8 @@ namespace GUI.Items.Framework.Data.DataGrid
 
       /// Values 
       public BindingList<GridItem> Data;
-      FolderData folderData;
+      private FolderData folderData;
+      private SegmentsCreator screator;
    }
 
 }

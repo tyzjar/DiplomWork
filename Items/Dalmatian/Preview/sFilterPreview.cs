@@ -23,9 +23,17 @@ namespace GUI.Items.Dalmatian.Preview
 
       protected override void PopulateBuffer(ExcelWorksheet worksheet)
       {
-         sampleName = (config.gridPanel.SamplesDataGrid.SelectedItem
-            as Framework.Data.DataGrid.GridItem).SampleName + @"\" +
-            config.mainData.folderData.CellCountSubfolder + @"\*.tif";
+         if (Equals(config.mainData.folderData.CellCountSubfolder, ""))
+         {
+            sampleName = (config.gridPanel.SamplesDataGrid.SelectedItem
+             as Framework.Data.DataGrid.GridItem).SampleName + @"\*.tif";
+         }
+         else
+         {
+            sampleName = (config.gridPanel.SamplesDataGrid.SelectedItem
+             as Framework.Data.DataGrid.GridItem).SampleName + @"\" +
+             config.mainData.folderData.CellCountSubfolder + @"\*.tif";
+         }
       }
 
       CellCountConfig config;

@@ -22,10 +22,11 @@ namespace GUI
       void componentsFactory()
       {
          var selectedFile = new Items.Framework.Data.SelectedData();
-         mainData = new Items.Framework.Data.MainData();
+         mainData = new Items.Framework.Data.MainData( (string name)=> { return null; } );
 
          Preprocessing.Content = new Items.Preprocessing.Preprocessing(mainData);
-         Dalmatian.Content = new Items.Dalmatian.Dalmatian(mainData, new Items.Dalmatian.SegmentationPanel());
+         Dalmatian.Content = new Items.Dalmatian.Dalmatian(mainData,
+            new Items.Dalmatian.PanelWithCommand(new Items.Dalmatian.SegmentationPanel()));
          Morph.Content = new Items.Morph.Morph(mainData);
       }
    }

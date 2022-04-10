@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.Generic;
+using System.Windows.Input;
 using OfficeOpenXml;
 
 namespace GUI.Items.Framework.Data
@@ -11,7 +12,7 @@ namespace GUI.Items.Framework.Data
          AddFolderCommand = new DelegateCommand((object param) => { AddFolderEvent(); });
       }
 
-      public override void LoadConfig(ExcelWorksheet worksheet)
+      public override List<GUI.Items.Framework.ConfigItem> LoadConfig(ExcelWorksheet worksheet)
       {
          if ((worksheet != null) && (worksheet.Dimension != null))
          {
@@ -20,9 +21,10 @@ namespace GUI.Items.Framework.Data
                setByName(worksheet.Cells[i, 1].Text, worksheet.Cells[i, 2].Text);
             }
          }
+         return null;
       }
 
-      public override void SaveConfig(ExcelWorksheet worksheet)
+      public override List<GUI.Items.Framework.ConfigItem> SaveConfig(ExcelWorksheet worksheet)
       {
          var len = fieldNames.Length;
          var values = getAsRow();
@@ -32,6 +34,7 @@ namespace GUI.Items.Framework.Data
             worksheet.Cells[i + 1, 1].Value = fieldNames[i];
             worksheet.Cells[i + 1, 2].Value = values[i];
          }
+         return null;
       }
 
       public string[] getAsRow()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -23,10 +24,14 @@ namespace GUI.Items.Preprocessing
          SelectPicture = new Framework.DelegateCommand((object param) => {
             selectPicture(); });
       }
-      public override void LoadConfig(ExcelWorksheet worksheet)
-      {}
-      public override void SaveConfig(ExcelWorksheet worksheet)
-      {}
+      public override List<GUI.Items.Framework.ConfigItem> LoadConfig(ExcelWorksheet worksheet)
+      {
+         return null;
+      }
+      public override List<GUI.Items.Framework.ConfigItem> SaveConfig(ExcelWorksheet worksheet)
+      {
+         return null;
+      }
       protected override void swapToView()
       {
          try
