@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using OfficeOpenXml;
 using System.IO;
+using System.ComponentModel;
 
 namespace Dalmatian.ROI
 {
@@ -54,7 +55,7 @@ namespace Dalmatian.ROI
       {
          if ((worksheet != null) && (worksheet.Dimension != null))
          {
-            segmentsList = new List<Segment>();
+            segmentsList = new BindingList<Segment>();
 
             for (int i = 1; i <= worksheet.Dimension.End.Column; i++)
             {
@@ -85,6 +86,6 @@ namespace Dalmatian.ROI
          return null;
       }
 
-      public List<Segment> segmentsList = new List<Segment>();
+      public BindingList<Segment> segmentsList = new BindingList<Segment>();
    }
 }

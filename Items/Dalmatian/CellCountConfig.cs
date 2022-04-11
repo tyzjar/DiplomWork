@@ -11,6 +11,7 @@ namespace GUI.Items.Dalmatian
    {
       public abstract object GetPanel();
       public abstract void UpdatePanel(Framework.ConfigItem segments);
+      public abstract void ClearPanel();
       public abstract void Comand(object param, string s);
    }
 
@@ -25,6 +26,8 @@ namespace GUI.Items.Dalmatian
          return panel;
       }
       public override void UpdatePanel(Framework.ConfigItem segments)
+      { }
+      public override void ClearPanel()
       { }
       public override void Comand(object param, string s)
       { }
@@ -52,6 +55,8 @@ namespace GUI.Items.Dalmatian
                segmentationPanel.UpdatePanel(
                  (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem).Segments);
             }
+            else
+               segmentationPanel.ClearPanel();
          };
       swapToView();
       }

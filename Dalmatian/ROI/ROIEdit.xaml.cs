@@ -22,7 +22,7 @@ namespace Dalmatian.ROI
    {
       ImageView imView;
       SegmentationPanel panel;
-      public ROIEdit(string folder, List<Segment> segmentsList)
+      public ROIEdit(string folder, BindingList<Segment> segmentsList)
       {
          InitializeComponent();
 
@@ -35,21 +35,13 @@ namespace Dalmatian.ROI
          panel.SegmentsDataGrid.ItemsSource = imView.SegmentsList;
          panel.onSegmentIndexChanged += imView.SegmentIndexUpdate;
          //panel.SegmentsDataGrid.SetBinding(DataGrid.ItemsSourceProperty, imView.SegmentsList);
-         imView.PropertyChanged += UpdatePanel;
+
 
          this.DataContext = imView;
 
          this.AddHandler(MainWindow.MouseWheelEvent, new RoutedEventHandler(this.MouseWheelHandler), true);
       }
 
-      void UpdatePanel(object sender, PropertyChangedEventArgs e)
-      {
-         if (Equals(e.PropertyName, "SegmentsList"))
-         {
-            MessageBox.Show(e.PropertyName);
-            panel.SegmentsDataGrid.ItemsSource = imView.SegmentsList;
-         }
-      }
       void MouseWheelHandler(object sender, RoutedEventArgs e)
       {
          if ((e as MouseWheelEventArgs).Delta > 0)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 
 
@@ -21,6 +22,14 @@ namespace Dalmatian
             panel.SegmentsDataGrid.ItemsSource =
             (segments as ROI.SegmentListControl).segmentsList;
          }
+         else
+         {
+            panel.SegmentsDataGrid.ItemsSource = new BindingList<ROI.Segment>();
+         }
+      }
+      public override void ClearPanel()
+      {
+         panel.SegmentsDataGrid.ItemsSource = new BindingList<ROI.Segment>();
       }
       public override void Comand(object param, string s)
       {

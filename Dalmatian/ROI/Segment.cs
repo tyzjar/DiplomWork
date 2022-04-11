@@ -37,6 +37,10 @@ namespace Dalmatian.ROI
    {
       public static Point ScalePoint(Point p, Double scale)
       {
+         return new Point(p.X * scale, p.Y * scale);
+      }
+      public static Point DeScalePoint(Point p, Double scale)
+      {
          return new Point(p.X / scale, p.Y / scale);
       }
       public static string PointToString(Point p)
@@ -61,8 +65,8 @@ namespace Dalmatian.ROI
       public abstract void AddPointZ(Point p, double z);
       public abstract string NameWithCount();
       public abstract List<string> ConvertToStrings();
-      public abstract Viewbox DrawSegment(double w, double h, double scale);
-      public abstract void RenderSegment(double w, double h, double scale);
+      public abstract Viewbox DrawSegment(double w, double h);
+      public abstract void RenderSegment(double w, double h);
       public abstract void Count(List<Point> cellPoints);
       public abstract List<Point> Get2DPoints();
       public string Name { get; set; }
@@ -112,7 +116,7 @@ namespace Dalmatian.ROI
          orderPoints.ForEach((Point  p) => { str.Add(PointToString(p)); });
          return str;
       }
-      public override Viewbox DrawSegment(double w, double h, double scale)
+      public override Viewbox DrawSegment(double w, double h)
       {
          pathBox = new Viewbox();
          Path newSegment = new Path();
@@ -125,14 +129,14 @@ namespace Dalmatian.ROI
          newSegment.Width = w;
          newSegment.Height = h;
 
-         RenderSegment(w, h, scale);
+         RenderSegment(w, h);
 
          newSegment.Data = gGroup;
          pathBox.Child = newSegment;
 
          return pathBox;
       }
-      public override void RenderSegment(double w, double h, double scale)
+      public override void RenderSegment(double w, double h)
       {
          if (orderPoints.Count > 0)
          {
@@ -144,32 +148,30 @@ namespace Dalmatian.ROI
                var x2 = x1;
                while (x2.MoveNext())
                {
-                  gGroup.Children.Add(new LineGeometry(
-                     ScalePoint(x1.Current, scale), ScalePoint(x2.Current, scale)));
+                  gGroup.Children.Add(new LineGeometry(x1.Current, x2.Current));
                   x1 = x2;
                }
-               gGroup.Children.Add(new LineGeometry(
-                  ScalePoint(x1.Current, scale), ScalePoint(start.Current, scale)));
+               gGroup.Children.Add(new LineGeometry(x1.Current, start.Current));
             }
          }
       }
       public override void Count(List<Point> cellPoints)
       {
-         UnorderMap searchTable = new UnorderMap();
-         orderPoints.ForEach((Point a) => { searchTable.Add(a.X, a.Y); });
+         //UnorderMap searchTable = new UnorderMap();
+         //orderPoints.ForEach((Point a) => { searchTable.Add(a.X, a.Y); });
 
          int count = 0;
 
          foreach (var cell in cellPoints)
          {
-            if (checkPoint(cellPoints, cell))
+            if (checkPoint(orderPoints, cell))
             {
                count++;
             }
          }
 
          cellCount = count;
-         OnPropertyChanged("CellCount");
+         OnPropertyChanged("CellNumber");
       }
       public override List<Point> Get2DPoints()
       {
@@ -232,7 +234,7 @@ namespace Dalmatian.ROI
          orderPoints.ForEach((Point p) => { str.Add(PointToString(p)); });
          return str;
       }
-      public override Viewbox DrawSegment(double w, double h, double scale)
+      public override Viewbox DrawSegment(double w, double h)
       {
          pathBox = new Viewbox();
          Path newSegment = new Path();
@@ -245,7 +247,7 @@ namespace Dalmatian.ROI
          newSegment.Width = w;
          newSegment.Height = h;
 
-         RenderSegment(w,h,scale);
+         RenderSegment(w,h);
 
          newSegment.Data = gGroup;
          pathBox.Child = newSegment;
@@ -253,7 +255,7 @@ namespace Dalmatian.ROI
          Count(null);
          return pathBox;
       }
-      public override void RenderSegment(double w, double h, double scale)
+      public override void RenderSegment(double w, double h)
       {
          if (orderPoints.Count > 0)
          {
@@ -261,8 +263,7 @@ namespace Dalmatian.ROI
 
             while (x.MoveNext())
             {
-               gGroup.Children.Add(new LineGeometry(
-                  ScalePoint(x.Current, scale), ScalePoint(x.Current, scale)));
+               gGroup.Children.Add(new LineGeometry(x.Current, x.Current));
             }
          }
       }

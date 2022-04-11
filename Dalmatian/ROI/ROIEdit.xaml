@@ -17,14 +17,15 @@
          <StackPanel Orientation="Horizontal">
             <StackPanel>
 
-               <TextBlock Text="{Binding ImageIndex}" HorizontalAlignment="Center"/>
+               <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                  <TextBlock Text="Image Number : " />
+                  <TextBlock Text="{Binding ImageIndex}" />
+               </StackPanel>
                <Slider Margin="0,5" Width="210"
                        Value="{Binding ImageIndex, Mode=TwoWay}"
                        Minimum="0" Maximum="{Binding ImageCount}" 
                        IsSelectionRangeEnabled="True" Orientation="Horizontal" />
 
-               <UserControl x:Name="SegmantationPanel"
-                   HorizontalAlignment="Left"/>
                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
                   <Button Content="Add segment" Margin="0,5"
                                  Style="{StaticResource BaseStyle}" Width="100" HorizontalAlignment="Center"
@@ -36,15 +37,17 @@
                                  Command = "{Binding DeleteSegment}" Height="23" />
                </StackPanel>
                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
-                  <Button Content="Confirm edit" Margin="0,5"
+                  <Button Content="Confirm edit" Margin="0,0"
                                  Style="{StaticResource BaseStyle}" Width="100" HorizontalAlignment="Center"
                                  Template="{StaticResource NewButtonControlTemplate}"
                                  Command = "{Binding ConfirmEditSegment}" Height="23" />
-                  <Button Content="Update All" Margin="0,5"
+                  <Button Content="Update All" Margin="0,0"
                                  Style="{StaticResource BaseStyle}" Width="100" HorizontalAlignment="Center"
                                  Template="{StaticResource NewButtonControlTemplate}"
                                  Command = "{Binding UpdateAllSegment}" Height="23" />
                </StackPanel>
+               <UserControl x:Name="SegmantationPanel" Margin="0,10"
+                   HorizontalAlignment="Left"/>
             </StackPanel>
          </StackPanel>
       </Border>

@@ -6,6 +6,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Input;
+using System.ComponentModel;
 
 namespace Dalmatian.ROI
 {
@@ -18,7 +19,7 @@ namespace Dalmatian.ROI
 
    class ImageView : GUI.Items.Framework.ViewModelBase
    {
-      public ImageView(string folder, List<Segment> segmentsList)
+      public ImageView(string folder, BindingList<Segment> segmentsList)
       {
          SegmentsList = segmentsList;
 
@@ -35,25 +36,27 @@ namespace Dalmatian.ROI
 
          // Reference to comands
          AddSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
-            SegmentsList.Add(new FigureSegment("New segment"));
-            OnPropertyChanged(nameof(SegmentsList));
+            var item = new FigureSegment("New segment");
+            mainCanvas.Children.Add(item.DrawSegment(imStartWidth, imStartHeight));
+            ScaleItem(item.pathBox);
+            SegmentsList.Add(item);
+            SegmentIndex = SegmentsList.Count - 1;
             });
 
          DeleteSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
             if (SegmentIndex != 0)
             {
                SegmentsList.RemoveAt(SegmentIndex);
-               OnPropertyChanged(nameof(SegmentsList));
+               SegmentIndex = SegmentsList.Count - 1;
             }
          });
 
          UpdateAllSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
             CountAll();
-            OnPropertyChanged(nameof(SegmentsList));
          });
 
          ConfirmEditSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
-            SegmentsList[SegmentIndex].RenderSegment(imStartWidth, imStartHeight, scale);
+            SegmentsList[SegmentIndex].RenderSegment(imStartWidth, imStartHeight);
          });
       }
 
@@ -81,7 +84,10 @@ namespace Dalmatian.ROI
          imStartHeight = mainImage.ActualHeight;
 
          // load Segments
-         SegmentsList.ForEach((Segment a) => { mainCanvas.Children.Add(a.DrawSegment(imStartWidth, imStartHeight, scale)); });
+         foreach(var item in SegmentsList)
+         {
+            mainCanvas.Children.Add(item.DrawSegment(imStartWidth, imStartHeight));
+         }
          ScaleAll();
       }
       private void RenderPictures()
@@ -96,7 +102,7 @@ namespace Dalmatian.ROI
       {
          if (mouseState.leftPressed)
          {
-            var p = Segment.ScalePoint(e.GetPosition(SegmentsList[SegmentIndex].pathBox), scale);
+            var p = Segment.DeScalePoint(e.GetPosition(SegmentsList[SegmentIndex].pathBox), scale);
             SegmentsList[SegmentIndex].gGroup.Children.Add(new LineGeometry(mouseState.p_last, p));
             mouseState.p_last = p;
             SegmentsList[SegmentIndex].AddPoint(p);
@@ -104,16 +110,14 @@ namespace Dalmatian.ROI
       }
       public void MousePress(object sender, RoutedEventArgs e)
       {
-         var p = Segment.ScalePoint((e as MouseEventArgs).GetPosition(SegmentsList[SegmentIndex].pathBox), scale);
+         var p = Segment.DeScalePoint((e as MouseEventArgs).GetPosition(SegmentsList[SegmentIndex].pathBox), scale);
          SegmentsList[SegmentIndex].AddPoint(p);
-
+         SegmentsList[SegmentIndex].gGroup.Children.Add(new LineGeometry(p, p));
          if (SegmentIndex == 0)
          {
-            SegmentsList[SegmentIndex].gGroup.Children.Add(new LineGeometry(p, p));
          }
          else
          {
-            SegmentsList[SegmentIndex].AddPoint(p);
             mouseState.leftPressed = true;
          }
          
@@ -147,6 +151,20 @@ namespace Dalmatian.ROI
             (item as FrameworkElement).Height = dh;
          }
       }
+      private void ScaleItem(object item)
+      {
+         var dw = imStartWidth * scaleValue;
+         var dh = imStartHeight * scaleValue;
+
+         imPosition.X = (mainCanvas.ActualWidth - dw) / 2;
+         imPosition.Y = (mainCanvas.ActualHeight - dh) / 2;
+
+         Canvas.SetLeft((item as UIElement), imPosition.X);
+         Canvas.SetTop((item as UIElement), imPosition.Y);
+
+         (item as FrameworkElement).Width = dw;
+         (item as FrameworkElement).Height = dh;
+      }
       public void IncreaseScale()
       {
          scale += 0.1;
@@ -169,7 +187,10 @@ namespace Dalmatian.ROI
       }
       public void CountAll()
       {
-         SegmentsList.ForEach((Segment s) => { s.Count(SegmentsList[0].Get2DPoints()); });
+         foreach (var item in SegmentsList)
+         {
+            item.Count(SegmentsList[0].Get2DPoints());
+         }
       }
       #endregion
 
@@ -234,7 +255,7 @@ namespace Dalmatian.ROI
             }
          }
       }
-      public List<Segment> SegmentsList { get; set; }
+      public BindingList<Segment> SegmentsList { get; set; }
       private Canvas mainCanvas;
       private Image mainImage;
       private Point imPosition = new Point();
