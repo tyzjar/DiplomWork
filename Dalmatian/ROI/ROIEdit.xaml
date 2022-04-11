@@ -16,19 +16,36 @@
       <Border Style="{StaticResource BorderStyle}" Grid.Column="0">
          <StackPanel Orientation="Horizontal">
             <StackPanel>
-            <UserControl x:Name="SegmantationPanel"
+
+               <TextBlock Text="{Binding ImageIndex}" HorizontalAlignment="Center"/>
+               <Slider Margin="0,5" Width="210"
+                       Value="{Binding ImageIndex, Mode=TwoWay}"
+                       Minimum="0" Maximum="{Binding ImageCount}" 
+                       IsSelectionRangeEnabled="True" Orientation="Horizontal" />
+
+               <UserControl x:Name="SegmantationPanel"
                    HorizontalAlignment="Left"/>
-            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
-               <Button Content="Add segment" Margin="0,5"
+               <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                  <Button Content="Add segment" Margin="0,5"
                                  Style="{StaticResource BaseStyle}" Width="100" HorizontalAlignment="Center"
                                  Template="{StaticResource NewButtonControlTemplate}"
-                                 Command = "{Binding sFilterPreviewCommand}" Height="23" />
-               <Button Content="Delete segment" Margin="0,5"
+                                 Command = "{Binding AddSegment}" Height="23" />
+                  <Button Content="Delete segment" Margin="0,5"
                                  Style="{StaticResource BaseStyle}" Width="100" HorizontalAlignment="Center"
                                  Template="{StaticResource NewButtonControlTemplate}"
-                                 Command = "{Binding sFilterPreviewCommand}" Height="23" />
+                                 Command = "{Binding DeleteSegment}" Height="23" />
+               </StackPanel>
+               <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                  <Button Content="Confirm edit" Margin="0,5"
+                                 Style="{StaticResource BaseStyle}" Width="100" HorizontalAlignment="Center"
+                                 Template="{StaticResource NewButtonControlTemplate}"
+                                 Command = "{Binding ConfirmEditSegment}" Height="23" />
+                  <Button Content="Update All" Margin="0,5"
+                                 Style="{StaticResource BaseStyle}" Width="100" HorizontalAlignment="Center"
+                                 Template="{StaticResource NewButtonControlTemplate}"
+                                 Command = "{Binding UpdateAllSegment}" Height="23" />
+               </StackPanel>
             </StackPanel>
-         </StackPanel>
          </StackPanel>
       </Border>
       <Border Style="{StaticResource BorderStyle}" Grid.Column="1">

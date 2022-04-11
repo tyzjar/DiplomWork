@@ -32,39 +32,89 @@ namespace Dalmatian.ROI
 
       Dictionary<double, List<double>> map = new Dictionary<double, List<double>>();
    }
-   public class Segment : GUI.Items.Framework.ViewModelBase
+
+   public abstract class Segment : GUI.Items.Framework.ViewModelBase
    {
       public static Point ScalePoint(Point p, Double scale)
       {
          return new Point(p.X / scale, p.Y / scale);
       }
+      public static string PointToString(Point p)
+      {
+         return p.X.ToString() + delimiter + p.Y.ToString();
+      }
+
       public Segment(string name)
       {
-         Name = name;
+         var a = name.Split(delimiter);
+         if (a.Length == 2)
+         {
+            Name = a[0];
+            cellCount = Convert.ToInt32(a[1]);
+         }
+         else
+            Name = name;
       }
-      public void AddPoint(double x, double y)
+      public abstract void AddPoint(double x, double y);
+      public abstract void AddPoint(Point p);
+      public abstract void AddPoint(string p);
+      public abstract void AddPointZ(Point p, double z);
+      public abstract string NameWithCount();
+      public abstract List<string> ConvertToStrings();
+      public abstract Viewbox DrawSegment(double w, double h, double scale);
+      public abstract void RenderSegment(double w, double h, double scale);
+      public abstract void Count(List<Point> cellPoints);
+      public abstract List<Point> Get2DPoints();
+      public string Name { get; set; }
+      public int CellNumber { get { return cellCount; } }
+      public GeometryGroup gGroup;
+      public Viewbox pathBox;
+      protected int cellCount = 0;
+      public static char delimiter = ';';
+   }
+
+   /// ------------------------------------------------------------------------------------------------------------
+
+   public class FigureSegment : Segment
+   {
+      public FigureSegment(string name) : base(name)
       {
-         orderPoints.Add(new Point(x,y));
       }
-      public void AddPoint(Point p)
+      public override void AddPoint(double x, double y)
+      {
+         orderPoints.Add(new Point(x, y));
+      }
+      public override void AddPoint(Point p)
       {
          orderPoints.Add(p);
       }
-      public void AddPoint(string p)
+      public override void AddPoint(string p)
       {
-         var a = p.Split(';');
+         var a = p.Split(delimiter);
          if (a.Length == 2)
          {
             orderPoints.Add(new Point(Convert.ToDouble(a[0]),
                Convert.ToDouble(a[1])));
          }
       }
-      public void AddPoints(List<Point> newPoints)
+      public override void AddPointZ(Point p, double z)
       {
-         orderPoints.AddRange(newPoints);
+         throw (new GUI.Items.Framework.StandartExceptions("AddPointZ does not overload", true));
       }
-      public Viewbox DrawSegment(double w, double h, double scale)
+
+      public override string NameWithCount()
       {
+         return Name + delimiter + cellCount.ToString();
+      }
+      public override List<string> ConvertToStrings()
+      {
+         List<string> str = new List<string>();
+         orderPoints.ForEach((Point  p) => { str.Add(PointToString(p)); });
+         return str;
+      }
+      public override Viewbox DrawSegment(double w, double h, double scale)
+      {
+         pathBox = new Viewbox();
          Path newSegment = new Path();
          gGroup = new GeometryGroup();
          newSegment.StrokeStartLineCap = PenLineCap.Round;
@@ -75,10 +125,15 @@ namespace Dalmatian.ROI
          newSegment.Width = w;
          newSegment.Height = h;
 
+         RenderSegment(w, h, scale);
+
          newSegment.Data = gGroup;
          pathBox.Child = newSegment;
 
-
+         return pathBox;
+      }
+      public override void RenderSegment(double w, double h, double scale)
+      {
          if (orderPoints.Count > 0)
          {
             var start = orderPoints.GetEnumerator();
@@ -90,17 +145,15 @@ namespace Dalmatian.ROI
                while (x2.MoveNext())
                {
                   gGroup.Children.Add(new LineGeometry(
-                     ScalePoint(x1.Current,scale), ScalePoint(x2.Current, scale)));
+                     ScalePoint(x1.Current, scale), ScalePoint(x2.Current, scale)));
                   x1 = x2;
                }
                gGroup.Children.Add(new LineGeometry(
                   ScalePoint(x1.Current, scale), ScalePoint(start.Current, scale)));
             }
          }
-
-         return pathBox;
       }
-      public void Count(List<Point> cellPoints)
+      public override void Count(List<Point> cellPoints)
       {
          UnorderMap searchTable = new UnorderMap();
          orderPoints.ForEach((Point a) => { searchTable.Add(a.X, a.Y); });
@@ -109,7 +162,7 @@ namespace Dalmatian.ROI
 
          foreach (var cell in cellPoints)
          {
-            if (checkPoint(searchTable[cell.X], cell.Y))
+            if (checkPoint(cellPoints, cell))
             {
                count++;
             }
@@ -118,41 +171,111 @@ namespace Dalmatian.ROI
          cellCount = count;
          OnPropertyChanged("CellCount");
       }
-
-      // Check that Point is in figure
-      private bool checkPoint(List<double> l, double y)
+      public override List<Point> Get2DPoints()
       {
-         if (l.Count > 0)
+         return orderPoints;
+      }
+      // Check that Point is in figure
+      private bool checkPoint(List<Point> p, Point point)
+      {
+         bool result = false;
+         int j = p.Count - 1;
+         for (int i = 0; i < p.Count; i++)
          {
-            // Numbers of y above and below Point
-            int greaterСount = 0;
-            int smallerСount = 0;
-
-            foreach (var dy in l)
-            {
-               if (dy > y)
-               {
-                  greaterСount++;
-               }
-               else if (dy < y)
-               {
-                  smallerСount++;
-               }
-               else
-                  return true;
-            }
-
-            if ((greaterСount > 0) && (smallerСount > 0) && (greaterСount % 2 != 0))
-               return true;
+            if ((p[i].Y < point.Y && p[j].Y >= point.Y || p[j].Y < point.Y && p[i].Y >= point.Y) &&
+                 (p[i].X + (point.Y - p[i].Y) / (p[j].Y - p[i].Y) * (p[j].X - p[i].X) < point.X))
+               result = !result;
+            j = i;
          }
 
-         return false;
+         return result;
       }
-      public string Name { get; set; }
-      public int CellCount { get { return cellCount; } }
-      public GeometryGroup gGroup;
-      public Viewbox pathBox = new Viewbox();
-      public List<Point> orderPoints = new List<Point>();
-      private int cellCount = 0;
+
+      private List<Point> orderPoints = new List<Point>();
+   }
+
+   /// ------------------------------------------------------------------------------------------------------------
+
+   public class CellSegment : Segment
+   {
+      public CellSegment(string name) : base(name)
+      {
+      }
+      public override void AddPoint(double x, double y)
+      {
+         orderPoints.Add(new Point(x, y));
+      }
+      public override void AddPoint(Point p)
+      {
+         orderPoints.Add(p);
+      }
+      public override void AddPoint(string p)
+      {
+         var a = p.Split(delimiter);
+         if (a.Length == 2)
+         {
+            orderPoints.Add(new Point(Convert.ToDouble(a[0]),
+               Convert.ToDouble(a[1])));
+         }
+      }
+      public override void AddPointZ(Point p, double z)
+      {
+         throw (new GUI.Items.Framework.StandartExceptions("AddPointZ does not overload", true));
+      }
+      public override string NameWithCount()
+      {
+         return Name + delimiter + cellCount.ToString();
+      }
+      public override List<string> ConvertToStrings()
+      {
+         List<string> str = new List<string>();
+         orderPoints.ForEach((Point p) => { str.Add(PointToString(p)); });
+         return str;
+      }
+      public override Viewbox DrawSegment(double w, double h, double scale)
+      {
+         pathBox = new Viewbox();
+         Path newSegment = new Path();
+         gGroup = new GeometryGroup();
+         newSegment.StrokeStartLineCap = PenLineCap.Round;
+         newSegment.StrokeEndLineCap = PenLineCap.Round;
+         newSegment.StrokeThickness = 1;
+         newSegment.Stroke = Brushes.Red;
+
+         newSegment.Width = w;
+         newSegment.Height = h;
+
+         RenderSegment(w,h,scale);
+
+         newSegment.Data = gGroup;
+         pathBox.Child = newSegment;
+
+         Count(null);
+         return pathBox;
+      }
+      public override void RenderSegment(double w, double h, double scale)
+      {
+         if (orderPoints.Count > 0)
+         {
+            var x = orderPoints.GetEnumerator();
+
+            while (x.MoveNext())
+            {
+               gGroup.Children.Add(new LineGeometry(
+                  ScalePoint(x.Current, scale), ScalePoint(x.Current, scale)));
+            }
+         }
+      }
+      public override void Count(List<Point> cellPoints)
+      {
+         cellCount = orderPoints.Count;
+         OnPropertyChanged(nameof(CellNumber));
+      }
+      public override List<Point> Get2DPoints()
+      {
+         return orderPoints;
+      }
+
+      private List<Point> orderPoints = new List<Point>();
    }
 }

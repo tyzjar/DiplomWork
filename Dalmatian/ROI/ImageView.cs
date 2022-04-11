@@ -32,6 +32,29 @@ namespace Dalmatian.ROI
             imageNames = System.IO.Directory.GetFiles(folder, "*.tif");
          else
             throw (GUI.Items.Framework.StandartExceptions.FolderDoesNotExists());
+
+         // Reference to comands
+         AddSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
+            SegmentsList.Add(new FigureSegment("New segment"));
+            OnPropertyChanged(nameof(SegmentsList));
+            });
+
+         DeleteSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
+            if (SegmentIndex != 0)
+            {
+               SegmentsList.RemoveAt(SegmentIndex);
+               OnPropertyChanged(nameof(SegmentsList));
+            }
+         });
+
+         UpdateAllSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
+            CountAll();
+            OnPropertyChanged(nameof(SegmentsList));
+         });
+
+         ConfirmEditSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
+            SegmentsList[SegmentIndex].RenderSegment(imStartWidth, imStartHeight, scale);
+         });
       }
 
       #region RENDER
@@ -81,12 +104,19 @@ namespace Dalmatian.ROI
       }
       public void MousePress(object sender, RoutedEventArgs e)
       {
-         if (SegmentIndex == 0)
-            return;
-
-         mouseState.leftPressed = true;
          var p = Segment.ScalePoint((e as MouseEventArgs).GetPosition(SegmentsList[SegmentIndex].pathBox), scale);
          SegmentsList[SegmentIndex].AddPoint(p);
+
+         if (SegmentIndex == 0)
+         {
+            SegmentsList[SegmentIndex].gGroup.Children.Add(new LineGeometry(p, p));
+         }
+         else
+         {
+            SegmentsList[SegmentIndex].AddPoint(p);
+            mouseState.leftPressed = true;
+         }
+         
          mouseState.p_last = p;
       }
       public void MouseUp(object sender, RoutedEventArgs e)
@@ -131,10 +161,24 @@ namespace Dalmatian.ROI
       }
       #endregion
 
+      #region SegmentsList
       public void SegmentIndexUpdate(int newValue)
       {
+         SegmentsList[SegmentIndex].Count(SegmentsList[0].Get2DPoints());
          SegmentIndex = newValue;
       }
+      public void CountAll()
+      {
+         SegmentsList.ForEach((Segment s) => { s.Count(SegmentsList[0].Get2DPoints()); });
+      }
+      #endregion
+
+      #region ComandControl
+      public ICommand AddSegment { get; private set; } 
+      public ICommand DeleteSegment { get; private set; }
+      public ICommand UpdateAllSegment { get; private set; }
+      public ICommand ConfirmEditSegment { get; private set; }
+      #endregion
 
       #region VARIABLES
       public double scale
@@ -165,7 +209,15 @@ namespace Dalmatian.ROI
             {
                imageIndex = value;
                RenderPictures();
+               OnPropertyChanged(nameof(ImageIndex));
             }
+         }
+      }
+      public int ImageCount
+      {
+         get
+         {
+            return imageNames != null ? imageNames.Length - 1 : 0;
          }
       }
       public int SegmentIndex
@@ -182,7 +234,7 @@ namespace Dalmatian.ROI
             }
          }
       }
-      public List<Segment> SegmentsList;
+      public List<Segment> SegmentsList { get; set; }
       private Canvas mainCanvas;
       private Image mainImage;
       private Point imPosition = new Point();

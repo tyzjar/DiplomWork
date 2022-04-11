@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,21 +21,35 @@ namespace Dalmatian.ROI
    public partial class ROIEdit : Window
    {
       ImageView imView;
+      SegmentationPanel panel;
       public ROIEdit(string folder, List<Segment> segmentsList)
       {
          InitializeComponent();
-         var panel = new SegmentationPanel();
+
+         panel = new SegmentationPanel();
          SegmantationPanel.Content = panel;
-         panel.SegmentsDataGrid.ItemsSource = segmentsList;
 
          imView = new ImageView(folder, segmentsList);
          imView.StartRender(MainCanvas);
 
+         panel.SegmentsDataGrid.ItemsSource = imView.SegmentsList;
          panel.onSegmentIndexChanged += imView.SegmentIndexUpdate;
+         //panel.SegmentsDataGrid.SetBinding(DataGrid.ItemsSourceProperty, imView.SegmentsList);
+         imView.PropertyChanged += UpdatePanel;
+
+         this.DataContext = imView;
 
          this.AddHandler(MainWindow.MouseWheelEvent, new RoutedEventHandler(this.MouseWheelHandler), true);
       }
 
+      void UpdatePanel(object sender, PropertyChangedEventArgs e)
+      {
+         if (Equals(e.PropertyName, "SegmentsList"))
+         {
+            MessageBox.Show(e.PropertyName);
+            panel.SegmentsDataGrid.ItemsSource = imView.SegmentsList;
+         }
+      }
       void MouseWheelHandler(object sender, RoutedEventArgs e)
       {
          if ((e as MouseWheelEventArgs).Delta > 0)
@@ -42,5 +57,6 @@ namespace Dalmatian.ROI
          else
             imView.DecreaseScale();
       }
+
    }
 }

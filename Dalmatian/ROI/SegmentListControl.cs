@@ -6,12 +6,13 @@ namespace Dalmatian.ROI
 {
    class SegmentListControl : GUI.Items.Framework.ConfigItem
    {
+      private const string CellChanel = "All Cells";
       public static SegmentListControl SegmentListControlCreate(string sampleName)
       {
          sampleName = GUI.Items.Framework.ConfigReader.delete_symbol(sampleName, '\\');
          sampleName = GUI.Items.Framework.ConfigReader.delete_symbol(sampleName, ':');
          var slc = new SegmentListControl(sampleName);
-         slc.segmentsList.Add(new Segment("All Cells"));
+         slc.segmentsList.Add(new CellSegment(CellChanel));
 
          return slc;
       }
@@ -35,10 +36,10 @@ namespace Dalmatian.ROI
          foreach (var item in segmentsList)
          {
             var row = 1;
-            worksheet.Cells[row, column].Value = item.Name;
+            worksheet.Cells[row, column].Value = item.NameWithCount();
             row++;
 
-            foreach (var p in item.orderPoints)
+            foreach (var p in item.ConvertToStrings())
             {
                worksheet.Cells[row, column].Value = p;
                row++;
@@ -51,18 +52,29 @@ namespace Dalmatian.ROI
       }
       public override List<GUI.Items.Framework.ConfigItem> LoadConfig(ExcelWorksheet worksheet)
       {
-         //SamplesSegments.Clear();
          if ((worksheet != null) && (worksheet.Dimension != null))
          {
+            segmentsList = new List<Segment>();
+
             for (int i = 1; i <= worksheet.Dimension.End.Column; i++)
             {
                var row = 1;
-               var item = new Segment(worksheet.Cells[row, i].Value.ToString());
+               Segment item;
+
+               if (i == 1)
+               {
+                  item = new CellSegment(worksheet.Cells[row, i].Value.ToString());
+               }
+               else
+               {
+                  item = new FigureSegment(worksheet.Cells[row, i].Value.ToString());
+               }
+
                row++;
 
-               while (row <= worksheet.Dimension.End.Row)
+               while ((row <= worksheet.Dimension.End.Row)&&(worksheet.Cells[row, i].Value != null))
                {
-                  //System.Windows.MessageBox.Show(worksheet.Cells[row, i].Value.ToString());
+                 // System.Windows.MessageBox.Show(worksheet.Cells[row, i].Value.ToString());
                   item.AddPoint(worksheet.Cells[row, i].Value.ToString());
                   row++;
                }
