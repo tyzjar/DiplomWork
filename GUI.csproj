@@ -192,6 +192,7 @@
     <Compile Include="Items\Framework\MatlabProcessor\Synchronizer.cs" />
     <Compile Include="Items\Framework\MatlabProcessor\Objects\ISynchObject.cs" />
     <Compile Include="Items\Framework\MatlabProcessor\Objects\TextBlocObject.cs" />
+    <Compile Include="Items\Framework\StandartExceptions.cs" />
     <Compile Include="Items\Framework\ViewModelBase.cs" />
     <Compile Include="Items\Framework\View\AddFolderPanel.xaml.cs">
       <DependentUpon>AddFolderPanel.xaml</DependentUpon>

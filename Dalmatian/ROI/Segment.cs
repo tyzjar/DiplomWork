@@ -153,7 +153,6 @@ namespace Dalmatian.ROI
       public GeometryGroup gGroup;
       public Viewbox pathBox = new Viewbox();
       public List<Point> orderPoints = new List<Point>();
-
       private int cellCount = 0;
    }
 }

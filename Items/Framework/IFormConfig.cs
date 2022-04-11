@@ -20,6 +20,8 @@ namespace GUI.Items.Framework
          gridAndProcessPanel = gridAndProcessPanel_;
          InitItems();
       }
+      public override void UpdateName(string newName)
+      {}
 
       void InitItems()
       {

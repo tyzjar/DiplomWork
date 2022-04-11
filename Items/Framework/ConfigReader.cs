@@ -7,13 +7,15 @@ namespace GUI.Items.Framework
 {
    public abstract class ConfigItem : ViewModelBase
    {
-      public ConfigItem(string worksheetName)
+      public ConfigItem(string worksheetName_)
       {
-         WorksheetName = worksheetName;
+         worksheetName = worksheetName_;
       }
       public abstract List<ConfigItem> LoadConfig(ExcelWorksheet worksheet);
       public abstract List<ConfigItem> SaveConfig(ExcelWorksheet worksheet);
-      public string WorksheetName;
+      public abstract void UpdateName(string newName);
+      public string WorksheetName { get { return worksheetName; } }
+      protected string worksheetName;
    }
 
 

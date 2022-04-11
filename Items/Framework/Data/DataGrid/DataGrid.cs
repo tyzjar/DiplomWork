@@ -21,6 +21,9 @@ namespace GUI.Items.Framework.Data.DataGrid
          { e.NewObject = NewGridItem(); };
       }
 
+      public override void UpdateName(string newName)
+      {}
+
       public void addItem(string[] row)
       {
          Data.Add(NewGridItem(row));
@@ -101,7 +104,13 @@ namespace GUI.Items.Framework.Data.DataGrid
 
       public void UpdateItem(object sender, PropertyChangedEventArgs e)
       {
-         (sender as GridItem).udpateStates(folderData);
+         var item = (sender as GridItem);
+         if (e.PropertyName == "SampleName")
+         {
+            item.Segments.UpdateName(item.SampleName);
+         }
+
+         item.udpateStates(folderData);
       }
 
       /// Values 

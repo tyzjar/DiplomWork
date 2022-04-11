@@ -28,7 +28,10 @@ namespace Dalmatian.ROI
          mainCanvas.Children.Add(mainImage);
 
          // create list of images
-         imageNames = System.IO.Directory.GetFiles(folder, "*.tif");
+         if (System.IO.Directory.Exists(folder))
+            imageNames = System.IO.Directory.GetFiles(folder, "*.tif");
+         else
+            throw (GUI.Items.Framework.StandartExceptions.FolderDoesNotExists());
       }
 
       #region RENDER
@@ -78,6 +81,9 @@ namespace Dalmatian.ROI
       }
       public void MousePress(object sender, RoutedEventArgs e)
       {
+         if (SegmentIndex == 0)
+            return;
+
          mouseState.leftPressed = true;
          var p = Segment.ScalePoint((e as MouseEventArgs).GetPosition(SegmentsList[SegmentIndex].pathBox), scale);
          SegmentsList[SegmentIndex].AddPoint(p);
@@ -124,6 +130,11 @@ namespace Dalmatian.ROI
          scale = 1;
       }
       #endregion
+
+      public void SegmentIndexUpdate(int newValue)
+      {
+         SegmentIndex = newValue;
+      }
 
       #region VARIABLES
       public double scale
@@ -172,7 +183,6 @@ namespace Dalmatian.ROI
          }
       }
       public List<Segment> SegmentsList;
-
       private Canvas mainCanvas;
       private Image mainImage;
       private Point imPosition = new Point();

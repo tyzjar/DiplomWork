@@ -11,7 +11,8 @@ namespace GUI.Items.Framework.Data
       {
          AddFolderCommand = new DelegateCommand((object param) => { AddFolderEvent(); });
       }
-
+      public override void UpdateName(string newName)
+      { }
       public override List<GUI.Items.Framework.ConfigItem> LoadConfig(ExcelWorksheet worksheet)
       {
          if ((worksheet != null) && (worksheet.Dimension != null))

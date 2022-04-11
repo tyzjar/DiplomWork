@@ -30,6 +30,8 @@ namespace Dalmatian.ROI
          imView = new ImageView(folder, segmentsList);
          imView.StartRender(MainCanvas);
 
+         panel.onSegmentIndexChanged += imView.SegmentIndexUpdate;
+
          this.AddHandler(MainWindow.MouseWheelEvent, new RoutedEventHandler(this.MouseWheelHandler), true);
       }
 

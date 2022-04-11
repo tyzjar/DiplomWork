@@ -46,6 +46,14 @@ namespace GUI.Items.Framework.MatlabProcessor
             mainThread = new Thread(Work);
             mainThread.Start(SynchronizationContext.Current);
          }
+         catch (StandartExceptions sex)
+         {
+            MessageBox.Show(sex.Message, "Exeption",
+               MessageBoxButton.OK, sex.critical ?
+               MessageBoxImage.Error : MessageBoxImage.Warning);
+            EventProcessEnd();
+            working = false;
+         }
          catch (Exception ex)
          {
             MessageBox.Show(ex.Message, "Exeption",
@@ -86,7 +94,7 @@ namespace GUI.Items.Framework.MatlabProcessor
       public delegate void ProcessStateHandler();
       public event ProcessStateHandler EventProcessEnd = () => { };
       public event ProcessStateHandler EventProcessStart = () => { };
-      public string Folder { get => folder; }
+      public string Folder { get { return folder; } }
       protected string tempFileName { get; set; }
       protected Synchronizer synchronizer;
       protected Thread mainThread;

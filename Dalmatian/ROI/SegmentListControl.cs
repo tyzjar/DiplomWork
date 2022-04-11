@@ -10,13 +10,24 @@ namespace Dalmatian.ROI
       {
          sampleName = GUI.Items.Framework.ConfigReader.delete_symbol(sampleName, '\\');
          sampleName = GUI.Items.Framework.ConfigReader.delete_symbol(sampleName, ':');
-         return new SegmentListControl(sampleName);
+         var slc = new SegmentListControl(sampleName);
+         slc.segmentsList.Add(new Segment("All Cells"));
+
+         return slc;
       }
 
       public SegmentListControl(string sampleName) 
          : base(sampleName)
       {
       }
+
+      public override void UpdateName(string newName)
+      {
+         newName = GUI.Items.Framework.ConfigReader.delete_symbol(newName, '\\');
+         newName = GUI.Items.Framework.ConfigReader.delete_symbol(newName, ':');
+         worksheetName = newName;
+      }
+
       public override List<GUI.Items.Framework.ConfigItem> SaveConfig(ExcelWorksheet worksheet)
       {
          var column = 1;

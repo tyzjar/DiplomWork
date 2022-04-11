@@ -16,26 +16,42 @@ namespace Dalmatian
       }
       public override void UpdatePanel(GUI.Items.Framework.ConfigItem segments)
       {
-         //if ((segments as ROI.SegmentListControl).segmentsList != null)
-         //{
-         //   panel.SegmentsDataGrid.ItemsSource =
-         //   (segments as ROI.SegmentListControl).segmentsList;
-         //}
+         if ((segments as ROI.SegmentListControl).segmentsList != null)
+         {
+            panel.SegmentsDataGrid.ItemsSource =
+            (segments as ROI.SegmentListControl).segmentsList;
+         }
       }
       public override void Comand(object param, string s)
       {
-         var p = (param as GUI.Items.Framework.Data.DataGrid.GridItem);
-         var folder = p.SampleName + @"\" + s + @"\";
+         ROI.ROIEdit sWindow = null;
+
          try
          {
-            ROI.ROIEdit sWindow = new ROI.ROIEdit(folder,
+            var p = (param as GUI.Items.Framework.Data.DataGrid.GridItem);
+            if (p == null)
+               throw (GUI.Items.Framework.StandartExceptions.NoSelectedItem());
+
+            var folder = p.SampleName + @"\" + s + @"\";
+
+            sWindow = new ROI.ROIEdit(folder,
             (p.Segments as ROI.SegmentListControl).segmentsList);
             sWindow.ShowDialog();
+         }
+         catch (GUI.Items.Framework.StandartExceptions dex)
+         {
+            MessageBox.Show(dex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Warning);
          }
          catch (Exception ex)
          {
             MessageBox.Show(ex.Message, "Exeption",
                MessageBoxButton.OK, MessageBoxImage.Error);
+
+            if (sWindow != null)
+            {
+               sWindow.Close();
+            }
          }
       }
 

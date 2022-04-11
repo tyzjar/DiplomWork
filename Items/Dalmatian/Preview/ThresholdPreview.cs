@@ -23,6 +23,10 @@ namespace GUI.Items.Dalmatian.Preview
 
       protected override void PopulateBuffer(ExcelWorksheet worksheet)
       {
+         if ((config.gridPanel.SamplesDataGrid.SelectedItem
+            as Framework.Data.DataGrid.GridItem) == null)
+            throw (Framework.StandartExceptions.NoSelectedItem());
+
          if (Equals(config.mainData.folderData.CellCountSubfolder, ""))
          {
             sampleName = (config.gridPanel.SamplesDataGrid.SelectedItem
@@ -34,6 +38,9 @@ namespace GUI.Items.Dalmatian.Preview
              as Framework.Data.DataGrid.GridItem).SampleName + @"\" +
              config.mainData.folderData.CellCountSubfolder + @"\*.tif";
          }
+
+         if (!System.IO.Directory.Exists(sampleName))
+            throw (Framework.StandartExceptions.FolderDoesNotExists());
       }
 
       CellCountConfig config;

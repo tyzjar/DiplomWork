@@ -47,9 +47,8 @@ namespace GUI.Items.Dalmatian
          gridPanel.SamplesDataGrid.ItemsSource = mainData.dataGrid.Data;
 
          gridPanel.SamplesDataGrid.SelectionChanged += (object sender, SelectionChangedEventArgs e) => {
-            if ((gridPanel.SamplesDataGrid.SelectedItem != null))
+            if ((gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem) != null)
             {
-               var r = (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem);
                segmentationPanel.UpdatePanel(
                  (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem).Segments);
             }

@@ -63,7 +63,7 @@ namespace GUI.Items.Preprocessing
       public bool SubtractionEnabel { get; set; } = false;
       public string SubtractionName
       {
-         get => SubtractionNameValue;
+         get { return SubtractionNameValue; }
          set
          {
             if (!Equals(SubtractionNameValue, value))

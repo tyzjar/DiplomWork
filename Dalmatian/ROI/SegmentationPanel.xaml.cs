@@ -20,10 +20,18 @@ namespace Dalmatian.ROI
    /// </summary>
    public partial class SegmentationPanel : UserControl
    {
-     
+      public delegate void UpdateHandler(int newValue);
+      public event UpdateHandler onSegmentIndexChanged = (int i) => { };
       public SegmentationPanel()
       {
          InitializeComponent();
+
+         SegmentsDataGrid.SelectionChanged += (object sender, SelectionChangedEventArgs e) => {
+            if ((SegmentsDataGrid.SelectedItem as Segment) != null)
+            {
+               onSegmentIndexChanged(SegmentsDataGrid.SelectedIndex);
+            }
+         };
       }
    }
 }
