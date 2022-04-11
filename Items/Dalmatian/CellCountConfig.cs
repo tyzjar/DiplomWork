@@ -86,6 +86,10 @@ namespace GUI.Items.Dalmatian
             segmentationPanel.UpdatePanel(
                (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem).Segments);
          });
+         ExportCommand = new Framework.DelegateCommand((object param) => {
+            segmentationPanel.UpdatePanel(
+               (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem).Segments);
+         });
       }
       protected override void swapToView()
       {
@@ -155,6 +159,7 @@ namespace GUI.Items.Dalmatian
       public ICommand OriginalViewCommand { get; private set; }
       public ICommand SegmentCommand { get; private set; }
       public ICommand SelectedChangedCommand { get; private set; }
+      public ICommand ExportCommand { get; private set; }
 
       #region Values
       public GridPanel gridPanel;
