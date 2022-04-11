@@ -4,6 +4,8 @@ using System.Windows.Controls;
 using OfficeOpenXml;
 using System.Windows;
 using System.Collections.Generic;
+using Microsoft.Win32;
+using System.IO;
 
 namespace GUI.Items.Dalmatian
 {
@@ -12,7 +14,10 @@ namespace GUI.Items.Dalmatian
       public abstract object GetPanel();
       public abstract void UpdatePanel(Framework.ConfigItem segments);
       public abstract void ClearPanel();
-      public abstract void Comand(object param, string s);
+      public abstract void Comand(Framework.Data.DataGrid.GridItem param, string s);
+      public abstract int ExportComand(Framework.Data.DataGrid.GridItem param,
+         ExcelWorksheet worksheet, int row, int col);
+      public abstract void ImportComand(Framework.Data.DataGrid.GridItem param, string fileName);
    }
 
    public class PanelWithCommand : IPanelWithCommand
@@ -29,8 +34,14 @@ namespace GUI.Items.Dalmatian
       { }
       public override void ClearPanel()
       { }
-      public override void Comand(object param, string s)
+      public override void Comand(Framework.Data.DataGrid.GridItem param, string s)
       { }
+      public override int ExportComand(Framework.Data.DataGrid.GridItem param,
+         ExcelWorksheet worksheet, int row, int col)
+      { return 0; }
+      public override void ImportComand(Framework.Data.DataGrid.GridItem param, string fileName)
+      {
+      }
 
       private object panel;
    }
@@ -42,7 +53,7 @@ namespace GUI.Items.Dalmatian
       {
          segmentationPanel = segmentationPanel_;
          SegmentCommand = new Framework.DelegateCommand((object param) => {
-            segmentationPanel_.Comand(gridPanel.SamplesDataGrid.SelectedItem,
+            segmentationPanel_.Comand( (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem),
                mainData.folderData.CellCountSubfolder);
          });
 
@@ -58,7 +69,7 @@ namespace GUI.Items.Dalmatian
             else
                segmentationPanel.ClearPanel();
          };
-      swapToView();
+         swapToView();
       }
 
       protected override void Initialize()
@@ -87,9 +98,43 @@ namespace GUI.Items.Dalmatian
                (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem).Segments);
          });
          ExportCommand = new Framework.DelegateCommand((object param) => {
-            segmentationPanel.UpdatePanel(
-               (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem).Segments);
+            ExportCell();
          });
+      }
+
+      public void ExportCell()
+      {
+         try
+         {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Instruction File | *.xlsx";
+            saveFileDialog.DefaultExt = "xlsx";
+            saveFileDialog.FileName = "Cells Report " + Path.GetFileName(mainData.openSaveEvents.SelectedXmlFile);
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+               FileStream workFile = File.Create(saveFileDialog.FileName);
+               ExcelPackage excelPackage = new ExcelPackage(workFile);
+               var wsh = excelPackage.Workbook.Worksheets.Add("Dalmatian");
+
+               var row = 1;
+               var col = 1;
+               foreach (var item in mainData.dataGrid.Data)
+               {
+                  row += segmentationPanel.ExportComand(item, wsh, row, col);
+               }
+               wsh.Cells.AutoFitColumns();
+
+               wsh.Column(1).Width = 60;
+               excelPackage.SaveAs(workFile);
+               workFile.Close();
+            }
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+         }
       }
       protected override void swapToView()
       {

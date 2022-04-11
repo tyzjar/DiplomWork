@@ -97,6 +97,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ROI\ImageView.cs" />
+    <Compile Include="ROI\PanelWithCommand.cs" />
     <Compile Include="ROI\ROIEdit.xaml.cs">
       <DependentUpon>ROIEdit.xaml</DependentUpon>
     </Compile>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Dalmatian"
                mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" Background="{StaticResource MyColor1}"
-        Title="MainWindow" MinHeight="660" Height="660" Width="940">
+        Title="Dalmatian" MinHeight="660" Height="660" Width="940">
    <Border  Grid.Column="1">
       <UserControl x:Name="GridAndProcessPanel"/>
    </Border>

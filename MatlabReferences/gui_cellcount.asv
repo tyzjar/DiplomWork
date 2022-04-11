@@ -97,7 +97,7 @@ for u=1:Ng
             end
         end
         T=table(uint16(X'),uint16(Y'),uint16(Z'),'VariableNames',{'X','Y','Z'});
-        writetable(T,sprintf('cells1-%06d.txt',k));
+        writetable(T,sprintf('cells.txt'));
         delete(sprintf('cells1-%06d.txt',k-1));
     end
     

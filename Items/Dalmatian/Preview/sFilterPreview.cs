@@ -39,7 +39,7 @@ namespace GUI.Items.Dalmatian.Preview
              config.mainData.folderData.CellCountSubfolder + @"\*.tif";
          }
 
-         if (!System.IO.Directory.Exists(sampleName))
+         if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(sampleName)))
             throw (Framework.StandartExceptions.FolderDoesNotExists());
       }
 

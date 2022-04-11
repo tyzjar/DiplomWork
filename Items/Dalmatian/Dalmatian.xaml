@@ -190,7 +190,7 @@
                               Content="Export" HorizontalAlignment="Center"
                               Style="{StaticResource BaseStyle}" Width="60" Height="23"
                               Template="{StaticResource NewButtonControlTemplate}"
-                              Command = "{Binding ProcessorStartCommand}"/>
+                              Command = "{Binding ExportCommand}"/>
                   </StackPanel>
                </StackPanel>
             </Border>

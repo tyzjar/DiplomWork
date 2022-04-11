@@ -105,7 +105,6 @@ namespace Dalmatian.ROI
       {
          throw (new GUI.Items.Framework.StandartExceptions("AddPointZ does not overload", true));
       }
-
       public override string NameWithCount()
       {
          return Name + delimiter + cellCount.ToString();

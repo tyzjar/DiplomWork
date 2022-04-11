@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="649431065" file="P:\DiplomRabota\GUI\MatlabReferences\gui_cellcount.prj" location="P:\DiplomRabota\GUI\MatlabReferences" name="gui_cellcount" preferred-package-location="P:\DiplomRabota\GUI\MatlabReferences\gui_cellcount\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.library" target-name="Library Compiler">
+  <configuration build-checksum="3314637506" file="P:\DiplomRabota\GUI\MatlabReferences\gui_cellcount.prj" location="P:\DiplomRabota\GUI\MatlabReferences" name="gui_cellcount" preferred-package-location="P:\DiplomRabota\GUI\MatlabReferences\gui_cellcount\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.library" target-name="Library Compiler">
     <param.appname>gui_cellcount</param.appname>
     <param.icon />
     <param.icons />
@@ -112,10 +112,8 @@
       <file>P:\DiplomRabota\Dalmatian\sgauss.m</file>
       <file>P:\DiplomRabota\Dalmatian\sselect.m</file>
       <file>P:\DiplomRabota\Dalmatian\sstat.m</file>
-      <file>${PROJECT_ROOT}\gui_Rload.m</file>
       <file>${PROJECT_ROOT}\LogProcess.m</file>
       <file>P:\DiplomRabota\MatlabProgs\block.m</file>
-      <file>P:\DiplomRabota\MatlabProgs\vol2proj.m</file>
     </fileset.depfun>
     <fileset.package />
     <fileset.examples />

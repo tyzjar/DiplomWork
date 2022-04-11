@@ -44,6 +44,13 @@ namespace GUI.Items.Dalmatian
             config.countMinRegionValue, config.countConfLvlValue,
             config.countRMinValue, config.countRMaxValue,
             config.countkValue);
+
+         foreach (var item in config.mainData.dataGrid.Data)
+         {
+            config.segmentationPanel.ImportComand(item,
+               item.SampleName +"\\" + config.mainData.folderData.CellCountSubfolder
+               + "\\" + "cells.txt");
+         }
       }
 
       protected override void PopulateBuffer(ExcelWorksheet worksheet)

@@ -53,6 +53,12 @@ namespace GUI.Items.Framework.MatlabProcessor
                MessageBoxImage.Error : MessageBoxImage.Warning);
             EventProcessEnd();
             working = false;
+
+            if (mainThread != null)
+               mainThread.Abort();
+
+            if(synchronizer.mainThread!=null)
+               synchronizer.mainThread.Abort();
          }
          catch (Exception ex)
          {
@@ -60,6 +66,12 @@ namespace GUI.Items.Framework.MatlabProcessor
                MessageBoxButton.OK, MessageBoxImage.Error);
             EventProcessEnd();
             working = false;
+
+            if (mainThread != null)
+               mainThread.Abort();
+
+            if (synchronizer.mainThread != null)
+               synchronizer.mainThread.Abort();
          }
       }
       protected void Work(object state)

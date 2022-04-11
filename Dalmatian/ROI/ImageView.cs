@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using OfficeOpenXml;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -46,6 +46,7 @@ namespace Dalmatian.ROI
          DeleteSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
             if (SegmentIndex != 0)
             {
+               mainCanvas.Children.Remove(SegmentsList[SegmentIndex].pathBox);
                SegmentsList.RemoveAt(SegmentIndex);
                SegmentIndex = SegmentsList.Count - 1;
             }
@@ -191,6 +192,20 @@ namespace Dalmatian.ROI
          {
             item.Count(SegmentsList[0].Get2DPoints());
          }
+      }
+      public int Export(ExcelWorksheet worksheet, int x, int y)
+      {
+         CountAll();
+         int count = 0;
+
+         foreach (var item in SegmentsList)
+         {
+            worksheet.Cells[x, y].Value = item.Name;
+            worksheet.Cells[x, y+1].Value = item.CellNumber;
+            count++;
+         }
+
+         return count;
       }
       #endregion
 

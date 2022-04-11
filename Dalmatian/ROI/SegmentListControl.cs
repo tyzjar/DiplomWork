@@ -22,14 +22,12 @@ namespace Dalmatian.ROI
          : base(sampleName)
       {
       }
-
       public override void UpdateName(string newName)
       {
          newName = GUI.Items.Framework.ConfigReader.delete_symbol(newName, '\\');
          newName = GUI.Items.Framework.ConfigReader.delete_symbol(newName, ':');
          worksheetName = newName;
       }
-
       public override List<GUI.Items.Framework.ConfigItem> SaveConfig(ExcelWorksheet worksheet)
       {
          var column = 1;
@@ -84,6 +82,29 @@ namespace Dalmatian.ROI
             }
          }
          return null;
+      }
+
+      public void CountAll()
+      {
+         foreach (var item in segmentsList)
+         {
+            item.Count(segmentsList[0].Get2DPoints());
+         }
+      }
+      public int Export(ExcelWorksheet worksheet, int row, int col)
+      {
+         CountAll();
+         int count = 0;
+
+         foreach (var item in segmentsList)
+         {
+            worksheet.Cells[row, col].Value = item.Name;
+            worksheet.Cells[row, col + 1].Value = item.CellNumber;
+            row++;
+            count++;
+         }
+
+         return count;
       }
 
       public BindingList<Segment> segmentsList = new BindingList<Segment>();
