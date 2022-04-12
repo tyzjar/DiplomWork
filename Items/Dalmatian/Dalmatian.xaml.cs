@@ -18,10 +18,10 @@ namespace GUI.Items.Dalmatian
    public partial class Dalmatian : UserControl
    {
       CellCountConfig config;
-      public Dalmatian(Framework.Data.MainData mainData_, IControl segmentationPanel)
+      public Dalmatian(Framework.Data.MainData mainData_, IControl segmentationPanel, Framework.IHelper helper)
       {
          InitializeComponent();
-         config = new CellCountConfig(mainData_, GridAndProcessPanel, segmentationPanel);
+         config = new CellCountConfig(mainData_, GridAndProcessPanel, segmentationPanel, helper);
 
          this.DataContext = config;
          SelectPanel.Content = new GUI.Items.Framework.SelectedPanel(mainData_.openSaveEvents);

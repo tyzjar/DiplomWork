@@ -187,6 +187,7 @@
     <Compile Include="Items\Framework\Data\SelectedData.cs" />
     <Compile Include="Items\Framework\DelegateCommand.cs" />
     <Compile Include="Items\Framework\IFormConfig.cs" />
+    <Compile Include="Items\Framework\IHelper.cs" />
     <Compile Include="Items\Framework\MatlabProcessor\IMatlab.cs" />
     <Compile Include="Items\Framework\MatlabProcessor\Objects\PictureObject.cs" />
     <Compile Include="Items\Framework\MatlabProcessor\Objects\ProgressbarObject.cs" />

@@ -11,9 +11,11 @@ namespace GUI.Items.Dalmatian
 {
    class CellCountConfig : Framework.IFormConfig
    {
-      public CellCountConfig(Framework.Data.MainData mainData_, UserControl gridAndProcessPanel_, IControl segmentationControl_) :
+      public CellCountConfig(Framework.Data.MainData mainData_, UserControl gridAndProcessPanel_,
+         IControl segmentationControl_, Framework.IHelper helper_) :
          base(mainData_, gridAndProcessPanel_, "CellCountConfig")
       {
+         helper = helper_;
          segmentationControl = segmentationControl_;
          SegmentCommand = new Framework.DelegateCommand((object param) => {
             segmentationControl.Comand( (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem),
@@ -62,6 +64,15 @@ namespace GUI.Items.Dalmatian
          });
          ExportCommand = new Framework.DelegateCommand((object param) => {
             ExportCell();
+         });
+         sFilterHelpCommand = new Framework.DelegateCommand((object param) => {
+            helper.StartHelp(1);
+         });
+         ThresholdHelpCommand = new Framework.DelegateCommand((object param) => {
+            helper.StartHelp(2);
+         });
+         CountHelpCommand = new Framework.DelegateCommand((object param) => {
+            helper.StartHelp(3);
          });
       }
 
@@ -168,10 +179,15 @@ namespace GUI.Items.Dalmatian
       public ICommand SegmentCommand { get; private set; }
       public ICommand SelectedChangedCommand { get; private set; }
       public ICommand ExportCommand { get; private set; }
+      public ICommand sFilterHelpCommand { get; private set; }
+      public ICommand ThresholdHelpCommand { get; private set; }
+      public ICommand CountHelpCommand { get; private set; }
+
 
       #region Values
       public GridPanel gridPanel;
       public IControl segmentationControl;
+      public Framework.IHelper helper;
       private Preview.CommonPreview commonPreview;
       private Preview.sFilterPreview sfilterPreview;
       private Preview.ThresholdPreview thresholdPreview;
@@ -324,7 +340,7 @@ namespace GUI.Items.Dalmatian
       public double sfilterLowpassValue { get; set; } = 2;
       public double sfilterHipassValue { get; set; } = 100;
       public double trsholdValue { get; set; } = 0;
-      public double mfilterRadValue { get; set; } = 3;
+      public double mfilterRadValue { get; set; } = 15;
       public double countMinRegionValue { get; set; } = 100;
       public double countConfLvlValue { get; set; } = 0.1;
       public double countRMinValue { get; set; } = 0;

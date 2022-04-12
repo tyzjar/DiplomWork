@@ -11,8 +11,12 @@
         ResizeMode="NoResize"
         KeyDown="KeyEvents">
    <Border Style="{StaticResource BorderStyle}" Padding="3">
-      <StackPanel>
-         <Grid Margin="15,15,0,15">
+      <Grid>
+         <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+         </Grid.RowDefinitions>
+         <Grid Margin="15,15,0,15" Grid.Row="0">
             <Grid.ColumnDefinitions>
                <ColumnDefinition Width="130"/>
                <ColumnDefinition />
@@ -72,11 +76,11 @@
                                  HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
 
          </Grid>
-         <Button Grid.Column="0" Content="OK"  HorizontalAlignment="Center"
+         <Button Grid.Column="0" Content="OK" Grid.Row="1"
                               Style="{StaticResource BaseStyle}" Width="100"
-                              Height="25" 
+                              Height="25"  HorizontalAlignment="Center"
                               Template="{StaticResource NewButtonControlTemplate}"
-                              Margin="45" VerticalAlignment="Top" Click="Button_Click"/>
-      </StackPanel>
+                              VerticalAlignment="Center" Click="Button_Click"/>
+      </Grid>
    </Border>
 </Window>

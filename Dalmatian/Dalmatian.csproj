@@ -96,6 +96,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helper\Help.xaml.cs">
+      <DependentUpon>Help.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\HelperControl.cs" />
+    <Compile Include="Helper\ManualHelp.xaml.cs">
+      <DependentUpon>ManualHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\StandartFilterHelp.xaml.cs">
+      <DependentUpon>StandartFilterHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\ThresholdHelp.xaml.cs">
+      <DependentUpon>ThresholdHelp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ROI\ImageView.cs" />
     <Compile Include="ROI\PanelWithCommand.cs" />
     <Compile Include="ROI\ROIEdit.xaml.cs">
@@ -106,6 +119,22 @@
       <DependentUpon>SegmentationPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="ROI\SegmentListControl.cs" />
+    <Page Include="Helper\Help.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Helper\ManualHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Helper\StandartFilterHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Helper\ThresholdHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

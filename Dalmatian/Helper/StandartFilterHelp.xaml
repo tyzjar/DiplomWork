@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Dalmatian.Helper.StandartFilterHelp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Dalmatian.Helper"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+   <StackPanel Orientation="Vertical">
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Justify" 
+         Text="   The standard filter helps us remove the background by highlighting objects whose size is between the Hipass and Lowpass values. It is necessary to try to set the values as close as possible to each other, but at the same time not to cut off the area of interest."
+                 Margin="0,5"/>
+      
+      <!--First-->
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Justify" 
+         Text="   You can also preview how filter work. For do this :"
+                 Margin="0,5"/>
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Left"
+         Text ="  1) Select Sample in the table." Margin="10,0,0,0"/>
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Left"
+         Text ="  2) Press the preview button." Margin="10,0,0,0"/>
+      
+      <!--Second-->
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Justify" 
+         Text="   Or you can :"
+                 Margin="0,5"/>
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Left"
+         Text ="  1) Right click on the Sample." Margin="10,0,0,0"/>
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Left"
+         Text ="  2) In context menu choose Standart filter." Margin="10,0,0,0"/>
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Left"
+         Text ="  3) Choose Common preview field to preview all filters." Margin="10,0,0,0"/>
+      
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Justify"
+         Text ="  In context menu you also can preview another filters or view the original sample. If you press segment button, in new window you can list all images of chosen sample." 
+                 Margin="5,5,0,0"/>
+   </StackPanel>
+
+</UserControl>
