@@ -7,9 +7,9 @@ using System.Windows;
 
 namespace Dalmatian.ROI
 {
-   public class PanelWithCommand : GUI.Items.Dalmatian.IPanelWithCommand
+   public class DalmatianControl : GUI.Items.Dalmatian.IControl
    {
-      public PanelWithCommand(object panel_)
+      public DalmatianControl(object panel_)
       {
          panel = panel_ as SegmentationPanel;
       }

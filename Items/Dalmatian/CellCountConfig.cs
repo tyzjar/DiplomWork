@@ -9,65 +9,28 @@ using System.IO;
 
 namespace GUI.Items.Dalmatian
 {
-   public abstract class IPanelWithCommand
-   {
-      public abstract object GetPanel();
-      public abstract void UpdatePanel(Framework.ConfigItem segments);
-      public abstract void ClearPanel();
-      public abstract void Comand(Framework.Data.DataGrid.GridItem param, string s);
-      public abstract int ExportComand(Framework.Data.DataGrid.GridItem param,
-         ExcelWorksheet worksheet, int row, int col);
-      public abstract void ImportComand(Framework.Data.DataGrid.GridItem param, string fileName);
-   }
-
-   public class PanelWithCommand : IPanelWithCommand
-   {
-      public PanelWithCommand(object panel_)
-      {
-         panel = panel_;
-      }
-      public override object GetPanel()
-      {
-         return panel;
-      }
-      public override void UpdatePanel(Framework.ConfigItem segments)
-      { }
-      public override void ClearPanel()
-      { }
-      public override void Comand(Framework.Data.DataGrid.GridItem param, string s)
-      { }
-      public override int ExportComand(Framework.Data.DataGrid.GridItem param,
-         ExcelWorksheet worksheet, int row, int col)
-      { return 0; }
-      public override void ImportComand(Framework.Data.DataGrid.GridItem param, string fileName)
-      {
-      }
-
-      private object panel;
-   }
-
    class CellCountConfig : Framework.IFormConfig
    {
-      public CellCountConfig(Framework.Data.MainData mainData_, UserControl gridAndProcessPanel_, IPanelWithCommand segmentationPanel_) :
+      public CellCountConfig(Framework.Data.MainData mainData_, UserControl gridAndProcessPanel_, IControl segmentationControl_) :
          base(mainData_, gridAndProcessPanel_, "CellCountConfig")
       {
-         segmentationPanel = segmentationPanel_;
+         segmentationControl = segmentationControl_;
          SegmentCommand = new Framework.DelegateCommand((object param) => {
-            segmentationPanel_.Comand( (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem),
+            segmentationControl.Comand( (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem),
                mainData.folderData.CellCountSubfolder);
          });
 
-         gridPanel = new GridPanel(segmentationPanel.GetPanel());
+         gridPanel = new GridPanel(segmentationControl.GetPanel());
          gridPanel.SamplesDataGrid.ItemsSource = mainData.dataGrid.Data;
 
          gridPanel.SamplesDataGrid.SelectionChanged += (object sender, SelectionChangedEventArgs e) => {
             if ((gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem) != null)
             {
-               segmentationPanel.UpdatePanel(
+               segmentationControl.UpdatePanel(
                  (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem).Segments);
             }
             else
-               segmentationPanel.ClearPanel();
+               segmentationControl.ClearPanel();
          };
          swapToView();
       }
@@ -94,7 +57,7 @@ namespace GUI.Items.Dalmatian
             originalView.StartProcess();
          });
          SelectedChangedCommand = new Framework.DelegateCommand((object param) => {
-            segmentationPanel.UpdatePanel(
+            segmentationControl.UpdatePanel(
                (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem).Segments);
          });
          ExportCommand = new Framework.DelegateCommand((object param) => {
@@ -121,7 +84,7 @@ namespace GUI.Items.Dalmatian
                var col = 1;
                foreach (var item in mainData.dataGrid.Data)
                {
-                  row += segmentationPanel.ExportComand(item, wsh, row, col);
+                  row += segmentationControl.ExportComand(item, wsh, row, col);
                }
                wsh.Cells.AutoFitColumns();
 
@@ -208,7 +171,7 @@ namespace GUI.Items.Dalmatian
 
       #region Values
       public GridPanel gridPanel;
-      public IPanelWithCommand segmentationPanel;
+      public IControl segmentationControl;
       private Preview.CommonPreview commonPreview;
       private Preview.sFilterPreview sfilterPreview;
       private Preview.ThresholdPreview thresholdPreview;

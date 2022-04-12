@@ -47,7 +47,7 @@ namespace GUI.Items.Dalmatian
 
          foreach (var item in config.mainData.dataGrid.Data)
          {
-            config.segmentationPanel.ImportComand(item,
+            config.segmentationControl.ImportComand(item,
                item.SampleName +"\\" + config.mainData.folderData.CellCountSubfolder
                + "\\" + "cells.txt");
          }
