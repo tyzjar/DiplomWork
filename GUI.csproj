@@ -168,6 +168,7 @@
     <Compile Include="Items\Dalmatian\GridPanel.xaml.cs">
       <DependentUpon>GridPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Items\Dalmatian\IControl.cs" />
     <Compile Include="Items\Dalmatian\Preview\CommonPreview.cs" />
     <Compile Include="Items\Dalmatian\Preview\OriginalView.cs" />
     <Compile Include="Items\Dalmatian\Preview\sFilterPreview.cs" />
