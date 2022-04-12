@@ -9,6 +9,7 @@ MatlabReferences/gui_cellcount/for_redistribution/*
 MatlabReferences/gui_morph/for_redistribution/*
 MatlabReferences/gui_preproc/for_redistribution/*
 MatlabReferences/gui_preview/for_redistribution/*
+Dalmatian/obj/*
 packages/*
 obj/*
 .vs/*
