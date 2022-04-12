@@ -58,14 +58,15 @@ namespace Dalmatian.ROI
 
          ConfirmEditSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
             SegmentsList[SegmentIndex].RenderSegment(imStartWidth, imStartHeight);
+            SegmentsList[SegmentIndex].Count(SegmentsList[0].Get2DPoints());
          });
       }
 
       #region RENDER
       public void StartRender(UserControl renderCanvas)
       {
-         renderCanvas.Content = mainCanvas;
          mainImage.Loaded += EndRender;
+         renderCanvas.Content = mainCanvas;
 
          // load central picture
          if (imageNames != null)
@@ -90,6 +91,7 @@ namespace Dalmatian.ROI
             mainCanvas.Children.Add(item.DrawSegment(imStartWidth, imStartHeight));
          }
          ScaleAll();
+         CountAll();
       }
       private void RenderPictures()
       {
@@ -116,6 +118,7 @@ namespace Dalmatian.ROI
          SegmentsList[SegmentIndex].gGroup.Children.Add(new LineGeometry(p, p));
          if (SegmentIndex == 0)
          {
+            SegmentsList[0].Count(null);
          }
          else
          {

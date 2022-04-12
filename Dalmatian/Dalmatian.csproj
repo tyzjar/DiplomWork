@@ -110,7 +110,7 @@
       <DependentUpon>ThresholdHelp.xaml</DependentUpon>
     </Compile>
     <Compile Include="ROI\ImageView.cs" />
-    <Compile Include="ROI\PanelWithCommand.cs" />
+    <Compile Include="ROI\DalmatianControl.cs" />
     <Compile Include="ROI\ROIEdit.xaml.cs">
       <DependentUpon>ROIEdit.xaml</DependentUpon>
     </Compile>

@@ -23,7 +23,7 @@ namespace Dalmatian
          panel = new ROI.DalmatianControl(new ROI.SegmentationPanel());
 
          mainData = new GUI.Items.Framework.Data.MainData(ROI.SegmentListControl.SegmentListControlCreate);
-         this.Content = new GUI.Items.Dalmatian.Dalmatian(mainData, panel);
+         this.Content = new GUI.Items.Dalmatian.Dalmatian(mainData, panel, new Helper.HelperControl());
       }
    }
 }
