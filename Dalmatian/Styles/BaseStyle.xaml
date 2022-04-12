@@ -1,0 +1,45 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+   <SolidColorBrush  x:Key="MyColor1" Opacity="0.9" Color="#494C69" />
+   <SolidColorBrush  x:Key="MyColor1FULL" Opacity="1" Color="#494C69" />
+   <SolidColorBrush  x:Key="MyColor1LOW" Opacity="0.6" Color="#494C69" />
+   
+   <SolidColorBrush  x:Key="MyColor2" Opacity="1" Color = "#262735"/>
+
+   <Style x:Key="BaseStyle">
+      <!--<Setter Property="Control.Background" Value="{StaticResource MyColor1}" />-->
+      <Setter Property="Control.Foreground" Value="GhostWhite" />
+      <Setter Property="Control.FontSize" Value="12" />
+   </Style>
+
+   <Style x:Key="BaseStyleC">
+      <!--<Setter Property="Control.Background" Value="{StaticResource MyColor1}" />-->
+      <Setter Property="Control.FontSize" Value="12" />
+   </Style>
+
+   <Style x:Key="HeaderText" BasedOn="{StaticResource BaseStyle}">
+      <Setter Property="Control.Margin" Value="2" />
+      <Setter Property="Control.FontSize" Value="14" />
+   </Style>
+
+   <Style x:Key="TextBlockStyle" BasedOn="{StaticResource BaseStyle}" TargetType="TextBlock">
+      <Setter Property="Margin" Value="2" />
+      <Setter Property="TextWrapping" Value="Wrap" />
+   </Style>
+
+   <Style x:Key="TextBoxStyle" BasedOn="{StaticResource BaseStyle}" TargetType="TextBox">
+      <Setter Property="Background" Value="{StaticResource MyColor1}" />
+   </Style>
+
+   <Style x:Key="BorderStyle" BasedOn="{StaticResource BaseStyle}" TargetType="Border">
+      <Setter Property="Padding" Value="10" />
+      <Setter Property="BorderBrush" Value="{StaticResource MyColor2}" />
+      <Setter Property="BorderThickness" Value="1" />
+   </Style>
+
+   <Style x:Key="StackPanelStyle" BasedOn="{StaticResource BaseStyle}" TargetType="StackPanel">
+      <Setter Property="Margin" Value="10,10,10,10" />
+   </Style>
+</ResourceDictionary>

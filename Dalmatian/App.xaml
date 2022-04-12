@@ -7,10 +7,10 @@
       <ResourceDictionary>
          <ResourceDictionary.MergedDictionaries>
             <!-- Order is important -->
-            <ResourceDictionary Source= "P:/DiplomRabota/GUI/Styles/BaseStyle.xaml "/>
-            <ResourceDictionary Source= "P:/DiplomRabota/GUI/Templates/CheckBoxTemplate.xaml "/>
-            <ResourceDictionary Source= "P:/DiplomRabota/GUI/Templates/TabControlTemplate.xaml "/>
-            <ResourceDictionary Source= "P:/DiplomRabota/GUI/Templates/ButtonTemplate.xaml "/>
+            <ResourceDictionary Source="Styles/BaseStyle.xaml "/>
+            <ResourceDictionary Source="Templates/CheckBoxTemplate.xaml "/>
+            <ResourceDictionary Source="Templates/TabControlTemplate.xaml "/>
+            <ResourceDictionary Source="Templates/ButtonTemplate.xaml "/>
          </ResourceDictionary.MergedDictionaries>
       </ResourceDictionary>
    </Application.Resources>
