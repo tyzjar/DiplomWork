@@ -24,7 +24,6 @@ namespace GUI.Items.Dalmatian
 
          gridPanel = new GridPanel(segmentationControl.GetPanel());
          gridPanel.SamplesDataGrid.ItemsSource = mainData.dataGrid.Data;
-
          gridPanel.SamplesDataGrid.SelectionChanged += (object sender, SelectionChangedEventArgs e) => {
             if ((gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem) != null)
             {
@@ -34,6 +33,7 @@ namespace GUI.Items.Dalmatian
             else
                segmentationControl.ClearPanel();
          };
+
          swapToView();
       }
 
@@ -45,7 +45,7 @@ namespace GUI.Items.Dalmatian
          thresholdPreview = new Preview.ThresholdPreview(this, "ThresholdPreview");
          originalView = new Preview.OriginalView(this, "OriginalView");
 
-         /// Filters preview events
+         /// Buttons events
          CommonPreviewCommand = new Framework.DelegateCommand((object param) => {
             commonPreview.StartProcess();
          });
@@ -115,37 +115,6 @@ namespace GUI.Items.Dalmatian
          gridAndProcessPanel.Content = gridPanel;
       }
 
-      public static string[] fieldNames = new []{ nameof(sfilterLowpass), nameof(sfilterHipass), 
-         nameof(trshold), nameof(mfilterRad), nameof(countMinRegion), nameof(countConfLvl),
-         nameof(countRMin), nameof(countRMax), nameof(countk), nameof(sfilterOn), nameof(trsholdOn), nameof(mfilterOn) };
-
-      public void setByName(string paramName, string value)
-      {
-         switch(paramName)
-         {
-            case nameof(sfilterLowpass): sfilterLowpass = value; break;
-            case nameof(sfilterHipass): sfilterHipass = value; break;
-            case nameof(trshold): trshold = value; break;
-            case nameof(mfilterRad): mfilterRad = value; break;
-            case nameof(countMinRegion): countMinRegion = value; break;
-            case nameof(countConfLvl): countConfLvl = value; break;
-            case nameof(countRMin): countRMin = value; break;
-            case nameof(countRMax): countRMax = value; break;
-            case nameof(countk): countk = value; break;
-            case nameof(sfilterOn): sfilterOn = value; break;
-            case nameof(trsholdOn): trsholdOn = value; break;
-            case nameof(mfilterOn): mfilterOn = value; break;
-         }
-      }
-
-      public string[] getAsRow()
-      { 
-         string[] row = new []{ sfilterLowpass,sfilterHipass, 
-         trshold, mfilterRad, countMinRegion, countConfLvl,
-         countRMin, countRMax, countk, sfilterOn, trsholdOn, mfilterOn };
-         return row;
-      }
-
       public override List<GUI.Items.Framework.ConfigItem> LoadConfig(ExcelWorksheet worksheet)
       {
          if ((worksheet != null) && (worksheet.Dimension != null))
@@ -185,6 +154,35 @@ namespace GUI.Items.Dalmatian
 
 
       #region Values
+      public static string[] fieldNames = new[]{ nameof(sfilterLowpass), nameof(sfilterHipass),
+         nameof(trshold), nameof(mfilterRad), nameof(countMinRegion), nameof(countConfLvl),
+         nameof(countRMin), nameof(countRMax), nameof(countk), nameof(sfilterOn), nameof(trsholdOn), nameof(mfilterOn) };
+      public void setByName(string paramName, string value)
+      {
+         switch (paramName)
+         {
+            case nameof(sfilterLowpass): sfilterLowpass = value; break;
+            case nameof(sfilterHipass): sfilterHipass = value; break;
+            case nameof(trshold): trshold = value; break;
+            case nameof(mfilterRad): mfilterRad = value; break;
+            case nameof(countMinRegion): countMinRegion = value; break;
+            case nameof(countConfLvl): countConfLvl = value; break;
+            case nameof(countRMin): countRMin = value; break;
+            case nameof(countRMax): countRMax = value; break;
+            case nameof(countk): countk = value; break;
+            case nameof(sfilterOn): sfilterOn = value; break;
+            case nameof(trsholdOn): trsholdOn = value; break;
+            case nameof(mfilterOn): mfilterOn = value; break;
+         }
+      }
+      public string[] getAsRow()
+      {
+         string[] row = new[]{ sfilterLowpass,sfilterHipass,
+         trshold, mfilterRad, countMinRegion, countConfLvl,
+         countRMin, countRMax, countk, sfilterOn, trsholdOn, mfilterOn };
+         return row;
+      }
+
       public GridPanel gridPanel;
       public IControl segmentationControl;
       public Framework.IHelper helper;

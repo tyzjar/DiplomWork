@@ -209,7 +209,7 @@ namespace GUI.Items.Framework.Data
       private string CropSubfolderValue { get; set; } = "Crop";
       private string IntensitySubfolderValue { get; set; } = "Without_aberration";
       private string SubtractionSubfolderValue { get; set; } = "Subtraction_picture";
-      private string CellCountSubfolderValue { get; set; } = "Masked";
+      private string CellCountSubfolderValue { get; set; } = "Pattern 1";
 
       public static string[] fieldNames = new[]{ nameof(MorphSubfolder), nameof(MaskSubfolder),
          nameof(SampleSubfolder), nameof(CropSubfolder), nameof(IntensitySubfolder),

@@ -16,9 +16,12 @@ namespace GUI.Items.Framework.Data
       public DataGrid.DataGrid dataGrid;
       public OpenSaveEvents openSaveEvents;
       public ConfigReader configReader;
+      public bool dalmatian;
 
-      public MainData(DataGrid.SegmentsCreator screator)
+      public MainData(DataGrid.SegmentsCreator screator, bool dalmatian_)
       {
+         dalmatian = dalmatian_;
+
          /// Основные элементы хранилища
          folderData = new FolderData();
          dataGrid = new DataGrid.DataGrid(folderData, screator);
@@ -131,8 +134,16 @@ namespace GUI.Items.Framework.Data
 
       void SubfolderSettingsStart()
       {
-         var sWindow = new View.SubfoldersSettings(folderData);
-         sWindow.ShowDialog();
+         if (dalmatian)
+         {
+            var sWindow = new View.DalmatianSubfolder(folderData);
+            sWindow.ShowDialog();
+         }
+         else
+         {
+            var sWindow = new View.SubfoldersSettings(folderData);
+            sWindow.ShowDialog();
+         }
          foreach (var item in dataGrid.Data)
          {
             item.udpateStates(folderData);

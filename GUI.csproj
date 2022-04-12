@@ -117,6 +117,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Items\Framework\View\DalmatianSubfolder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Items\Framework\View\OpenSavePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,6 +202,9 @@
     <Compile Include="Items\Framework\ViewModelBase.cs" />
     <Compile Include="Items\Framework\View\AddFolderPanel.xaml.cs">
       <DependentUpon>AddFolderPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Framework\View\DalmatianSubfolder.xaml.cs">
+      <DependentUpon>DalmatianSubfolder.xaml</DependentUpon>
     </Compile>
     <Compile Include="Items\Framework\View\OpenSavePanel.xaml.cs">
       <DependentUpon>OpenSavePanel.xaml</DependentUpon>
