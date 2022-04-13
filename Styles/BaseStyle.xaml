@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
-   <SolidColorBrush  x:Key="MyColor1" Opacity="0.9" Color="#494C69" />
+   <SolidColorBrush  x:Key="MyColor1" Opacity="1" Color="#494C69" />
    <SolidColorBrush  x:Key="MyColor1FULL" Opacity="1" Color="#494C69" />
    <SolidColorBrush  x:Key="MyColor1LOW" Opacity="0.6" Color="#494C69" />
    

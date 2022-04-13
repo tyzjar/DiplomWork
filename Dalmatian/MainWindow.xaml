@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dalmatian"
                mc:Ignorable="d"
+        ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen" Background="{StaticResource MyColor1}"
         Title="Dalmatian" MinHeight="660" Height="660" Width="940">
    <Border  Grid.Column="1">

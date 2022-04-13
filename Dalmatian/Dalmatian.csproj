@@ -54,6 +54,13 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>free-icon-dalmatian-4600274.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EPPlusFree, Version=4.5.3.8, Culture=neutral, PublicKeyToken=85bfa0499e2db48a, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlusFree.4.5.3.8\lib\net40\EPPlusFree.dll</HintPath>
@@ -207,6 +214,8 @@
       <Name>GUI</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="free-icon-dalmatian-4600274.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

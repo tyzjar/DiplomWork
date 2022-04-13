@@ -20,7 +20,8 @@
       </Grid>
       <ProgressBar x:Name="Progress" Height="25" Minimum="0" Maximum="{Binding MaxValue}"
                    local:ProgressBarSmoother.SmoothValue="{Binding Progress}"/>
-      <Image Grid.Column="0" Name="imgCircle" Visibility="Visible" Width="234" Height="480" gif:ImageBehavior.AnimatedSource="6os.gif"
-             Margin="0,15,0,0"/>
+
+      <Image Visibility="Visible"  gif:ImageBehavior.AnimatedSource="3BBS.gif" Width="200"
+                HorizontalAlignment="Center" Margin="0,120"/>
    </StackPanel>
 </UserControl>

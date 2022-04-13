@@ -1,4 +1,4 @@
 Operation@Cell isolation and counting
 SampleName@
 Progressbar@0;1
-SampleName@P:\DiplomRabota\Test_1\Masked
+SampleName@P:\DiplomRabota\Test_1
