@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace Dalmatian.ROI
 {
@@ -22,7 +12,15 @@ namespace Dalmatian.ROI
       public EditPanel(ROIEdit mainWindow)
       {
          InitializeComponent();
+
+         Owner = mainWindow;
          SegmentationPanel.Content = mainWindow.panel;
+         this.DataContext = mainWindow.imView;
+      }
+
+      void Window_Closing(object sender, CancelEventArgs e)
+      {
+         Owner.Close();
       }
    }
 }

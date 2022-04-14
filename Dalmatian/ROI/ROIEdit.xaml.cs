@@ -27,7 +27,6 @@ namespace Dalmatian.ROI
          InitializeComponent();
 
          panel = new SegmentationPanel();
-
          imView = new ImageView(folder, segmentsList);
          imView.StartRender(MainCanvas);
 
@@ -36,9 +35,6 @@ namespace Dalmatian.ROI
 
          this.DataContext = imView;
          this.AddHandler(MainWindow.MouseWheelEvent, new RoutedEventHandler(this.MouseWheelHandler), true);
-
-         var eWindow = new EditPanel(this);
-         eWindow.Show();
       }
 
       void MouseWheelHandler(object sender, RoutedEventArgs e)
@@ -47,6 +43,20 @@ namespace Dalmatian.ROI
             imView.IncreaseScale();
          else
             imView.DecreaseScale();
+      }
+
+      bool _shown;
+      protected override void OnContentRendered(EventArgs e)
+      {
+         base.OnContentRendered(e);
+
+         if (_shown)
+            return;
+
+         _shown = true;
+         var eWindow = new EditPanel(this);
+         eWindow.Show();
+
       }
 
    }

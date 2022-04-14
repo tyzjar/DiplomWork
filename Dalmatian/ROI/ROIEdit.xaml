@@ -8,13 +8,7 @@
         WindowState ="Maximized"
         WindowStartupLocation="CenterScreen" Background="{StaticResource MyColor1}"
         Title="Segments" Height="450" Width="800">
-   <Grid  x:Name="MainGrid">
-      <Grid.ColumnDefinitions>
-         <ColumnDefinition Width="*"/>
-         <ColumnDefinition x:Name="CanvasColumn"/>
-      </Grid.ColumnDefinitions>
-      <Border Style="{StaticResource BorderStyle}" Grid.Column="1">
-         <UserControl x:Name="MainCanvas"/>
-      </Border>
-   </Grid>
+   <Border Style="{StaticResource BorderStyle}" Margin="10,10">
+      <UserControl x:Name="MainCanvas"/>
+   </Border>
 </Window>

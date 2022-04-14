@@ -14,7 +14,7 @@
                 AutoGenerateColumns="False" MaxHeight="540">
          <DataGrid.Columns>
             <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay}" Header="Segments" Width="180"/>
-            <DataGridTextColumn Binding="{Binding CellNumber}" Header="Counts" Width="60" IsReadOnly="True"/>
+            <DataGridTextColumn Binding="{Binding CellNumber}" Header="Counts" Width="*" IsReadOnly="True"/>
          </DataGrid.Columns>
          <DataGrid.ContextMenu>
             <ContextMenu>

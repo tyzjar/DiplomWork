@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dalmatian.ROI"
-        mc:Ignorable="d"
+        mc:Ignorable="d" Closing="Window_Closing"
         Background="{StaticResource MyColor1}"
-        Title="EditPanel" Height="300" Width="250">
+        Title="EditPanel" Height="600" MinWidth="290" MaxWidth="290">
    <StackPanel>
 
       <!-- Image nunmber-->
@@ -16,7 +16,7 @@
                <TextBlock Text="Image Number : " />
                <TextBlock Text="{Binding ImageIndex}" />
             </StackPanel>
-            <Slider Margin="0,0" Width="200"
+            <Slider Margin="0,0" Width="240"
                        Value="{Binding ImageIndex, Mode=TwoWay}"
                        Minimum="0" Maximum="{Binding ImageCount}" 
                        IsSelectionRangeEnabled="True" Orientation="Horizontal" />
@@ -33,9 +33,9 @@
                                     Style="{StaticResource BaseStyle}" Width="59" 
                                     FontSize="8"
                                     Template="{StaticResource NewButtonControlTemplate}"
-                                    Command = "{Binding AddSegment}" Height="14" />
+                                    Command = "{Binding AddSegment}" Height="15" />
             </StackPanel>
-            <Slider Margin="0,0" Width="200"
+            <Slider Margin="0,0" Width="240"
                        Value="{Binding ScaleIndex, Mode=TwoWay}"
                        Minimum="0" Maximum="{Binding ScaleCount}" 
                        IsSelectionRangeEnabled="True" Orientation="Horizontal" />
@@ -47,7 +47,8 @@
          <StackPanel>
          </StackPanel>
       </Border>
-            <!-- Grid with buttons -->
+      
+      <!-- Grid with buttons -->
       <Border Style="{StaticResource BorderStyle}" Grid.Column="0" Margin="2,2">
          <StackPanel>
             <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
