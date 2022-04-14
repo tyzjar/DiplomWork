@@ -20,26 +20,25 @@ namespace Dalmatian.ROI
    /// </summary>
    public partial class ROIEdit : Window
    {
-      ImageView imView;
-      SegmentationPanel panel;
+      public ImageView imView;
+      public SegmentationPanel panel;
       public ROIEdit(string folder, BindingList<Segment> segmentsList)
       {
          InitializeComponent();
 
          panel = new SegmentationPanel();
-         SegmantationPanel.Content = panel;
 
          imView = new ImageView(folder, segmentsList);
          imView.StartRender(MainCanvas);
 
          panel.SegmentsDataGrid.ItemsSource = imView.SegmentsList;
          panel.onSegmentIndexChanged += imView.SegmentIndexUpdate;
-         //panel.SegmentsDataGrid.SetBinding(DataGrid.ItemsSourceProperty, imView.SegmentsList);
-
 
          this.DataContext = imView;
-
          this.AddHandler(MainWindow.MouseWheelEvent, new RoutedEventHandler(this.MouseWheelHandler), true);
+
+         var eWindow = new EditPanel(this);
+         eWindow.Show();
       }
 
       void MouseWheelHandler(object sender, RoutedEventArgs e)

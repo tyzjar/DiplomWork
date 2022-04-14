@@ -1,0 +1,79 @@
+﻿<Window x:Class="Dalmatian.ROI.EditPanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dalmatian.ROI"
+        mc:Ignorable="d"
+        Background="{StaticResource MyColor1}"
+        Title="EditPanel" Height="300" Width="250">
+   <StackPanel>
+
+      <!-- Image nunmber-->
+      <Border Style="{StaticResource BorderStyle}" Grid.Column="0" Margin="2,2">
+         <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+               <TextBlock Text="Image Number : " />
+               <TextBlock Text="{Binding ImageIndex}" />
+            </StackPanel>
+            <Slider Margin="0,0" Width="200"
+                       Value="{Binding ImageIndex, Mode=TwoWay}"
+                       Minimum="0" Maximum="{Binding ImageCount}" 
+                       IsSelectionRangeEnabled="True" Orientation="Horizontal" />
+         </StackPanel>
+      </Border>
+
+      <!-- Image Scale -->
+      <Border Style="{StaticResource BorderStyle}" Grid.Column="0" Margin="2,2">
+         <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+               <TextBlock Text="Image scale : " DockPanel.Dock="Left"/>
+               <TextBlock Text="1" DockPanel.Dock="Left"/>
+               <Button Content="Reset" DockPanel.Dock="Right" Margin="10,2"
+                                    Style="{StaticResource BaseStyle}" Width="59" 
+                                    FontSize="8"
+                                    Template="{StaticResource NewButtonControlTemplate}"
+                                    Command = "{Binding AddSegment}" Height="14" />
+            </StackPanel>
+            <Slider Margin="0,0" Width="200"
+                       Value="{Binding ScaleIndex, Mode=TwoWay}"
+                       Minimum="0" Maximum="{Binding ScaleCount}" 
+                       IsSelectionRangeEnabled="True" Orientation="Horizontal" />
+         </StackPanel>
+      </Border>
+
+      <!-- Image Brushes -->
+      <Border Style="{StaticResource BorderStyle}" Grid.Column="0" Margin="2,2">
+         <StackPanel>
+         </StackPanel>
+      </Border>
+            <!-- Grid with buttons -->
+      <Border Style="{StaticResource BorderStyle}" Grid.Column="0" Margin="2,2">
+         <StackPanel>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+               <Button Content="Add segment" Margin="0,5"
+                                 Style="{StaticResource BaseStyle}" Width="100" HorizontalAlignment="Center"
+                                 Template="{StaticResource NewButtonControlTemplate}"
+                                 Command = "{Binding AddSegment}" Height="23" />
+               <Button Content="Delete segment" Margin="0,5"
+                                 Style="{StaticResource BaseStyle}" Width="100" HorizontalAlignment="Center"
+                                 Template="{StaticResource NewButtonControlTemplate}"
+                                 Command = "{Binding DeleteSegment}" Height="23" />
+            </StackPanel>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+               <Button Content="Confirm edit" Margin="0,0"
+                                 Style="{StaticResource BaseStyle}" Width="100" HorizontalAlignment="Center"
+                                 Template="{StaticResource NewButtonControlTemplate}"
+                                 Command = "{Binding ConfirmEditSegment}" Height="23" />
+               <Button Content="Update All" Margin="0,0"
+                                 Style="{StaticResource BaseStyle}" Width="100" HorizontalAlignment="Center"
+                                 Template="{StaticResource NewButtonControlTemplate}"
+                                 Command = "{Binding UpdateAllSegment}" Height="23" />
+            </StackPanel>
+            <UserControl x:Name="SegmentationPanel" Margin="0,10"
+                   HorizontalAlignment="Left"/>
+         </StackPanel>
+      </Border>
+      
+   </StackPanel>
+</Window>

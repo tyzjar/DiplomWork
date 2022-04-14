@@ -17,7 +17,7 @@ namespace Dalmatian.ROI
       public Point p_last = new Point(0, 0);
    }
 
-   class ImageView : GUI.Items.Framework.ViewModelBase
+   public class ImageView : GUI.Items.Framework.ViewModelBase
    {
       public ImageView(string folder, BindingList<Segment> segmentsList)
       {
@@ -171,11 +171,11 @@ namespace Dalmatian.ROI
       }
       public void IncreaseScale()
       {
-         scale += 0.1;
+         scale += delta_scale;
       }
       public void DecreaseScale()
       {
-         scale -= 0.1;
+         scale -= delta_scale;
       }
       public void Reset()
       {
@@ -229,12 +229,22 @@ namespace Dalmatian.ROI
 
          set
          {
-            if ((value != scaleValue) && (value > 0.2) && (value < 10))
+            if ((value != scaleValue) && (value >= 0.01) && (value <= 10))
             {
                scaleValue = value;
                ScaleAll();
             }
          }
+      }
+      public double delta_scale
+      {
+         get
+         {
+            if (scaleValue > 0.1) 
+               return 0.1;
+            return 0.01;
+         }
+
       }
       public int ImageIndex 
       {

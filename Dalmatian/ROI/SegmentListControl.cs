@@ -5,16 +5,21 @@ using System.ComponentModel;
 
 namespace Dalmatian.ROI
 {
+
    class SegmentListControl : GUI.Items.Framework.ConfigItem
    {
       private const string CellChanel = "All Cells";
+      static string StringProcessing(string s)
+      {
+         s = GUI.Items.Framework.ConfigReader.delete_symbol(s, ':');
+         s = s.Replace('\\', 'l');
+         return s;
+      }
+
       public static SegmentListControl SegmentListControlCreate(string sampleName)
       {
-         sampleName = GUI.Items.Framework.ConfigReader.delete_symbol(sampleName, '\\');
-         sampleName = GUI.Items.Framework.ConfigReader.delete_symbol(sampleName, ':');
-         var slc = new SegmentListControl(sampleName);
+         var slc = new SegmentListControl(StringProcessing(sampleName));
          slc.segmentsList.Add(new CellSegment(CellChanel));
-
          return slc;
       }
 
@@ -24,9 +29,7 @@ namespace Dalmatian.ROI
       }
       public override void UpdateName(string newName)
       {
-         newName = GUI.Items.Framework.ConfigReader.delete_symbol(newName, '\\');
-         newName = GUI.Items.Framework.ConfigReader.delete_symbol(newName, ':');
-         worksheetName = newName;
+         worksheetName = StringProcessing(newName);
       }
       public override List<GUI.Items.Framework.ConfigItem> SaveConfig(ExcelWorksheet worksheet)
       {
@@ -35,7 +38,7 @@ namespace Dalmatian.ROI
          foreach (var item in segmentsList)
          {
             var row = 1;
-            worksheet.Cells[row, column].Value = item.NameWithCount();
+            worksheet.Cells[row, column].Value = item.SaveName();
             row++;
 
             foreach (var p in item.ConvertToStrings())

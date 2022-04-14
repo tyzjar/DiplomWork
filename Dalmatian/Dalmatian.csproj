@@ -116,6 +116,9 @@
     <Compile Include="Helper\ThresholdHelp.xaml.cs">
       <DependentUpon>ThresholdHelp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ROI\EditPanel.xaml.cs">
+      <DependentUpon>EditPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ROI\ImageView.cs" />
     <Compile Include="ROI\DalmatianControl.cs" />
     <Compile Include="ROI\ROIEdit.xaml.cs">
@@ -154,6 +157,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ROI\EditPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ROI\ROIEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
