@@ -290,7 +290,7 @@
     <Folder Include="Imagis\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Items\Framework\View\3BBS.gif" />
+    <Resource Include="Items\Framework\View\icon.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

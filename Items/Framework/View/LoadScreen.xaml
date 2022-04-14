@@ -21,7 +21,7 @@
       <ProgressBar x:Name="Progress" Height="25" Minimum="0" Maximum="{Binding MaxValue}"
                    local:ProgressBarSmoother.SmoothValue="{Binding Progress}"/>
 
-      <Image Visibility="Visible"  gif:ImageBehavior.AnimatedSource="3BBS.gif" Width="200"
-                HorizontalAlignment="Center" Margin="0,120"/>
+      <Image Visibility="Visible"  Source="icon.PNG" Width="350"
+                HorizontalAlignment="Center" Margin="10,30"/>
    </StackPanel>
 </UserControl>

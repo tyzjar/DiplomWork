@@ -90,7 +90,15 @@ namespace Dalmatian.ROI
          {
             mainCanvas.Children.Add(item.DrawSegment(imStartWidth, imStartHeight));
          }
-         ScaleAll();
+
+         if ((imStartWidth > mainCanvas.ActualWidth) || (imStartHeight > mainCanvas.ActualHeight))
+         {
+            scale = Math.Max(Math.Min(mainCanvas.ActualWidth / imStartWidth,
+                                      mainCanvas.ActualHeight / imStartHeight), 0.01);
+         }
+         else
+            ScaleAll();
+
          CountAll();
       }
       private void RenderPictures()
