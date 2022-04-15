@@ -104,6 +104,7 @@ namespace Dalmatian.ROI
          var delimeter = ',';
          double x, y, z;
          var l = (param.Segments as SegmentListControl).segmentsList[0];
+         l.RemoveAll();
          while ((line = workFile.ReadLine()) != null)
          {
             var objectData = line.Split(delimeter);

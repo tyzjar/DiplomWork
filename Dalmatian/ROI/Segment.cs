@@ -123,11 +123,21 @@ namespace Dalmatian.ROI
          return Name + delimiter + cellCount.ToString() + delimiter +
             color.ConvertToString() + delimiter + thickness.ToString();
       }
+      public void SetThickness(double thickness_)
+      {
+         thickness = thickness_;
+         if (pathBox != null)
+         {
+            (pathBox.Child as Path).StrokeThickness = thickness_;
+         }
+      }
       public abstract void defaultInit();
       public abstract void AddPoint(double x, double y);
       public abstract void AddPoint(Point p);
       public abstract void AddPoint(string p);
       public abstract void AddPointZ(Point p, double z);
+      public abstract void Removelast();
+      public abstract void RemoveAll();
       public abstract List<string> ConvertToStrings();
       public abstract Viewbox DrawSegment(double w, double h);
       public abstract void RenderSegment(double w, double h);
@@ -146,10 +156,11 @@ namespace Dalmatian.ROI
       public int CellNumber { get { return cellCount; } }
       public GeometryGroup gGroup;
       public Viewbox pathBox;
-      protected int cellCount = 0;
-      protected ColorControl color = new ColorControl(Color.FromRgb(255,255,255));
-      protected double thickness = 3;
+      public ColorControl color = new ColorControl(Color.FromRgb(255,255,255));
+      public double thickness = 3;
       public static char delimiter = ';';
+
+      protected int cellCount = 0;
    }
 
    /// ------------------------------------------------------------------------------------------------------------
@@ -183,6 +194,17 @@ namespace Dalmatian.ROI
       {
          throw (new GUI.Items.Framework.StandartExceptions("AddPointZ does not overload", true));
       }
+
+      public override void Removelast()
+      {
+         orderPoints.RemoveAt(orderPoints.Count-1);
+      }
+      public override void RemoveAll()
+      {
+         orderPoints.Clear();
+      }
+
+
       public override List<string> ConvertToStrings()
       {
          List<string> str = new List<string>();
@@ -296,6 +318,15 @@ namespace Dalmatian.ROI
       public override void AddPointZ(Point p, double z)
       {
          throw (new GUI.Items.Framework.StandartExceptions("AddPointZ does not overload", true));
+      }
+
+      public override void Removelast()
+      {
+         orderPoints.RemoveAt(orderPoints.Count - 1);
+      }
+      public override void RemoveAll()
+      {
+         orderPoints.Clear();
       }
 
       public override List<string> ConvertToStrings()

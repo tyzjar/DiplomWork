@@ -37,6 +37,7 @@ namespace Dalmatian.ROI
          // Reference to comands
          AddSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
             var item = new FigureSegment("New segment");
+            item.SetThickness(CurrentThickness);
             mainCanvas.Children.Add(item.DrawSegment(imStartWidth, imStartHeight));
             ScaleItem(item.pathBox);
             SegmentsList.Add(item);
@@ -59,6 +60,10 @@ namespace Dalmatian.ROI
          ConfirmEditSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
             SegmentsList[SegmentIndex].RenderSegment(imStartWidth, imStartHeight);
             SegmentsList[SegmentIndex].Count(SegmentsList[0].Get2DPoints());
+         });
+
+         ResetScale = new GUI.Items.Framework.DelegateCommand((object param) => {
+            Reset();
          });
       }
 
@@ -93,8 +98,9 @@ namespace Dalmatian.ROI
 
          if ((imStartWidth > mainCanvas.ActualWidth) || (imStartHeight > mainCanvas.ActualHeight))
          {
-            scale = Math.Max(Math.Min(mainCanvas.ActualWidth / imStartWidth,
-                                      mainCanvas.ActualHeight / imStartHeight), 0.01);
+            startScaleValue = Math.Max(Math.Min(mainCanvas.ActualWidth / imStartWidth,
+                                      mainCanvas.ActualHeight / imStartHeight), с_minScale);
+            Reset();
          }
          else
             ScaleAll();
@@ -177,6 +183,7 @@ namespace Dalmatian.ROI
          (item as FrameworkElement).Width = dw;
          (item as FrameworkElement).Height = dh;
       }
+
       public void IncreaseScale()
       {
          scale += delta_scale;
@@ -187,7 +194,54 @@ namespace Dalmatian.ROI
       }
       public void Reset()
       {
-         scale = 1;
+         scale = startScaleValue;
+      }
+      public double scale
+      {
+         get
+         {
+            return scaleValue;
+         }
+
+         set
+         {
+            if ((value != scaleValue) && (value >= с_minScale) && (value <= с_maxScale))
+            {
+               scaleValue = value;
+               ScaleAll();
+               OnPropertyChanged(nameof(ScaleIndex));
+               OnPropertyChanged(nameof(ScaleView));
+            }
+         }
+      }
+      public double delta_scale
+      {
+         get
+         {
+            if (scaleValue > 0.2)
+               return 0.1;
+            return 0.01;
+         }
+
+      }
+      public int ScaleIndex
+      {
+         get
+         {
+            return Convert.ToInt32(scaleValue * 100);
+         }
+         set
+         {
+            scale = Convert.ToDouble(value) / 100.0;
+         }
+      }
+
+      public string ScaleView
+      {
+         get
+         {
+            return string.Format("{0:F2}", scale);
+         }
       }
       #endregion
 
@@ -225,35 +279,11 @@ namespace Dalmatian.ROI
       public ICommand DeleteSegment { get; private set; }
       public ICommand UpdateAllSegment { get; private set; }
       public ICommand ConfirmEditSegment { get; private set; }
+      public ICommand ResetScale { get; private set; }
       #endregion
 
       #region VARIABLES
-      public double scale
-      {
-         get
-         {
-            return scaleValue;
-         }
 
-         set
-         {
-            if ((value != scaleValue) && (value >= 0.01) && (value <= 10))
-            {
-               scaleValue = value;
-               ScaleAll();
-            }
-         }
-      }
-      public double delta_scale
-      {
-         get
-         {
-            if (scaleValue > 0.1) 
-               return 0.1;
-            return 0.01;
-         }
-
-      }
       public int ImageIndex 
       {
          get
@@ -291,7 +321,47 @@ namespace Dalmatian.ROI
             }
          }
       }
+      public ColorControl CurrentColor
+      {
+         get
+         {
+            return SegmentsList[segmentIndex].color;
+         }
+         set
+         {
+            SegmentsList[segmentIndex].color.SetColor(value.m_color);
+         }
+      }
+      public string CurrentThicknessView
+      {
+         get
+         {
+            return string.Format("{0:F2}", SegmentsList[segmentIndex].thickness);
+         }
+      }
+      public double CurrentThickness
+      {
+         get
+         {
+            return SegmentsList[segmentIndex].thickness;
+         }
+         set
+         {
+            foreach (var item in SegmentsList)
+            {
+               item.SetThickness(value);
+            }
+            OnPropertyChanged("CurrentThickness");
+            OnPropertyChanged("CurrentThicknessView");
+         }
+      }
+
       public BindingList<Segment> SegmentsList { get; set; }
+
+      public const double с_minScale = 0.01;
+      public const double с_maxScale = 10.0;
+      public int ScaleCount { get; set; } = 1000;
+
       private Canvas mainCanvas;
       private Image mainImage;
       private Point imPosition = new Point();
@@ -301,6 +371,7 @@ namespace Dalmatian.ROI
       private int imageIndex = 0;
       private int segmentIndex = 0;
       private double scaleValue = 1;
+      private double startScaleValue = 1;
       private MouseState mouseState = new MouseState();
       #endregion
    }

@@ -76,11 +76,9 @@ namespace Dalmatian.ROI
 
                while ((row <= worksheet.Dimension.End.Row)&&(worksheet.Cells[row, i].Value != null))
                {
-                 // System.Windows.MessageBox.Show(worksheet.Cells[row, i].Value.ToString());
                   item.AddPoint(worksheet.Cells[row, i].Value.ToString());
                   row++;
                }
-              // System.Windows.MessageBox.Show(item.orderPoints.Count.ToString());
                segmentsList.Add(item);
             }
          }

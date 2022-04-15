@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Dalmatian.ROI"
         mc:Ignorable="d" Closing="Window_Closing"
         Background="{StaticResource MyColor1}"
-        Title="EditPanel" Height="600" MinWidth="290" MaxWidth="290">
+        Title="EditPanel" Height="600" Width="290" MinWidth="290" MaxWidth="290">
    <StackPanel>
 
       <!-- Image nunmber-->
@@ -28,16 +28,16 @@
          <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                <TextBlock Text="Image scale : " DockPanel.Dock="Left"/>
-               <TextBlock Text="1" DockPanel.Dock="Left"/>
+               <TextBlock Text="{Binding ScaleView}" DockPanel.Dock="Left"/>
                <Button Content="Reset" DockPanel.Dock="Right" Margin="10,2"
                                     Style="{StaticResource BaseStyle}" Width="59" 
                                     FontSize="8"
                                     Template="{StaticResource NewButtonControlTemplate}"
-                                    Command = "{Binding AddSegment}" Height="15" />
+                                    Command = "{Binding ResetScale}" Height="15" />
             </StackPanel>
             <Slider Margin="0,0" Width="240"
                        Value="{Binding ScaleIndex, Mode=TwoWay}"
-                       Minimum="0" Maximum="{Binding ScaleCount}" 
+                       Minimum="1" Maximum="{Binding ScaleCount}" 
                        IsSelectionRangeEnabled="True" Orientation="Horizontal" />
          </StackPanel>
       </Border>
@@ -45,9 +45,38 @@
       <!-- Image Brushes -->
       <Border Style="{StaticResource BorderStyle}" Grid.Column="0" Margin="2,2">
          <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+               <Button  Margin="5,0,0,0"
+                                    Style="{StaticResource BaseStyle}" Width="110" HorizontalAlignment="Center"
+                                    Template="{StaticResource NewButtonControlTemplate}"
+                                    Command = "{Binding AddSegment}" Height="30" >
+                  <StackPanel Orientation="Horizontal">
+                     <TextBlock Text="Color :  " DockPanel.Dock="Left" Margin="0,0,0,0"/>
+                     <Canvas>
+                        <Rectangle x:Name="MainColor"
+                            Width="17"
+                            Height="17"
+                            Fill="Blue"
+                            Stroke="White" StrokeThickness="1"
+                            Canvas.Left="0"
+                            Canvas.Top="0"/>
+                     </Canvas>
+                  </StackPanel>
+               </Button>
+               <StackPanel Margin="5,0">
+                  <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                     <TextBlock Text="Brush size : " DockPanel.Dock="Left"/>
+                     <TextBlock Text="{Binding CurrentThicknessView}" DockPanel.Dock="Left"/>
+                  </StackPanel>
+                  <Slider Margin="0,0" Width="100"
+                          Value="{Binding CurrentThickness, Mode=TwoWay}"
+                          Minimum="1" Maximum="20" 
+                          IsSelectionRangeEnabled="True" Orientation="Horizontal" />
+               </StackPanel>
+            </StackPanel>
          </StackPanel>
       </Border>
-      
+
       <!-- Grid with buttons -->
       <Border Style="{StaticResource BorderStyle}" Grid.Column="0" Margin="2,2">
          <StackPanel>
@@ -75,6 +104,6 @@
                    HorizontalAlignment="Left"/>
          </StackPanel>
       </Border>
-      
+
    </StackPanel>
 </Window>
