@@ -13,7 +13,9 @@ namespace Dalmatian.ROI
    class MouseState
    {
       public bool leftPressed = false;
+      public bool rightPressed = false;
       public Point p_leftPressed = new Point(0,0);
+      public Point p_rightPressed = new Point(0, 0);
       public Point p_last = new Point(0, 0);
    }
 
@@ -35,6 +37,8 @@ namespace Dalmatian.ROI
             throw (GUI.Items.Framework.StandartExceptions.FolderDoesNotExists());
 
          // Reference to comands
+
+         // Add segment button
          AddSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
             var item = new FigureSegment("New segment");
             item.Thickness = CurrentThickness;
@@ -44,6 +48,7 @@ namespace Dalmatian.ROI
             SegmentIndex = SegmentsList.Count - 1;
             });
 
+         // Delete segment button
          DeleteSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
             if (SegmentIndex != 0)
             {
@@ -53,16 +58,20 @@ namespace Dalmatian.ROI
             }
          });
 
+         // Delete All button
          UpdateAllSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
             CountAll();
          });
 
+         // Confirm button
          ConfirmEditSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
             SegmentsList[SegmentIndex].RenderSegment(imStartWidth, imStartHeight);
             SegmentsList[SegmentIndex].Count(SegmentsList[0].Get2DPoints());
          });
 
+         // Reset button
          ResetScale = new GUI.Items.Framework.DelegateCommand((object param) => {
+            ResetCenter();
             Reset();
          });
       }
@@ -81,8 +90,10 @@ namespace Dalmatian.ROI
 
          // add handlers
          mainCanvas.AddHandler(Canvas.MouseMoveEvent, new MouseEventHandler(this.MouseMove), true);
-         mainCanvas.AddHandler(Canvas.MouseLeftButtonDownEvent, new RoutedEventHandler(this.MousePress), true);
-         mainCanvas.AddHandler(Canvas.MouseLeftButtonUpEvent, new RoutedEventHandler(this.MouseUp), true);
+         mainCanvas.AddHandler(Canvas.MouseLeftButtonDownEvent, new RoutedEventHandler(this.MouseLeftPress), true);
+         mainCanvas.AddHandler(Canvas.MouseLeftButtonUpEvent, new RoutedEventHandler(this.MouseLeftUp), true);
+         mainCanvas.AddHandler(Canvas.MouseRightButtonDownEvent, new RoutedEventHandler(this.MouseRightPress), true);
+         mainCanvas.AddHandler(Canvas.MouseRightButtonUpEvent, new RoutedEventHandler(this.MouseRightUp), true);
          mainCanvas.AddHandler(Canvas.MouseLeaveEvent, new RoutedEventHandler(this.MouseLeave), true);
       }
       public void EndRender(object sender, EventArgs e)
@@ -105,6 +116,7 @@ namespace Dalmatian.ROI
          else
             ScaleAll();
 
+         ResetCenter();
          CountAll();
       }
       private void RenderPictures()
@@ -117,6 +129,14 @@ namespace Dalmatian.ROI
       #region MOUSE CONTROL
       public void MouseMove(object sender, MouseEventArgs e)
       {
+         if (mouseState.rightPressed)
+         {
+            var p = Segment.DeScalePoint(e.GetPosition(SegmentsList[SegmentIndex].pathBox), scale);
+            DragAll(mouseState.p_last - p);
+            mouseState.p_last = p;
+            return;
+         }
+
          if (mouseState.leftPressed)
          {
             var p = Segment.DeScalePoint(e.GetPosition(SegmentsList[SegmentIndex].pathBox), scale);
@@ -125,7 +145,7 @@ namespace Dalmatian.ROI
             SegmentsList[SegmentIndex].AddPoint(p);
          }
       }
-      public void MousePress(object sender, RoutedEventArgs e)
+      public void MouseLeftPress(object sender, RoutedEventArgs e)
       {
          var p = Segment.DeScalePoint((e as MouseEventArgs).GetPosition(SegmentsList[SegmentIndex].pathBox), scale);
          SegmentsList[SegmentIndex].AddPoint(p);
@@ -141,13 +161,50 @@ namespace Dalmatian.ROI
          
          mouseState.p_last = p;
       }
-      public void MouseUp(object sender, RoutedEventArgs e)
+      public void MouseLeftUp(object sender, RoutedEventArgs e)
       {
          mouseState.leftPressed = false;
+      }
+      public void MouseRightPress(object sender, RoutedEventArgs e)
+      {
+         var p = Segment.DeScalePoint((e as MouseEventArgs).GetPosition(SegmentsList[SegmentIndex].pathBox), scale);
+         mouseState.rightPressed = true;
+         mouseState.p_last = p;
+      }
+      public void MouseRightUp(object sender, RoutedEventArgs e)
+      {
+         mouseState.rightPressed = false;
       }
       public void MouseLeave(object sender, RoutedEventArgs e)
       {
          mouseState.leftPressed = false;
+         mouseState.rightPressed = false;
+      }
+      #endregion
+
+      #region Drag
+      public void DragAll(Vector dv)
+      {
+         foreach (var item in mainCanvas.Children)
+         {
+            Canvas.SetLeft((item as UIElement), Canvas.GetLeft((item as UIElement)) - dv.X * scaleValue);
+            Canvas.SetTop((item as UIElement), Canvas.GetTop((item as UIElement)) - dv.Y * scaleValue);
+         }
+      }
+
+      public void ResetCenter()
+      {
+         var dw = imStartWidth * scaleValue;
+         var dh = imStartHeight * scaleValue;
+
+         imPosition.X = (mainCanvas.ActualWidth - dw) / 2;
+         imPosition.Y = (mainCanvas.ActualHeight - dh) / 2;
+
+         foreach (var item in mainCanvas.Children)
+         {
+            Canvas.SetLeft((item as UIElement), imPosition.X);
+            Canvas.SetTop((item as UIElement), imPosition.Y);
+         }
       }
       #endregion
 
@@ -372,6 +429,7 @@ namespace Dalmatian.ROI
       private Canvas mainCanvas;
       private Image mainImage;
       private Point imPosition = new Point();
+      private Point canvasPosition = new Point();
       private double imStartWidth = 0;
       private double imStartHeight = 0;
       private string[] imageNames;
