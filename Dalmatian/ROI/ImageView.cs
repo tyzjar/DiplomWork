@@ -37,7 +37,7 @@ namespace Dalmatian.ROI
          // Reference to comands
          AddSegment = new GUI.Items.Framework.DelegateCommand((object param) => {
             var item = new FigureSegment("New segment");
-            item.SetThickness(CurrentThickness);
+            item.Thickness = CurrentThickness;
             mainCanvas.Children.Add(item.DrawSegment(imStartWidth, imStartHeight));
             ScaleItem(item.pathBox);
             SegmentsList.Add(item);
@@ -321,35 +321,42 @@ namespace Dalmatian.ROI
             }
          }
       }
-      public ColorControl CurrentColor
+      public Color CurrentColor
       {
          get
          {
-            return SegmentsList[segmentIndex].color;
+            return SegmentsList[segmentIndex].ColorView;
          }
          set
          {
-            SegmentsList[segmentIndex].color.SetColor(value.m_color);
+            SegmentsList[segmentIndex].ColorView = value;
+         }
+      }
+      public Brush CurrentBrush
+      {
+         get
+         {
+            return SegmentsList[segmentIndex].BrushView;
          }
       }
       public string CurrentThicknessView
       {
          get
          {
-            return string.Format("{0:F2}", SegmentsList[segmentIndex].thickness);
+            return string.Format("{0:F2}", SegmentsList[segmentIndex].Thickness);
          }
       }
       public double CurrentThickness
       {
          get
          {
-            return SegmentsList[segmentIndex].thickness;
+            return SegmentsList[segmentIndex].Thickness;
          }
          set
          {
             foreach (var item in SegmentsList)
             {
-               item.SetThickness(value);
+               item.Thickness = value;
             }
             OnPropertyChanged("CurrentThickness");
             OnPropertyChanged("CurrentThicknessView");

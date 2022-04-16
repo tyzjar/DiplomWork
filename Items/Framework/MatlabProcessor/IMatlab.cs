@@ -44,6 +44,7 @@ namespace GUI.Items.Framework.MatlabProcessor
             ///Start main thread with Synchronizer
             synchronizer.Start();
             mainThread = new Thread(Work);
+            mainThread.IsBackground = true;
             mainThread.Start(SynchronizationContext.Current);
          }
          catch (StandartExceptions sex)

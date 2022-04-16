@@ -24,6 +24,7 @@ namespace GUI.Items.Framework.MatlabProcessor
          working = true;
          File.Delete(synchFileName);
          mainThread = new Thread(Work);
+         mainThread.IsBackground = true;
          mainThread.Start();
       }
 

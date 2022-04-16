@@ -66,14 +66,18 @@ namespace Dalmatian.ROI
          }
          return false;
       }
+      public Color GetColor()
+      {
+         return m_color;
+      }
       public string ConvertToString()
       {
          return m_color.R.ToString() + delimiter + 
             m_color.G.ToString() + delimiter + m_color.B.ToString();
       }
 
-      public Color m_color;
       public static char delimiter = ',';
+      private Color m_color;
    }
 
    public abstract class Segment : GUI.Items.Framework.ViewModelBase
@@ -104,8 +108,8 @@ namespace Dalmatian.ROI
 
                if (a.Length == 4)
                {
-                  color = new ColorControl(a[2]);
-                  thickness = Convert.ToDouble(a[3]);
+                  m_color = new ColorControl(a[2]);
+                  m_thickness = Convert.ToDouble(a[3]);
                }
             }
             else
@@ -121,15 +125,7 @@ namespace Dalmatian.ROI
       public string SaveName()
       {
          return Name + delimiter + cellCount.ToString() + delimiter +
-            color.ConvertToString() + delimiter + thickness.ToString();
-      }
-      public void SetThickness(double thickness_)
-      {
-         thickness = thickness_;
-         if (pathBox != null)
-         {
-            (pathBox.Child as Path).StrokeThickness = thickness_;
-         }
+            m_color.ConvertToString() + delimiter + m_thickness.ToString();
       }
       public abstract void defaultInit();
       public abstract void AddPoint(double x, double y);
@@ -143,23 +139,61 @@ namespace Dalmatian.ROI
       public abstract void RenderSegment(double w, double h);
       public abstract void Count(List<Point> cellPoints);
       public abstract List<Point> Get2DPoints();
-      public void UpdateStorke(Color color_, double thickness_)
+      public void UpdateStorke(Color color, double thickness)
       {
-         color.m_color = color_;
-         if (pathBox != null)
+         ColorView = color;
+         Thickness = thickness;
+      }
+
+
+      public string Name { get; set; }
+      public double Thickness
+      {
+         get
          {
-            (pathBox.Child as Path).StrokeThickness = thickness;
-            (pathBox.Child as Path).Stroke = color.CreateBrush();
+            return m_thickness;
+         }
+         set
+         {
+            if (m_thickness != value)
+            {
+               m_thickness = value;
+               if (pathBox != null)
+               {
+                  (pathBox.Child as Path).StrokeThickness = m_thickness;
+               }
+            }
          }
       }
-      public string Name { get; set; }
+      public Color ColorView
+      {
+         get
+         {
+            return m_color.GetColor();
+         }
+         set
+         {
+            m_color.SetColor(value);
+            if (pathBox != null)
+            {
+               (pathBox.Child as Path).Stroke = m_color.CreateBrush();
+            }
+         }
+      }
+      public Brush BrushView
+      {
+         get
+         {
+            return m_color.CreateBrush();
+         }
+      }
       public int CellNumber { get { return cellCount; } }
       public GeometryGroup gGroup;
       public Viewbox pathBox;
-      public ColorControl color = new ColorControl(Color.FromRgb(255,255,255));
-      public double thickness = 3;
       public static char delimiter = ';';
 
+      protected ColorControl m_color = new ColorControl(Color.FromRgb(255, 255, 255));
+      protected double m_thickness = 3;
       protected int cellCount = 0;
    }
 
@@ -171,7 +205,7 @@ namespace Dalmatian.ROI
       {}
       public override void defaultInit()
       {
-         color = new ColorControl(Color.FromRgb(255, 255, 255));
+         m_color = new ColorControl(Color.FromRgb(255, 255, 255));
       }
       public override void AddPoint(double x, double y)
       {
@@ -218,8 +252,8 @@ namespace Dalmatian.ROI
          gGroup = new GeometryGroup();
          newSegment.StrokeStartLineCap = PenLineCap.Round;
          newSegment.StrokeEndLineCap = PenLineCap.Round;
-         newSegment.StrokeThickness = thickness;
-         newSegment.Stroke = color.CreateBrush();
+         newSegment.StrokeThickness = m_thickness;
+         newSegment.Stroke = m_color.CreateBrush();
 
          newSegment.Width = w;
          newSegment.Height = h;
@@ -296,7 +330,7 @@ namespace Dalmatian.ROI
       {}
       public override void defaultInit()
       {
-         color = new ColorControl(Color.FromRgb(255, 0, 0));
+         m_color = new ColorControl(Color.FromRgb(255, 0, 0));
       }
       public override void AddPoint(double x, double y)
       {
@@ -342,8 +376,8 @@ namespace Dalmatian.ROI
          gGroup = new GeometryGroup();
          newSegment.StrokeStartLineCap = PenLineCap.Round;
          newSegment.StrokeEndLineCap = PenLineCap.Round;
-         newSegment.StrokeThickness = thickness;
-         newSegment.Stroke = color.CreateBrush();
+         newSegment.StrokeThickness = m_thickness;
+         newSegment.Stroke = m_color.CreateBrush();
 
          newSegment.Width = w;
          newSegment.Height = h;

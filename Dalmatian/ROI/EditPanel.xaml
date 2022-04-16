@@ -49,7 +49,7 @@
                <Button  Margin="5,0,0,0"
                                     Style="{StaticResource BaseStyle}" Width="110" HorizontalAlignment="Center"
                                     Template="{StaticResource NewButtonControlTemplate}"
-                                    Command = "{Binding AddSegment}" Height="30" >
+                                    Height="30" Click="Button_Click_1" >
                   <StackPanel Orientation="Horizontal">
                      <TextBlock Text="Color :  " DockPanel.Dock="Left" Margin="0,0,0,0"/>
                      <Canvas>
