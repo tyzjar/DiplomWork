@@ -9,6 +9,8 @@
         WindowStartupLocation="CenterScreen" Background="{StaticResource MyColor1}"
         Title="Segments" Height="450" Width="800">
    <Border Style="{StaticResource BorderStyle}" Margin="10,10">
-      <UserControl x:Name="MainCanvas"/>
+      <Canvas x:Name="MainGrid">
+         <UserControl x:Name="MainCanvas" Width="400" Height="400"/>
+      </Canvas>
    </Border>
 </Window>

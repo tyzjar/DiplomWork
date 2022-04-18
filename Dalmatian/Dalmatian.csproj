@@ -120,16 +120,16 @@
     <Compile Include="ROI\EditPanel.xaml.cs">
       <DependentUpon>EditPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ROI\ImageView.cs" />
-    <Compile Include="ROI\DalmatianControl.cs" />
+    <Compile Include="ROI\ViewControls\ImageView.cs" />
+    <Compile Include="ROI\ViewControls\DalmatianControl.cs" />
     <Compile Include="ROI\ROIEdit.xaml.cs">
       <DependentUpon>ROIEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ROI\Segment.cs" />
+    <Compile Include="ROI\DataControls\Segment.cs" />
     <Compile Include="ROI\SegmentationPanel.xaml.cs">
       <DependentUpon>SegmentationPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ROI\SegmentListControl.cs" />
+    <Compile Include="ROI\DataControls\SegmentListControl.cs" />
     <Page Include="Helper\Help.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -225,5 +225,6 @@
   <ItemGroup>
     <Resource Include="free-icon-dalmatian-4600274.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

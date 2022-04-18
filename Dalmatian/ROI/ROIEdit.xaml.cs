@@ -28,7 +28,7 @@ namespace Dalmatian.ROI
 
          panel = new SegmentationPanel();
          imView = new ImageView(folder, segmentsList);
-         imView.StartRender(MainCanvas);
+         imView.StartRender(MainGrid, MainCanvas);
 
          panel.SegmentsDataGrid.ItemsSource = imView.SegmentsList;
          panel.onSegmentIndexChanged += imView.SegmentIndexUpdate;
