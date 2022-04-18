@@ -120,6 +120,7 @@
     <Compile Include="ROI\EditPanel.xaml.cs">
       <DependentUpon>EditPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ROI\ViewControls\ImageControl.cs" />
     <Compile Include="ROI\ViewControls\ImageView.cs" />
     <Compile Include="ROI\ViewControls\DalmatianControl.cs" />
     <Compile Include="ROI\ROIEdit.xaml.cs">
