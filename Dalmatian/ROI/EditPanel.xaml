@@ -29,11 +29,11 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                <TextBlock Text="Image scale : " DockPanel.Dock="Left"/>
                <TextBlock Text="{Binding ScaleView}" DockPanel.Dock="Left"/>
-               <Button Content="Reset" DockPanel.Dock="Right" Margin="10,2"
+               <Button Content="Reset" DockPanel.Dock="Right" Margin="10,0,0,0"
                                     Style="{StaticResource BaseStyle}" Width="59" 
-                                    FontSize="8"
+                                    FontSize="8" x:Name="ResetButton"
                                     Template="{StaticResource NewButtonControlTemplate}"
-                                    Command = "{Binding ResetScale}" Height="15" />
+                                    Command = "{Binding ResetScale}" Height="18" />
             </StackPanel>
             <Slider Margin="0,0" Width="240"
                        Value="{Binding ScaleIndex, Mode=TwoWay}"
@@ -79,7 +79,7 @@
 
       <!-- Grid with buttons -->
       <Border Style="{StaticResource BorderStyle}" Grid.Column="0" Margin="2,2">
-         <StackPanel>
+         <StackPanel x:Name="GridControlPanel">
             <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
                <Button Content="Add segment" Margin="0,5"
                                  Style="{StaticResource BaseStyle}" Width="100" HorizontalAlignment="Center"

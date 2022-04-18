@@ -20,29 +20,18 @@ namespace Dalmatian.ROI
    /// </summary>
    public partial class ROIEdit : Window
    {
-      public ImageView imView;
-      public SegmentationPanel panel;
+      public ImageFormControl imFormControl;
       public ROIEdit(string folder, BindingList<Segment> segmentsList)
       {
          InitializeComponent();
+         imFormControl = new ImageFormControl(folder, segmentsList, MainGrid);
 
-         panel = new SegmentationPanel();
-         imView = new ImageView(folder, segmentsList);
-         imView.StartRender(MainGrid, MainCanvas);
-
-         panel.SegmentsDataGrid.ItemsSource = imView.SegmentsList;
-         panel.onSegmentIndexChanged += imView.SegmentIndexUpdate;
-
-         this.DataContext = imView;
-         this.AddHandler(MainWindow.MouseWheelEvent, new RoutedEventHandler(this.MouseWheelHandler), true);
-      }
-
-      void MouseWheelHandler(object sender, RoutedEventArgs e)
-      {
-         if ((e as MouseWheelEventArgs).Delta > 0)
-            imView.IncreaseScale();
-         else
-            imView.DecreaseScale();
+         this.AddHandler(MainWindow.MouseWheelEvent, new RoutedEventHandler(imFormControl.MouseWheelHandler), true);
+         MainGrid.AddHandler(MainWindow.MouseMoveEvent, new MouseEventHandler(imFormControl.MouseMove), true);
+         MainGrid.AddHandler(MainWindow.MouseRightButtonDownEvent, new MouseButtonEventHandler(imFormControl.MouseRightPress), true);
+         MainGrid.AddHandler(MainWindow.MouseRightButtonUpEvent, new MouseButtonEventHandler(imFormControl.MouseRightUp), true);
+         //this.AddHandler(MainWindow.MouseLeaveEvent, new RoutedEventHandler(this.MouseLeave), true);
+         this.DataContext = imFormControl;
       }
 
       bool _shown;
@@ -56,7 +45,6 @@ namespace Dalmatian.ROI
          _shown = true;
          var eWindow = new EditPanel(this);
          eWindow.Show();
-
       }
 
    }
