@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace GUI.Items.Framework.View
 {
@@ -22,6 +11,8 @@ namespace GUI.Items.Framework.View
       public SubfoldersSettings(Data.FolderData folderData_)
       {
          InitializeComponent();
+         AddFolder.Content = new AddFolderPanel(folderData_);
+         AddFolder.DataContext = folderData_;
          this.DataContext = folderData_;
       }
 

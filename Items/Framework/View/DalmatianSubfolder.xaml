@@ -16,7 +16,6 @@
          <RowDefinition Height="60"/>
       </Grid.RowDefinitions>
       <StackPanel>
-
          <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="10,10">
             <StackPanel>
                <TextBlock Text="Add all samples from folder :" Style="{StaticResource HeaderText}"/>

@@ -109,7 +109,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Items\Dalmatian\SegmentationPanel.xaml">
+    <Page Include="Items\Dalmatian\Helper\Help.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\Dalmatian\Helper\ManualHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\Dalmatian\Helper\StandartFilterHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\Dalmatian\Helper\ThresholdHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\Dalmatian\Segments\SegmentationPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,14 +188,29 @@
     <Compile Include="Items\Dalmatian\GridPanel.xaml.cs">
       <DependentUpon>GridPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Items\Dalmatian\Helper\Help.xaml.cs">
+      <DependentUpon>Help.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Dalmatian\Helper\HelperControl.cs" />
+    <Compile Include="Items\Dalmatian\Helper\ManualHelp.xaml.cs">
+      <DependentUpon>ManualHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Dalmatian\Helper\StandartFilterHelp.xaml.cs">
+      <DependentUpon>StandartFilterHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Dalmatian\Helper\ThresholdHelp.xaml.cs">
+      <DependentUpon>ThresholdHelp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Items\Dalmatian\IControl.cs" />
     <Compile Include="Items\Dalmatian\Preview\CommonPreview.cs" />
     <Compile Include="Items\Dalmatian\Preview\OriginalView.cs" />
     <Compile Include="Items\Dalmatian\Preview\sFilterPreview.cs" />
     <Compile Include="Items\Dalmatian\Preview\ThresholdPreview.cs" />
-    <Compile Include="Items\Dalmatian\SegmentationPanel.xaml.cs">
+    <Compile Include="Items\Dalmatian\Segments\Segment.cs" />
+    <Compile Include="Items\Dalmatian\Segments\SegmentationPanel.xaml.cs">
       <DependentUpon>SegmentationPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Items\Dalmatian\Segments\SegmentListControl.cs" />
     <Compile Include="Items\Framework\ConfigReader.cs" />
     <Compile Include="Items\Framework\Data\FolderData.cs" />
     <Compile Include="Items\Dalmatian\CellCountConfig.cs" />

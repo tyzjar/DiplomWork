@@ -11,7 +11,8 @@ namespace GUI.Items.Framework.MatlabProcessor
    {
       protected IMatlab(string tempFileName_)
       {
-         folder = Directory.GetCurrentDirectory() + @"\Temp\";
+         folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Doghouse\";
+
          tempFileName = @folder + @tempFileName_ + @".xlsx";
          synchronizer = new Synchronizer(@folder + @tempFileName_ + ".txt");
          EventProcessEnd += synchronizer.Stop;

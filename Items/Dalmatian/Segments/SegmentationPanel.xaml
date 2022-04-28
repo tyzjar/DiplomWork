@@ -1,11 +1,12 @@
-﻿<UserControl x:Class="Dalmatian.ROI.SegmentationPanel"
+﻿<UserControl x:Class="GUI.Items.Dalmatian.SegmentationPanel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Dalmatian.ROI"
+             xmlns:local="clr-namespace:GUI.Items.Dalmatian"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"  Width="260">
+
    <ScrollViewer VerticalScrollBarVisibility="Auto">
       <DataGrid VerticalAlignment="Top"
                 x:Name="SegmentsDataGrid" 
@@ -16,6 +17,11 @@
             <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay}" Header="Segments" Width="180"/>
             <DataGridTextColumn Binding="{Binding CellNumber}" Header="Counts" Width="*" IsReadOnly="True"/>
          </DataGrid.Columns>
+         <DataGrid.ContextMenu>
+            <ContextMenu>
+               <MenuItem Header="лул" Command="{Binding}"></MenuItem>
+            </ContextMenu>
+         </DataGrid.ContextMenu>
       </DataGrid>
    </ScrollViewer>
 </UserControl>

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI.Items.Dalmatian
+namespace Dalmatian.Helper
 {
    /// <summary>
-   /// Interaction logic for SegemntationPanel.xaml
+   /// Interaction logic for StandartFilterHelp.xaml
    /// </summary>
-   public partial class SegmentationPanel : UserControl
+   public partial class StandartFilterHelp : UserControl
    {
-      public SegmentationPanel()
+      public StandartFilterHelp()
       {
          InitializeComponent();
       }

@@ -15,15 +15,11 @@
       <!-- Work grid-->
       <Grid>
          <Grid.ColumnDefinitions>
-            <ColumnDefinition  Width="300"/>
+            <ColumnDefinition  Width="190"/>
             <ColumnDefinition  MinWidth="560"/>
          </Grid.ColumnDefinitions>
          <!-- Control panel -->
          <StackPanel  Grid.Column="0">
-            <!-- Edit xml -->
-            <Border Style="{StaticResource BorderStyle}">
-               <UserControl x:Name="AddFolder"/>
-            </Border>
             <!-- Preprocessing settings -->
             <Border Style="{StaticResource BorderStyle}">
                <StackPanel>
@@ -32,7 +28,7 @@
                             IsChecked="{Binding Path = SubtractionEnabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                             Content="Subtraction picture" Template="{StaticResource NewCheckBoxControlTemplate}"/>
                   <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
-                     <TextBox    Grid.Column="1" Grid.Row="0" Height = "20" Width = "240"
+                     <TextBox    Grid.Column="1" Grid.Row="0" Height = "20" Width = "140"
                                  Text="{Binding Path = SubtractionName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
                      <Button Content="..."  HorizontalAlignment="Left"

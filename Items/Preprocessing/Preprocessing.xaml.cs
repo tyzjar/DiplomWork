@@ -15,8 +15,7 @@ namespace GUI.Items.Preprocessing
          config = new PreprocConfig(mainData_, GridAndProcessPanel);
 
          this.DataContext = config;
-         AddFolder.Content = new GUI.Items.Framework.AddFolderPanel(mainData_.folderData);
-         SelectPanel.Content = new GUI.Items.Framework.SelectedPanel(mainData_.openSaveEvents);
+         SelectPanel.Content = new Framework.SelectedPanel(mainData_.openSaveEvents);
 
       }
 

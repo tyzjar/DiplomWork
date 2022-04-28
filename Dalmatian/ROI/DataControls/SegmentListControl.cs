@@ -84,7 +84,6 @@ namespace Dalmatian.ROI
          }
          return null;
       }
-
       public void CountAll()
       {
          foreach (var item in segmentsList)

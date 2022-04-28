@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:GUI.Items.Morph"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-   <ScrollViewer VerticalScrollBarVisibility="Auto">
+   <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,5">
       <DataGrid VerticalAlignment="Top"
                          x:Name="MorphDataGrid"
                          GridLinesVisibility="Horizontal"

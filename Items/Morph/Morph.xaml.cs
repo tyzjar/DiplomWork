@@ -30,8 +30,7 @@ namespace GUI.Items.Morph
 
          /// Создание панелей по шаблонам.
          this.DataContext = config;
-         AddFolder.Content = new GUI.Items.Framework.AddFolderPanel(mainData_.folderData);
-         SelectPanel.Content = new GUI.Items.Framework.SelectedPanel(mainData_.openSaveEvents);
+         SelectPanel.Content = new Framework.SelectedPanel(mainData_.openSaveEvents);
 
          /// Заполнение данными элементов управления.
          MorphAgeComboBox.ItemsSource = MorphConfig.AgeValues;

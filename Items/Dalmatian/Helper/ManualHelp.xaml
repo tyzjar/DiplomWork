@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Dalmatian.Helper.ManualHelp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Dalmatian.Helper"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="380">
+   <StackPanel Orientation="Vertical">
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Justify" 
+         Text="   After adding all the necessary samples and setting up all the filters, you can adjust the parameters of the cell counting algorithm."
+                 Margin="0,10"/>
+
+      <!--First-->
+
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Left"
+         Text ="  1) Min Region - minimal region size (in voxels) to calculate the statistics. Increasing this parameter improves the quality of the algorithm, but at the same time slows it down" 
+                 Margin="10,10,0,0"/>
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Left"
+         Text ="  2) ConfLvl - the lower this parameter, the higher the degree of correspondence to the cells of the objects we found. The fact that the object we found is a cell corresponding to the parameters we specified - is determined by the expression 100 * (1 - ConfLvl) %." 
+                 Margin="10,10,0,0"/>
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Left"
+         Text ="  3) Rmin and Rmax - standard deviations of the data (in pixels), fitted with Gaussian distribution." Margin="10,10,0,0"/>
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Left"
+         Text ="  4) k - Z-axis proportionality factor." Margin="10,10,0,0"/>
+
+      <!--Second-->
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Justify"
+         Text ="   After setting all the necessary parameters, you can start counting cells with the Count button. After completing the calculation, you can export the data using the Export button. You can add cells in the Segments editor, where you can also add separate areas for counting."
+                 Margin="5,15,0,0"/>
+
+      <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment ="Justify"
+         Text ="   It is important to note that saving the project will save all settings used, samples, added areas, as well as already counted cells!"
+                Foreground="Red" Margin="5,5,0,0"/>
+   </StackPanel>
+</UserControl>

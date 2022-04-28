@@ -160,7 +160,7 @@ namespace Dalmatian.ROI
                m_thickness = value;
                if (pathBox != null)
                {
-                  (pathBox.Child as Path).StrokeThickness = m_thickness;
+                  (pathBox.Child as Path).StrokeThickness = m_thickness * m_thickness_scale;
                }
             }
          }
@@ -194,6 +194,7 @@ namespace Dalmatian.ROI
 
       protected ColorControl m_color = new ColorControl(Color.FromRgb(255, 255, 255));
       protected double m_thickness = 3;
+      protected double m_thickness_scale = 1;
       protected int cellCount = 0;
    }
 
@@ -206,7 +207,9 @@ namespace Dalmatian.ROI
       public override void defaultInit()
       {
          m_color = new ColorControl(Color.FromRgb(255, 255, 255));
-      }
+         m_thickness_scale = 1;
+         Thickness = 3;
+   }
       public override void AddPoint(double x, double y)
       {
          orderPoints.Add(new Point(x, y));
@@ -252,7 +255,7 @@ namespace Dalmatian.ROI
          gGroup = new GeometryGroup();
          newSegment.StrokeStartLineCap = PenLineCap.Round;
          newSegment.StrokeEndLineCap = PenLineCap.Round;
-         newSegment.StrokeThickness = m_thickness;
+         newSegment.StrokeThickness = m_thickness * m_thickness_scale;
          newSegment.Stroke = m_color.CreateBrush();
 
          newSegment.Width = w;
@@ -331,6 +334,8 @@ namespace Dalmatian.ROI
       public override void defaultInit()
       {
          m_color = new ColorControl(Color.FromRgb(255, 0, 0));
+         m_thickness_scale = 2;
+         Thickness = 3;
       }
       public override void AddPoint(double x, double y)
       {
@@ -376,7 +381,7 @@ namespace Dalmatian.ROI
          gGroup = new GeometryGroup();
          newSegment.StrokeStartLineCap = PenLineCap.Round;
          newSegment.StrokeEndLineCap = PenLineCap.Round;
-         newSegment.StrokeThickness = m_thickness;
+         newSegment.StrokeThickness = m_thickness * m_thickness_scale;
          newSegment.Stroke = m_color.CreateBrush();
 
          newSegment.Width = w;
