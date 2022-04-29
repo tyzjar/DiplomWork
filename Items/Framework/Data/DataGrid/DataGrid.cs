@@ -29,7 +29,7 @@ namespace GUI.Items.Framework.Data.DataGrid
          Data.Add(NewGridItem(row));
       }
 
-      public override List<GUI.Items.Framework.ConfigItem> LoadConfig(ExcelWorksheet worksheet)
+      public override List<ConfigItem> LoadConfig(ExcelWorksheet worksheet)
       {
          List<ConfigItem> segmentsConfigs = new List<ConfigItem>();
 

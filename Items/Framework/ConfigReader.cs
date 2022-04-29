@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using OfficeOpenXml;
 using System.IO;
-
+using System.Text.Json;
 
 namespace GUI.Items.Framework
 {
@@ -82,5 +82,11 @@ namespace GUI.Items.Framework
          excelPackage.SaveAs(workFile);
          workFile.Close();
       }
+
+
+      private JsonSerializerOptions options = new JsonSerializerOptions()
+      {
+         WriteIndented = true
+      };
    }
 }

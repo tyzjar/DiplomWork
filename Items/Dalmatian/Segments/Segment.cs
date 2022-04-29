@@ -7,6 +7,10 @@ namespace GUI.Items.Dalmatian
       public Segment(string name)
       { }
 
+      public string Name { get; }
+
+      public string name;
+      public int id;
    }
 
    class CellSegment : Segment

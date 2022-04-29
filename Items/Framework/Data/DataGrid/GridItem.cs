@@ -150,14 +150,14 @@ namespace GUI.Items.Framework.Data.DataGrid
 
       public void udpateStates(FolderData folderData)
       {
-            if (MaskStateValue.state != PreprocState.States.failed)
-               MaskState = PreprocState.StateByFolder(SampleName + "\\" + folderData.MaskSubfolder);
-            if (CropStateValue.state != PreprocState.States.failed)
-               CropState = PreprocState.StateByFolder(SampleName + "\\" + folderData.CropSubfolder);
-            if (IntensityStateValue.state != PreprocState.States.failed)
-               IntensityState = PreprocState.StateByFolder(SampleName + "\\" + folderData.IntensitySubfolder);
-            if (SubtractionStateValue.state != PreprocState.States.failed)
-               SubtractionState = PreprocState.StateByFolder(SampleName + "\\" + folderData.SubtractionSubfolder);
+         if (MaskStateValue.state != PreprocState.States.failed)
+            MaskState = PreprocState.StateByFolder(SampleName + "\\" + folderData.MaskSubfolder);
+         if (CropStateValue.state != PreprocState.States.failed)
+            CropState = PreprocState.StateByFolder(SampleName + "\\" + folderData.CropSubfolder);
+         if (IntensityStateValue.state != PreprocState.States.failed)
+            IntensityState = PreprocState.StateByFolder(SampleName + "\\" + folderData.IntensitySubfolder);
+         if (SubtractionStateValue.state != PreprocState.States.failed)
+            SubtractionState = PreprocState.StateByFolder(SampleName + "\\" + folderData.SubtractionSubfolder);
       }
 
    }
