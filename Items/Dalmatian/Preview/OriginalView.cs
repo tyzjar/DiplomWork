@@ -16,9 +16,8 @@ namespace GUI.Items.Dalmatian.Preview
       protected override void MatlabThread()
       {
          MatlabPreview preview = new MatlabPreview();
-         MessageBox.Show(sampleName);
          preview.gui_originalView(0, new MWCharArray(sampleName),
-            config.countk);
+            config.variables.countk);
       }
 
       protected override void PopulateBuffer(ExcelWorksheet worksheet)
