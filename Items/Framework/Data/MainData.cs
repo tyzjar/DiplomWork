@@ -16,10 +16,13 @@ namespace GUI.Items.Framework.Data
       public OpenSaveEvents openSaveEvents;
       public ConfigReader configReader;
       public bool dalmatian;
+      private string filter;
+      private string defaultExt;
 
       public MainData(DataGrid.SegmentsCreator screator, bool dalmatian_)
       {
          dalmatian = dalmatian_;
+         initFilterExt();
 
          /// Основные элементы хранилища
          folderData = new FolderData();
@@ -40,11 +43,26 @@ namespace GUI.Items.Framework.Data
          folderData.AddFolderEvent += AddFolder;
       }
 
+
+      void initFilterExt()
+      {
+         if (dalmatian)
+         {
+            defaultExt = "dlmtn";
+            filter = "Dalmation project | *." + defaultExt;
+         }
+         else
+         {
+            defaultExt = "crg";
+            filter = "Corgy project | *." + defaultExt;
+         }
+      }
+
       void openProject()
       {
          OpenFileDialog openFileDialog = new OpenFileDialog();
-         openFileDialog.Filter = "Instruction File | *.json";
-         openFileDialog.DefaultExt = "json";
+         openFileDialog.Filter = filter;
+         openFileDialog.DefaultExt = defaultExt;
 
          if(openFileDialog.ShowDialog() == true)
          {
@@ -57,7 +75,10 @@ namespace GUI.Items.Framework.Data
       {
          try
          {
-            configReader.SaveProject(openSaveEvents.SelectedProjectFile);
+            if (openSaveEvents.SelectedProjectFile != OpenSaveEvents.DefaultProjectFileName)
+               configReader.SaveProject(openSaveEvents.SelectedProjectFile);
+            else
+               saveAsProject();
          }
          catch (Exception ex)
          {
@@ -71,8 +92,8 @@ namespace GUI.Items.Framework.Data
          try
          {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Instruction File | *.json";
-            saveFileDialog.DefaultExt = "json";
+            saveFileDialog.Filter = filter;
+            saveFileDialog.DefaultExt = defaultExt;
             saveFileDialog.FileName = Path.GetFileName(openSaveEvents.SelectedProjectFile);
 
             if (saveFileDialog.ShowDialog() == true)
@@ -91,9 +112,9 @@ namespace GUI.Items.Framework.Data
       void createProject()
       {
          SaveFileDialog saveFileDialog = new SaveFileDialog();
-         saveFileDialog.Filter = "Instruction File | *.json";
-         saveFileDialog.DefaultExt = "json";
-         saveFileDialog.FileName = Path.GetFileName("NewFile.json");
+         saveFileDialog.Filter = filter;
+         saveFileDialog.DefaultExt = defaultExt;
+         saveFileDialog.FileName = "NewFile";
 
          if(saveFileDialog.ShowDialog() == true)
          {

@@ -4,7 +4,8 @@ namespace GUI.Items.Framework.Data
 {
    public class OpenSaveEvents : ViewModelBase
    {
-      private string SelectedProjectFileValue = "NewFile.xlsx";
+      public static string DefaultProjectFileName = "NewFile";
+      private string SelectedProjectFileValue = DefaultProjectFileName;
       public string SelectedProjectFile
       {
          get
