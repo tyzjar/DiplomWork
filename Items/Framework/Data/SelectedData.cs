@@ -5,19 +5,19 @@ namespace GUI.Items.Framework.Data
 {
    public class SelectedData : ViewModelBase
    {
-      private string SelectedXmlFileValue = "NewFile.xlsx";
-      public string SelectedXmlFile
+      private string SelectedProjectFileValue = "NewFile.xlsx";
+      public string SelectedProjectFile
       {
          get
          {
-            return this.SelectedXmlFileValue;
+            return this.SelectedProjectFileValue;
          }
          set
          {
-            if (value != this.SelectedXmlFileValue)
+            if (value != this.SelectedProjectFileValue)
             {
-               this.SelectedXmlFileValue = value;
-               OnPropertyChanged(nameof(SelectedXmlFile));
+               this.SelectedProjectFileValue = value;
+               OnPropertyChanged(nameof(SelectedProjectFile));
             }
          }
       }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Newtonsoft.Json;
 using OfficeOpenXml;
 
 namespace GUI.Items.Framework
@@ -9,21 +10,20 @@ namespace GUI.Items.Framework
    /// Interface for all working forms
    /// Containing binding events for working threads
    /// </summary>
+   
    abstract class IFormConfig : ConfigItem
    {
       public IFormConfig(Framework.Data.MainData mainData_,
-         UserControl gridAndProcessPanel_,
-         string worksheetName):
-         base(worksheetName)
+         UserControl gridAndProcessPanel_, string ConfigName):
+         base(ConfigName)
       {
          mainData = mainData_;
          gridAndProcessPanel = gridAndProcessPanel_;
          InitItems();
       }
-      public override void UpdateName(string newName)
-      {}
 
-      void InitItems()
+
+      private void InitItems()
       {
          loadPanel = new View.LoadScreen();
 

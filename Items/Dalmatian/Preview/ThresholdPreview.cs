@@ -18,7 +18,7 @@ namespace GUI.Items.Dalmatian.Preview
          MatlabPreview preview = new MatlabPreview();
 
          preview.gui_thresholdPreview(0, new MWCharArray(sampleName),
-            config.countkValue, config.trsholdValue);
+            config.variables.countk, config.variables.trshold);
       }
 
       protected override void PopulateBuffer(ExcelWorksheet worksheet)

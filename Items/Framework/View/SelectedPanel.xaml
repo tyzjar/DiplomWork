@@ -13,7 +13,7 @@
       </Grid.ColumnDefinitions>
       <TextBlock Grid.Column="0" Text="Selected Instruction File :" Style="{StaticResource TextBlockStyle}"
             HorizontalAlignment="Left"/>
-      <TextBlock Grid.Column="1" x:Name="SelectedMorph" Text="{Binding SelectedXmlFile}" Style="{StaticResource TextBlockStyle}"
+      <TextBlock Grid.Column="1" x:Name="SelectedMorph" Text="{Binding SelectedProjectFile}" Style="{StaticResource TextBlockStyle}"
             HorizontalAlignment="Center"/>
       <UserControl Grid.Column="2" x:Name="OpenSaveButtons" HorizontalAlignment="Right"/>
    </Grid>

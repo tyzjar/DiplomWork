@@ -6,7 +6,7 @@ namespace GUI.Items.Dalmatian
    public abstract class IControl
    {
       public abstract object GetPanel();
-      public abstract void UpdatePanel(Framework.ConfigItem segments);
+      public abstract void UpdatePanel(Framework.Data.DataGrid.SegmentsList segments);
       public abstract void ClearPanel();
       public abstract void Comand(Framework.Data.DataGrid.GridItem param, string s);
       public abstract int ExportComand(Framework.Data.DataGrid.GridItem param,
@@ -24,7 +24,7 @@ namespace GUI.Items.Dalmatian
       {
          return panel;
       }
-      public override void UpdatePanel(Framework.ConfigItem segments)
+      public override void UpdatePanel(Framework.Data.DataGrid.SegmentsList segments)
       { }
       public override void ClearPanel()
       { }

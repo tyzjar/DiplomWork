@@ -1,21 +1,25 @@
 ﻿using System.Collections.Generic;
-using OfficeOpenXml;
 using System.IO;
-using System.Text.Json;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System;
+using System.Windows;
 
 namespace GUI.Items.Framework
 {
+   // Класс для наследования сохранённых переменных
    public abstract class ConfigItem : ViewModelBase
    {
-      public ConfigItem(string worksheetName_)
+      public ConfigItem(string name)
       {
-         worksheetName = worksheetName_;
+         ConfigName = name;
       }
-      public abstract List<ConfigItem> LoadConfig(ExcelWorksheet worksheet);
-      public abstract List<ConfigItem> SaveConfig(ExcelWorksheet worksheet);
-      public abstract void UpdateName(string newName);
-      public string WorksheetName { get { return worksheetName; } }
-      protected string worksheetName;
+
+      public class SaveVariables
+      { }
+      public abstract void SetVariables(SaveVariables v);
+      public abstract SaveVariables GetVariables();
+      public string ConfigName;
    }
 
 
@@ -31,62 +35,62 @@ namespace GUI.Items.Framework
          return s;
       }
 
-      List<ConfigItem> configItems = new List<ConfigItem>();
-
       public void AddItem(ConfigItem item)
       {
-         configItems.Add(item);
+         configItems.Add(item.ConfigName, item);
       }
-
-      public void OpenXml(string fileName)
+      public async void OpenProject(string fileName)
       {
-         FileInfo workFile = new FileInfo(fileName);
-         ExcelPackage excelPackage = new ExcelPackage(workFile);
-
-         foreach (var item in configItems)
+         try
          {
-            var it = item.LoadConfig(excelPackage.Workbook.Worksheets[item.WorksheetName]);
-            if (it != null)
+            using (StreamReader reader = new StreamReader(@fileName))
             {
-               foreach (var item_ in it)
+               // Reads all characters from the current position to the end of the stream asynchronously
+               // and returns them as one string.
+               string jsonString = await reader.ReadToEndAsync();
+               var items = JsonConvert.DeserializeObject(jsonString, settings) as Dictionary<string, ConfigItem.SaveVariables>;
+               foreach (var item in items)
                {
-                  if (item_ != null)
-                  {
-                     item_.LoadConfig(excelPackage.Workbook.Worksheets[item_.WorksheetName]);
-                  }
+                  configItems[item.Key].SetVariables(item.Value);
                }
             }
          }
-      }
-
-      public void SaveXml(string fileName)
-      {
-         FileStream workFile = File.Create(fileName);
-         ExcelPackage excelPackage = new ExcelPackage(workFile);
-
-         foreach (var item in configItems)
+         catch (Exception ex)
          {
-            var it = item.SaveConfig(excelPackage.Workbook.Worksheets.Add(item.WorksheetName));
-            if (it != null)
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+         }
+      }
+      public async void SaveProject(string fileName)
+      {
+         try
+         {
+            using (StreamWriter writer = new StreamWriter(@fileName))
             {
-               foreach (var item_ in it)
+               Dictionary<string, ConfigItem.SaveVariables> save_items = new Dictionary<string, ConfigItem.SaveVariables>();
+               foreach (var item in configItems)
                {
-                  if (item_ != null)
-                  {
-                     item_.SaveConfig(excelPackage.Workbook.Worksheets.Add(item_.WorksheetName));
-                  }
+                  save_items.Add(item.Key, item.Value.GetVariables());
                }
+               var jsonString = JsonConvert.SerializeObject(save_items, settings);
+               await writer.WriteAsync(jsonString);
             }
          }
-
-         excelPackage.SaveAs(workFile);
-         workFile.Close();
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+         }
       }
 
 
-      private JsonSerializerOptions options = new JsonSerializerOptions()
+      private JsonSerializerSettings settings = new JsonSerializerSettings
       {
-         WriteIndented = true
+         TypeNameHandling = TypeNameHandling.Objects,
+         Formatting = Formatting.Indented
       };
+
+
+      private Dictionary<string,ConfigItem> configItems = new Dictionary<string, ConfigItem> ();
    }
 }

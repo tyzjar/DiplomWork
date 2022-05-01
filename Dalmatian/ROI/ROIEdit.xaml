@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dalmatian.ROI"
         mc:Ignorable="d"
-        WindowState ="Maximized"
+        WindowState ="Maximized" Closing="Window_Closing"
         WindowStartupLocation="CenterScreen" Background="{StaticResource MyColor1}"
         Title="Segments" Height="450" Width="800">
    <Border Style="{StaticResource BorderStyle}" Margin="10,10">

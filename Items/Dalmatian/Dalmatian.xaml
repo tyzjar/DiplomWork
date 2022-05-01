@@ -99,7 +99,7 @@
                <StackPanel x:Name="MedianFilter" Grid.Row="0">
                   <Grid>
                      <CheckBox Grid.Row="0" x:Name="MedianFilterEnable" Style="{StaticResource HeaderText}"
-                            IsChecked="{Binding Path=mfilterOnValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            IsChecked="{Binding Path=variables.mfilterOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Content="Median filter" Template="{StaticResource NewCheckBoxControlTemplate}" />
                      <!-- Preview -->
                   </Grid>

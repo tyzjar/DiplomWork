@@ -17,7 +17,7 @@ namespace Dalmatian.ROI
       {
          return panel;
       }
-      public override void UpdatePanel(GUI.Items.Framework.ConfigItem segments)
+      public override void UpdatePanel(GUI.Items.Framework.Data.DataGrid.SegmentsList segments)
       {
          if ((segments as SegmentListControl).segmentsList != null)
          {

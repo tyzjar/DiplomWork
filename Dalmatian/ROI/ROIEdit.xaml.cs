@@ -47,5 +47,9 @@ namespace Dalmatian.ROI
          eWindow.Show();
       }
 
+      void Window_Closing(object sender, CancelEventArgs e)
+      {
+         imFormControl.imView.CountAll();
+      }
    }
 }

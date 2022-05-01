@@ -1,0 +1,305 @@
+{
+  "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[GUI.Items.Framework.ConfigItem+SaveVariables, GUI]], mscorlib",
+  "FolderData": {
+    "$type": "GUI.Items.Framework.Data.FolderData+Variables, GUI",
+    "XmlAddFolder": "",
+    "XmlInSample": "",
+    "MorphSubfolder": "Morph",
+    "MaskSubfolder": "Masked",
+    "SampleSubfolder": "Pattern 1",
+    "CropSubfolder": "Crop",
+    "IntensitySubfolder": "Without_aberration",
+    "SubtractionSubfolder": "Subtraction_picture",
+    "CellCountSubfolder": "Pattern 1"
+  },
+  "DataGrid": {
+    "$type": "GUI.Items.Framework.Data.DataGrid.DataGrid+Variables, GUI",
+    "Data": [
+      {
+        "$type": "GUI.Items.Framework.Data.DataGrid.GridItem, GUI",
+        "MaskStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "CropStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "IntensityStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "SubtractionStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "Segments": {
+          "$type": "Dalmatian.ROI.SegmentListControl, Dalmatian",
+          "segmentsList": [
+            {
+              "$type": "Dalmatian.ROI.CellSegment, Dalmatian",
+              "gGroup": null,
+              "pathBox": null,
+              "Name": "All Cells",
+              "Thickness": 3.0,
+              "ColorView": "#FFFF0000",
+              "BrushView": "#FFFF0000",
+              "CellNumber": 0
+            }
+          ]
+        },
+        "SampleName": "m,vc,.cxmvnxcv",
+        "InSampleName": "",
+        "GroupName": "",
+        "MaskState": "not started",
+        "CropState": "not started",
+        "IntensityState": "not started",
+        "SubtractionState": "not started"
+      },
+      {
+        "$type": "GUI.Items.Framework.Data.DataGrid.GridItem, GUI",
+        "MaskStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "CropStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "IntensityStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "SubtractionStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "Segments": {
+          "$type": "Dalmatian.ROI.SegmentListControl, Dalmatian",
+          "segmentsList": [
+            {
+              "$type": "Dalmatian.ROI.CellSegment, Dalmatian",
+              "gGroup": null,
+              "pathBox": null,
+              "Name": "All Cells",
+              "Thickness": 3.0,
+              "ColorView": "#FFFF0000",
+              "BrushView": "#FFFF0000",
+              "CellNumber": 0
+            }
+          ]
+        },
+        "SampleName": "xcv",
+        "InSampleName": "",
+        "GroupName": "",
+        "MaskState": "not started",
+        "CropState": "not started",
+        "IntensityState": "not started",
+        "SubtractionState": "not started"
+      },
+      {
+        "$type": "GUI.Items.Framework.Data.DataGrid.GridItem, GUI",
+        "MaskStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "CropStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "IntensityStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "SubtractionStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "Segments": {
+          "$type": "Dalmatian.ROI.SegmentListControl, Dalmatian",
+          "segmentsList": [
+            {
+              "$type": "Dalmatian.ROI.CellSegment, Dalmatian",
+              "gGroup": null,
+              "pathBox": null,
+              "Name": "All Cells",
+              "Thickness": 3.0,
+              "ColorView": "#FFFF0000",
+              "BrushView": "#FFFF0000",
+              "CellNumber": 0
+            }
+          ]
+        },
+        "SampleName": "zxcvxzclvxzc;lvxzcl;vxzc",
+        "InSampleName": "",
+        "GroupName": "",
+        "MaskState": "not started",
+        "CropState": "not started",
+        "IntensityState": "not started",
+        "SubtractionState": "not started"
+      },
+      {
+        "$type": "GUI.Items.Framework.Data.DataGrid.GridItem, GUI",
+        "MaskStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "CropStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "IntensityStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "SubtractionStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "Segments": {
+          "$type": "Dalmatian.ROI.SegmentListControl, Dalmatian",
+          "segmentsList": [
+            {
+              "$type": "Dalmatian.ROI.CellSegment, Dalmatian",
+              "gGroup": null,
+              "pathBox": null,
+              "Name": "All Cells",
+              "Thickness": 3.0,
+              "ColorView": "#FFFF0000",
+              "BrushView": "#FFFF0000",
+              "CellNumber": 0
+            }
+          ]
+        },
+        "SampleName": "vcx",
+        "InSampleName": "",
+        "GroupName": "",
+        "MaskState": "not started",
+        "CropState": "not started",
+        "IntensityState": "not started",
+        "SubtractionState": "not started"
+      },
+      {
+        "$type": "GUI.Items.Framework.Data.DataGrid.GridItem, GUI",
+        "MaskStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "CropStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "IntensityStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "SubtractionStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "Segments": {
+          "$type": "Dalmatian.ROI.SegmentListControl, Dalmatian",
+          "segmentsList": [
+            {
+              "$type": "Dalmatian.ROI.CellSegment, Dalmatian",
+              "gGroup": null,
+              "pathBox": null,
+              "Name": "All Cells",
+              "Thickness": 3.0,
+              "ColorView": "#FFFF0000",
+              "BrushView": "#FFFF0000",
+              "CellNumber": 0
+            }
+          ]
+        },
+        "SampleName": "vlxzc;vx;clvxzclvx;lcvkxc",
+        "InSampleName": "",
+        "GroupName": "",
+        "MaskState": "not started",
+        "CropState": "not started",
+        "IntensityState": "not started",
+        "SubtractionState": "not started"
+      },
+      {
+        "$type": "GUI.Items.Framework.Data.DataGrid.GridItem, GUI",
+        "MaskStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "CropStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "IntensityStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "SubtractionStateValue": {
+          "$type": "GUI.Items.Framework.Data.DataGrid.PreprocState, GUI",
+          "state": 0,
+          "ShouldProcess": "y"
+        },
+        "Segments": {
+          "$type": "Dalmatian.ROI.SegmentListControl, Dalmatian",
+          "segmentsList": [
+            {
+              "$type": "Dalmatian.ROI.CellSegment, Dalmatian",
+              "gGroup": null,
+              "pathBox": null,
+              "Name": "All Cells",
+              "Thickness": 3.0,
+              "ColorView": "#FFFF0000",
+              "BrushView": "#FFFF0000",
+              "CellNumber": 0
+            }
+          ]
+        },
+        "SampleName": "v",
+        "InSampleName": "",
+        "GroupName": "",
+        "MaskState": "not started",
+        "CropState": "not started",
+        "IntensityState": "not started",
+        "SubtractionState": "not started"
+      }
+    ]
+  },
+  "CellCount": {
+    "$type": "GUI.Items.Dalmatian.CellCountConfig+Variables, GUI",
+    "sfilterLowpass": 2.0,
+    "sfilterHipass": 100.0,
+    "trshold": 0.0,
+    "mfilterRad": 15.0,
+    "countMinRegion": 100.0,
+    "countConfLvl": 0.1,
+    "countRMin": 0.0,
+    "countRMax": 15.0,
+    "countk": 1.0,
+    "sfilterOn": true,
+    "trsholdOn": true,
+    "mfilterOn": false
+  }
+}

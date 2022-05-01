@@ -13,7 +13,7 @@ namespace GUI.Items.Dalmatian
    {
       public CellCountConfig(Framework.Data.MainData mainData_, UserControl gridAndProcessPanel_,
          IControl segmentationControl_, Framework.IHelper helper_) :
-         base(mainData_, gridAndProcessPanel_, "CellCountConfig")
+         base(mainData_, gridAndProcessPanel_, "CellCount")
       {
          helper = helper_;
          segmentationControl = segmentationControl_;
@@ -35,6 +35,41 @@ namespace GUI.Items.Dalmatian
          };
 
          swapToView();
+      }
+
+      public void ExportCell()
+      {
+         try
+         {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Instruction File | *.xlsx";
+            saveFileDialog.DefaultExt = "xlsx";
+            saveFileDialog.FileName = "Cells Report " + Path.GetFileName(mainData.openSaveEvents.SelectedProjectFile);
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+               FileStream workFile = File.Create(saveFileDialog.FileName);
+               ExcelPackage excelPackage = new ExcelPackage(workFile);
+               var wsh = excelPackage.Workbook.Worksheets.Add("Dalmatian");
+
+               var row = 1;
+               var col = 1;
+               foreach (var item in mainData.dataGrid.Data)
+               {
+                  row += segmentationControl.ExportComand(item, wsh, row, col);
+               }
+               wsh.Cells.AutoFitColumns();
+
+               wsh.Column(1).Width = 60;
+               excelPackage.SaveAs(workFile);
+               workFile.Close();
+            }
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+         }
       }
 
       protected override void Initialize()
@@ -75,70 +110,9 @@ namespace GUI.Items.Dalmatian
             helper.StartHelp(3);
          });
       }
-
-      public void ExportCell()
-      {
-         try
-         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Instruction File | *.xlsx";
-            saveFileDialog.DefaultExt = "xlsx";
-            saveFileDialog.FileName = "Cells Report " + Path.GetFileName(mainData.openSaveEvents.SelectedXmlFile);
-
-            if (saveFileDialog.ShowDialog() == true)
-            {
-               FileStream workFile = File.Create(saveFileDialog.FileName);
-               ExcelPackage excelPackage = new ExcelPackage(workFile);
-               var wsh = excelPackage.Workbook.Worksheets.Add("Dalmatian");
-
-               var row = 1;
-               var col = 1;
-               foreach (var item in mainData.dataGrid.Data)
-               {
-                  row += segmentationControl.ExportComand(item, wsh, row, col);
-               }
-               wsh.Cells.AutoFitColumns();
-
-               wsh.Column(1).Width = 60;
-               excelPackage.SaveAs(workFile);
-               workFile.Close();
-            }
-         }
-         catch (Exception ex)
-         {
-            MessageBox.Show(ex.Message, "Exeption",
-               MessageBoxButton.OK, MessageBoxImage.Error);
-         }
-      }
       protected override void swapToView()
       {
          gridAndProcessPanel.Content = gridPanel;
-      }
-
-      public override List<GUI.Items.Framework.ConfigItem> LoadConfig(ExcelWorksheet worksheet)
-      {
-         if ((worksheet != null) && (worksheet.Dimension != null))
-         {
-            for (int i = 1; i <= worksheet.Dimension.End.Row; i++)
-            {
-               setByName(worksheet.Cells[i, 1].Text, worksheet.Cells[i, 2].Text);
-            }
-         }
-
-         return null;
-      }
-      public override List<GUI.Items.Framework.ConfigItem> SaveConfig(ExcelWorksheet worksheet)
-      {
-         var len = fieldNames.Length;
-         var values = getAsRow();
-
-         for (int i = 0; i < len; ++i)
-         {
-            worksheet.Cells[i + 1, 1].Value = fieldNames[i];
-            worksheet.Cells[i + 1, 2].Value = values[i];
-         }
-
-         return null;
       }
 
       public ICommand CommonPreviewCommand { get; private set; }
@@ -154,38 +128,11 @@ namespace GUI.Items.Dalmatian
 
 
       #region Values
-      public static string[] fieldNames = new[]{ nameof(sfilterLowpass), nameof(sfilterHipass),
-         nameof(trshold), nameof(mfilterRad), nameof(countMinRegion), nameof(countConfLvl),
-         nameof(countRMin), nameof(countRMax), nameof(countk), nameof(sfilterOn), nameof(trsholdOn), nameof(mfilterOn) };
-      public void setByName(string paramName, string value)
-      {
-         switch (paramName)
-         {
-            case nameof(sfilterLowpass): sfilterLowpass = value; break;
-            case nameof(sfilterHipass): sfilterHipass = value; break;
-            case nameof(trshold): trshold = value; break;
-            case nameof(mfilterRad): mfilterRad = value; break;
-            case nameof(countMinRegion): countMinRegion = value; break;
-            case nameof(countConfLvl): countConfLvl = value; break;
-            case nameof(countRMin): countRMin = value; break;
-            case nameof(countRMax): countRMax = value; break;
-            case nameof(countk): countk = value; break;
-            case nameof(sfilterOn): sfilterOn = value; break;
-            case nameof(trsholdOn): trsholdOn = value; break;
-            case nameof(mfilterOn): mfilterOn = value; break;
-         }
-      }
-      public string[] getAsRow()
-      {
-         string[] row = new[]{ sfilterLowpass,sfilterHipass,
-         trshold, mfilterRad, countMinRegion, countConfLvl,
-         countRMin, countRMax, countk, sfilterOn, trsholdOn, mfilterOn };
-         return row;
-      }
 
       public GridPanel gridPanel;
       public IControl segmentationControl;
       public Framework.IHelper helper;
+
       private Preview.CommonPreview commonPreview;
       private Preview.sFilterPreview sfilterPreview;
       private Preview.ThresholdPreview thresholdPreview;
@@ -194,11 +141,11 @@ namespace GUI.Items.Dalmatian
       {
          get
          {
-            return sfilterLowpassValue.ToString();
+            return variables.sfilterLowpass.ToString();
          }
          set
          {
-            sfilterLowpassValue = Convert.ToDouble(value);
+            variables.sfilterLowpass = Convert.ToDouble(value);
             OnPropertyChanged(nameof(sfilterLowpass));
          }
       }
@@ -206,11 +153,11 @@ namespace GUI.Items.Dalmatian
       {
          get
          {
-            return sfilterHipassValue.ToString();
+            return variables.sfilterHipass.ToString();
          }
          set
          {
-            sfilterHipassValue = Convert.ToDouble(value);
+            variables.sfilterHipass = Convert.ToDouble(value);
             OnPropertyChanged(nameof(sfilterHipass));
          }
       }
@@ -218,11 +165,11 @@ namespace GUI.Items.Dalmatian
       {
          get
          {
-            return trsholdValue.ToString();
+            return variables.trshold.ToString();
          }
          set
          {
-            trsholdValue = Convert.ToDouble(value);
+            variables.trshold = Convert.ToDouble(value);
             OnPropertyChanged(nameof(trshold));
          }
       }
@@ -230,11 +177,11 @@ namespace GUI.Items.Dalmatian
       {
          get
          {
-            return mfilterRadValue.ToString();
+            return variables.mfilterRad.ToString();
          }
          set
          {
-            mfilterRadValue = Convert.ToDouble(value);
+            variables.mfilterRad = Convert.ToDouble(value);
             OnPropertyChanged(nameof(mfilterRad));
          }
       }
@@ -242,11 +189,11 @@ namespace GUI.Items.Dalmatian
       {
          get
          {
-            return mfilterRadValue.ToString();
+            return variables.mfilterRad.ToString();
          }
          set
          {
-            mfilterRadValue = Convert.ToDouble(value);
+            variables.mfilterRad = Convert.ToDouble(value);
             OnPropertyChanged(nameof(countMinRegion));
          }
       }
@@ -254,11 +201,11 @@ namespace GUI.Items.Dalmatian
       {
          get
          {
-            return countConfLvlValue.ToString();
+            return variables.countConfLvl.ToString();
          }
          set
          {
-            countConfLvlValue = Convert.ToDouble(value);
+            variables.countConfLvl = Convert.ToDouble(value);
             OnPropertyChanged(nameof(countConfLvl));
          }
       }
@@ -266,11 +213,11 @@ namespace GUI.Items.Dalmatian
       {
          get
          {
-            return countRMinValue.ToString();
+            return variables.countRMin.ToString();
          }
          set
          {
-            countRMinValue = Convert.ToDouble(value);
+            variables.countRMin = Convert.ToDouble(value);
             OnPropertyChanged(nameof(countRMin));
          }
       }
@@ -278,11 +225,11 @@ namespace GUI.Items.Dalmatian
       {
          get
          {
-            return countRMaxValue.ToString();
+            return variables.countRMax.ToString();
          }
          set
          {
-            countRMaxValue = Convert.ToDouble(value);
+            variables.countRMax = Convert.ToDouble(value);
             OnPropertyChanged(nameof(countRMax));
          }
       }
@@ -290,11 +237,11 @@ namespace GUI.Items.Dalmatian
       {
          get
          {
-            return countkValue.ToString();
+            return variables.countk.ToString();
          }
          set
          {
-            countkValue = Convert.ToDouble(value);
+            variables.countk = Convert.ToDouble(value);
             OnPropertyChanged(nameof(countk));
          }
       }
@@ -302,11 +249,11 @@ namespace GUI.Items.Dalmatian
       {
          get
          {
-            return sfilterOnValue.ToString();
+            return variables.sfilterOn.ToString();
          }
          set
          {
-            sfilterOnValue = Convert.ToBoolean(value);
+            variables.sfilterOn = Convert.ToBoolean(value);
             OnPropertyChanged(nameof(sfilterOn));
          }
       }
@@ -314,11 +261,11 @@ namespace GUI.Items.Dalmatian
       {
          get
          {
-            return trsholdOnValue.ToString();
+            return variables.trsholdOn.ToString();
          }
          set
          {
-            trsholdOnValue = Convert.ToBoolean(value);
+            variables.trsholdOn = Convert.ToBoolean(value);
             OnPropertyChanged(nameof(trsholdOn));
          }
       }
@@ -326,27 +273,50 @@ namespace GUI.Items.Dalmatian
       {
          get
          {
-            return mfilterOnValue.ToString();
+            return variables.mfilterOn.ToString();
          }
          set
          {
-            mfilterOnValue = Convert.ToBoolean(value);
+            variables.mfilterOn = Convert.ToBoolean(value);
             OnPropertyChanged(nameof(mfilterOn));
          }
       }
 
-      public double sfilterLowpassValue { get; set; } = 2;
-      public double sfilterHipassValue { get; set; } = 100;
-      public double trsholdValue { get; set; } = 0;
-      public double mfilterRadValue { get; set; } = 15;
-      public double countMinRegionValue { get; set; } = 100;
-      public double countConfLvlValue { get; set; } = 0.1;
-      public double countRMinValue { get; set; } = 0;
-      public double countRMaxValue { get; set; } = 15;
-      public double countkValue { get; set; } = 1;
-      public bool sfilterOnValue { get; set; } = true;
-      public bool trsholdOnValue { get; set; } = true;
-      public bool mfilterOnValue { get; set; } = false;
+      public override void SetVariables(SaveVariables v) 
+      { 
+         variables = v as Variables;
+         gridPanel.SamplesDataGrid.ItemsSource = mainData.dataGrid.Data;
+         OnPropertyChanged(nameof(sfilterLowpass));
+         OnPropertyChanged(nameof(sfilterHipass));
+         OnPropertyChanged(nameof(trshold));
+         OnPropertyChanged(nameof(mfilterRad));
+         OnPropertyChanged(nameof(countMinRegion));
+         OnPropertyChanged(nameof(countConfLvl));
+         OnPropertyChanged(nameof(countRMin));
+         OnPropertyChanged(nameof(countRMax));
+         OnPropertyChanged(nameof(countk));
+         OnPropertyChanged(nameof(sfilterOn));
+         OnPropertyChanged(nameof(trsholdOn));
+         OnPropertyChanged(nameof(mfilterOn));
+      }
+      public override SaveVariables GetVariables() => variables;
+      public class Variables : Framework.ConfigItem.SaveVariables
+      { 
+         public double sfilterLowpass { get; set; } = 2;
+         public double sfilterHipass { get; set; } = 100;
+         public double trshold { get; set; } = 0;
+         public double mfilterRad { get; set; } = 15;
+         public double countMinRegion { get; set; } = 100;
+         public double countConfLvl { get; set; } = 0.1;
+         public double countRMin { get; set; } = 0;
+         public double countRMax { get; set; } = 15;
+         public double countk { get; set; } = 1;
+         public bool sfilterOn { get; set; } = true;
+         public bool trsholdOn { get; set; } = true;
+         public bool mfilterOn { get; set; } = false;
+      }
+
+      public Variables variables = new Variables();
       #endregion
    }
 }

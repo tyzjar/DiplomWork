@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -80,6 +81,7 @@ namespace Dalmatian.ROI
       private Color m_color;
    }
 
+   [JsonObject(MemberSerialization.OptIn)]
    public abstract class Segment : GUI.Items.Framework.ViewModelBase
    {
       public static Point ScalePoint(Point p, Double scale)
@@ -146,7 +148,9 @@ namespace Dalmatian.ROI
       }
 
 
+      [JsonProperty]
       public string Name { get; set; }
+      [JsonProperty]
       public double Thickness
       {
          get
@@ -165,6 +169,7 @@ namespace Dalmatian.ROI
             }
          }
       }
+      [JsonProperty]
       public Color ColorView
       {
          get
@@ -195,7 +200,8 @@ namespace Dalmatian.ROI
       protected ColorControl m_color = new ColorControl(Color.FromRgb(255, 255, 255));
       protected double m_thickness = 3;
       protected double m_thickness_scale = 1;
-      protected int cellCount = 0;
+      [JsonProperty]
+      public int cellCount = 0;
    }
 
    /// ------------------------------------------------------------------------------------------------------------
@@ -231,7 +237,6 @@ namespace Dalmatian.ROI
       {
          throw (new GUI.Items.Framework.StandartExceptions("AddPointZ does not overload", true));
       }
-
       public override void Removelast()
       {
          orderPoints.RemoveAt(orderPoints.Count-1);
@@ -240,8 +245,6 @@ namespace Dalmatian.ROI
       {
          orderPoints.Clear();
       }
-
-
       public override List<string> ConvertToStrings()
       {
          List<string> str = new List<string>();
@@ -322,7 +325,8 @@ namespace Dalmatian.ROI
          return result;
       }
 
-      private List<Point> orderPoints = new List<Point>();
+      [JsonProperty]
+      public List<Point> orderPoints = new List<Point>();
    }
 
    /// ------------------------------------------------------------------------------------------------------------
@@ -358,7 +362,6 @@ namespace Dalmatian.ROI
       {
          throw (new GUI.Items.Framework.StandartExceptions("AddPointZ does not overload", true));
       }
-
       public override void Removelast()
       {
          orderPoints.RemoveAt(orderPoints.Count - 1);
@@ -367,7 +370,6 @@ namespace Dalmatian.ROI
       {
          orderPoints.Clear();
       }
-
       public override List<string> ConvertToStrings()
       {
          List<string> str = new List<string>();
@@ -417,6 +419,7 @@ namespace Dalmatian.ROI
          return orderPoints;
       }
 
-      private List<Point> orderPoints = new List<Point>();
+      [JsonProperty]
+      public List<Point> orderPoints = new List<Point>();
    }
 }

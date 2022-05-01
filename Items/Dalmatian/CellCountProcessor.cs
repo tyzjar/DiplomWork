@@ -39,11 +39,11 @@ namespace GUI.Items.Dalmatian
          CellCountMatlab mccount = new CellCountMatlab();
          mccount.gui_cellcount(0, new MWCharArray(synchronizer.getSynchFileName),
             new MWCharArray(tempFileName), config.mainData.folderData.CellCountSubfolder,
-            config.sfilterHipassValue,
-            config.sfilterLowpassValue, config.trsholdValue,
-            config.countMinRegionValue, config.countConfLvlValue,
-            config.countRMinValue, config.countRMaxValue,
-            config.countkValue);
+            config.variables.sfilterHipass,
+            config.variables.sfilterLowpass, config.variables.trshold,
+            config.variables.countMinRegion, config.variables.countConfLvl,
+            config.variables.countRMin, config.variables.countRMax,
+            config.variables.countk);
 
          foreach (var item in config.mainData.dataGrid.Data)
          {

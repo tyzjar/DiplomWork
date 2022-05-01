@@ -4,10 +4,13 @@
 /// 
 
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using System.Windows;
 
 namespace GUI.Items.Framework.Data.DataGrid
 {
+
+   public abstract class SegmentsList { }
 
    public class GridItem : ViewModelBase
    {
@@ -46,10 +49,8 @@ namespace GUI.Items.Framework.Data.DataGrid
             }
          } 
       }
-
       public string InSampleName { get; set; } = "";
       public string GroupName { get; set; } = "";
-
       public string MaskState
       {
          get
@@ -117,36 +118,15 @@ namespace GUI.Items.Framework.Data.DataGrid
 
 
       private string SampleNameValue = "";
+      [JsonIgnore]
       public PreprocState MaskStateValue;
+      [JsonIgnore]
       public PreprocState CropStateValue;
+      [JsonIgnore]
       public PreprocState IntensityStateValue;
+      [JsonIgnore]
       public PreprocState SubtractionStateValue;
-      public ConfigItem Segments;
-
-      public void setByName(string paramName, string value)
-      {
-         switch(paramName)
-         {
-            case nameof(SampleName): SampleName = value; break;
-            case nameof(InSampleName): InSampleName = value; break;
-            case nameof(GroupName): GroupName = value; break;
-            case nameof(MaskState): MaskState = value; break;
-            case nameof(CropState): CropState = value; break;
-            case nameof(IntensityState): IntensityState = value; break;
-            case nameof(SubtractionState): SubtractionState = value; break;
-         }
-      }
-
-      public string[] getAsRow()
-      { 
-         string[] row = new []{SampleName, InSampleName, GroupName,
-            MaskState, CropState, IntensityState, SubtractionState};
-         return row;
-      }
-
-      public static string[] fieldNames = new []{ nameof(SampleName), nameof(InSampleName), 
-         nameof(GroupName), nameof(MaskState), nameof(CropState), nameof(IntensityState), nameof(SubtractionState) };
-
+      public SegmentsList Segments;
 
       public void udpateStates(FolderData folderData)
       {

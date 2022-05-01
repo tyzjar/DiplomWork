@@ -2,7 +2,6 @@
 /// Контейнер всех данных для процессов
 /// </summary>
 
-using OfficeOpenXml;
 using Microsoft.Win32;
 using System.IO;
 using System;
@@ -33,32 +32,32 @@ namespace GUI.Items.Framework.Data
          configReader.AddItem(folderData);
          configReader.AddItem(dataGrid);
 
-         openSaveEvents.InstructionSaveEvent += saveXML;
-         openSaveEvents.InstructionSaveAsEvent += saveAsXML;
-         openSaveEvents.InstructionCreateEvent += createXML;
+         openSaveEvents.InstructionSaveEvent += saveProject;
+         openSaveEvents.InstructionSaveAsEvent += saveAsProject;
+         openSaveEvents.InstructionCreateEvent += createProject;
          openSaveEvents.SubfolderSettingsEvent += SubfolderSettingsStart;
-         openSaveEvents.InstructionOpenEvent += openXML;
+         openSaveEvents.InstructionOpenEvent += openProject;
          folderData.AddFolderEvent += AddFolder;
       }
 
-      void openXML()
+      void openProject()
       {
          OpenFileDialog openFileDialog = new OpenFileDialog();
-         openFileDialog.Filter = "Instruction File | *.xlsx";
-         openFileDialog.DefaultExt = "xlsx";
+         openFileDialog.Filter = "Instruction File | *.json";
+         openFileDialog.DefaultExt = "json";
 
          if(openFileDialog.ShowDialog() == true)
          {
-            openSaveEvents.SelectedXmlFile = openFileDialog.FileName;
-            configReader.OpenXml(openSaveEvents.SelectedXmlFile);
+            openSaveEvents.SelectedProjectFile = openFileDialog.FileName;
+            configReader.OpenProject(openSaveEvents.SelectedProjectFile);
          }
       }
 
-      void saveXML()
+      void saveProject()
       {
          try
          {
-            configReader.SaveXml(openSaveEvents.SelectedXmlFile);
+            configReader.SaveProject(openSaveEvents.SelectedProjectFile);
          }
          catch (Exception ex)
          {
@@ -67,19 +66,19 @@ namespace GUI.Items.Framework.Data
          }
       }
 
-      void saveAsXML()
+      void saveAsProject()
       {
          try
          {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Instruction File | *.xlsx";
-            saveFileDialog.DefaultExt = "xlsx";
-            saveFileDialog.FileName = Path.GetFileName(openSaveEvents.SelectedXmlFile);
+            saveFileDialog.Filter = "Instruction File | *.json";
+            saveFileDialog.DefaultExt = "json";
+            saveFileDialog.FileName = Path.GetFileName(openSaveEvents.SelectedProjectFile);
 
             if (saveFileDialog.ShowDialog() == true)
             {
-               openSaveEvents.SelectedXmlFile = saveFileDialog.FileName;
-               configReader.SaveXml(openSaveEvents.SelectedXmlFile);
+               openSaveEvents.SelectedProjectFile = saveFileDialog.FileName;
+               configReader.SaveProject(openSaveEvents.SelectedProjectFile);
             }
          }
          catch (Exception ex)
@@ -89,16 +88,16 @@ namespace GUI.Items.Framework.Data
          }
       }
 
-      void createXML()
+      void createProject()
       {
          SaveFileDialog saveFileDialog = new SaveFileDialog();
-         saveFileDialog.Filter = "Instruction File | *.xlsx";
-         saveFileDialog.DefaultExt = "xlsx";
-         saveFileDialog.FileName = Path.GetFileName("NewFile.xlsx");
+         saveFileDialog.Filter = "Instruction File | *.json";
+         saveFileDialog.DefaultExt = "json";
+         saveFileDialog.FileName = Path.GetFileName("NewFile.json");
 
          if(saveFileDialog.ShowDialog() == true)
          {
-            openSaveEvents.SelectedXmlFile = saveFileDialog.FileName;
+            openSaveEvents.SelectedProjectFile = saveFileDialog.FileName;
             dataGrid.Data.Clear();
          }
       }

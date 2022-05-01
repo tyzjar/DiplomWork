@@ -11,53 +11,7 @@ namespace GUI.Items.Framework.Data
       {
          AddFolderCommand = new DelegateCommand((object param) => { AddFolderEvent(); });
       }
-      public override void UpdateName(string newName)
-      { }
-      public override List<GUI.Items.Framework.ConfigItem> LoadConfig(ExcelWorksheet worksheet)
-      {
-         if ((worksheet != null) && (worksheet.Dimension != null))
-         {
-            for (int i = 1; i <= worksheet.Dimension.End.Row; i++)
-            {
-               setByName(worksheet.Cells[i, 1].Text, worksheet.Cells[i, 2].Text);
-            }
-         }
-         return null;
-      }
-
-      public override List<GUI.Items.Framework.ConfigItem> SaveConfig(ExcelWorksheet worksheet)
-      {
-         var len = fieldNames.Length;
-         var values = getAsRow();
-
-         for (int i = 0; i < len; ++i)
-         {
-            worksheet.Cells[i + 1, 1].Value = fieldNames[i];
-            worksheet.Cells[i + 1, 2].Value = values[i];
-         }
-         return null;
-      }
-
-      public string[] getAsRow()
-      {
-         string[] row = new[]{ MorphSubfolder,MaskSubfolder,
-         SampleSubfolder, CropSubfolder, IntensitySubfolder,
-         SubtractionSubfolder, CellCountSubfolder};
-         return row;
-      }
-      public void setByName(string paramName, string value)
-      {
-         switch (paramName)
-         {
-            case nameof(MorphSubfolder): MorphSubfolder = value; break;
-            case nameof(MaskSubfolder): MaskSubfolder = value; break;
-            case nameof(SampleSubfolder): SampleSubfolder = value; break;
-            case nameof(CropSubfolder): CropSubfolder = value; break;
-            case nameof(IntensitySubfolder): IntensitySubfolder = value; break;
-            case nameof(SubtractionSubfolder): SubtractionSubfolder = value; break;
-            case nameof(CellCountSubfolder): CellCountSubfolder = value; break;
-         }
-      }
+     
 
       #region events
       public delegate void AddFolderDelegate();
@@ -69,13 +23,13 @@ namespace GUI.Items.Framework.Data
       {
          get
          {
-            return XmlAddFolderValue;
+            return variables.XmlAddFolder;
          }
          set
          {
-            if (value != XmlAddFolderValue)
+            if (value != variables.XmlAddFolder)
             {
-               XmlAddFolderValue = value;
+               variables.XmlAddFolder = value;
                OnPropertyChanged(nameof(XmlAddFolder));
             }
          } 
@@ -84,13 +38,13 @@ namespace GUI.Items.Framework.Data
       {
          get
          {
-            return XmlInSampleValue;
+            return variables.XmlInSample;
          }
          set
          {
-            if (value != XmlInSampleValue)
+            if (value != variables.XmlInSample)
             {
-               XmlInSampleValue = value;
+               variables.XmlInSample = value;
                OnPropertyChanged(nameof(XmlInSample));
             }
          }
@@ -99,13 +53,13 @@ namespace GUI.Items.Framework.Data
       {
          get
          {
-            return MorphSubfolderValue;
+            return variables.MorphSubfolder;
          }
          set
          {
-            if (value != MorphSubfolderValue)
+            if (value != variables.MorphSubfolder)
             {
-               MorphSubfolderValue = value;
+               variables.MorphSubfolder = value;
                OnPropertyChanged(nameof(MorphSubfolder));
             }
          }
@@ -114,13 +68,13 @@ namespace GUI.Items.Framework.Data
       {
          get
          {
-            return MaskSubfolderValue;
+            return variables.MaskSubfolder;
          }
          set
          {
-            if (value != MaskSubfolderValue)
+            if (value != variables.MaskSubfolder)
             {
-               MaskSubfolderValue = value;
+               variables.MaskSubfolder = value;
                OnPropertyChanged(nameof(MaskSubfolder));
             }
          }
@@ -129,13 +83,13 @@ namespace GUI.Items.Framework.Data
       {
          get
          {
-            return SampleSubfolderValue;
+            return variables.SampleSubfolder;
          }
          set
          {
-            if (value != SampleSubfolderValue)
+            if (value != variables.SampleSubfolder)
             {
-               SampleSubfolderValue = value;
+               variables.SampleSubfolder = value;
                OnPropertyChanged(nameof(SampleSubfolder));
             }
          }
@@ -144,13 +98,13 @@ namespace GUI.Items.Framework.Data
       {
          get
          {
-            return CropSubfolderValue;
+            return variables.CropSubfolder;
          }
          set
          {
-            if (value != CropSubfolderValue)
+            if (value != variables.CropSubfolder)
             {
-               CropSubfolderValue = value;
+               variables.CropSubfolder = value;
                OnPropertyChanged(nameof(CropSubfolder));
             }
          }
@@ -159,13 +113,13 @@ namespace GUI.Items.Framework.Data
       {
          get
          {
-            return IntensitySubfolderValue;
+            return variables.IntensitySubfolder;
          }
          set
          {
-            if (value != IntensitySubfolderValue)
+            if (value != variables.IntensitySubfolder)
             {
-               IntensitySubfolderValue = value;
+               variables.IntensitySubfolder = value;
                OnPropertyChanged(nameof(IntensitySubfolder));
             }
          }
@@ -174,13 +128,13 @@ namespace GUI.Items.Framework.Data
       {
          get
          {
-            return SubtractionSubfolderValue;
+            return variables.SubtractionSubfolder;
          }
          set
          {
-            if (value != SubtractionSubfolderValue)
+            if (value != variables.SubtractionSubfolder)
             {
-               SubtractionSubfolderValue = value;
+               variables.SubtractionSubfolder = value;
                OnPropertyChanged(nameof(SubtractionSubfolder));
             }
          }
@@ -189,30 +143,34 @@ namespace GUI.Items.Framework.Data
       {
          get
          {
-            return CellCountSubfolderValue;
+            return variables.CellCountSubfolder;
          }
          set
          {
-            if (value != CellCountSubfolderValue)
+            if (value != variables.CellCountSubfolder)
             {
-               CellCountSubfolderValue = value;
+               variables.CellCountSubfolder = value;
                OnPropertyChanged(nameof(CellCountSubfolder));
             }
          }
       }
 
-      private string XmlAddFolderValue { get; set; } = "";
-      private string XmlInSampleValue { get; set; } = "";
-      private string MorphSubfolderValue { get; set; } = "Morph";
-      private string MaskSubfolderValue { get; set; } = "Masked";
-      private string SampleSubfolderValue { get; set; } = "Pattern 1";
-      private string CropSubfolderValue { get; set; } = "Crop";
-      private string IntensitySubfolderValue { get; set; } = "Without_aberration";
-      private string SubtractionSubfolderValue { get; set; } = "Subtraction_picture";
-      private string CellCountSubfolderValue { get; set; } = "Pattern 1";
 
-      public static string[] fieldNames = new[]{ nameof(MorphSubfolder), nameof(MaskSubfolder),
-         nameof(SampleSubfolder), nameof(CropSubfolder), nameof(IntensitySubfolder),
-         nameof(SubtractionSubfolder), nameof(CellCountSubfolder) };
+      public override void SetVariables(SaveVariables v) { variables = v as Variables; }
+      public override SaveVariables GetVariables() => variables;
+      public class Variables : Framework.ConfigItem.SaveVariables
+      {
+         public string XmlAddFolder { get; set; } = "";
+         public string XmlInSample { get; set; } = "";
+         public string MorphSubfolder { get; set; } = "Morph";
+         public string MaskSubfolder { get; set; } = "Masked";
+         public string SampleSubfolder { get; set; } = "Pattern 1";
+         public string CropSubfolder { get; set; } = "Crop";
+         public string IntensitySubfolder { get; set; } = "Without_aberration";
+         public string SubtractionSubfolder { get; set; } = "Subtraction_picture";
+         public string CellCountSubfolder { get; set; } = "Pattern 1";
+      }
+
+      private Variables variables = new Variables();
    }
 }

@@ -1,7 +1,7 @@
 ﻿using OfficeOpenXml;
 using gui_preview;
-using MathWorks.MATLAB.NET.Utility;
 using MathWorks.MATLAB.NET.Arrays;
+using System.Windows;
 
 namespace GUI.Items.Dalmatian.Preview
 {
@@ -16,9 +16,9 @@ namespace GUI.Items.Dalmatian.Preview
       protected override void MatlabThread()
       {
          MatlabPreview preview = new MatlabPreview();
-
+         MessageBox.Show(sampleName);
          preview.gui_originalView(0, new MWCharArray(sampleName),
-            config.countkValue);
+            config.countk);
       }
 
       protected override void PopulateBuffer(ExcelWorksheet worksheet)
