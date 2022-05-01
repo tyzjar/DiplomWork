@@ -7,11 +7,11 @@
              mc:Ignorable="d">
    <Grid>
       <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="136"/>
          <ColumnDefinition/>
-         <ColumnDefinition/>
-         <ColumnDefinition/>
+         <ColumnDefinition  Width="310"/>
       </Grid.ColumnDefinitions>
-      <TextBlock Grid.Column="0" Text="Selected Instruction File :" Style="{StaticResource TextBlockStyle}"
+      <TextBlock Grid.Column="0" Text="Project File :" Style="{StaticResource TextBlockStyle}"
             HorizontalAlignment="Left"/>
       <TextBlock Grid.Column="1" x:Name="SelectedMorph" Text="{Binding SelectedProjectFile}" Style="{StaticResource TextBlockStyle}"
             HorizontalAlignment="Center"/>

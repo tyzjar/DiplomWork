@@ -6,6 +6,7 @@ using Microsoft.Win32;
 using System.IO;
 using System;
 using System.Windows;
+using System.Collections.Generic;
 
 namespace GUI.Items.Framework.Data
 {
@@ -22,7 +23,6 @@ namespace GUI.Items.Framework.Data
       public MainData(DataGrid.SegmentsCreator screator, bool dalmatian_)
       {
          dalmatian = dalmatian_;
-         initFilterExt();
 
          /// Основные элементы хранилища
          folderData = new FolderData();
@@ -41,33 +41,58 @@ namespace GUI.Items.Framework.Data
          openSaveEvents.SubfolderSettingsEvent += SubfolderSettingsStart;
          openSaveEvents.InstructionOpenEvent += openProject;
          folderData.AddFolderEvent += AddFolder;
+
+         initStartFileAndFilter();
       }
 
-
-      void initFilterExt()
+      /// Project file type
+      void initStartFileAndFilter()
       {
-         if (dalmatian)
+         try
          {
-            defaultExt = "dlmtn";
-            filter = "Dalmation project | *." + defaultExt;
+            if (dalmatian)
+            {
+               defaultExt = ".dlmtn";
+               filter = "Dalmation project | *" + defaultExt;
+            }
+            else
+            {
+               defaultExt = ".crg";
+               filter = "Corgy project | *" + defaultExt;
+            }
+
+            var args = Environment.GetCommandLineArgs();
+            if ((args.Length>1)&&(Path.GetExtension(args[1]) == defaultExt))
+            {
+               openSaveEvents.SelectedProjectFile = args[1];
+               configReader.OpenProject(openSaveEvents.SelectedProjectFile);
+            }
          }
-         else
+         catch (Exception ex)
          {
-            defaultExt = "crg";
-            filter = "Corgy project | *." + defaultExt;
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
          }
       }
 
       void openProject()
       {
-         OpenFileDialog openFileDialog = new OpenFileDialog();
-         openFileDialog.Filter = filter;
-         openFileDialog.DefaultExt = defaultExt;
-
-         if(openFileDialog.ShowDialog() == true)
+         try
          {
-            openSaveEvents.SelectedProjectFile = openFileDialog.FileName;
-            configReader.OpenProject(openSaveEvents.SelectedProjectFile);
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = filter;
+            openFileDialog.DefaultExt = defaultExt;
+
+            if(openFileDialog.ShowDialog() == true)
+            {
+               openSaveEvents.SelectedProjectFile = openFileDialog.FileName;
+               configReader.OpenProject(openSaveEvents.SelectedProjectFile);
+            }
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
          }
       }
 

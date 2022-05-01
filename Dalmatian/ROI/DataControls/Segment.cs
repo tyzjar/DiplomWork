@@ -98,37 +98,9 @@ namespace Dalmatian.ROI
       }
       public Segment(string name)
       {
-         try
-         {
-            defaultInit();
-            var a = name.Split(delimiter);
-
-            if (a.Length >= 2)
-            {
-               Name = a[0];
-               cellCount = Convert.ToInt32(a[1]);
-
-               if (a.Length == 4)
-               {
-                  m_color = new ColorControl(a[2]);
-                  m_thickness = Convert.ToDouble(a[3]);
-               }
-            }
-            else
-               Name = name;
-         }
-         catch (Exception ex)
-         {
-            MessageBox.Show(ex.Message, "Exeption",
-               MessageBoxButton.OK, MessageBoxImage.Error);
-         }
+         Name = name;
       }
 
-      public string SaveName()
-      {
-         return Name + delimiter + cellCount.ToString() + delimiter +
-            m_color.ConvertToString() + delimiter + m_thickness.ToString();
-      }
       public abstract void defaultInit();
       public abstract void AddPoint(double x, double y);
       public abstract void AddPoint(Point p);
