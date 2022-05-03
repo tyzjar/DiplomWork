@@ -9,12 +9,6 @@ namespace Dalmatian.ROI
    class SegmentListControl : GUI.Items.Framework.Data.DataGrid.SegmentsList
    {
       private const string CellChanel = "All Cells";
-      static string StringProcessing(string s)
-      {
-         s = GUI.Items.Framework.ConfigReader.delete_symbol(s, ':');
-         s = s.Replace('\\', 'l');
-         return s;
-      }
 
       public static SegmentListControl SegmentListControlCreate(string sampleName)
       {
@@ -25,9 +19,8 @@ namespace Dalmatian.ROI
 
       public SegmentListControl() 
          : base()
-      {
-      }
- 
+      {}
+
       public void CountAll()
       {
          foreach (var item in segmentsList)

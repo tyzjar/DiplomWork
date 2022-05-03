@@ -27,12 +27,13 @@ namespace GUI.Items.Dalmatian
       {
          InitializeComponent();
 
-         //SegmentsDataGrid.SelectionChanged += (object sender, SelectionChangedEventArgs e) => {
-         //   if ((SegmentsDataGrid.SelectedItem as Segment) != null)
-         //   {
-         //      onSegmentIndexChanged(SegmentsDataGrid.SelectedIndex);
-         //   }
-         //};
+         SegmentsDataGrid.SelectionChanged += (object sender, SelectionChangedEventArgs e) =>
+         {
+            if ((SegmentsDataGrid.SelectedItem as Segment) != null)
+            {
+               onSegmentIndexChanged(SegmentsDataGrid.SelectedIndex);
+            }
+         };
       }
    }
 }

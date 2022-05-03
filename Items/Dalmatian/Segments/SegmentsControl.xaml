@@ -3,10 +3,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cb="clr-namespace:GUI.Items.Framework.View.MyComboBox"
         xmlns:local="clr-namespace:GUI.Items.Dalmatian"
-        mc:Ignorable="d"
-        Title="SegmentsControl" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        mc:Ignorable="d" Background="{StaticResource MyColor1}"
+        Title="Segments control" Height="600" Width="290" MinWidth="290" MaxWidth="290">
+   <StackPanel>
+      <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="10,10">
+         <StackPanel>
+            <TextBlock Text="Add segment :" Style="{StaticResource HeaderText}"/>
+            <!--Add folder-->
+            <TextBlock Text="By Name :" Style="{StaticResource TextBlockStyle}"/>
+            <ComboBox Name="SegmentComboBox" IsTextSearchEnabled="True" IsEditable="True"
+                      Grid.Column="0" DisplayMemberPath="SegmentName"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      FontFamily="Segoe UI"
+                      FontStyle="Normal"
+                      FontSize="12"
+                      Height="24"
+                      MaxHeight="40" cb:MyComboBox.IsFilterOnAutocompleteEnabled="True"
+                      Width="250"
+                      MaxWidth="450" />
+
+            <TextBlock Text="By ID :" Style="{StaticResource TextBlockStyle}"/>
+            <ComboBox x:Name="SegmentIdComboBox" MaxDropDownHeight ="240" 
+                            IsEditable="True" IsTextSearchEnabled="True"  DisplayMemberPath="SegmentName"/>
+
+            <Button  x:Name="XmlAddInButton" Content="Add"  HorizontalAlignment="Left"
+                Style="{StaticResource BaseStyle}" Width="100" Margin="0,10" Template="{StaticResource NewButtonControlTemplate}"
+                Command = "{Binding AddFolderCommand}"/>
+         </StackPanel>
+      </Border>
+      <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="10,10">
+         <UserControl x:Name="SegmentationPanelView" HorizontalAlignment="Center"/>
+      </Border>
+   </StackPanel>
 </Window>

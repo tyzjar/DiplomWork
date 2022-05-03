@@ -17,11 +17,6 @@
             <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay}" Header="Segments" Width="180"/>
             <DataGridTextColumn Binding="{Binding CellNumber}" Header="Counts" Width="*" IsReadOnly="True"/>
          </DataGrid.Columns>
-         <DataGrid.ContextMenu>
-            <ContextMenu>
-               <MenuItem Header="лул" Command="{Binding}"></MenuItem>
-            </ContextMenu>
-         </DataGrid.ContextMenu>
       </DataGrid>
    </ScrollViewer>
 </UserControl>

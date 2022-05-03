@@ -59,14 +59,5 @@ namespace Dalmatian.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to P:\DiplomRabota\GUI.
-        /// </summary>
-        internal static string ProjectDir {
-            get {
-                return ResourceManager.GetString("ProjectDir", resourceCulture);
-            }
-        }
     }
 }

@@ -222,6 +222,7 @@
     <Compile Include="Items\Dalmatian\Dalmatian.xaml.cs">
       <DependentUpon>Dalmatian.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Items\Dalmatian\DalmatianControl.cs" />
     <Compile Include="Items\Dalmatian\GridPanel.xaml.cs">
       <DependentUpon>GridPanel.xaml</DependentUpon>
     </Compile>
@@ -243,6 +244,7 @@
     <Compile Include="Items\Dalmatian\Preview\OriginalView.cs" />
     <Compile Include="Items\Dalmatian\Preview\sFilterPreview.cs" />
     <Compile Include="Items\Dalmatian\Preview\ThresholdPreview.cs" />
+    <Compile Include="Items\Dalmatian\Segments\LoadSegments.cs" />
     <Compile Include="Items\Dalmatian\Segments\Segment.cs" />
     <Compile Include="Items\Dalmatian\Segments\SegmentationPanel.xaml.cs">
       <DependentUpon>SegmentationPanel.xaml</DependentUpon>
@@ -277,6 +279,7 @@
     <Compile Include="Items\Framework\View\DalmatianSubfolder.xaml.cs">
       <DependentUpon>DalmatianSubfolder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Items\Framework\View\MyComboBox\MyComboBox.cs" />
     <Compile Include="Items\Framework\View\OpenSavePanel.xaml.cs">
       <DependentUpon>OpenSavePanel.xaml</DependentUpon>
     </Compile>
@@ -320,6 +323,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Templates\CheckBoxTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\ComboBoxTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

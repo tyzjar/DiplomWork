@@ -26,7 +26,7 @@ namespace Dalmatian.ROI
          }
          else
          {
-            panel.SegmentsDataGrid.ItemsSource = new BindingList<Segment>();
+            ClearPanel();
          }
       }
       public override void ClearPanel()

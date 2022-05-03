@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using GUI.Items.Dalmatian.Segments;
+using System.Windows;
 
 
 namespace GUI.Items.Dalmatian
@@ -8,9 +9,14 @@ namespace GUI.Items.Dalmatian
    /// </summary>
    public partial class SegmentsControl : Window
    {
+      LoadSegments loadSegments = new LoadSegments();
       public SegmentsControl()
       {
          InitializeComponent();
+         loadSegments.ReadJson();
+
+         SegmentationPanelView = new SegmentationPanel();
+         SegmentComboBox.ItemsSource = loadSegments.ViewSegments;
       }
    }
 }
