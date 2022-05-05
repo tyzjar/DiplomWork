@@ -35,7 +35,7 @@ namespace GUI.Items.Dalmatian
       [JsonProperty("name")]
       public string SegmentName { get; set; }
       [JsonProperty("id")]
-      public int Id = 0;
+      public int Id { get; set; } = 0;
       [JsonProperty("children")]
       public List<Segment> Childrens = new List<Segment>();
       public int CellNumber { get; set; } = 0;

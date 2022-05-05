@@ -99,6 +99,7 @@ namespace Dalmatian.ROI
       public Segment(string name)
       {
          Name = name;
+         defaultInit();
       }
 
       public abstract void defaultInit();
