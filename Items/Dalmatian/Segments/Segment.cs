@@ -30,7 +30,9 @@ namespace GUI.Items.Dalmatian
          SegmentName = "default name";
       }
 
-      public virtual void Count() { }
+      //public virtual void Count() { }
+      public virtual void AddPoint(int x, int y, int z) { }
+      public virtual void RemoveAll() { }
 
       [JsonProperty("name")]
       public string SegmentName { get; set; }
@@ -46,22 +48,22 @@ namespace GUI.Items.Dalmatian
       public CellSegment(string name) : base(name)
       { }
 
-      public override void Count()
-      { }
+      public override void AddPoint(int x, int y, int z) 
+      {
+         Cells.Add(new Point3d(x,y,z));
+      }
+      public override void RemoveAll()
+      {
+         Cells.Clear(); 
+      }
 
       public List<Point3d> Cells = new List<Point3d>();
    }
 
    class FigureSegment : Segment
    {
-      public FigureSegment(string name, Segment cells_) : base(name)
+      public FigureSegment(string name) : base(name)
       {
-         cells = cells_;
       }
-
-      public override void Count()
-      { }
-
-      private Segment cells;
    }
 }

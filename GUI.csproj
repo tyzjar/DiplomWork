@@ -57,6 +57,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetProjects.Input.Toolkit, Version=6.1.94.0, Culture=neutral, PublicKeyToken=79778c5f2eed289b, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetProjects.WpfToolkit.Input.6.1.94\lib\net40\DotNetProjects.Input.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="EPPlusFree, Version=4.5.3.8, Culture=neutral, PublicKeyToken=85bfa0499e2db48a, processorArchitecture=MSIL">
       <HintPath>packages\EPPlusFree.4.5.3.8\lib\net40\EPPlusFree.dll</HintPath>
     </Reference>
@@ -162,7 +165,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Items\Dalmatian\Segments\SegmentsControl.xaml">
+    <Page Include="Items\Dalmatian\Segments\SegmentsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -250,8 +253,9 @@
       <DependentUpon>SegmentationPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Items\Dalmatian\Segments\SegmentListControl.cs" />
-    <Compile Include="Items\Dalmatian\Segments\SegmentsControl.xaml.cs">
-      <DependentUpon>SegmentsControl.xaml</DependentUpon>
+    <Compile Include="Items\Dalmatian\Segments\SegmentsControl.cs" />
+    <Compile Include="Items\Dalmatian\Segments\SegmentsView.xaml.cs">
+      <DependentUpon>SegmentsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Items\Framework\ConfigReader.cs" />
     <Compile Include="Items\Framework\Data\FolderData.cs" />
@@ -279,7 +283,6 @@
     <Compile Include="Items\Framework\View\DalmatianSubfolder.xaml.cs">
       <DependentUpon>DalmatianSubfolder.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Items\Framework\View\MyComboBox\MyComboBox.cs" />
     <Compile Include="Items\Framework\View\OpenSavePanel.xaml.cs">
       <DependentUpon>OpenSavePanel.xaml</DependentUpon>
     </Compile>
@@ -323,10 +326,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Templates\CheckBoxTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Templates\ComboBoxTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

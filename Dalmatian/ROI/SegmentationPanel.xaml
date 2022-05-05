@@ -11,6 +11,7 @@
                 x:Name="SegmentsDataGrid" 
                 GridLinesVisibility="Horizontal"
                 CanUserDeleteRows="False"
+                CanUserAddRows="False"
                 AutoGenerateColumns="False" MaxHeight="540">
          <DataGrid.Columns>
             <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay}" Header="Segments" Width="180"/>

@@ -8,7 +8,7 @@ namespace Dalmatian
    /// </summary>
    public partial class MainWindow : Window
    {
-      ROI.DalmatianControl panel;
+      ROI.DalmatianControl panelContol;
       public MainWindow()
       {
          InitializeComponent();
@@ -20,10 +20,10 @@ namespace Dalmatian
       void componentsFactory()
       {
          var selectedFile = new GUI.Items.Framework.Data.SelectedData();
-         panel = new ROI.DalmatianControl(new ROI.SegmentationPanel());
+         panelContol = new ROI.DalmatianControl();
 
          mainData = new GUI.Items.Framework.Data.MainData(ROI.SegmentListControl.SegmentListControlCreate, true);
-         this.Content = new GUI.Items.Dalmatian.Dalmatian(mainData, panel, new Helper.HelperControl());
+         this.Content = new GUI.Items.Dalmatian.Dalmatian(mainData, panelContol, new Helper.HelperControl());
       }
    }
 }

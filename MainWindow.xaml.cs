@@ -25,8 +25,7 @@ namespace GUI
          mainData = new Items.Framework.Data.MainData(Items.Dalmatian.SegmentListControl.SegmentListControlCreate, false) ;
 
          Preprocessing.Content = new Items.Preprocessing.Preprocessing(mainData);
-         Dalmatian.Content = new Items.Dalmatian.Dalmatian(mainData,
-            new Items.Dalmatian.DalmatianControl(new Items.Dalmatian.SegmentationPanel()),
+         Dalmatian.Content = new Items.Dalmatian.Dalmatian(mainData, new Items.Dalmatian.DalmatianControl(),
             new Dalmatian.Helper.HelperControl());
          Morph.Content = new Items.Morph.Morph(mainData);
       }

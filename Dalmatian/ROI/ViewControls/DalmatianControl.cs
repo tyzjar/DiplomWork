@@ -9,9 +9,9 @@ namespace Dalmatian.ROI
 {
    public class DalmatianControl : GUI.Items.Dalmatian.IControl
    {
-      public DalmatianControl(object panel_)
+      public DalmatianControl()
       {
-         panel = panel_ as SegmentationPanel;
+         panel = new SegmentationPanel();
       }
       public override object GetPanel()
       {
@@ -33,7 +33,7 @@ namespace Dalmatian.ROI
       {
          panel.SegmentsDataGrid.ItemsSource = new BindingList<Segment>();
       }
-      public override void Comand(GUI.Items.Framework.Data.DataGrid.GridItem param, string s)
+      public override void Comand(GUI.Items.Framework.Data.DataGrid.GridItem param, GUI.Items.Framework.Data.MainData mainData)
       {
          ROIEdit sWindow = null;
 
@@ -42,10 +42,10 @@ namespace Dalmatian.ROI
             if (param == null)
                throw (GUI.Items.Framework.StandartExceptions.NoSelectedItem());
 
-            var folder = param.SampleName + @"\" + s + @"\";
+            var folder = param.SampleName + @"\" + mainData.folderData.CellCountSubfolder + @"\";
 
             sWindow = new ROIEdit(folder,
-            (param.Segments as SegmentListControl).segmentsList);
+               (param.Segments as SegmentListControl).segmentsList);
             sWindow.ShowDialog();
          }
          catch (GUI.Items.Framework.StandartExceptions dex)

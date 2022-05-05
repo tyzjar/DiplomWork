@@ -282,21 +282,37 @@ namespace Dalmatian.ROI
 
       public void AddSegment()
       {
-         var item = new FigureSegment("New segment");
-         item.Thickness = CurrentThickness;
-         mainCanvas.Children.Add(item.DrawSegment(imState.ImStartWidth, imState.ImStartHeight));
-         ScaleItem(item.pathBox);
-         segmentsList.Add(item);
-         SegmentIndex = segmentsList.Count - 1;
+         try
+         {
+            var item = new FigureSegment("New segment");
+            item.Thickness = CurrentThickness;
+            mainCanvas.Children.Add(item.DrawSegment(imState.ImStartWidth, imState.ImStartHeight));
+            ScaleItem(item.pathBox);
+            segmentsList.Add(item);
+            SegmentIndex = segmentsList.Count - 1;
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+         }
       }
 
       public void DeleteSegment()
       {
-         if (SegmentIndex != 0)
+         try
          {
-            mainCanvas.Children.Remove(segmentsList[SegmentIndex].pathBox);
-            segmentsList.RemoveAt(SegmentIndex);
-            SegmentIndex = segmentsList.Count - 1;
+            if (SegmentIndex > 0)
+            {
+               mainCanvas.Children.Remove(segmentsList[SegmentIndex].pathBox);
+               segmentsList.RemoveAt(SegmentIndex);
+               SegmentIndex = SegmentIndex - 1;
+            }
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
          }
       }
 

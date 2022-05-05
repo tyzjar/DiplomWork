@@ -31,13 +31,13 @@ namespace GUI.Items.Dalmatian
          CountAll();
          int count = 0;
 
-         //foreach (var item in segmentsList)
-         //{
-         //   worksheet.Cells[row, col].Value = item.Name;
-         //   worksheet.Cells[row, col + 1].Value = item.CellNumber;
-         //   row++;
-         //   count++;
-         //}
+         foreach (var item in segmentsList)
+         {
+            worksheet.Cells[row, col].Value = item.SegmentName;
+            worksheet.Cells[row, col + 1].Value = item.CellNumber;
+            row++;
+            count++;
+         }
 
          return count;
       }

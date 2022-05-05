@@ -1,0 +1,56 @@
+﻿<Window x:Class="GUI.Items.Dalmatian.SegmentsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:input="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
+        xmlns:local="clr-namespace:GUI.Items.Dalmatian"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d" Background="{StaticResource MyColor1}"
+        Title="Segments control" Height="600" Width="320" MinWidth="320" MaxWidth="320">
+   <StackPanel>
+      <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="5,5">
+         <StackPanel  Margin="10,10">
+            <TextBlock Text="Add segment :" Style="{StaticResource HeaderText}"/>
+            <!--Add folder-->
+            <input:AutoCompleteBox x:Name="SegmentNameBox" ValueMemberPath="SegmentName">
+               <input:AutoCompleteBox.ItemTemplate>
+                  <DataTemplate>
+                     <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding SegmentName}"/>
+                        <Label Content=" - "/>
+                        <Label Content="{Binding Id}" FontStyle="Italic" Foreground="DarkGray"/>
+                     </StackPanel>
+                  </DataTemplate>
+               </input:AutoCompleteBox.ItemTemplate>
+            </input:AutoCompleteBox>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+               <Button  Content="Add" Margin="5,8,0,0"
+                   Style="{StaticResource BaseStyle}" Width="88" Template="{StaticResource NewButtonControlTemplate}"
+                   Command = "{Binding AddSegment}"/>
+               <Button  Content="Delete" Margin="5,8,0,0"
+                   Style="{StaticResource BaseStyle}" Width="88" Template="{StaticResource NewButtonControlTemplate}"
+                   Command = "{Binding DeleteSegment}"/>
+               <Button Content="Apply to all" Margin="5,8,0,0"
+                   Style="{StaticResource BaseStyle}" Width="88" Template="{StaticResource NewButtonControlTemplate}"
+                   Command = "{Binding ApplyToAllSegment}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+               <Button  Content="Count" Margin="5,8,0,0"
+                   Style="{StaticResource BaseStyle}" Width="88" Template="{StaticResource NewButtonControlTemplate}"
+                   Command = "{Binding Count}"/>
+               <Button  Content="Count All" Margin="5,8,0,0"
+                   Style="{StaticResource BaseStyle}" Width="88" Template="{StaticResource NewButtonControlTemplate}"
+                   Command = "{Binding CountAll}"/>
+            </StackPanel>
+            
+         </StackPanel>
+      </Border>
+
+      <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="5,5">
+         <UserControl x:Name="SegmentationPanelView" HorizontalAlignment="Center" Margin="5,5"/>
+      </Border>
+   </StackPanel>
+</Window>

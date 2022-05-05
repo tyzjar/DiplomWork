@@ -11,8 +11,6 @@ namespace Dalmatian.ROI
    /// </summary>
    public partial class EditPanel : Window
    {
-
-      Path myColorPath = new Path();
       ROIEdit mainWindow;
 
       public EditPanel(ROIEdit mainWindow_)

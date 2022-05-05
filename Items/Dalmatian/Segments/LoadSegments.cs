@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 
-namespace GUI.Items.Dalmatian.Segments
+namespace GUI.Items.Dalmatian
 {
    
    public class LoadSegments
    {
       public static string FileName = "struct.json";
+      public delegate void LoadEndEventHandler();
+      public event LoadEndEventHandler onLoadEnd = () => {};
 
       public void AddRangeSegments(Segment segment)
       {
@@ -36,6 +38,7 @@ namespace GUI.Items.Dalmatian.Segments
                var rootSegment = JsonConvert.DeserializeObject(jsonString, typeof(Segment), settings) as Segment;
                AddRangeSegments(rootSegment);
             }
+            onLoadEnd();
          }
          catch (Exception ex)
          {

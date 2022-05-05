@@ -19,7 +19,7 @@ namespace GUI.Items.Dalmatian
          segmentationControl = segmentationControl_;
          SegmentCommand = new Framework.DelegateCommand((object param) => {
             segmentationControl.Comand( (gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem),
-               mainData.folderData.CellCountSubfolder);
+               mainData);
          });
 
          gridPanel = new GridPanel(segmentationControl.GetPanel());
@@ -58,8 +58,8 @@ namespace GUI.Items.Dalmatian
                {
                   row += segmentationControl.ExportComand(item, wsh, row, col);
                }
-               wsh.Cells.AutoFitColumns();
 
+               wsh.Cells.AutoFitColumns();
                wsh.Column(1).Width = 60;
                excelPackage.SaveAs(workFile);
                workFile.Close();
