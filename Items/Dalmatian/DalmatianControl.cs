@@ -79,7 +79,8 @@ namespace GUI.Items.Dalmatian
                   if (int.TryParse(objectData[1], out z))
                      l.AddPoint(x, y, z);
          }
-         (param.Segments as SegmentListControl).CountAll();
+
+         //(param.Segments as SegmentListControl).CountAll();
       }
 
       private SegmentationPanel panel;

@@ -138,16 +138,14 @@ namespace GUI.Items.Dalmatian
       }
 
       void count()
-      { }
+      { 
+      }
 
       void countAll()
       {
          try
          {
-            foreach (var item in mainData.dataGrid.Data)
-            {
-               (item.Segments as SegmentListControl).CountAll();
-            }
+
          }
          catch (Exception ex)
          {

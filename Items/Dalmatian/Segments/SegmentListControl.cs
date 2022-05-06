@@ -19,16 +19,9 @@ namespace GUI.Items.Dalmatian
          : base()
       { }
 
-      public void CountAll()
-      {
-         foreach (var item in segmentsList)
-         {
-            item.Count();
-         }
-      }
+
       public int Export(ExcelWorksheet worksheet, int row, int col)
       {
-         CountAll();
          int count = 0;
 
          foreach (var item in segmentsList)
