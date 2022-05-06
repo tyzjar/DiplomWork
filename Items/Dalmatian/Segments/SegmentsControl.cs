@@ -87,14 +87,21 @@ namespace GUI.Items.Dalmatian
          try
          {
             if (ViewWindow.SegmentNameBox.SelectedItem == null)
-               throw new Framework.StandartExceptions("Please select correct segment in the list!", false);
+               throw new Framework.StandartExceptions("Please select correct segment in the list!", true);
+
+            foreach (var item in selectedList.segmentsList)
+            {
+               if (item.SegmentName == ViewWindow.SegmentNameBox.Text)
+                  throw new Framework.StandartExceptions("Already have this segment.", false);
+            }
+
             selectedList.segmentsList.Add(ViewWindow.SegmentNameBox.SelectedItem as Segment);
          }
          catch (Framework.StandartExceptions sex)
          {
-            MessageBox.Show(sex.Message, "Exeption",
-               MessageBoxButton.OK, sex.critical ? MessageBoxImage.Error
-               : MessageBoxImage.Warning);
+            MessageBox.Show(sex.Message, "Info",
+               MessageBoxButton.OK, sex.critical ? MessageBoxImage.Warning
+               : MessageBoxImage.Information);
          }
          catch (Exception ex)
          {
