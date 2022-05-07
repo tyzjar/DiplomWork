@@ -21,7 +21,6 @@ namespace GUI
 
       void componentsFactory()
       {
-         var selectedFile = new Items.Framework.Data.SelectedData();
          mainData = new Items.Framework.Data.MainData(Items.Dalmatian.SegmentListControl.SegmentListControlCreate, false) ;
 
          Preprocessing.Content = new Items.Preprocessing.Preprocessing(mainData);

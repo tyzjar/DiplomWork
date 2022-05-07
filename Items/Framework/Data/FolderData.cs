@@ -10,13 +10,62 @@ namespace GUI.Items.Framework.Data
          base("FolderData")
       {
          AddFolderCommand = new DelegateCommand((object param) => { AddFolderEvent(); });
+         SelectAtlasFolder = new DelegateCommand((object param) => { selectAtlasFolder(); });
+         SelectAtlasReferenceFolder = new DelegateCommand((object param) => { selectAtlasReferenceFolder(); });
       }
-     
+
+      void selectAtlasFolder()
+      {
+         // Create a "Save As" dialog for selecting a directory (HACK)
+         var dialog = new Microsoft.Win32.SaveFileDialog();
+         dialog.Title = "Select a Directory"; // instead of default "Save As"
+         dialog.Filter = "Directory|*.this.directory"; // Prevents displaying files
+         dialog.FileName = "select"; // Filename will then be "select.this.directory"
+         if (dialog.ShowDialog() == true)
+         {
+            string path = dialog.FileName;
+            // Remove fake filename from resulting path
+            path = path.Replace("\\select.this.directory", "");
+            path = path.Replace(".this.directory", "");
+            // If user has changed the filename, create the new directory
+            if (!System.IO.Directory.Exists(path))
+            {
+               System.IO.Directory.CreateDirectory(path);
+            }
+            // Our final value is in path
+            AtlasFolder = path;
+         }
+      }
+
+      void selectAtlasReferenceFolder()
+      {
+         // Create a "Save As" dialog for selecting a directory (HACK)
+         var dialog = new Microsoft.Win32.SaveFileDialog();
+         dialog.Title = "Select a Directory"; // instead of default "Save As"
+         dialog.Filter = "Directory|*.this.directory"; // Prevents displaying files
+         dialog.FileName = "select"; // Filename will then be "select.this.directory"
+         if (dialog.ShowDialog() == true)
+         {
+            string path = dialog.FileName;
+            // Remove fake filename from resulting path
+            path = path.Replace("\\select.this.directory", "");
+            path = path.Replace(".this.directory", "");
+            // If user has changed the filename, create the new directory
+            if (!System.IO.Directory.Exists(path))
+            {
+               System.IO.Directory.CreateDirectory(path);
+            }
+            // Our final value is in path
+            AtlasRefFolder = path;
+         }
+      }
 
       #region events
-      public delegate void AddFolderDelegate();
-      public event AddFolderDelegate AddFolderEvent = () => { };
+      public delegate void EmptyHandler();
+      public event EmptyHandler AddFolderEvent = () => { };
       public ICommand AddFolderCommand { get; private set; }
+      public ICommand SelectAtlasFolder { get; private set; }
+      public ICommand SelectAtlasReferenceFolder { get; private set; }
       #endregion
 
       public string XmlAddFolder 
@@ -154,6 +203,36 @@ namespace GUI.Items.Framework.Data
             }
          }
       }
+      public string AtlasFolder
+      {
+         get
+         {
+            return variables.AtlasFolder;
+         }
+         set
+         {
+            if (value != variables.AtlasFolder)
+            {
+               variables.AtlasFolder = value;
+               OnPropertyChanged(nameof(AtlasFolder));
+            }
+         }
+      }
+      public string AtlasRefFolder
+      {
+         get
+         {
+            return variables.AtlasRefFolder;
+         }
+         set
+         {
+            if (value != variables.AtlasRefFolder)
+            {
+               variables.AtlasRefFolder = value;
+               OnPropertyChanged(nameof(AtlasRefFolder));
+            }
+         }
+      }
 
 
       public override void SetVariables(SaveVariables v) { variables = v as Variables; }
@@ -169,6 +248,9 @@ namespace GUI.Items.Framework.Data
          public string IntensitySubfolder { get; set; } = "Without_aberration";
          public string SubtractionSubfolder { get; set; } = "Subtraction_picture";
          public string CellCountSubfolder { get; set; } = "Pattern 1";
+         public string AtlasFolder { get; set; } = "";
+         public string AtlasRefFolder { get; set; } = "";
+
       }
 
       private Variables variables = new Variables();

@@ -14,10 +14,10 @@
                            AutoGenerateColumns="False" MaxHeight="540">
              <DataGrid.Columns>
                <DataGridTextColumn Binding="{Binding SampleName, Mode=TwoWay}" Header="Preprocessing samples" MinWidth="200" Width="*"/>
-               <DataGridTextColumn Binding="{Binding SubtractionState, Mode=TwoWay}" Header="Subtraction" Width="80"/>
-               <DataGridTextColumn Binding="{Binding IntensityState, Mode=TwoWay}" Header="Intensity" Width="80"/>
-               <DataGridTextColumn Binding="{Binding CropState, Mode=TwoWay}" Header="Crop" Width="80"/>
-               <DataGridTextColumn Binding="{Binding MaskState, Mode=TwoWay}" Header="Mask" Width="80"/>
+               <DataGridTextColumn Binding="{Binding SubtractionState, Mode=TwoWay}" Header="Subtraction" Width="80" IsReadOnly="True"/>
+               <DataGridTextColumn Binding="{Binding IntensityState, Mode=TwoWay}" Header="Intensity" Width="80" IsReadOnly="True"/>
+               <DataGridTextColumn Binding="{Binding CropState, Mode=TwoWay}" Header="Crop" Width="80" IsReadOnly="True"/>
+               <DataGridTextColumn Binding="{Binding MaskState, Mode=TwoWay}" Header="Mask" Width="80" IsReadOnly="True"/>
              </DataGrid.Columns>
          </DataGrid>
       </ScrollViewer>

@@ -14,7 +14,7 @@
          <DataGrid.Columns>
             <DataGridTextColumn Binding="{Binding SampleName, Mode=TwoWay}" Header="Morph sample" MinWidth="200" Width="*"/>
             <DataGridTextColumn Binding="{Binding InSampleName, Mode=TwoWay}" Header="Into sample" MinWidth="200" Width="*"/>
-            <DataGridTextColumn Binding="{Binding GroupName, Mode=TwoWay}" Header="Group" MaxWidth="150" Width="*"/>
+            <DataGridTextColumn Binding="{Binding GroupName, Mode=TwoWay}" Header="Group" Width="70"/>
          </DataGrid.Columns>
       </DataGrid>
    </ScrollViewer>

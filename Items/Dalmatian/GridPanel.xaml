@@ -15,7 +15,13 @@
                 Width="400">
             <DataGrid.Columns>
                <DataGridTextColumn Binding="{Binding SampleName, Mode=TwoWay}" Header="Samples" MinWidth="200" Width="*"/>
-               <DataGridTextColumn Binding="{Binding SampleName}" Header="Atlas" MinWidth="40" Width="40" IsReadOnly="True"/>
+               <DataGridTemplateColumn Header="Atlas" MinWidth="40" MaxWidth="40" IsReadOnly="True">
+                  <DataGridTemplateColumn.CellTemplate>
+                     <DataTemplate>
+                        <Image Source="{Binding AtlasMorphState}" MinWidth="15" MaxWidth="15"/>
+                     </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+               </DataGridTemplateColumn>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                <ContextMenu>
@@ -29,5 +35,6 @@
          </DataGrid>
       </ScrollViewer >
       <UserControl x:Name="SegmantationPanel" Margin="10,5"/>
+
    </StackPanel>
 </UserControl>

@@ -14,7 +14,7 @@
          <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                <TextBlock Text="Image Number : " />
-               <TextBlock Text="{Binding ImageIndex}" />
+               <TextBlock Text="{Binding ImageIndex, Mode=TwoWay}" />
             </StackPanel>
             <Slider Margin="0,0" Width="240"
                        Value="{Binding ImageIndex, Mode=TwoWay}"
@@ -28,7 +28,7 @@
          <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                <TextBlock Text="Image scale : " DockPanel.Dock="Left"/>
-               <TextBlock Text="{Binding ScaleView}" DockPanel.Dock="Left"/>
+               <TextBlock Text="{Binding ScaleView, Mode=TwoWay}" DockPanel.Dock="Left"/>
                <Button Content="Reset" DockPanel.Dock="Right" Margin="10,0,0,0"
                                     Style="{StaticResource BaseStyle}" Width="59" 
                                     FontSize="8" x:Name="ResetButton"

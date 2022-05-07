@@ -19,7 +19,6 @@ namespace Dalmatian
 
       void componentsFactory()
       {
-         var selectedFile = new GUI.Items.Framework.Data.SelectedData();
          panelContol = new ROI.DalmatianControl();
 
          mainData = new GUI.Items.Framework.Data.MainData(ROI.SegmentListControl.SegmentListControlCreate, true);

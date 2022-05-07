@@ -3,9 +3,11 @@
 /// </summary>
 /// 
 
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace GUI.Items.Framework.Data.DataGrid
 {
@@ -115,7 +117,13 @@ namespace GUI.Items.Framework.Data.DataGrid
             }
          }
       }
-
+      public BitmapImage AtlasMorphState
+      {
+         get 
+         {
+            return View.StateToImage.GetPicture(false);
+         }
+      }
 
       private string SampleNameValue = "";
       [JsonIgnore]

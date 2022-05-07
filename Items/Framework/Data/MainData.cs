@@ -35,12 +35,13 @@ namespace GUI.Items.Framework.Data
          configReader.AddItem(folderData);
          configReader.AddItem(dataGrid);
 
+         openSaveEvents.InstructionOpenEvent += openProject;
          openSaveEvents.InstructionSaveEvent += saveProject;
          openSaveEvents.InstructionSaveAsEvent += saveAsProject;
          openSaveEvents.InstructionCreateEvent += createProject;
-         openSaveEvents.SubfolderSettingsEvent += SubfolderSettingsStart;
-         openSaveEvents.InstructionOpenEvent += openProject;
-         folderData.AddFolderEvent += AddFolder;
+         openSaveEvents.SubfolderSettingsEvent += subfolderSettingsStart;
+         openSaveEvents.InstructionAddEvent += addFolderStart;
+         folderData.AddFolderEvent += addFolder;
 
          initStartFileAndFilter();
       }
@@ -148,7 +149,7 @@ namespace GUI.Items.Framework.Data
          }
       }
 
-      void AddFolder()
+      void addFolder()
       {
          try
          {
@@ -177,7 +178,7 @@ namespace GUI.Items.Framework.Data
          }
       }
 
-      void SubfolderSettingsStart()
+      void subfolderSettingsStart()
       {
          if (dalmatian)
          {
@@ -192,6 +193,19 @@ namespace GUI.Items.Framework.Data
          foreach (var item in dataGrid.Data)
          {
             item.udpateStates(folderData);
+         }
+      }
+      void addFolderStart()
+      {
+         try
+         {
+            var sWindow = new View.AddFolderWindow(folderData, dalmatian);
+            sWindow.ShowDialog();
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
          }
       }
 

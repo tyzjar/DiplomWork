@@ -188,27 +188,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Items\Framework\View\AddFolderPanel.xaml">
+    <Page Include="Items\Framework\View\AddFolder\AddFolderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Items\Framework\View\DalmatianSubfolder.xaml">
+    <Page Include="Items\Framework\View\AddFolder\AddFolderPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Items\Framework\View\OpenSavePanel.xaml">
+    <Page Include="Items\Framework\View\Subfolders\DalmatianSubfolder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Items\Framework\View\SelectedPanel.xaml">
+    <Page Include="Items\Framework\View\OpenSave\OpenSavePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Items\Framework\View\SubfoldersSettings.xaml">
+    <Page Include="Items\Framework\View\OpenSave\SelectedPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Items\Framework\View\ToolsSettings.xaml">
+    <Page Include="Items\Framework\View\Subfolders\SubfoldersSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\Framework\View\OpenSave\ToolsSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -224,7 +228,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Items\Framework\View\LoadScreen.xaml">
+    <Page Include="Items\Framework\View\LoadScreen\LoadScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -278,6 +282,7 @@
       <DependentUpon>SegmentsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Items\Framework\ConfigReader.cs" />
+    <Compile Include="Items\Framework\View\Images\StateToImage.cs" />
     <Compile Include="Items\Framework\Data\FolderData.cs" />
     <Compile Include="Items\Dalmatian\CellCountConfig.cs" />
     <Compile Include="Items\Framework\Data\DataGrid\DataGrid.cs" />
@@ -285,7 +290,6 @@
     <Compile Include="Items\Framework\Data\DataGrid\PreprocState.cs" />
     <Compile Include="Items\Framework\Data\MainData.cs" />
     <Compile Include="Items\Framework\Data\OpenSaveEvents.cs" />
-    <Compile Include="Items\Framework\Data\SelectedData.cs" />
     <Compile Include="Items\Framework\DelegateCommand.cs" />
     <Compile Include="Items\Framework\IFormConfig.cs" />
     <Compile Include="Items\Framework\IHelper.cs" />
@@ -297,20 +301,23 @@
     <Compile Include="Items\Framework\MatlabProcessor\Objects\TextBlocObject.cs" />
     <Compile Include="Items\Framework\StandartExceptions.cs" />
     <Compile Include="Items\Framework\ViewModelBase.cs" />
-    <Compile Include="Items\Framework\View\AddFolderPanel.xaml.cs">
+    <Compile Include="Items\Framework\View\AddFolder\AddFolderWindow.xaml.cs">
+      <DependentUpon>AddFolderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Framework\View\AddFolder\AddFolderPanel.xaml.cs">
       <DependentUpon>AddFolderPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Items\Framework\View\DalmatianSubfolder.xaml.cs">
+    <Compile Include="Items\Framework\View\Subfolders\DalmatianSubfolder.xaml.cs">
       <DependentUpon>DalmatianSubfolder.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Items\Framework\View\OpenSavePanel.xaml.cs">
+    <Compile Include="Items\Framework\View\OpenSave\OpenSavePanel.xaml.cs">
       <DependentUpon>OpenSavePanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Items\Framework\View\ProgressBarSmoother.cs" />
-    <Compile Include="Items\Framework\View\SelectedPanel.xaml.cs">
+    <Compile Include="Items\Framework\View\LoadScreen\ProgressBarSmoother.cs" />
+    <Compile Include="Items\Framework\View\OpenSave\SelectedPanel.xaml.cs">
       <DependentUpon>SelectedPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Items\Framework\View\SubfoldersSettings.xaml.cs">
+    <Compile Include="Items\Framework\View\Subfolders\SubfoldersSettings.xaml.cs">
       <DependentUpon>SubfoldersSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Items\Morph\GridPanel.xaml.cs">
@@ -320,7 +327,7 @@
     <Compile Include="Items\Morph\Morph.xaml.cs">
       <DependentUpon>Morph.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Items\Framework\View\LoadScreen.xaml.cs">
+    <Compile Include="Items\Framework\View\LoadScreen\LoadScreen.xaml.cs">
       <DependentUpon>LoadScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Items\Preprocessing\PreprocConfig.cs" />
@@ -384,10 +391,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fonts\" />
-    <Folder Include="Imagis\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Items\Framework\View\icon.PNG" />
+    <Resource Include="Items\Framework\View\LoadScreen\icon.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Corgi.ico" />
@@ -403,6 +409,10 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Items\Framework\View\Images\No.png" />
+    <Resource Include="Items\Framework\View\Images\Yes.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\System.Text.Json.6.0.3\build\System.Text.Json.targets" Condition="Exists('packages\System.Text.Json.6.0.3\build\System.Text.Json.targets')" />
