@@ -14,8 +14,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="35"/>
          </Grid.ColumnDefinitions>
-         <TextBox x:Name="XmlAddFolder" Style="{StaticResource TextBoxStyle}" Grid.Column="0"
-                  Text="{Binding Path=XmlAddFolder , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+         <TextBox x:Name="AddFolderText" Style="{StaticResource TextBoxStyle}" Grid.Column="0"
+                  Text="{Binding Path=AddFolderText , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
          <Button Content="..."  HorizontalAlignment="Center" Grid.Column="1"
                            Style="{StaticResource BaseStyle}" Width="25"
                            Template="{StaticResource NewButtonControlTemplate}"
@@ -25,7 +25,17 @@
       <!--Add inSample-->
       <StackPanel Margin="0,10,0,0" x:Name="MorphInPanel">
          <TextBlock Text="Morph into sample :" Style="{StaticResource TextBlockStyle}" />
-         <TextBox x:Name="XmlAddInSample" Style="{StaticResource TextBoxStyle}" Text="{Binding Path=XmlInSample, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+         <Grid>
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="*"/>
+               <ColumnDefinition Width="35"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Style="{StaticResource TextBoxStyle}" Text="{Binding Path=InSampleText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="..."  HorizontalAlignment="Center" Grid.Column="1"
+                           Style="{StaticResource BaseStyle}" Width="25"
+                           Template="{StaticResource NewButtonControlTemplate}"
+                           Command = "{Binding SelectAddInSample}"/>
+         </Grid>
       </StackPanel>
 
       <StackPanel Orientation="Horizontal" Margin="0,15,0,10" HorizontalAlignment="Center">
@@ -37,5 +47,6 @@
                                  Template="{StaticResource NewButtonControlTemplate}"
                                  VerticalAlignment="Center" Click="Button_Click"/>
       </StackPanel>
+      
    </StackPanel>
 </UserControl>

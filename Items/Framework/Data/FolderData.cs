@@ -10,91 +10,49 @@ namespace GUI.Items.Framework.Data
          base("FolderData")
       {
          AddFolderCommand = new DelegateCommand((object param) => { AddFolderEvent(); });
-         SelectAtlasFolder = new DelegateCommand((object param) => { selectAtlasFolder(); });
-         SelectAtlasReferenceFolder = new DelegateCommand((object param) => { selectAtlasReferenceFolder(); });
-      }
-
-      void selectAtlasFolder()
-      {
-         // Create a "Save As" dialog for selecting a directory (HACK)
-         var dialog = new Microsoft.Win32.SaveFileDialog();
-         dialog.Title = "Select a Directory"; // instead of default "Save As"
-         dialog.Filter = "Directory|*.this.directory"; // Prevents displaying files
-         dialog.FileName = "select"; // Filename will then be "select.this.directory"
-         if (dialog.ShowDialog() == true)
-         {
-            string path = dialog.FileName;
-            // Remove fake filename from resulting path
-            path = path.Replace("\\select.this.directory", "");
-            path = path.Replace(".this.directory", "");
-            // If user has changed the filename, create the new directory
-            if (!System.IO.Directory.Exists(path))
-            {
-               System.IO.Directory.CreateDirectory(path);
-            }
-            // Our final value is in path
-            AtlasFolder = path;
-         }
-      }
-
-      void selectAtlasReferenceFolder()
-      {
-         // Create a "Save As" dialog for selecting a directory (HACK)
-         var dialog = new Microsoft.Win32.SaveFileDialog();
-         dialog.Title = "Select a Directory"; // instead of default "Save As"
-         dialog.Filter = "Directory|*.this.directory"; // Prevents displaying files
-         dialog.FileName = "select"; // Filename will then be "select.this.directory"
-         if (dialog.ShowDialog() == true)
-         {
-            string path = dialog.FileName;
-            // Remove fake filename from resulting path
-            path = path.Replace("\\select.this.directory", "");
-            path = path.Replace(".this.directory", "");
-            // If user has changed the filename, create the new directory
-            if (!System.IO.Directory.Exists(path))
-            {
-               System.IO.Directory.CreateDirectory(path);
-            }
-            // Our final value is in path
-            AtlasRefFolder = path;
-         }
+         SelectAddFolder = new DelegateCommand((object param) => { Utils.SelectFolder((string value) => { AddFolderText = value; }); });
+         SelectAddInSample = new DelegateCommand((object param) => { Utils.SelectFolder((string value) => { InSampleText = value; }); });
+         SelectAtlasFolder = new DelegateCommand((object param) => { Utils.SelectFolder((string value)=> { AtlasFolder = value; }); });
+         SelectAtlasReferenceFolder = new DelegateCommand((object param) => { Utils.SelectFolder((string value) => { AtlasRefFolder = value; }); });
       }
 
       #region events
       public delegate void EmptyHandler();
       public event EmptyHandler AddFolderEvent = () => { };
       public ICommand AddFolderCommand { get; private set; }
+      public ICommand SelectAddFolder { get; private set; }
+      public ICommand SelectAddInSample { get; private set; }
       public ICommand SelectAtlasFolder { get; private set; }
       public ICommand SelectAtlasReferenceFolder { get; private set; }
       #endregion
 
-      public string XmlAddFolder 
+      public string AddFolderText 
       {
          get
          {
-            return variables.XmlAddFolder;
+            return variables.AddFolderText;
          }
          set
          {
-            if (value != variables.XmlAddFolder)
+            if (value != variables.AddFolderText)
             {
-               variables.XmlAddFolder = value;
-               OnPropertyChanged(nameof(XmlAddFolder));
+               variables.AddFolderText = value;
+               OnPropertyChanged(nameof(AddFolderText));
             }
          } 
       }
-      public string XmlInSample
+      public string InSampleText
       {
          get
          {
-            return variables.XmlInSample;
+            return variables.InSampleText;
          }
          set
          {
-            if (value != variables.XmlInSample)
+            if (value != variables.InSampleText)
             {
-               variables.XmlInSample = value;
-               OnPropertyChanged(nameof(XmlInSample));
+               variables.InSampleText = value;
+               OnPropertyChanged(nameof(InSampleText));
             }
          }
       }
@@ -239,8 +197,8 @@ namespace GUI.Items.Framework.Data
       public override SaveVariables GetVariables() => variables;
       public class Variables : Framework.ConfigItem.SaveVariables
       {
-         public string XmlAddFolder { get; set; } = "";
-         public string XmlInSample { get; set; } = "";
+         public string AddFolderText { get; set; } = "";
+         public string InSampleText { get; set; } = "";
          public string MorphSubfolder { get; set; } = "Morph";
          public string MaskSubfolder { get; set; } = "Masked";
          public string SampleSubfolder { get; set; } = "Pattern 1";

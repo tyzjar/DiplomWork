@@ -22,7 +22,7 @@ namespace GUI.Items.Dalmatian
                mainData);
          });
 
-         gridPanel = new GridPanel(segmentationControl.GetPanel());
+         gridPanel = new GridPanel(segmentationControl.GetPanel(), mainData.dalmatian);
          gridPanel.SamplesDataGrid.ItemsSource = mainData.dataGrid.Data;
          gridPanel.SamplesDataGrid.SelectionChanged += (object sender, SelectionChangedEventArgs e) => {
             if ((gridPanel.SamplesDataGrid.SelectedItem as Framework.Data.DataGrid.GridItem) != null)

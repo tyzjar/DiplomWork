@@ -282,6 +282,7 @@
       <DependentUpon>SegmentsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Items\Framework\ConfigReader.cs" />
+    <Compile Include="Items\Framework\Utils.cs" />
     <Compile Include="Items\Framework\View\Images\StateToImage.cs" />
     <Compile Include="Items\Framework\Data\FolderData.cs" />
     <Compile Include="Items\Dalmatian\CellCountConfig.cs" />

@@ -15,10 +15,10 @@
                 Width="400">
             <DataGrid.Columns>
                <DataGridTextColumn Binding="{Binding SampleName, Mode=TwoWay}" Header="Samples" MinWidth="200" Width="*"/>
-               <DataGridTemplateColumn Header="Atlas" MinWidth="40" MaxWidth="40" IsReadOnly="True">
+               <DataGridTemplateColumn x:Name="AtlasStateColumn" Header="Atlas" MinWidth="40" MaxWidth="40" IsReadOnly="True">
                   <DataGridTemplateColumn.CellTemplate>
                      <DataTemplate>
-                        <Image Source="{Binding AtlasMorphState}" MinWidth="15" MaxWidth="15"/>
+                        <Image Source="{Binding AtlasMorphStatePic}" MinWidth="15" MaxWidth="15"/>
                      </DataTemplate>
                   </DataGridTemplateColumn.CellTemplate>
                </DataGridTemplateColumn>

@@ -7,7 +7,7 @@
          Background="{StaticResource MyColor1}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Subfolders settings" Height="220" Width="340"
+        Title="Subfolders settings" Height="240" Width="340"
         ResizeMode="NoResize"
         KeyDown="KeyEvents">
    <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="10,10">

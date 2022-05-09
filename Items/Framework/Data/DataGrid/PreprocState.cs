@@ -42,6 +42,14 @@ namespace GUI.Items.Framework.Data.DataGrid
          else
             return "d";
       }
+
+      public static bool IsDone(PreprocState state)
+      {
+         if ((state == PreprocState.compleate))
+            return true;
+
+         return false;
+      }
    };
 
 }

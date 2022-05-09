@@ -153,14 +153,14 @@ namespace GUI.Items.Framework.Data
       {
          try
          {
-            string[] allfolders = Directory.GetDirectories(folderData.XmlAddFolder);
+            string[] allfolders = Directory.GetDirectories(folderData.AddFolderText);
 
             /// Слабое место с конструктором по строке, нужно переделать.
             foreach (var folder in allfolders)
             {
                string[] row = new string[7];
                row[0] = folder;
-               row[1] = folderData.XmlInSample;
+               row[1] = folderData.InSampleText;
                row[2] = "Group1";
 
                dataGrid.addItem(row);

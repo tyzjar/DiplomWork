@@ -14,11 +14,35 @@
                            AutoGenerateColumns="False" MaxHeight="540">
              <DataGrid.Columns>
                <DataGridTextColumn Binding="{Binding SampleName, Mode=TwoWay}" Header="Preprocessing samples" MinWidth="200" Width="*"/>
-               <DataGridTextColumn Binding="{Binding SubtractionState, Mode=TwoWay}" Header="Subtraction" Width="80" IsReadOnly="True"/>
-               <DataGridTextColumn Binding="{Binding IntensityState, Mode=TwoWay}" Header="Intensity" Width="80" IsReadOnly="True"/>
-               <DataGridTextColumn Binding="{Binding CropState, Mode=TwoWay}" Header="Crop" Width="80" IsReadOnly="True"/>
-               <DataGridTextColumn Binding="{Binding MaskState, Mode=TwoWay}" Header="Mask" Width="80" IsReadOnly="True"/>
-             </DataGrid.Columns>
+               <DataGridTemplateColumn Header="Subtraction" Width="75" IsReadOnly="True">
+                  <DataGridTemplateColumn.CellTemplate>
+                     <DataTemplate>
+                        <Image Source="{Binding SubtractionStatePic}" MinWidth="15" MaxWidth="15"/>
+                     </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+               </DataGridTemplateColumn>
+               <DataGridTemplateColumn Header="Intensity" Width="60" IsReadOnly="True">
+                  <DataGridTemplateColumn.CellTemplate>
+                     <DataTemplate>
+                        <Image Source="{Binding IntensityStatePic}" MinWidth="15" MaxWidth="15"/>
+                     </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+               </DataGridTemplateColumn>
+               <DataGridTemplateColumn Header="Crop" MinWidth="40" MaxWidth="40" IsReadOnly="True">
+                  <DataGridTemplateColumn.CellTemplate>
+                     <DataTemplate>
+                        <Image Source="{Binding CropStatePic}" MinWidth="15" MaxWidth="15"/>
+                     </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+               </DataGridTemplateColumn>
+               <DataGridTemplateColumn Header="Mask" MinWidth="40" MaxWidth="40" IsReadOnly="True">
+                  <DataGridTemplateColumn.CellTemplate>
+                     <DataTemplate>
+                        <Image Source="{Binding MaskStatePic}" MinWidth="15" MaxWidth="15"/>
+                     </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+               </DataGridTemplateColumn>
+            </DataGrid.Columns>
          </DataGrid>
       </ScrollViewer>
    </Grid>

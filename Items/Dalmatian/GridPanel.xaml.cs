@@ -20,10 +20,11 @@ namespace GUI.Items.Dalmatian
    /// </summary>
    public partial class GridPanel : UserControl
    {
-      public GridPanel(object segmentationPanel)
+      public GridPanel(object segmentationPanel, bool dalmatian)
       {
          InitializeComponent();
          SegmantationPanel.Content = segmentationPanel;
+         AtlasStateColumn.Visibility = dalmatian ? Visibility.Hidden : Visibility.Visible;
       }
    }
 }

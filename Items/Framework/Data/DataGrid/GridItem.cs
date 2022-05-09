@@ -82,6 +82,7 @@ namespace GUI.Items.Framework.Data.DataGrid
             {
                CropStateValue = value;
                OnPropertyChanged(nameof(CropState));
+               OnPropertyChanged(nameof(CropStatePic));
             }
          }
       }
@@ -98,6 +99,7 @@ namespace GUI.Items.Framework.Data.DataGrid
             {
                IntensityStateValue = value;
                OnPropertyChanged(nameof(IntensityState));
+               OnPropertyChanged(nameof(IntensityStatePic));
             }
          }
       }
@@ -114,6 +116,24 @@ namespace GUI.Items.Framework.Data.DataGrid
             {
                SubtractionStateValue = value;
                OnPropertyChanged(nameof(SubtractionState));
+               OnPropertyChanged(nameof(SubtractionStatePic));
+            }
+         }
+      }
+      public PreprocState AtlasMorphState
+      {
+         get
+         {
+            return AtlasMorphStateValue;
+         }
+
+         set
+         {
+            if (AtlasMorphStateValue != value)
+            {
+               AtlasMorphStateValue = value;
+               OnPropertyChanged(nameof(AtlasMorphState));
+               OnPropertyChanged(nameof(AtlasMorphStatePic));
             }
          }
       }
@@ -123,7 +143,7 @@ namespace GUI.Items.Framework.Data.DataGrid
       {
          get 
          {
-            return View.StateToImage.GetPicture(false);
+            return View.StateToImage.GetPicture(PreprocStateHelper.IsDone(MaskState));
          }
       }
       [JsonIgnore]
@@ -131,7 +151,7 @@ namespace GUI.Items.Framework.Data.DataGrid
       {
          get
          {
-            return View.StateToImage.GetPicture(false);
+            return View.StateToImage.GetPicture(PreprocStateHelper.IsDone(CropState));
          }
       }
       [JsonIgnore]
@@ -139,7 +159,7 @@ namespace GUI.Items.Framework.Data.DataGrid
       {
          get
          {
-            return View.StateToImage.GetPicture(false);
+            return View.StateToImage.GetPicture(PreprocStateHelper.IsDone(IntensityState));
          }
       }
       [JsonIgnore]
@@ -147,15 +167,15 @@ namespace GUI.Items.Framework.Data.DataGrid
       {
          get
          {
-            return View.StateToImage.GetPicture(false);
+            return View.StateToImage.GetPicture(PreprocStateHelper.IsDone(SubtractionState));
          }
       }
       [JsonIgnore]
-      public BitmapImage AtlasMorphState
+      public BitmapImage AtlasMorphStatePic
       {
          get
          {
-            return View.StateToImage.GetPicture(false);
+            return View.StateToImage.GetPicture(PreprocStateHelper.IsDone(AtlasMorphState));
          }
       }
 
