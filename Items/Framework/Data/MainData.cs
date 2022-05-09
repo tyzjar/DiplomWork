@@ -162,10 +162,6 @@ namespace GUI.Items.Framework.Data
                row[0] = folder;
                row[1] = folderData.XmlInSample;
                row[2] = "Group1";
-               row[3] = "";
-               row[4] = "";
-               row[5] = "";
-               row[6] = "";
 
                dataGrid.addItem(row);
             }

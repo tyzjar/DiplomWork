@@ -41,12 +41,12 @@ namespace GUI.Items.Dalmatian
             });
 
             // Count button
-            ApplyToAllSegment = new Framework.DelegateCommand((object param) => {
+            Count = new Framework.DelegateCommand((object param) => {
                count();
             });
 
             // Count all button
-            ApplyToAllSegment = new Framework.DelegateCommand((object param) => {
+            CountAll = new Framework.DelegateCommand((object param) => {
                countAll();
             });
 

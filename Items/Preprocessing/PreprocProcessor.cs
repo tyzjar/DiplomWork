@@ -2,7 +2,7 @@
 using OfficeOpenXml;
 using gui_preproc;
 using MathWorks.MATLAB.NET.Arrays;
-
+using GUI.Items.Framework.Data.DataGrid;
 
 namespace GUI.Items.Preprocessing
 {
@@ -71,13 +71,13 @@ namespace GUI.Items.Preprocessing
                col = 2;
                worksheet.Cells[row, col++].Value = item.SampleName;
                worksheet.Cells[row, col++].Value = config.SubtractionEnabel ?
-                  item.SubtractionStateValue.ShouldProcess : DoNotProcess;
+                  PreprocStateHelper.ShouldProcess(item.SubtractionState) : DoNotProcess;
                worksheet.Cells[row, col++].Value = config.IntensityEnabel ?
-                  item.IntensityStateValue.ShouldProcess : DoNotProcess;
+                  PreprocStateHelper.ShouldProcess(item.IntensityState) : DoNotProcess;
                worksheet.Cells[row, col++].Value = config.CropEnabel ?
-                  item.CropStateValue.ShouldProcess : DoNotProcess;
+                  PreprocStateHelper.ShouldProcess(item.CropState) : DoNotProcess;
                worksheet.Cells[row, col++].Value = config.MaskEnabel ?
-                  item.MaskStateValue.ShouldProcess : DoNotProcess;
+                  PreprocStateHelper.ShouldProcess(item.MaskState) : DoNotProcess;
                row++;
             }
          }

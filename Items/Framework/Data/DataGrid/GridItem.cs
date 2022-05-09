@@ -3,10 +3,7 @@
 /// </summary>
 /// 
 
-using System;
-using System.Collections.Generic;
-using System.Text.Json.Serialization;
-using System.Windows;
+using Newtonsoft.Json;
 using System.Windows.Media.Imaging;
 
 namespace GUI.Items.Framework.Data.DataGrid
@@ -30,10 +27,11 @@ namespace GUI.Items.Framework.Data.DataGrid
          SampleName = row[i++];
          InSampleName = row[i++];
          GroupName = row[i++];
-         MaskStateValue = new PreprocState(row[i++]);
-         CropStateValue = new PreprocState(row[i++]);
-         IntensityStateValue = new PreprocState(row[i++]);
-         SubtractionStateValue = new PreprocState(row[i++]);
+         MaskStateValue = PreprocState.notStarted;
+         CropStateValue = PreprocState.notStarted;
+         IntensityStateValue = PreprocState.notStarted;
+         SubtractionStateValue = PreprocState.notStarted;
+         AtlasMorphStateValue = PreprocState.notStarted;
       }
 
       public string SampleName 
@@ -53,99 +51,132 @@ namespace GUI.Items.Framework.Data.DataGrid
       }
       public string InSampleName { get; set; } = "";
       public string GroupName { get; set; } = "";
-      public string MaskState
+
+      public PreprocState MaskState
       {
          get
          {
-            return PreprocState.getStringState(MaskStateValue.state);
+            return MaskStateValue;
          }
 
          set
          {
-            if (!Equals(MaskState, value))
+            if (MaskStateValue != value)
             {
-               MaskStateValue.setStateFromString(value);
+               MaskStateValue = value;
                OnPropertyChanged(nameof(MaskState));
+               OnPropertyChanged(nameof(MaskStatePic));
             }
          }
       }
-      public string CropState
+      public PreprocState CropState
       {
          get
          {
-            return PreprocState.getStringState(CropStateValue.state);
+            return CropStateValue;
          }
 
          set
          {
-            if (!Equals(CropState, value))
+            if (CropStateValue != value)
             {
-               CropStateValue.setStateFromString(value);
+               CropStateValue = value;
                OnPropertyChanged(nameof(CropState));
             }
          }
       }
-      public string IntensityState
+      public PreprocState IntensityState
       {
          get
          {
-            return PreprocState.getStringState(IntensityStateValue.state);
+            return IntensityStateValue;
          }
 
          set
          {
-            if (!Equals(IntensityState, value))
+            if (IntensityStateValue != value)
             {
-               IntensityStateValue.setStateFromString(value);
+               IntensityStateValue = value;
                OnPropertyChanged(nameof(IntensityState));
             }
          }
       }
-      public string SubtractionState
+      public PreprocState SubtractionState
       {
          get
          {
-            return PreprocState.getStringState(SubtractionStateValue.state);
+            return SubtractionStateValue;
          }
 
          set
          {
-            if (!Equals(SubtractionState, value))
+            if (SubtractionStateValue != value)
             {
-               SubtractionStateValue.setStateFromString(value);
+               SubtractionStateValue = value;
                OnPropertyChanged(nameof(SubtractionState));
             }
          }
       }
-      public BitmapImage AtlasMorphState
+
+      [JsonIgnore]
+      public BitmapImage MaskStatePic
       {
          get 
          {
             return View.StateToImage.GetPicture(false);
          }
       }
+      [JsonIgnore]
+      public BitmapImage CropStatePic
+      {
+         get
+         {
+            return View.StateToImage.GetPicture(false);
+         }
+      }
+      [JsonIgnore]
+      public BitmapImage IntensityStatePic
+      {
+         get
+         {
+            return View.StateToImage.GetPicture(false);
+         }
+      }
+      [JsonIgnore]
+      public BitmapImage SubtractionStatePic
+      {
+         get
+         {
+            return View.StateToImage.GetPicture(false);
+         }
+      }
+      [JsonIgnore]
+      public BitmapImage AtlasMorphState
+      {
+         get
+         {
+            return View.StateToImage.GetPicture(false);
+         }
+      }
 
-      private string SampleNameValue = "";
-      [JsonIgnore]
-      public PreprocState MaskStateValue;
-      [JsonIgnore]
-      public PreprocState CropStateValue;
-      [JsonIgnore]
-      public PreprocState IntensityStateValue;
-      [JsonIgnore]
-      public PreprocState SubtractionStateValue;
       public SegmentsList Segments;
+      private string SampleNameValue = "";
+      private PreprocState MaskStateValue;
+      private PreprocState CropStateValue;
+      private PreprocState IntensityStateValue;
+      private PreprocState SubtractionStateValue;
+      private PreprocState AtlasMorphStateValue;
 
       public void udpateStates(FolderData folderData)
       {
-         if (MaskStateValue.state != PreprocState.States.failed)
-            MaskState = PreprocState.StateByFolder(SampleName + "\\" + folderData.MaskSubfolder);
-         if (CropStateValue.state != PreprocState.States.failed)
-            CropState = PreprocState.StateByFolder(SampleName + "\\" + folderData.CropSubfolder);
-         if (IntensityStateValue.state != PreprocState.States.failed)
-            IntensityState = PreprocState.StateByFolder(SampleName + "\\" + folderData.IntensitySubfolder);
-         if (SubtractionStateValue.state != PreprocState.States.failed)
-            SubtractionState = PreprocState.StateByFolder(SampleName + "\\" + folderData.SubtractionSubfolder);
+         if (MaskState != PreprocState.failed)
+            MaskState = PreprocStateHelper.StateByFolder(SampleName + "\\" + folderData.MaskSubfolder);
+         if (CropState != PreprocState.failed)
+            CropState = PreprocStateHelper.StateByFolder(SampleName + "\\" + folderData.CropSubfolder);
+         if (IntensityState != PreprocState.failed)
+            IntensityState = PreprocStateHelper.StateByFolder(SampleName + "\\" + folderData.IntensitySubfolder);
+         if (SubtractionState != PreprocState.failed)
+            SubtractionState = PreprocStateHelper.StateByFolder(SampleName + "\\" + folderData.SubtractionSubfolder);
       }
 
    }

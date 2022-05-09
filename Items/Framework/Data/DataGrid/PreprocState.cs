@@ -7,68 +7,40 @@ using System.IO;
 namespace GUI.Items.Framework.Data.DataGrid
 {
 
-   public class PreprocState
+   public enum PreprocState
+   {
+      notStarted,
+      failed,
+      compleate
+   }
+
+   public class PreprocStateHelper
    { 
-      public enum States
-      {
-         notStarted,
-         failed,
-         compleate
-      }
 
-      public PreprocState()
-      { 
-         state = States.notStarted;
-      }
-
-      public PreprocState(string beginState)
-      { 
-         setStateFromString(beginState);
-      }
-
-      public States state { get; set; }
-
-      public static string getStringState(States state_)
-      { 
-         var s = "";
-         switch(state_)
-         {
-            case States.notStarted : s = "not started"; break;
-            case States.failed: s = "failed"; break;
-            case States.compleate: s = "compleate"; break;
-         }
-         return s;
-      }
-
-      public static string StateByFolder(string folderName)
+      public static PreprocState StateByFolder(string folderName)
       {
          if (Directory.Exists(folderName))
-            return getStringState(States.compleate);
+            return PreprocState.compleate;
 
-         return getStringState(States.notStarted);
+         return PreprocState.notStarted;
       }
 
-      public void setStateFromString(string newState)
-      { 
-         switch(newState)
-         {
-            case "not started": state = States.notStarted; break;
-            case "failed": state = States.failed; break;
-            case "compleate": state = States.compleate; break;
-            default: break;
-         }
+      public static PreprocState StateByFiles(string [] files)
+      {
+         foreach(var file in files)
+            if (File.Exists(file))
+               return PreprocState.compleate;
+
+         return PreprocState.notStarted;
       }
 
       /// String values should be same in Matlab Preproc script
-      public string ShouldProcess 
+      public static string ShouldProcess (PreprocState state)
       {
-         get 
-         {
-            if ((state == States.notStarted) || (state == States.failed))
-               return "y";
-            else
-               return "d";
-         }
+         if ((state == PreprocState.notStarted) || (state == PreprocState.failed))
+            return "y";
+         else
+            return "d";
       }
    };
 
