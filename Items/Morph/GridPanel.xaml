@@ -12,9 +12,15 @@
                          GridLinesVisibility="Horizontal"
                          AutoGenerateColumns="False" MaxHeight="540">
          <DataGrid.Columns>
-            <DataGridTextColumn Binding="{Binding SampleName, Mode=TwoWay}" Header="Morph sample" MinWidth="200" Width="*"/>
-            <DataGridTextColumn Binding="{Binding InSampleName, Mode=TwoWay}" Header="Into sample" MinWidth="200" Width="*"/>
-            <DataGridTextColumn Binding="{Binding GroupName, Mode=TwoWay}" Header="Group" Width="70"/>
+            <DataGridTextColumn Binding="{Binding SampleName, Mode=TwoWay}" Header="Morph sample" MinWidth="200" Width="*" />
+            <DataGridTemplateColumn Header="Into sample" MinWidth="40" Width="240" IsReadOnly="False">
+               <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                     <ComboBox Style="{StaticResource BaseStyleC}" Text="{Binding Path=InSampleName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                               ItemsSource="{Binding InSampleValues}" IsEditable="True" IsReadOnly="False"/>
+                  </DataTemplate>
+               </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
          </DataGrid.Columns>
       </DataGrid>
    </ScrollViewer>

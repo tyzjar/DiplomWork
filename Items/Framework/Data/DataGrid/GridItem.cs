@@ -4,6 +4,7 @@
 /// 
 
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Windows.Media.Imaging;
 
 namespace GUI.Items.Framework.Data.DataGrid
@@ -26,7 +27,6 @@ namespace GUI.Items.Framework.Data.DataGrid
          int i = 0;
          SampleName = row[i++];
          InSampleName = row[i++];
-         GroupName = row[i++];
          MaskStateValue = PreprocState.notStarted;
          CropStateValue = PreprocState.notStarted;
          IntensityStateValue = PreprocState.notStarted;
@@ -50,7 +50,10 @@ namespace GUI.Items.Framework.Data.DataGrid
          } 
       }
       public string InSampleName { get; set; } = "";
-      public string GroupName { get; set; } = "";
+      public static List<string> InSampleValues
+      {
+         get => FolderData.InSampleValues;
+      }
 
       public PreprocState MaskState
       {
@@ -197,8 +200,10 @@ namespace GUI.Items.Framework.Data.DataGrid
             IntensityState = PreprocStateHelper.StateByFolder(SampleName + "\\" + folderData.IntensitySubfolder);
          if (SubtractionState != PreprocState.failed)
             SubtractionState = PreprocStateHelper.StateByFolder(SampleName + "\\" + folderData.SubtractionSubfolder);
-      }
 
+         AtlasMorphState = PreprocStateHelper.StateByFiles(new string[] { SampleName + "\\" + FolderData.Atlas + FolderData.AtlasExtension,
+            SampleName + "\\" + FolderData.AtlasReference + FolderData.AtlasExtension});
+      }
    }
 
 }

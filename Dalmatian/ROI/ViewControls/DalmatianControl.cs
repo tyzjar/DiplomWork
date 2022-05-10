@@ -44,6 +44,10 @@ namespace Dalmatian.ROI
 
             var folder = param.SampleName + @"\" + mainData.folderData.CellCountSubfolder + @"\";
 
+            if (!GUI.Items.Framework.Utils.CheckFolderForTifFiles(folder))
+               throw new GUI.Items.Framework.StandartExceptions("Did not find segments pictures. Plaese check the folder \""
+                  + folder + "\" and confirm that samples picture are there. Also check subfolder in settings.",false);
+
             sWindow = new ROIEdit(folder,
                (param.Segments as SegmentListControl).segmentsList);
             sWindow.ShowDialog();

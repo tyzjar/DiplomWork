@@ -147,7 +147,7 @@
                   </Grid>
                   <!--2-->
                   <TextBlock Grid.Column="0" Grid.Row="2" Height = "20"
-                                      Text="Atlas reference (full) :" Style="{StaticResource TextBlockStyle}" />
+                                      Text="Atlas reference :" Style="{StaticResource TextBlockStyle}" />
                   <Grid  Grid.Column="1" Grid.Row="2" Width="200">
                      <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

@@ -284,7 +284,7 @@ namespace Dalmatian.ROI
       {
          try
          {
-            var item = new FigureSegment("New segment");
+            var item = new FigureSegment("New segment " + segmentsList.Count.ToString());
             item.Thickness = CurrentThickness;
             mainCanvas.Children.Add(item.DrawSegment(imState.ImStartWidth, imState.ImStartHeight));
             ScaleItem(item.pathBox);
@@ -388,6 +388,8 @@ namespace Dalmatian.ROI
             if ((value >= 0) && (value < segmentsList.Count))
             {
                segmentIndex = value;
+               OnPropertyChanged(nameof(SegmentIndex));
+               OnPropertyChanged(nameof(CurrentBrush));
             }
          }
       }

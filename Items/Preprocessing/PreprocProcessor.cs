@@ -66,6 +66,7 @@ namespace GUI.Items.Preprocessing
          var DoNotProcess = "not";
          foreach (var item in config.mainData.dataGrid.Data)
          {
+            Framework.Utils.CheckFolderForTifFiles(item.SampleName + "\\" + config.mainData.folderData.SampleSubfolder);
             if (!String.IsNullOrWhiteSpace(item.SampleName))
             {
                col = 2;

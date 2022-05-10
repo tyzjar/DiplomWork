@@ -6,17 +6,19 @@
              xmlns:local="clr-namespace:Dalmatian.ROI"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"  Width="260">
-   <ScrollViewer VerticalScrollBarVisibility="Auto">
-      <DataGrid VerticalAlignment="Top"
-                x:Name="SegmentsDataGrid" 
-                GridLinesVisibility="Horizontal"
-                CanUserDeleteRows="False"
-                CanUserAddRows="False"
-                AutoGenerateColumns="False" MaxHeight="540">
-         <DataGrid.Columns>
-            <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay}" Header="Segments" Width="180"/>
-            <DataGridTextColumn Binding="{Binding CellNumber}" Header="Counts" Width="*" IsReadOnly="True"/>
-         </DataGrid.Columns>
-      </DataGrid>
-   </ScrollViewer>
+   <Grid>
+      <ScrollViewer VerticalScrollBarVisibility="Auto">
+         <DataGrid VerticalAlignment="Top"
+                   x:Name="SegmentsDataGrid" 
+                   GridLinesVisibility="Horizontal"
+                   CanUserDeleteRows="False"
+                   CanUserAddRows="False"
+                   AutoGenerateColumns="False" MaxHeight="540">
+            <DataGrid.Columns>
+               <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay}" Header="Segments" Width="180"/>
+               <DataGridTextColumn Binding="{Binding CellNumber}" Header="Counts" Width="*" IsReadOnly="True"/>
+            </DataGrid.Columns>
+         </DataGrid>
+      </ScrollViewer>
+   </Grid>
 </UserControl>

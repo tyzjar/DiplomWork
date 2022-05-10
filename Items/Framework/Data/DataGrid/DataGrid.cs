@@ -34,7 +34,7 @@ namespace GUI.Items.Framework.Data.DataGrid
          GridItem item = new GridItem();
          item.PropertyChanged += UpdateItem;
          item.udpateStates(folderData);
-         item.InSampleName = FolderData.Atlas;
+         item.InSampleName = folderData.InSampleText;
          item.Segments = screator(item.SampleName);
          return item;
       }

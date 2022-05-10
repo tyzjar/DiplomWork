@@ -35,6 +35,5 @@
          </DataGrid>
       </ScrollViewer >
       <UserControl x:Name="SegmantationPanel" Margin="10,5"/>
-
    </StackPanel>
 </UserControl>

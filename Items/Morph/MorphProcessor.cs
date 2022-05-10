@@ -38,7 +38,6 @@ namespace GUI.Items.Morph
          MorphMatlab mMorph = new MorphMatlab();
          mMorph.gui_morph(0, new MWCharArray(synchronizer.getSynchFileName),
             new MWCharArray(tempFileName),
-            new MWCharArray(config.mainData.folderData.MaskSubfolder),
             new MWCharArray(config.mainData.folderData.MorphSaveSubfolder),
             new MWCharArray(config.AgeValue));
       }
@@ -52,10 +51,26 @@ namespace GUI.Items.Morph
 
          foreach (var item in config.mainData.dataGrid.Data)
          {
-            if (!String.IsNullOrWhiteSpace(item.SampleName) && !String.IsNullOrWhiteSpace(item.InSampleName))
+            var sampleFrom = item.SampleName + "\\" + config.mainData.folderData.MaskSubfolder;
+            var sampleTo = item.InSampleName;
+            var saveFileName = "";
+
+            if (!config.mainData.folderData.AtlasAndAtalasRefCheck(ref sampleTo, ref saveFileName))
             {
-               worksheet.Cells[row, 1].Value = item.SampleName;
-               worksheet.Cells[row, 2].Value = item.InSampleName;
+               saveFileName = Framework.Utils.CreateSaveName(sampleFrom,sampleTo);
+               sampleTo += "\\" + config.mainData.folderData.MorphToSubfolder;
+            }
+
+            if (!Framework.Utils.CheckFolderForTifFiles(sampleTo))
+            {
+               sampleTo = item.InSampleName;
+            }
+
+            if (Framework.Utils.CheckFolderForTifFiles(sampleFrom) && Framework.Utils.CheckFolderForTifFiles(sampleTo))
+            {
+               worksheet.Cells[row, 1].Value = sampleFrom;
+               worksheet.Cells[row, 2].Value = sampleTo;
+               worksheet.Cells[row, 3].Value = saveFileName;
                row++;
             }
          }
@@ -67,7 +82,7 @@ namespace GUI.Items.Morph
          SampleName.UpdateSource("");
          Progressbar.UpdateSource("0;1");
       }
-       
+
       MorphConfig config;
       Framework.MatlabProcessor.TextBlocObject Operation;
       Framework.MatlabProcessor.TextBlocObject SampleName;

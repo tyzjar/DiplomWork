@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 using OfficeOpenXml;
 
@@ -9,7 +10,7 @@ namespace GUI.Items.Framework.Data
       public FolderData():
          base("FolderData")
       {
-         AddFolderCommand = new DelegateCommand((object param) => { AddFolderEvent(); });
+         AddFolderCommand = new DelegateCommand((object param) => { var s = @"aasaasasas/ggg/ooooo/ggg//"; Utils.RemoveSubfolder(ref s, "ggg"); MessageBox.Show(s); AddFolderEvent(); });
          SelectAddFolder = new DelegateCommand((object param) => { Utils.SelectFolder((string value) => { AddFolderText = value; }); });
          SelectAddInSample = new DelegateCommand((object param) => { Utils.SelectFolder((string value) => { InSampleText = value; }); });
          SelectAtlasFolder = new DelegateCommand((object param) => { Utils.SelectFolder((string value)=> { AtlasFolder = value; }); });
@@ -28,6 +29,59 @@ namespace GUI.Items.Framework.Data
 
       public static string Atlas = "Atlas";
       public static string AtlasReference = "AtlasReference";
+      public static string AtlasExtension = ".mat";
+      public bool AtlasAndAtalasRefCheck(ref string folder, ref string fileName)
+      {
+         if (Equals(folder, Atlas))
+         {
+            folder = AtlasFolder;
+            fileName = Atlas + AtlasExtension;
+            return true;
+         }
+
+         if (Equals(folder, AtlasReference))
+         {
+            folder = AtlasRefFolder;
+            fileName = AtlasReference + AtlasExtension;
+            return true;
+         }
+
+         var atl = AtlasFolder;
+         var atlref = AtlasRefFolder;
+         atl = atl.Trim(new char[] { '\\', '/' });
+         atlref = atlref.Trim(new char[] { '\\', '/' });
+
+         if (Equals(folder, atl))
+         {
+            fileName = Atlas + AtlasExtension;
+            return true;
+         }
+
+         if (Equals(folder, atlref))
+         {
+            fileName = AtlasReference + AtlasExtension;
+            return true;
+         }
+
+         Utils.RemoveSubfolder(ref atl, MorphToSubfolder);
+         Utils.RemoveSubfolder(ref atlref, MorphToSubfolder);
+         folder = folder.Trim(new char[] { '\\', '/' });
+
+         if (Equals(folder, atl))
+         {
+            fileName = Atlas + AtlasExtension;
+            return true;
+         }
+
+         if (Equals(folder, atlref))
+         {
+            fileName = AtlasReference + AtlasExtension;
+            return true;
+         }
+
+         return false;
+      }
+
       public static List<string> InSampleValues { get; set; } = new List<string>(new string[] { Atlas, AtlasReference });
 
       public string AddFolderText 

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Dalmatian.ROI"
         mc:Ignorable="d" Closing="Window_Closing"
         Background="{StaticResource MyColor1}"
-        Title="EditPanel" Height="600" Width="290" MinWidth="290" MaxWidth="290">
+        Title="EditPanel" MinHeight="620" MaxHeight="620" Width="300" MinWidth="300" MaxWidth="300">
    <StackPanel>
 
       <!-- Image nunmber-->
@@ -14,7 +14,7 @@
          <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                <TextBlock Text="Image Number : " />
-               <TextBlock Text="{Binding ImageIndex, Mode=TwoWay}" />
+               <TextBlock Text="{Binding ImageIndex}" />
             </StackPanel>
             <Slider Margin="0,0" Width="240"
                        Value="{Binding ImageIndex, Mode=TwoWay}"
@@ -28,7 +28,7 @@
          <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                <TextBlock Text="Image scale : " DockPanel.Dock="Left"/>
-               <TextBlock Text="{Binding ScaleView, Mode=TwoWay}" DockPanel.Dock="Left"/>
+               <TextBlock Text="{Binding ScaleView}" DockPanel.Dock="Left"/>
                <Button Content="Reset" DockPanel.Dock="Right" Margin="10,0,0,0"
                                     Style="{StaticResource BaseStyle}" Width="59" 
                                     FontSize="8" x:Name="ResetButton"
@@ -100,8 +100,8 @@
                                  Template="{StaticResource NewButtonControlTemplate}"
                                  Command = "{Binding UpdateAllSegment}" Height="23" />
             </StackPanel>
-            <UserControl x:Name="SegmentationPanel" Margin="0,10"
-                   HorizontalAlignment="Left"/>
+            <UserControl x:Name="SegmentationPanel" Margin="0,10,0,5"
+                      HorizontalAlignment="Center"/>
          </StackPanel>
       </Border>
 

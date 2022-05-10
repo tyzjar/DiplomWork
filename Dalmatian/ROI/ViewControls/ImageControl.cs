@@ -23,6 +23,7 @@ namespace Dalmatian.ROI
          MainControl = mainControl;
 
          panel = new SegmentationPanel();
+         panel.SegmentsDataGrid.MaxHeight = 290;
          imView = new ImageView(folder, segmentsList);
 
 

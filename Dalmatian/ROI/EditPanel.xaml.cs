@@ -20,9 +20,9 @@ namespace Dalmatian.ROI
          mainWindow = mainWindow_;
          Owner = mainWindow;
          SegmentationPanel.Content = mainWindow.imFormControl.panel;
-         mainWindow.imFormControl.panel.onSegmentIndexChanged += SegmentIndexChanged;
-         SegmentIndexChanged(0);
-
+         
+         mainWindow.imFormControl.imView.PropertyChanged += SegmentIndexChanged;
+         SetColor();
 
          // imView context
          this.DataContext = mainWindow.imFormControl.imView;
@@ -32,7 +32,13 @@ namespace Dalmatian.ROI
          ResetButton.DataContext = mainWindow.imFormControl;
       }
 
-      void SegmentIndexChanged(int newValue)
+      void SegmentIndexChanged(object sender, PropertyChangedEventArgs e)
+      {
+         if (Equals(e.PropertyName, "CurrentBrush"))
+            SetColor();
+      }
+
+      void SetColor()
       {
          MainColor.Fill = mainWindow.imFormControl.imView.CurrentBrush;
       }
