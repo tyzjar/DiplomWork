@@ -27,6 +27,7 @@
    <Style x:Key="TextBlockStyle" BasedOn="{StaticResource BaseStyle}" TargetType="TextBlock">
       <Setter Property="Margin" Value="2" />
       <Setter Property="TextWrapping" Value="Wrap" />
+      <Setter Property="TextAlignment" Value="Justify" />
    </Style>
 
    <Style x:Key="TextBoxStyle" BasedOn="{StaticResource BaseStyle}" TargetType="TextBox">

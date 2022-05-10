@@ -28,13 +28,13 @@ namespace GUI.Items.Framework.Data.DataGrid
          Data.Add(NewGridItem(row));
       }
 
-
       /// Work with GridItem
       GridItem NewGridItem()
       {
          GridItem item = new GridItem();
          item.PropertyChanged += UpdateItem;
          item.udpateStates(folderData);
+         item.InSampleName = FolderData.Atlas;
          item.Segments = screator(item.SampleName);
          return item;
       }

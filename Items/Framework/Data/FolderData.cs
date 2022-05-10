@@ -26,6 +26,10 @@ namespace GUI.Items.Framework.Data
       public ICommand SelectAtlasReferenceFolder { get; private set; }
       #endregion
 
+      public static string Atlas = "Atlas";
+      public static string AtlasReference = "AtlasReference";
+      public static List<string> InSampleValues { get; set; } = new List<string>(new string[] { Atlas, AtlasReference });
+
       public string AddFolderText 
       {
          get
@@ -56,18 +60,33 @@ namespace GUI.Items.Framework.Data
             }
          }
       }
-      public string MorphSubfolder
+      public string MorphToSubfolder
       {
          get
          {
-            return variables.MorphSubfolder;
+            return variables.MorphToSubfolder;
          }
          set
          {
-            if (value != variables.MorphSubfolder)
+            if (value != variables.MorphToSubfolder)
             {
-               variables.MorphSubfolder = value;
-               OnPropertyChanged(nameof(MorphSubfolder));
+               variables.MorphToSubfolder = value;
+               OnPropertyChanged(nameof(MorphToSubfolder));
+            }
+         }
+      }
+      public string MorphSaveSubfolder
+      {
+         get
+         {
+            return variables.MorphSaveSubfolder;
+         }
+         set
+         {
+            if (value != variables.MorphSaveSubfolder)
+            {
+               variables.MorphSaveSubfolder = value;
+               OnPropertyChanged(nameof(MorphSaveSubfolder));
             }
          }
       }
@@ -197,17 +216,18 @@ namespace GUI.Items.Framework.Data
       public override SaveVariables GetVariables() => variables;
       public class Variables : Framework.ConfigItem.SaveVariables
       {
-         public string AddFolderText { get; set; } = "";
-         public string InSampleText { get; set; } = "";
-         public string MorphSubfolder { get; set; } = "Morph";
-         public string MaskSubfolder { get; set; } = "Masked";
-         public string SampleSubfolder { get; set; } = "Pattern 1";
-         public string CropSubfolder { get; set; } = "Crop";
-         public string IntensitySubfolder { get; set; } = "Without_aberration";
-         public string SubtractionSubfolder { get; set; } = "Subtraction_picture";
-         public string CellCountSubfolder { get; set; } = "Pattern 1";
-         public string AtlasFolder { get; set; } = "";
-         public string AtlasRefFolder { get; set; } = "";
+         public string AddFolderText = "";
+         public string InSampleText = Atlas;
+         public string MorphToSubfolder = "Morph";
+         public string MorphSaveSubfolder = "Morph";
+         public string MaskSubfolder = "Masked";
+         public string SampleSubfolder = "Pattern 1";
+         public string CropSubfolder = "Crop";
+         public string IntensitySubfolder = "Without_aberration";
+         public string SubtractionSubfolder = "Subtraction_picture";
+         public string CellCountSubfolder = "Pattern 1";
+         public string AtlasFolder = "";
+         public string AtlasRefFolder = "";
 
       }
 

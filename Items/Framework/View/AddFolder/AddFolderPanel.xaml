@@ -30,7 +30,8 @@
                <ColumnDefinition Width="*"/>
                <ColumnDefinition Width="35"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Style="{StaticResource TextBoxStyle}" Text="{Binding Path=InSampleText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox Grid.Column="0" Style="{StaticResource BaseStyleC}" Text="{Binding Path=InSampleText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      ItemsSource="{Binding InSampleValues}" IsEditable="True" IsReadOnly="False"/>
             <Button Content="..."  HorizontalAlignment="Center" Grid.Column="1"
                            Style="{StaticResource BaseStyle}" Width="25"
                            Template="{StaticResource NewButtonControlTemplate}"

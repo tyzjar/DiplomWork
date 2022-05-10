@@ -7,7 +7,7 @@
         Background="{StaticResource MyColor1}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Subfolders settings" Height="500" Width="400"
+        Title="Subfolders settings" Height="650" Width="400"
         ResizeMode="NoResize"
         KeyDown="KeyEvents">
    <Grid>
@@ -16,50 +16,71 @@
          <RowDefinition Height="60"/>
       </Grid.RowDefinitions>
 
-
       <StackPanel>
-         <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="10,10">
-            <StackPanel>
-               <TextBlock Height = "20" Text="Main folders setting." Style="{StaticResource HeaderText}" HorizontalAlignment="Center" />
-               <Grid Margin="5,5,5,5" Grid.Row="0">
-               <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="130"/>
-                  <ColumnDefinition />
-               </Grid.ColumnDefinitions>
-               <Grid.RowDefinitions>
-                  <RowDefinition Height="25"/>
-                  <RowDefinition Height="25"/>
-                  <RowDefinition Height="25"/>
 
-               </Grid.RowDefinitions>
-
-               <!--0-->
-               <TextBlock Grid.Column="0" Grid.Row="0" Height = "20"
-                                   Text="Sample subfolder :" Style="{StaticResource TextBlockStyle}" />
-               <TextBox Grid.Column="1" Grid.Row="0" Height = "20" MinWidth="200"
-                                    Text="{Binding Path = SampleSubfolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    HorizontalAlignment="Center" Style="{StaticResource TextBoxStyle}" />
-
-               <!--1-->
-               <TextBlock Grid.Column="0" Grid.Row="1" Height = "20"
-                                   Text="Mask subfolder :" Style="{StaticResource TextBlockStyle}" />
-                  <TextBox Grid.Column="1" Grid.Row="1" Height = "20" MinWidth="200"
-                                    Text="{Binding Path = MaskSubfolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    HorizontalAlignment="Center" Style="{StaticResource TextBoxStyle}" />
-               <!--2-->
-               <TextBlock Grid.Column="0" Grid.Row="2" Height = "20"
-                                   Text="Morph subfolder :" Style="{StaticResource TextBlockStyle}" />
-                  <TextBox Grid.Column="1" Grid.Row="2" Height = "20" MinWidth="200"
-                                    Text="{Binding Path = MorphSubfolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    HorizontalAlignment="Center" Style="{StaticResource TextBoxStyle}" />
-            </Grid>
-            </StackPanel>
-         </Border>
-
+         <!--Preproc settings-->
          <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="10,10">
             <StackPanel>
                <TextBlock Height = "20" Text="Preproc settings." Style="{StaticResource HeaderText}" HorizontalAlignment="Center" />
                <Grid Margin="5,5,5,5" Grid.Row="0">
+                  <Grid.ColumnDefinitions>
+                     <ColumnDefinition Width="130"/>
+                     <ColumnDefinition />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                     <RowDefinition Height="25"/>
+                     <RowDefinition Height="25"/>
+                     <RowDefinition Height="25"/>
+                     <RowDefinition Height="25"/>
+                     <RowDefinition Height="25"/>
+                  </Grid.RowDefinitions>
+
+                  <!--0-->
+                  <TextBlock Grid.Column="0" Grid.Row="0" Height = "20"
+                                   Text="Sample subfolder :" Style="{StaticResource TextBlockStyle}" />
+                  <TextBox Grid.Column="1" Grid.Row="0" Height = "20" MinWidth="200"
+                                    Text="{Binding Path = SampleSubfolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    HorizontalAlignment="Center" Style="{StaticResource TextBoxStyle}" />
+                  <!--1-->
+                  <TextBlock Grid.Column="0" Grid.Row="1" Height = "20"
+                                   Text="Subtraction subfolder :" Style="{StaticResource TextBlockStyle}" />
+                  <TextBox Grid.Column="1" Grid.Row="1" Height = "20" MinWidth="200"
+                                    Text="{Binding Path = SubtractionSubfolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    HorizontalAlignment="Center" Style="{StaticResource TextBoxStyle}" />
+                  <!--2-->
+                  <TextBlock Grid.Column="0" Grid.Row="2" Height = "20"
+                                   Text="Intensity subfolder :" Style="{StaticResource TextBlockStyle}" />
+                  <TextBox Grid.Column="1" Grid.Row="2" Height = "20" MinWidth="200"
+                                    Text="{Binding Path = IntensitySubfolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    HorizontalAlignment="Center" Style="{StaticResource TextBoxStyle}" />
+                  <!--3-->
+                  <TextBlock Grid.Column="0" Grid.Row="3" Height = "20"
+                                   Text="Crop subfolder :" Style="{StaticResource TextBlockStyle}" />
+                  <TextBox Grid.Column="1" Grid.Row="3" Height = "20" MinWidth="200"
+                                    Text="{Binding Path = CropSubfolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    HorizontalAlignment="Center" Style="{StaticResource TextBoxStyle}" />
+
+                  <!--4-->
+                  <TextBlock Grid.Column="0" Grid.Row="4" Height = "20"
+                                   Text="Mask save subfolder :" Style="{StaticResource TextBlockStyle}" />
+                  <TextBox Grid.Column="1" Grid.Row="4" Height = "20" MinWidth="200"
+                                    Text="{Binding Path = MaskSubfolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    HorizontalAlignment="Center" Style="{StaticResource TextBoxStyle}" />
+
+               </Grid>
+            </StackPanel>
+         </Border>
+
+         <!--Morph settings-->
+         <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="10,10">
+            <StackPanel>
+               <TextBlock Text="Morph setting." Style="{StaticResource HeaderText}" HorizontalAlignment="Center" />
+               <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5,0">
+                  ~   Images for morph will be taken from "Mask save subfolder". The transformations will be saved in sample folder to a file
+                  'SampleFrom_to_SampleIn.mat'. For morph in Atlas or in AtlasReference you could populate field "Into sample" by "Atlas" or "AtlasReference".
+                  The transformations will be saved to a file "Atlas.mat" or "AtlasReference.mat". If these files aren't actual anymore its could be deleted.
+               </TextBlock>
+               <Grid Margin="5,5,5,5" Grid.Row="0">
                <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="130"/>
                   <ColumnDefinition />
@@ -67,30 +88,24 @@
                <Grid.RowDefinitions>
                   <RowDefinition Height="25"/>
                   <RowDefinition Height="25"/>
-                  <RowDefinition Height="25"/>
                </Grid.RowDefinitions>
+
                <!--0-->
                <TextBlock Grid.Column="0" Grid.Row="0" Height = "20"
-                                   Text="Subtraction subfolder :" Style="{StaticResource TextBlockStyle}" />
-                  <TextBox Grid.Column="1" Grid.Row="0" Height = "20" MinWidth="200"
-                                    Text="{Binding Path = SubtractionSubfolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    HorizontalAlignment="Center" Style="{StaticResource TextBoxStyle}" />
+                                 Text="Morph to subfolder :" Style="{StaticResource TextBlockStyle}" />
+               <TextBox Grid.Column="1" Grid.Row="0" Height = "20" MinWidth="200"
+                              Text="{Binding Path = MorphToSubfolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              HorizontalAlignment="Center" Style="{StaticResource TextBoxStyle}" />
                <!--1-->
                <TextBlock Grid.Column="0" Grid.Row="1" Height = "20"
-                                   Text="Intensity subfolder :" Style="{StaticResource TextBlockStyle}" />
-                  <TextBox Grid.Column="1" Grid.Row="1" Height = "20" MinWidth="200"
-                                    Text="{Binding Path = IntensitySubfolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    HorizontalAlignment="Center" Style="{StaticResource TextBoxStyle}" />
-               <!--2-->
-               <TextBlock Grid.Column="0" Grid.Row="2" Height = "20"
-                                   Text="Crop subfolder :" Style="{StaticResource TextBlockStyle}" />
-                  <TextBox Grid.Column="1" Grid.Row="2" Height = "20" MinWidth="200"
-                                    Text="{Binding Path = CropSubfolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    HorizontalAlignment="Center" Style="{StaticResource TextBoxStyle}" />
-
+                                   Text="Morph save subfolder :" Style="{StaticResource TextBlockStyle}" />
+               <TextBox Grid.Column="1" Grid.Row="1" Height = "20" MinWidth="200"
+                                 Text="{Binding Path = MorphSaveSubfolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalAlignment="Center" Style="{StaticResource TextBoxStyle}" />
             </Grid>
             </StackPanel>
          </Border>
+
 
          <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="10,10">
             <StackPanel>

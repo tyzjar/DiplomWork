@@ -39,7 +39,7 @@ namespace GUI.Items.Morph
          mMorph.gui_morph(0, new MWCharArray(synchronizer.getSynchFileName),
             new MWCharArray(tempFileName),
             new MWCharArray(config.mainData.folderData.MaskSubfolder),
-            new MWCharArray(config.mainData.folderData.MorphSubfolder),
+            new MWCharArray(config.mainData.folderData.MorphSaveSubfolder),
             new MWCharArray(config.AgeValue));
       }
 
