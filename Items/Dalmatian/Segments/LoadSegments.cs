@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Windows;
 
 namespace GUI.Items.Dalmatian
@@ -30,7 +31,9 @@ namespace GUI.Items.Dalmatian
       {
          try
          {
-            using (StreamReader reader = new StreamReader(@FileName))
+            
+            var fullName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\" + FileName;
+            using (StreamReader reader = new StreamReader(fullName))
             {
                // Reads all characters from the current position to the end of the stream asynchronously
                // and returns them as one string.
