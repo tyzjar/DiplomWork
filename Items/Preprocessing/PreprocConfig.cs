@@ -56,7 +56,7 @@ namespace GUI.Items.Preprocessing
 
       public string SubtractionName
       {
-         get { return variables.SubtractionName; }
+         get => variables.SubtractionName; 
          set
          {
             if (!Equals(variables.SubtractionName, value))
@@ -72,7 +72,16 @@ namespace GUI.Items.Preprocessing
       public bool MaskEnabel { get => variables.MaskEnabel; set { variables.MaskEnabel = value; OnPropertyChanged(nameof(MaskEnabel)); } }
 
 
-      public override void SetVariables(SaveVariables v) { variables = v as Variables; }
+      public override void SetVariables(SaveVariables v) 
+      { 
+         variables = v as Variables;
+
+         OnPropertyChanged(nameof(SubtractionName));
+         OnPropertyChanged(nameof(SubtractionEnabel));
+         OnPropertyChanged(nameof(IntensityEnabel));
+         OnPropertyChanged(nameof(CropEnabel));
+         OnPropertyChanged(nameof(MaskEnabel));
+      }
       public override SaveVariables GetVariables() => variables;
       public class Variables : Framework.ConfigItem.SaveVariables
       {

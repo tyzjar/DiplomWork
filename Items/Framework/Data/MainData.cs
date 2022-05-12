@@ -43,11 +43,11 @@ namespace GUI.Items.Framework.Data
          openSaveEvents.InstructionAddEvent += addFolderStart;
          folderData.AddFolderEvent += addFolder;
 
-         initStartFileAndFilter();
+         initStartMainData();
       }
 
       /// Project file type
-      void initStartFileAndFilter()
+      void initStartMainData()
       {
          try
          {
@@ -55,6 +55,7 @@ namespace GUI.Items.Framework.Data
             {
                defaultExt = ".dlmtn";
                filter = "Dalmation project | *" + defaultExt;
+               folderData.CellCountSubfolder = "";
             }
             else
             {
@@ -187,7 +188,7 @@ namespace GUI.Items.Framework.Data
          }
          foreach (var item in dataGrid.Data)
          {
-            item.udpateStates(folderData);
+            item.udpateStates();
          }
       }
       void addFolderStart()

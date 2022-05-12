@@ -7,9 +7,13 @@
         xmlns:local="clr-namespace:GUI.Items.Dalmatian"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" Background="{StaticResource MyColor1}"
-        Title="Segments control" Height="600" Width="320" MinWidth="320" MaxWidth="320">
-   <StackPanel>
-      <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="5,5">
+        Title="Segments control" Height="600" Width="660" MinWidth="660" MaxWidth="660">
+   <Grid>
+      <Grid.ColumnDefinitions>
+         <ColumnDefinition MaxWidth="300"/>
+         <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="5,5" Grid.Column="0">
          <StackPanel  Margin="10,10">
             <TextBlock Text="Add segment :" Style="{StaticResource HeaderText}"/>
             <!--Add folder-->
@@ -49,8 +53,8 @@
          </StackPanel>
       </Border>
 
-      <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="5,5">
-         <UserControl x:Name="SegmentationPanelView" HorizontalAlignment="Center" Margin="5,5"/>
+      <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="5,5" Grid.Column="1">
+         <UserControl x:Name="SegmentationPanelView"  HorizontalAlignment="Center" Margin="5,5"/>
       </Border>
-   </StackPanel>
+   </Grid>
 </Window>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
-using OfficeOpenXml;
+using System.Linq;
 
 namespace GUI.Items.Framework.Data
 {
@@ -31,7 +31,7 @@ namespace GUI.Items.Framework.Data
       public static string Atlas = "Atlas";
       public static string AtlasReference = "AtlasReference";
       public static string AtlasExtension = ".mat";
-      public bool AtlasAndAtalasRefCheck(ref string folder, ref string fileName)
+      public bool AtlasAndAtalasRefCheckFolderName(ref string folder, ref string fileName)
       {
          if (Equals(folder, Atlas))
          {
@@ -267,7 +267,23 @@ namespace GUI.Items.Framework.Data
       }
 
 
-      public override void SetVariables(SaveVariables v) { variables = v as Variables; }
+      public override void SetVariables(SaveVariables v) 
+      { 
+         variables = v as Variables;
+
+         OnPropertyChanged(nameof(AddFolderText));
+         OnPropertyChanged(nameof(InSampleText));
+         OnPropertyChanged(nameof(MorphToSubfolder));
+         OnPropertyChanged(nameof(MorphSaveSubfolder));
+         OnPropertyChanged(nameof(MaskSubfolder));
+         OnPropertyChanged(nameof(SampleSubfolder));
+         OnPropertyChanged(nameof(CropSubfolder));
+         OnPropertyChanged(nameof(IntensitySubfolder));
+         OnPropertyChanged(nameof(SubtractionSubfolder));
+         OnPropertyChanged(nameof(CellCountSubfolder));
+         OnPropertyChanged(nameof(AtlasFolder));
+         OnPropertyChanged(nameof(AtlasRefFolder));
+      }
       public override SaveVariables GetVariables() => variables;
       public class Variables : Framework.ConfigItem.SaveVariables
       {
@@ -280,7 +296,7 @@ namespace GUI.Items.Framework.Data
          public string CropSubfolder = "Crop";
          public string IntensitySubfolder = "Without_aberration";
          public string SubtractionSubfolder = "Subtraction_picture";
-         public string CellCountSubfolder = "Pattern 1";
+         public string CellCountSubfolder = "Masked";
          public string AtlasFolder = "";
          public string AtlasRefFolder = "";
 

@@ -68,7 +68,7 @@ namespace GUI.Items.Preprocessing
          var DoNotProcess = "not";
          foreach (var item in config.mainData.dataGrid.Data)
          {
-            if (Framework.Utils.CheckFolderForTifFiles(item.SampleName + "\\" + config.mainData.folderData.SampleSubfolder))
+            if (Framework.Utils.CheckFolderForTifFiles(item.SampleFolder))
             {
                count++;
                col = 2;
@@ -101,7 +101,7 @@ namespace GUI.Items.Preprocessing
       {
          foreach (var item in config.mainData.dataGrid.Data)
          {
-            item.udpateStates(config.mainData.folderData);
+            item.udpateStates();
          }
       }
 

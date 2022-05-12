@@ -31,7 +31,14 @@ namespace GUI.Items.Morph
 
       public static string[] AgeValues = { "adult", "young" };
 
-      public override void SetVariables(SaveVariables v) { variables = v as Variables; }
+      public override void SetVariables(SaveVariables v) 
+      {
+         variables = v as Variables;
+
+         OnPropertyChanged(nameof(CellCalc));
+         OnPropertyChanged(nameof(Halves));
+         OnPropertyChanged(nameof(AgeValue));
+      }
       public override SaveVariables GetVariables() => variables;
       public class Variables : Framework.ConfigItem.SaveVariables
       {

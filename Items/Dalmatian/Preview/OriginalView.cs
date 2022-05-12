@@ -26,20 +26,13 @@ namespace GUI.Items.Dalmatian.Preview
             as Framework.Data.DataGrid.GridItem) == null)
             throw (Framework.StandartExceptions.NoSelectedItem());
 
-         if (Equals(config.mainData.folderData.CellCountSubfolder, ""))
-         {
-            sampleName = (config.gridPanel.SamplesDataGrid.SelectedItem
-             as Framework.Data.DataGrid.GridItem).SampleName + @"\*.tif";
-         }
-         else
-         {
-            sampleName = (config.gridPanel.SamplesDataGrid.SelectedItem
-             as Framework.Data.DataGrid.GridItem).SampleName + @"\" +
-             config.mainData.folderData.CellCountSubfolder + @"\*.tif";
-         }
+         sampleName = (config.gridPanel.SamplesDataGrid.SelectedItem
+             as Framework.Data.DataGrid.GridItem).SampleFolder;
 
-         if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(sampleName)))
-            throw (Framework.StandartExceptions.FolderDoesNotExists());
+         if (!Framework.Utils.CheckFolderForTifFiles(sampleName))
+            throw (Framework.StandartExceptions.FilesDoesNotExists());
+
+         sampleName += @"\*.tif";
       }
 
       CellCountConfig config;

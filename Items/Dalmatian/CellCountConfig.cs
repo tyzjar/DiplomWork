@@ -286,6 +286,7 @@ namespace GUI.Items.Dalmatian
       { 
          variables = v as Variables;
          gridPanel.SamplesDataGrid.ItemsSource = mainData.dataGrid.Data;
+
          OnPropertyChanged(nameof(sfilterLowpass));
          OnPropertyChanged(nameof(sfilterHipass));
          OnPropertyChanged(nameof(trshold));

@@ -11,6 +11,7 @@ namespace GUI.Items.Framework
    {
       public delegate void FolderSetter(string value);
       public static string format = "*.tif";
+      public static char[] delims = { '\\', '/' };
       public static void SelectFolder(FolderSetter folderSetter)
       {
          // Create a "Save As" dialog for selecting a directory (HACK)
@@ -39,7 +40,7 @@ namespace GUI.Items.Framework
          if (Directory.Exists(folder))
             return Directory.EnumerateFiles(folder, format).Any();
 
-         return false;
+         throw (StandartExceptions.FolderDoesNotExists());
       }
 
       public static void RemoveSubfolder(ref string folder, string subfolder)

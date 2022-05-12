@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:GUI.Items.Morph"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-   <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,5">
+   <Grid>
+      <ScrollViewer VerticalScrollBarVisibility="Auto">
       <DataGrid VerticalAlignment="Top"
                          x:Name="MorphDataGrid"
                          GridLinesVisibility="Horizontal"
@@ -24,4 +25,5 @@
          </DataGrid.Columns>
       </DataGrid>
    </ScrollViewer>
+   </Grid>
 </UserControl>

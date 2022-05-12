@@ -25,15 +25,6 @@ namespace GUI.Items.Framework.Data.DataGrid
          return PreprocState.notStarted;
       }
 
-      public static PreprocState StateByFiles(string [] files)
-      {
-         foreach(var file in files)
-            if (File.Exists(file))
-               return PreprocState.compleate;
-
-         return PreprocState.notStarted;
-      }
-
       /// String values should be same in Matlab Preproc script
       public static string ShouldProcess (PreprocState state)
       {

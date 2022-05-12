@@ -31,25 +31,18 @@ namespace GUI.Items.Framework.Data.DataGrid
       /// Work with GridItem
       GridItem NewGridItem()
       {
-         GridItem item = new GridItem();
-         item.PropertyChanged += UpdateItem;
-         item.udpateStates(folderData);
+         GridItem item = new GridItem(folderData);
+         item.udpateStates();
          item.InSampleName = folderData.InSampleText;
          item.Segments = screator(item.SampleName);
          return item;
       }
       public GridItem NewGridItem(string[] row)
       {
-         GridItem item = new GridItem(row);
-         item.PropertyChanged += UpdateItem;
-         item.udpateStates(folderData);
+         GridItem item = new GridItem(row, folderData);
+         item.udpateStates();
          item.Segments = screator(item.SampleName);
          return item;
-      }
-      public void UpdateItem(object sender, PropertyChangedEventArgs e)
-      {
-         var item = (sender as GridItem);
-         item.udpateStates(folderData);
       }
 
       /// Values 
@@ -65,6 +58,7 @@ namespace GUI.Items.Framework.Data.DataGrid
          {
             foreach (var item in newData)
             {
+               item.InitFolder(folderData);
                Data.Add(item);
             }
          }

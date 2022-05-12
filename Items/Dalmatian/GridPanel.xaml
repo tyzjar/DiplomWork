@@ -6,13 +6,16 @@
              xmlns:local="clr-namespace:GUI.Items.Dalmatian"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="500">
-   <StackPanel Orientation="Horizontal">
-      <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,5">
+   <Grid>
+      <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="410"/>
+         <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0">
          <DataGrid VerticalAlignment="Top"
                 x:Name="SamplesDataGrid" CanUserAddRows="True"
                 GridLinesVisibility="Horizontal"
-                AutoGenerateColumns="False" MaxHeight="540"
-                Width="400">
+                AutoGenerateColumns="False" MaxHeight="540">
             <DataGrid.Columns>
                <DataGridTextColumn Binding="{Binding SampleName, Mode=TwoWay}" Header="Samples" MinWidth="200" Width="*"/>
                <DataGridTemplateColumn x:Name="AtlasStateColumn" Header="Atlas" MinWidth="40" MaxWidth="40" IsReadOnly="True">
@@ -34,6 +37,6 @@
             </DataGrid.ContextMenu>
          </DataGrid>
       </ScrollViewer >
-      <UserControl x:Name="SegmantationPanel" Margin="10,5"/>
-   </StackPanel>
+         <UserControl x:Name="SegmantationPanel" Grid.Column="1" Margin="5,0,0,0"/>
+   </Grid>
 </UserControl>

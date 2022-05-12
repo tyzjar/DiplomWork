@@ -5,7 +5,6 @@ using OfficeOpenXml;
 using System.Threading;
 
 using gui_morph;
-using MathWorks.MATLAB.NET.Utility;
 using MathWorks.MATLAB.NET.Arrays;
 
 namespace GUI.Items.Morph
@@ -32,6 +31,7 @@ namespace GUI.Items.Morph
          synchronizer.AddSynchObject(nameof(Progressbar), Progressbar);
 
          EventProcessStart += PrepareLoad;
+         EventProcessEnd += UpdateAtlasStates;
       }
       protected override void MatlabThread()
       {
@@ -51,14 +51,14 @@ namespace GUI.Items.Morph
 
          foreach (var item in config.mainData.dataGrid.Data)
          {
-            var sampleFrom = item.SampleName + "\\" + config.mainData.folderData.MaskSubfolder;
+            var sampleFrom = item.MaskFolder;
             var sampleTo = item.InSampleName;
             var saveFileName = "";
 
-            if (!config.mainData.folderData.AtlasAndAtalasRefCheck(ref sampleTo, ref saveFileName))
+            if (!config.mainData.folderData.AtlasAndAtalasRefCheckFolderName(ref sampleTo, ref saveFileName))
             {
-               saveFileName = Framework.Utils.CreateSaveName(sampleFrom,sampleTo);
-               sampleTo += "\\" + config.mainData.folderData.MorphToSubfolder;
+               saveFileName = Framework.Utils.CreateSaveName(item.SampleName, item.InSampleName);
+               sampleTo = item.MorphToFolder;
             }
 
             if (!Framework.Utils.CheckFolderForTifFiles(sampleTo))
@@ -71,6 +71,7 @@ namespace GUI.Items.Morph
                worksheet.Cells[row, 1].Value = sampleFrom;
                worksheet.Cells[row, 2].Value = sampleTo;
                worksheet.Cells[row, 3].Value = saveFileName;
+               item.AtlasTFiles.Reload(saveFileName);
                row++;
             }
          }
@@ -81,6 +82,14 @@ namespace GUI.Items.Morph
          Operation.UpdateSource("Waiting initialize synchronizer");
          SampleName.UpdateSource("");
          Progressbar.UpdateSource("0;1");
+      }
+
+      void UpdateAtlasStates()
+      {
+         foreach (var item in config.mainData.dataGrid.Data)
+         {
+            item.AtlasTUpdate();
+         }
       }
 
       MorphConfig config;

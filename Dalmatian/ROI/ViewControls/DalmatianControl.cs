@@ -42,14 +42,19 @@ namespace Dalmatian.ROI
             if (param == null)
                throw (GUI.Items.Framework.StandartExceptions.NoSelectedItem());
 
-            var folder = param.SampleName + @"\" + mainData.folderData.CellCountSubfolder + @"\";
+            var folder = param.SampleFolder;
+
+
+            //MessageBox.Show(mainData.folderData.CellCountSubfolder);
+            MessageBox.Show(param.folderData.CellCountSubfolder);
+            //MessageBox.Show(folder);
 
             if (!GUI.Items.Framework.Utils.CheckFolderForTifFiles(folder))
                throw new GUI.Items.Framework.StandartExceptions("Did not find segments pictures. Plaese check the folder \""
-                  + folder + "\" and confirm that samples picture are there. Also check subfolder in settings.",false);
+                  + folder + "\" and confirm that samples picture are there. Also check subfolder in settings. Current subfolder is \""
+                  + mainData.folderData.CellCountSubfolder + "\".", false);
 
-            sWindow = new ROIEdit(folder,
-               (param.Segments as SegmentListControl).segmentsList);
+            sWindow = new ROIEdit(folder, (param.Segments as SegmentListControl).segmentsList);
             sWindow.ShowDialog();
          }
          catch (GUI.Items.Framework.StandartExceptions dex)

@@ -15,6 +15,12 @@ namespace GUI.Items.Framework
                "and make sure it exists in sample folder. ", false);
       }
 
+      public static StandartExceptions FilesDoesNotExists()
+      {
+         return new StandartExceptions("Files did not found. Please check in the setting CellCount subfolder " +
+               "and make sure it have sample files. ", false);
+      }
+
       public static StandartExceptions NoSelectedItem()
       {
          return new StandartExceptions("Please select sample before !", false);
