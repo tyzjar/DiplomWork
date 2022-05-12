@@ -7,10 +7,11 @@ namespace GUI.Items.Framework.Data
 {
    public class FolderData : ConfigItem
    {
+      //var s = @"aasaasasas/ggg/ooooo/ggg//"; Utils.RemoveSubfolder(ref s, "ggg"); MessageBox.Show(s);
       public FolderData():
          base("FolderData")
       {
-         AddFolderCommand = new DelegateCommand((object param) => { var s = @"aasaasasas/ggg/ooooo/ggg//"; Utils.RemoveSubfolder(ref s, "ggg"); MessageBox.Show(s); AddFolderEvent(); });
+         AddFolderCommand = new DelegateCommand((object param) => { AddFolderEvent(); });
          SelectAddFolder = new DelegateCommand((object param) => { Utils.SelectFolder((string value) => { AddFolderText = value; }); });
          SelectAddInSample = new DelegateCommand((object param) => { Utils.SelectFolder((string value) => { InSampleText = value; }); });
          SelectAtlasFolder = new DelegateCommand((object param) => { Utils.SelectFolder((string value)=> { AtlasFolder = value; }); });

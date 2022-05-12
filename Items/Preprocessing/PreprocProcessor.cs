@@ -49,8 +49,10 @@ namespace GUI.Items.Preprocessing
             worksheet.Cells[row, i].Value = "Var"+Convert.ToString(i);
          }
 
-         /// Add number of samples
-         worksheet.Cells[++row, col].Value = config.mainData.dataGrid.Data.Count;
+         /// Index of number of samples
+         var rowCount = ++row;
+         var colCount = col;
+         uint count = 0;
 
          /// Add Subtraction_picture
          worksheet.Cells[++row, col].Value = config.SubtractionName;
@@ -66,10 +68,11 @@ namespace GUI.Items.Preprocessing
          var DoNotProcess = "not";
          foreach (var item in config.mainData.dataGrid.Data)
          {
-            Framework.Utils.CheckFolderForTifFiles(item.SampleName + "\\" + config.mainData.folderData.SampleSubfolder);
-            if (!String.IsNullOrWhiteSpace(item.SampleName))
+            if (Framework.Utils.CheckFolderForTifFiles(item.SampleName + "\\" + config.mainData.folderData.SampleSubfolder))
             {
+               count++;
                col = 2;
+
                worksheet.Cells[row, col++].Value = item.SampleName;
                worksheet.Cells[row, col++].Value = config.SubtractionEnabel ?
                   PreprocStateHelper.ShouldProcess(item.SubtractionState) : DoNotProcess;
@@ -80,8 +83,12 @@ namespace GUI.Items.Preprocessing
                worksheet.Cells[row, col++].Value = config.MaskEnabel ?
                   PreprocStateHelper.ShouldProcess(item.MaskState) : DoNotProcess;
                row++;
+
             }
          }
+
+         /// Add number of samples
+         worksheet.Cells[rowCount, colCount].Value = count;
       }
 
       public void PrepareLoad()
