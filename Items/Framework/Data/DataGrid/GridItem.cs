@@ -39,8 +39,6 @@ namespace GUI.Items.Framework.Data.DataGrid
 
       public GridItem(FolderData folderData_)
       {
-         folderData = folderData_;
-         init();
          InitFolder(folderData_);
       }
 
