@@ -3,6 +3,7 @@ using OfficeOpenXml;
 using gui_preproc;
 using MathWorks.MATLAB.NET.Arrays;
 using GUI.Items.Framework.Data.DataGrid;
+using System.IO;
 
 namespace GUI.Items.Preprocessing
 {
@@ -55,6 +56,10 @@ namespace GUI.Items.Preprocessing
          uint count = 0;
 
          /// Add Subtraction_picture
+         if (config.SubtractionEnabel&&(!File.Exists(config.SubtractionName)))
+            throw new Exception("Subtraction file \"" + config.SubtractionName + "\" does not exist!"+
+               "\nChange settings or select correct file.");
+
          worksheet.Cells[++row, col].Value = config.SubtractionName;
 
          /// Add folders

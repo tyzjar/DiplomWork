@@ -41,7 +41,7 @@ namespace GUI.Items.Preprocessing
       void selectPicture()
       {
          OpenFileDialog openFileDialog = new OpenFileDialog();
-         openFileDialog.Filter = "Instruction File | *.tif";
+         openFileDialog.Filter = "Subtraction picture | *.tif";
          openFileDialog.DefaultExt = "tif";
 
          if (openFileDialog.ShowDialog() == true)

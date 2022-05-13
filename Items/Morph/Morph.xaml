@@ -33,18 +33,11 @@
                             Margin="0,10" Template="{StaticResource NewCheckBoxControlTemplate}"
                             IsChecked="{Binding Path = Halves, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                   <!--Dalmatian-->
-                  <CheckBox x:Name="CellCalculationEnabled" Style="{StaticResource BaseStyle}" Margin="0,3"
-                            Content="Cell calculation (Dalmatian)" Template="{StaticResource NewCheckBoxControlTemplate}"
-                            IsChecked="{Binding Path = CellCalc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                   <!--Start Morph-->
-                  <Button  x:Name="MorphStartButton" Content="Start Morph"  HorizontalAlignment="Left"
-                           Style="{StaticResource BaseStyle}" Width="100" Margin="0,10,0,0"
+                  <Button  Content="Start Registaration"  HorizontalAlignment="Left"
+                           Style="{StaticResource BaseStyle}" Width="124" Margin="0,10,0,0"
                            Template="{StaticResource NewButtonControlTemplate}"
                            Command = "{Binding ProcessorStartCommand}"/>
-                  <!--Start Morph-->
-                  <Button  x:Name="GroupMorphStartButton" Content="Start group Morphing"  HorizontalAlignment="Left"
-                           Style="{StaticResource BaseStyle}" Width="150" Margin="0,10,0,0"
-                           Template="{StaticResource NewButtonControlTemplate}"/>
                </StackPanel>
             </Border>
          </StackPanel>

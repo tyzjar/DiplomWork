@@ -180,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Items\Dalmatian\Segments\AtlasPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Items\Dalmatian\Segments\SegmentationPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -270,6 +274,9 @@
     <Compile Include="Items\Dalmatian\Preview\OriginalView.cs" />
     <Compile Include="Items\Dalmatian\Preview\sFilterPreview.cs" />
     <Compile Include="Items\Dalmatian\Preview\ThresholdPreview.cs" />
+    <Compile Include="Items\Dalmatian\Segments\AtlasPanel.xaml.cs">
+      <DependentUpon>AtlasPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Items\Dalmatian\Segments\LoadSegments.cs" />
     <Compile Include="Items\Dalmatian\Segments\Segment.cs" />
     <Compile Include="Items\Dalmatian\Segments\SegmentationPanel.xaml.cs">
@@ -282,7 +289,7 @@
       <DependentUpon>SegmentsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Items\Framework\ConfigReader.cs" />
-    <Compile Include="Items\Framework\Data\DataGrid\AtlasTransformationFiles.cs" />
+    <Compile Include="Items\Framework\Data\DataGrid\AtlasTransformationFile.cs" />
     <Compile Include="Items\Framework\Utils.cs" />
     <Compile Include="Items\Framework\View\Images\StateToImage.cs" />
     <Compile Include="Items\Framework\Data\FolderData.cs" />

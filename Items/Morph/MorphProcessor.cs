@@ -71,7 +71,7 @@ namespace GUI.Items.Morph
                worksheet.Cells[row, 1].Value = sampleFrom;
                worksheet.Cells[row, 2].Value = sampleTo;
                worksheet.Cells[row, 3].Value = saveFileName;
-               item.AtlasTFiles.Reload(saveFileName);
+               item.ReloadTfiles(saveFileName);
                row++;
             }
          }

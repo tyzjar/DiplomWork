@@ -42,12 +42,7 @@ namespace Dalmatian.ROI
             if (param == null)
                throw (GUI.Items.Framework.StandartExceptions.NoSelectedItem());
 
-            var folder = param.SampleFolder;
-
-
-            //MessageBox.Show(mainData.folderData.CellCountSubfolder);
-            MessageBox.Show(param.folderData.CellCountSubfolder);
-            //MessageBox.Show(folder);
+            var folder = param.CellCountFolder;
 
             if (!GUI.Items.Framework.Utils.CheckFolderForTifFiles(folder))
                throw new GUI.Items.Framework.StandartExceptions("Did not find segments pictures. Plaese check the folder \""

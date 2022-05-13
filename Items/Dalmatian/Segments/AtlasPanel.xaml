@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="GUI.Items.Dalmatian.AtlasPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI.Items.Dalmatian.Segments"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="300">
+    <StackPanel>
+      <TextBlock Text="Atlas transformation files." Style="{StaticResource HeaderText}" HorizontalAlignment="Center" />
+      <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5,0">
+                  ~   Select transformation files in the order they were created. If you select a file not from the segment
+                  folder, it will be copied. Supported only *.mat and *.h5 file types. ORDER IS MATTER.
+      </TextBlock>
+      <Button  Content="Select new file." Margin="0,13,0,0" HorizontalAlignment="Center" Height="24"
+                   Style="{StaticResource BaseStyle}" Width="100" Template="{StaticResource NewButtonControlTemplate}"
+                   Command = "{Binding SelectAtlasTFile}"/>
+
+      <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,13,0,0">
+         <DataGrid VerticalAlignment="Top"
+                x:Name="AtlasFileNamesGrid" 
+                GridLinesVisibility="Horizontal"
+                CanUserDeleteRows="True"
+                CanUserAddRows="True"
+                AutoGenerateColumns="False" MaxHeight="380">
+            <DataGrid.Columns>
+               <DataGridTextColumn Binding="{Binding FileName, Mode=TwoWay}" Header="Atlas transformation file names." 
+                                   Width="*" IsReadOnly="False"/>
+            </DataGrid.Columns>
+         </DataGrid>
+      </ScrollViewer>
+   </StackPanel>
+</UserControl>

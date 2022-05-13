@@ -14,6 +14,10 @@
          <ColumnDefinition/>
       </Grid.ColumnDefinitions>
       <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="5,5" Grid.Column="0">
+         <UserControl x:Name="AtlasPanelView" Margin="0,10,0,10"/>
+      </Border>
+
+      <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="5,5" Grid.Column="1">
          <StackPanel  Margin="10,10">
             <TextBlock Text="Add segment :" Style="{StaticResource HeaderText}"/>
             <!--Add folder-->
@@ -49,12 +53,8 @@
                    Style="{StaticResource BaseStyle}" Width="88" Template="{StaticResource NewButtonControlTemplate}"
                    Command = "{Binding CountAll}"/>
             </StackPanel>
-            
+            <UserControl x:Name="SegmentationPanelView"  HorizontalAlignment="Center" Margin="0,25,0,0"/>
          </StackPanel>
-      </Border>
-
-      <Border Style="{StaticResource BorderStyle}" Padding="3" Margin="5,5" Grid.Column="1">
-         <UserControl x:Name="SegmentationPanelView"  HorizontalAlignment="Center" Margin="5,5"/>
       </Border>
    </Grid>
 </Window>

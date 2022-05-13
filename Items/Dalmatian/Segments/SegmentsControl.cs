@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,12 +19,19 @@ namespace GUI.Items.Dalmatian
          try
          {
             mainData = mainData_;
+            selectedItem = item;
             selectedList = item.Segments as SegmentListControl;
             ViewWindow = new SegmentsView();
             panel = new SegmentationPanel();
+            apanel = new AtlasPanel();
 
             panel.SegmentsDataGrid.ItemsSource = selectedList.segmentsList;
+            panel.SegmentsDataGrid.MaxHeight = 380;
             ViewWindow.SegmentationPanelView.Content = panel;
+
+            apanel.AtlasFileNamesGrid.ItemsSource = item.AtlasTFiles;
+            ViewWindow.AtlasPanelView.Content = apanel;
+
             ViewWindow.DataContext = this;
 
             // Add segment button
@@ -50,6 +59,11 @@ namespace GUI.Items.Dalmatian
                countAll();
             });
 
+            // Select new file (Atlas) button
+            SelectAtlasTFile = new Framework.DelegateCommand((object param) => {
+               selectAtlasTFile();
+            });
+
 
             loadSegments.ReadJson();
             loadSegments.onLoadEnd += LoadItems;
@@ -59,6 +73,7 @@ namespace GUI.Items.Dalmatian
             MessageBox.Show(ex.Message, "Exeption",
                MessageBoxButton.OK, MessageBoxImage.Error);
          }
+
       }
 
       public void StartView()
@@ -161,17 +176,52 @@ namespace GUI.Items.Dalmatian
          }
       }
 
+      void selectAtlasTFile()
+      {
+         try
+         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = selectedItem.SampleName;
+            openFileDialog.Filter = "Transformation file | *.mat; *.h5";
+
+            if ((openFileDialog.ShowDialog() == true)&&(File.Exists(openFileDialog.FileName)))
+            {
+               var name = Path.GetFileName(openFileDialog.FileName);
+               var fullname = selectedItem.SampleName + "\\" + name;
+
+               if (selectedItem.AtlasTContain(name))
+                  throw new Exception("Already contains this file!");
+
+               if (!Equals(openFileDialog.FileName, fullname))
+               {
+                  File.Copy(openFileDialog.FileName, fullname, true);
+               }
+
+               selectedItem.AtlasTFiles.Add(new 
+                  Framework.Data.DataGrid.AtlasTransformationFile(name));
+            }
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+         }
+      }
+
       #region ComandControl
       public ICommand AddSegment { get; private set; }
       public ICommand DeleteSegment { get; private set; }
       public ICommand ApplyToAllSegment { get; private set; }
       public ICommand Count { get; private set; }
       public ICommand CountAll { get; private set; }
+      public ICommand SelectAtlasTFile { get; private set; }
       #endregion
 
       private SegmentsView ViewWindow;
       private SegmentationPanel panel;
+      private AtlasPanel apanel;
       private SegmentListControl selectedList;
+      private Framework.Data.DataGrid.GridItem selectedItem;
       private LoadSegments loadSegments = new LoadSegments();
       private Framework.Data.MainData mainData;
    }

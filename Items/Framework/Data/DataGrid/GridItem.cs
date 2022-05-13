@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace GUI.Items.Framework.Data.DataGrid
@@ -71,33 +70,44 @@ namespace GUI.Items.Framework.Data.DataGrid
 
       public bool AtlasTAvailible()
       {
-         if (AtlasTFiles.TransformationFiles.Count == 0)
+         if (AtlasTFiles.Count == 0)
             return false;
 
-         foreach (var file in AtlasTFiles.TransformationFiles)
+         foreach (var file in AtlasTFiles)
          {
-            var fileName = SampleName.Trim(Utils.delims) + "\\" + file;
-            if ((!Directory.Exists(SampleName)) || (!File.Exists(file)))
+            var fileName = SampleName + "\\" + file.FileName;
+            if ((!Directory.Exists(SampleName)) || (!File.Exists(fileName)))
                return false;
          }
          return true;
       }
       public void AtlasTUpdate()
       {
-         if ((AtlasTFiles.TransformationFiles.Count == 0) && (Directory.Exists(SampleName)))
+         if ((AtlasTFiles.Count == 0) && (Directory.Exists(SampleName)))
          {
-            var str = new string[] { SampleName.Trim(Utils.delims) + "\\" + FolderData.Atlas + FolderData.AtlasExtension,
-            SampleName + "\\" + FolderData.AtlasReference + FolderData.AtlasExtension};
+            var str = new string[] {FolderData.Atlas + FolderData.AtlasExtension,
+               FolderData.AtlasReference + FolderData.AtlasExtension};
+
             foreach (var file in str)
             {
-               if (File.Exists(file))
+               if (File.Exists(SampleName + "\\" + file))
                {
-                  AtlasTFiles.TransformationFiles.Add(file);
+                  AtlasTFiles.Add(new AtlasTransformationFile(file));
                   break;
                }
             }
          }
          OnPropertyChanged(nameof(AtlasMorphStatePic));
+      }
+
+      public bool AtlasTContain(string name)
+      {
+         foreach (var file in AtlasTFiles)
+         {
+            if (Equals(file.FileName, name))
+               return true;
+         }
+         return false;
       }
       private void propertyChanged(object sender, PropertyChangedEventArgs e)
       {
@@ -107,7 +117,11 @@ namespace GUI.Items.Framework.Data.DataGrid
          }
       }
 
-
+      public void ReloadTfiles(string TFile)
+      {
+         AtlasTFiles.Clear();
+         AtlasTFiles.Add(new AtlasTransformationFile(TFile));
+      }
 
       #region PROPERTIES
       public string SampleName
@@ -254,12 +268,8 @@ namespace GUI.Items.Framework.Data.DataGrid
 
 
       public string SampleFolder
-      {
-         get
-         {
-            MessageBox.Show(folderData.SampleSubfolder);
-            return (SampleName + "\\" + folderData.SampleSubfolder).Trim(Utils.delims);
-         }
+      { 
+         get => (SampleName + "\\" + folderData.SampleSubfolder).Trim(Utils.delims);
       }
       public string MaskFolder
       {
@@ -282,7 +292,7 @@ namespace GUI.Items.Framework.Data.DataGrid
 
       #region VARIABLES
       public SegmentsList Segments;
-      public AtlasTransformationFiles AtlasTFiles = new AtlasTransformationFiles();
+      public BindingList<AtlasTransformationFile> AtlasTFiles = new BindingList<AtlasTransformationFile>();
 
       private string SampleNameValue = "";
       private string InSampleNameValue = "";
@@ -290,7 +300,7 @@ namespace GUI.Items.Framework.Data.DataGrid
       private PreprocState CropStateValue;
       private PreprocState IntensityStateValue;
       private PreprocState SubtractionStateValue;
-      public FolderData folderData;
+      private FolderData folderData;
       #endregion
    }
 

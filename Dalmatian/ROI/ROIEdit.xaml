@@ -8,8 +8,6 @@
         WindowState ="Maximized" Closing="Window_Closing"
         WindowStartupLocation="CenterScreen" Background="{StaticResource MyColor1}"
         Title="Segments" Height="450" Width="800">
-   <Border Style="{StaticResource BorderStyle}" Margin="10,10">
-      <Grid x:Name="MainGrid">
+      <Grid x:Name="MainGrid" Margin="5,5">
       </Grid>
-   </Border>
 </Window>
