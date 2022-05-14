@@ -115,8 +115,8 @@ namespace Dalmatian.ROI
             if (objectData.Length < 3)
                continue;
 
-            if (double.TryParse(objectData[0],out x))
-               if (double.TryParse(objectData[1], out y))
+            if (double.TryParse(objectData[0],out y))
+               if (double.TryParse(objectData[1], out x))
                   l.AddPoint(x,y);
          }
          (param.Segments as SegmentListControl).CountAll();
