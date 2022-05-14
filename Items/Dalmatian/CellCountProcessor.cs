@@ -47,7 +47,7 @@ namespace GUI.Items.Dalmatian
 
          foreach (var item in config.mainData.dataGrid.Data)
          {
-            config.segmentationControl.ImportComand(item, item.SampleFolder + "\\cells.txt");
+            config.segmentationControl.ImportComand(item, item.CellCountFolder + "\\cells.txt");
          }
       }
 
@@ -59,7 +59,7 @@ namespace GUI.Items.Dalmatian
 
          foreach (var item in config.mainData.dataGrid.Data)
          {
-            if (Framework.Utils.CheckFolderForTifFiles(item.SampleFolder))
+            if (Framework.Utils.CheckFolderForTifFiles(item.CellCountFolder))
             {
                worksheet.Cells[row, 1].Value = item.SampleName.Trim(Framework.Utils.delims);
                row++;

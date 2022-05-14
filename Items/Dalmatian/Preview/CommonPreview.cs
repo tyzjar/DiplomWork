@@ -30,7 +30,7 @@ namespace GUI.Items.Dalmatian.Preview
             throw (Framework.StandartExceptions.NoSelectedItem());
 
          sampleName = (config.gridPanel.SamplesDataGrid.SelectedItem
-             as Framework.Data.DataGrid.GridItem).SampleFolder;
+             as Framework.Data.DataGrid.GridItem).CellCountFolder;
 
          if (!Framework.Utils.CheckFolderForTifFiles(sampleName))
             throw (Framework.StandartExceptions.FilesDoesNotExists());

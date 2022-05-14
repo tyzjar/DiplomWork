@@ -44,7 +44,7 @@ namespace GUI.Items.Dalmatian
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Instruction File | *.xlsx";
             saveFileDialog.DefaultExt = "xlsx";
-            saveFileDialog.FileName = "Cells Report " + Path.GetFileName(mainData.openSaveEvents.SelectedProjectFile);
+            saveFileDialog.FileName = "Cells Report " + Path.GetFileNameWithoutExtension(mainData.openSaveEvents.SelectedProjectFile);
 
             if (saveFileDialog.ShowDialog() == true)
             {
