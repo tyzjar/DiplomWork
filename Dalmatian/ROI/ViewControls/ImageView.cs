@@ -27,25 +27,28 @@ namespace Dalmatian.ROI
       {
          ImStartWidth = w;
          ImStartHeight = h;
-         imlastWidth = w * s;
-         imlastHeight = h * s;
 
          scale = s;
          StartScale = s;
       }
-      public double DeltatWidht
+
+      public void ResetImageState(double w, double h)
       {
-         get
-         {
-            return imlastWidth - ImStartWidth * scale;
-         }
+         if (ImCurrentWidht > 0)
+            if (ImStartWidth != w)
+               MessageBox.Show("Image size was changed. PLease check the sample!",
+                  "Exeption", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+         scale = ImCurrentWidht / w;
+
+         ImStartWidth = w;
+         ImStartHeight = h;
+         onScale();
       }
-      public double DeltaHeight
+
+      public void SetScaleBySize(double newW, double newH)
       {
-         get
-         {
-            return imlastHeight - ImStartHeight * scale;
-         }
+         Scale = newW / ImStartWidth;
       }
 
       public double ImCurrentWidht
@@ -73,14 +76,11 @@ namespace Dalmatian.ROI
          {
             if ((value != scale) && (value >= с_minScale) && (value <= с_maxScale))
             {
-               imlastWidth = ImCurrentWidht;
-               imlastHeight = ImCurrentHeight;
                scale = value;
                onScale();
             }
          }
       }
-
 
       public double ImStartWidth = 0;
       public double ImStartHeight = 0;
@@ -90,8 +90,6 @@ namespace Dalmatian.ROI
       public const double с_maxScale = 10.0;
 
       private double scale = 1;
-      private double imlastWidth = 0;
-      private double imlastHeight = 0;
    }
 
    public class ImageView : GUI.Items.Framework.ViewModelBase
@@ -102,6 +100,7 @@ namespace Dalmatian.ROI
 
          mainCanvas = new Canvas();
          mainImage = new Image();
+         imState = new ImageState(0, 0, 1);
 
          mainCanvas.Children.Add(mainImage);
 
@@ -134,8 +133,8 @@ namespace Dalmatian.ROI
       public void EndRender(object sender, EventArgs e)
       {
 
-         imState = new ImageState(mainImage.ActualWidth, mainImage.ActualHeight, 1);
-         imState.onScale += ScaleAll;
+         imState.SetScaleBySize(mainImage.ActualWidth, mainImage.ActualHeight);
+
          // load Segments
          foreach (var item in segmentsList)
          {
@@ -144,19 +143,22 @@ namespace Dalmatian.ROI
 
          if ((imState.ImStartWidth > mainCanvas.ActualWidth) || (imState.ImStartHeight > mainCanvas.ActualHeight))
          {
-            imState.StartScale = Math.Max(Math.Min(mainCanvas.ActualWidth / imState.ImStartWidth,
+            imState.StartScale = imState.Scale * Math.Max(Math.Min(mainCanvas.ActualWidth / imState.ImStartWidth,
                                       mainCanvas.ActualHeight / imState.ImStartHeight), ImageState.с_minScale);
             Reset();
          }
-         else
-            ScaleAll();
+
+         ScaleAll();
          CountAll();
+
+         imState.onScale += ScaleAll;
          onEndRender();
       }
       private void RenderPictures()
       {
-         // load Image
-         mainImage.Source = new BitmapImage(new Uri(imageNames[ImageIndex]));
+         var bmi = new BitmapImage(new Uri(imageNames[ImageIndex]));
+         mainImage.Source = bmi;
+         imState.ResetImageState(bmi.PixelWidth, bmi.PixelHeight);
       }
       #endregion
 
