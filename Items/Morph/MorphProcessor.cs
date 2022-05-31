@@ -53,11 +53,13 @@ namespace GUI.Items.Morph
          {
             var sampleFrom = item.MaskFolder;
             var sampleTo = item.InSampleName;
-            var saveFileName = "";
+            var saveTFileName = "";
+            var saveNIIFileName = Framework.Utils.CreateSaveName(item.SampleName, item.InSampleName) + ".nii";
 
-            if (!config.mainData.folderData.AtlasAndAtalasRefCheckFolderName(ref sampleTo, ref saveFileName))
+
+            if (!config.mainData.folderData.AtlasAndAtalasRefCheckFolderName(ref sampleTo, ref saveTFileName))
             {
-               saveFileName = Framework.Utils.CreateSaveName(item.SampleName, item.InSampleName);
+               saveTFileName = Framework.Utils.CreateSaveName(item.SampleName, item.InSampleName) + Framework.Data.FolderData.AtlasExtension;
                sampleTo = item.MorphToFolder;
             }
 
@@ -70,8 +72,9 @@ namespace GUI.Items.Morph
             {
                worksheet.Cells[row, 1].Value = sampleFrom;
                worksheet.Cells[row, 2].Value = sampleTo;
-               worksheet.Cells[row, 3].Value = saveFileName;
-               item.ReloadTfiles(saveFileName);
+               worksheet.Cells[row, 3].Value = saveTFileName;
+               worksheet.Cells[row, 4].Value = saveNIIFileName;
+               item.ReloadTfiles(saveTFileName);
                row++;
             }
          }

@@ -130,7 +130,7 @@ for i=1:Ng
     
     if(strcmp(yes,cell2mat(myList{i,MaskColumn})))
         LogProcess(logfile,'SampleName',sample);
-        IM=gui_Rload(strcat(LoadTmp(i),'\*.tif'), strcat(LoadTmp(i),'\') ,1.6,1.6);
+        IM=gui_Rload(strcat(LoadTmp(i),'\*.tif'), strcat(LoadTmp(i),'\'), 1.6, 1.6);
         OUT=Vmask( IM, midlvl );
         for j=1:size(OUT,3)
             imwrite(uint16(OUT(:,:,j)),strcat(sample,'\',folnameMask,'\',fname,'_', sprintf('%06d.tif',j)));

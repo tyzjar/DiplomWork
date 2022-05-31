@@ -19,6 +19,7 @@ for i=1:Ng
     LogProcess(logfile,'SampleName',strcat('morphing in sample', 32, '"',cell2mat(t{i,2}), '"'));
     
     TSave = cell2mat(t{i,3});   % name of file to save transformations
+    NIISave = cell2mat(t{i,4});   % name of file to save transformations
     
     IN=Rload(strcat(cell2mat(t{i,2}),'\*.tif'),1,1)/65535;
     [M,N,L]=size(IN);
@@ -68,7 +69,7 @@ for i=1:Ng
     IM=mnlintform(IM, nltfBA);
     mkdir(strcat(cell2mat(t{i,1}),'\'),OutF);
     save(strcat(cell2mat(t{i,1}),'\',TSave),'nltfBA');
-    %RprepareNii(IM*65535,strcat(folder,'\','S_',order{i,1}{j},'_to_',order{i,2},'.nii'));
+    RprepareNii(IM*65535,strcat(cell2mat(t{i,1}),'\', NIISave));
     for k=1:size(IM,3)
         imwrite(uint16(IM(:,:,k)*65535),strcat(cell2mat(t{i,1}),...
             '\',OutF,'\img_', sprintf('%06d.tif',k)));
