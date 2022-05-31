@@ -16,7 +16,7 @@ LogProcess(logfile,'Progressbar',num2str(0),num2str(Ng));
 
 for i=1:Ng
     LogProcess(logfile,'Operation',strcat('Sample', 32, '"', cell2mat(t{i,1}), '"'));
-    LogProcess(logfile,'SampleName',strcat('morphing in sample', 32, '"',cell2mat(t{i,2}), '"'));
+    LogProcess(logfile,'SampleName',strcat('is registering in sample', 32, '"',cell2mat(t{i,2}), '"'));
     
     TSave = cell2mat(t{i,3});   % name of file to save transformations
     NIISave = cell2mat(t{i,4});   % name of file to save transformations

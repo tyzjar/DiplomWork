@@ -40,8 +40,17 @@ namespace GUI.Items.Framework
          if (Directory.Exists(folder))
             return Directory.EnumerateFiles(folder, format).Any();
 
-         throw (StandartExceptions.FolderDoesNotExists());
+         throw (StandartExceptions.FolderDoesNotExists(folder));
       }
+
+      public static bool CheckFolderForTifFilesNoThrow(string folder)
+      {
+         if (Directory.Exists(folder))
+            return Directory.EnumerateFiles(folder, format).Any();
+
+         return false;
+      }
+
 
       public static void RemoveSubfolder(ref string folder, string subfolder)
       {
@@ -74,8 +83,8 @@ namespace GUI.Items.Framework
 
          foreach (var del in dels)
          {
-            sampleFrom.Replace(del, mainDel);
-            sampleTo.Replace(del, mainDel);
+            sampleFrom = sampleFrom.Replace(del, mainDel);
+            sampleTo = sampleTo.Replace(del, mainDel);
          }
 
          var sf = sampleFrom.Split(mainDel);
@@ -83,7 +92,7 @@ namespace GUI.Items.Framework
 
          if ((sf.Length > 0) && (st.Length > 0))
          {
-            return sf[sf.Length - 1] + st[st.Length - 1];
+            return sf[sf.Length - 1] +"_to_"+ st[st.Length - 1];
          }
 
          return "Default file name";

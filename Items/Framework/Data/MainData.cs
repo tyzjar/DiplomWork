@@ -46,6 +46,11 @@ namespace GUI.Items.Framework.Data
          initStartMainData();
       }
 
+      void loadProjectFromSelectedFile()
+      {
+         configReader.OpenProject(openSaveEvents.SelectedProjectFile);
+      }
+
       /// Project file type
       void initStartMainData()
       {
@@ -67,7 +72,7 @@ namespace GUI.Items.Framework.Data
             if ((args.Length>1)&&(Path.GetExtension(args[1]) == defaultExt))
             {
                openSaveEvents.SelectedProjectFile = args[1];
-               configReader.OpenProject(openSaveEvents.SelectedProjectFile);
+               loadProjectFromSelectedFile();
             }
          }
          catch (Exception ex)
@@ -88,7 +93,7 @@ namespace GUI.Items.Framework.Data
             if(openFileDialog.ShowDialog() == true)
             {
                openSaveEvents.SelectedProjectFile = openFileDialog.FileName;
-               configReader.OpenProject(openSaveEvents.SelectedProjectFile);
+               loadProjectFromSelectedFile();
             }
          }
          catch (Exception ex)

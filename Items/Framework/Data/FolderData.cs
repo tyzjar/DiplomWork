@@ -31,6 +31,7 @@ namespace GUI.Items.Framework.Data
       public static string Atlas = "Atlas";
       public static string AtlasReference = "AtlasReference";
       public static string AtlasExtension = ".mat";
+
       public bool AtlasAndAtalasRefCheckFolderName(ref string folder, ref string fileName)
       {
          if (Equals(folder, Atlas))
@@ -49,8 +50,8 @@ namespace GUI.Items.Framework.Data
 
          var atl = AtlasFolder;
          var atlref = AtlasRefFolder;
-         atl = atl.Trim(new char[] { '\\', '/' });
-         atlref = atlref.Trim(new char[] { '\\', '/' });
+         atl = atl.Trim(Utils.delims);
+         atlref = atlref.Trim(Utils.delims);
 
          if (Equals(folder, atl))
          {
@@ -66,7 +67,7 @@ namespace GUI.Items.Framework.Data
 
          Utils.RemoveSubfolder(ref atl, MorphToSubfolder);
          Utils.RemoveSubfolder(ref atlref, MorphToSubfolder);
-         folder = folder.Trim(new char[] { '\\', '/' });
+         folder = folder.Trim(Utils.delims);
 
          if (Equals(folder, atl))
          {
@@ -245,7 +246,7 @@ namespace GUI.Items.Framework.Data
          {
             if (value != variables.AtlasFolder)
             {
-               variables.AtlasFolder = value;
+               variables.AtlasFolder = value.Trim(Utils.delims);
                OnPropertyChanged(nameof(AtlasFolder));
             }
          }
@@ -260,7 +261,7 @@ namespace GUI.Items.Framework.Data
          {
             if (value != variables.AtlasRefFolder)
             {
-               variables.AtlasRefFolder = value;
+               variables.AtlasRefFolder = value.Trim(Utils.delims);
                OnPropertyChanged(nameof(AtlasRefFolder));
             }
          }

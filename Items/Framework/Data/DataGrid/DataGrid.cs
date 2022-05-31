@@ -59,6 +59,7 @@ namespace GUI.Items.Framework.Data.DataGrid
             foreach (var item in newData)
             {
                item.InitFolder(folderData);
+               item.udpateStates();
                Data.Add(item);
             }
          }

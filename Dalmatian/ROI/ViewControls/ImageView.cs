@@ -107,7 +107,7 @@ namespace Dalmatian.ROI
          if (System.IO.Directory.Exists(folder))
             imageNames = System.IO.Directory.GetFiles(folder, "*.tif");
          else
-            throw (GUI.Items.Framework.StandartExceptions.FolderDoesNotExists());
+            throw (GUI.Items.Framework.StandartExceptions.FolderDoesNotExists(folder));
 
       }
 

@@ -21,21 +21,21 @@
                      </DataTemplate>
                   </DataGridTemplateColumn.CellTemplate>
                </DataGridTemplateColumn>
-               <DataGridTemplateColumn Header="Intensity" Width="60" IsReadOnly="True">
+               <DataGridTemplateColumn Header="Intensity" Width="65" IsReadOnly="True">
                   <DataGridTemplateColumn.CellTemplate>
                      <DataTemplate>
                         <Image Source="{Binding IntensityStatePic}" MinWidth="15" MaxWidth="15"/>
                      </DataTemplate>
                   </DataGridTemplateColumn.CellTemplate>
                </DataGridTemplateColumn>
-               <DataGridTemplateColumn Header="Crop" MinWidth="40" MaxWidth="40" IsReadOnly="True">
+               <DataGridTemplateColumn Header="Crop" MinWidth="45" MaxWidth="45" IsReadOnly="True">
                   <DataGridTemplateColumn.CellTemplate>
                      <DataTemplate>
                         <Image Source="{Binding CropStatePic}" MinWidth="15" MaxWidth="15"/>
                      </DataTemplate>
                   </DataGridTemplateColumn.CellTemplate>
                </DataGridTemplateColumn>
-               <DataGridTemplateColumn Header="Mask" MinWidth="40" MaxWidth="40" IsReadOnly="True">
+               <DataGridTemplateColumn Header="Mask" MinWidth="45" MaxWidth="45" IsReadOnly="True">
                   <DataGridTemplateColumn.CellTemplate>
                      <DataTemplate>
                         <Image Source="{Binding MaskStatePic}" MinWidth="15" MaxWidth="15"/>

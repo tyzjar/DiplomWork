@@ -30,7 +30,7 @@ namespace GUI.Items.Dalmatian.Preview
              as Framework.Data.DataGrid.GridItem).CellCountFolder;
 
          if (!Framework.Utils.CheckFolderForTifFiles(sampleName))
-            throw (Framework.StandartExceptions.FilesDoesNotExists());
+            throw (Framework.StandartExceptions.FilesDoesNotExists(sampleName));
 
          sampleName += @"\*.tif";
       }

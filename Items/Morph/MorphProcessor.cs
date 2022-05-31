@@ -47,6 +47,8 @@ namespace GUI.Items.Morph
          int row = 1;
          worksheet.Cells[row, 1].Value = "Var1";
          worksheet.Cells[row, 2].Value = "Var2";
+         worksheet.Cells[row, 3].Value = "Var3";
+         worksheet.Cells[row, 4].Value = "Var4";
          row++;
 
          foreach (var item in config.mainData.dataGrid.Data)
@@ -57,18 +59,24 @@ namespace GUI.Items.Morph
             var saveNIIFileName = Framework.Utils.CreateSaveName(item.SampleName, item.InSampleName) + ".nii";
 
 
-            if (!config.mainData.folderData.AtlasAndAtalasRefCheckFolderName(ref sampleTo, ref saveTFileName))
+            if (config.mainData.folderData.AtlasAndAtalasRefCheckFolderName(ref sampleTo, ref saveTFileName))
+            {
+               if (!Framework.Utils.CheckFolderForTifFilesNoThrow(sampleTo))
+               {
+                  sampleTo += @"\" + config.mainData.folderData.MorphToSubfolder;
+               }
+            }
+            else
             {
                saveTFileName = Framework.Utils.CreateSaveName(item.SampleName, item.InSampleName) + Framework.Data.FolderData.AtlasExtension;
-               sampleTo = item.MorphToFolder;
+               if (Framework.Utils.CheckFolderForTifFilesNoThrow(item.MorphToFolder))
+               {
+                  sampleTo = item.MorphToFolder;
+               }
+               Framework.Utils.CheckFolderForTifFiles(sampleTo);
             }
 
-            if (!Framework.Utils.CheckFolderForTifFiles(sampleTo))
-            {
-               sampleTo = item.InSampleName;
-            }
-
-            if (Framework.Utils.CheckFolderForTifFiles(sampleFrom) && Framework.Utils.CheckFolderForTifFiles(sampleTo))
+            if (Framework.Utils.CheckFolderForTifFiles(sampleFrom))
             {
                worksheet.Cells[row, 1].Value = sampleFrom;
                worksheet.Cells[row, 2].Value = sampleTo;

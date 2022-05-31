@@ -9,16 +9,16 @@ namespace GUI.Items.Framework
 
    public class StandartExceptions : SystemException
    {
-      public static StandartExceptions FolderDoesNotExists()
+      public static StandartExceptions FolderDoesNotExists(string folderName)
       {
-         return new StandartExceptions("Folder did not found. Please check in the setting CellCount subfolder " +
-               "and make sure it exists in sample folder. ", false);
+         return new StandartExceptions("Folder did not found. Please check in the setting subfolder " +
+               "and make sure it exists in sample folder. Folder name which should exist: " + folderName, false);
       }
 
-      public static StandartExceptions FilesDoesNotExists()
+      public static StandartExceptions FilesDoesNotExists(string folderName)
       {
-         return new StandartExceptions("Files did not found. Please check in the setting CellCount subfolder " +
-               "and make sure it have sample files. ", false);
+         return new StandartExceptions("Files did not found. Please check in the setting subfolder " +
+               "and make sure it have sample files.  Folder name: " + folderName, false);
       }
 
       public static StandartExceptions NoSelectedItem()

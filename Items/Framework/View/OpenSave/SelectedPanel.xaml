@@ -7,7 +7,7 @@
              mc:Ignorable="d">
    <Grid>
       <Grid.ColumnDefinitions>
-         <ColumnDefinition Width="68"/>
+         <ColumnDefinition Width="75"/>
          <ColumnDefinition/>
          <ColumnDefinition  Width="340"/>
       </Grid.ColumnDefinitions>
