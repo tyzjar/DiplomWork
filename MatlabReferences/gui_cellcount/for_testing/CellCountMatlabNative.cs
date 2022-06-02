@@ -1,6 +1,6 @@
 /*
 * MATLAB Compiler: 8.1 (R2020b)
-* Date: Tue Apr 12 03:09:23 2022
+* Date: Thu Jun  2 19:25:11 2022
 * Arguments:
 * "-B""macro_default""-W""dotnet:gui_cellcount,CellCountMatlab,4.0,private,version=1.0""-T
 * ""link:lib""-d""P:\DiplomRabota\GUI\MatlabReferences\gui_cellcount\for_testing""-v""clas
@@ -200,11 +200,11 @@ namespace gui_cellcountNative
     /// </remarks>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
+    /// <param name="HIPASS">Input argument #3</param>
     ///
-    public void gui_cellcount(Object logfile, Object expname, Object subfolder)
+    public void gui_cellcount(Object logfile, Object expname, Object HIPASS)
     {
-      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, subfolder);
+      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, HIPASS);
     }
 
 
@@ -218,13 +218,13 @@ namespace gui_cellcountNative
     /// </remarks>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
+    /// <param name="HIPASS">Input argument #3</param>
+    /// <param name="LOWPASS">Input argument #4</param>
     ///
-    public void gui_cellcount(Object logfile, Object expname, Object subfolder, Object 
-                        HIPASS)
+    public void gui_cellcount(Object logfile, Object expname, Object HIPASS, Object 
+                        LOWPASS)
     {
-      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, subfolder, HIPASS);
+      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, HIPASS, LOWPASS);
     }
 
 
@@ -238,14 +238,14 @@ namespace gui_cellcountNative
     /// </remarks>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
-    /// <param name="LOWPASS">Input argument #5</param>
+    /// <param name="HIPASS">Input argument #3</param>
+    /// <param name="LOWPASS">Input argument #4</param>
+    /// <param name="THRESHOLD">Input argument #5</param>
     ///
-    public void gui_cellcount(Object logfile, Object expname, Object subfolder, Object 
-                        HIPASS, Object LOWPASS)
+    public void gui_cellcount(Object logfile, Object expname, Object HIPASS, Object 
+                        LOWPASS, Object THRESHOLD)
     {
-      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, subfolder, HIPASS, LOWPASS);
+      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, HIPASS, LOWPASS, THRESHOLD);
     }
 
 
@@ -259,15 +259,15 @@ namespace gui_cellcountNative
     /// </remarks>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
-    /// <param name="LOWPASS">Input argument #5</param>
-    /// <param name="THRESHOLD">Input argument #6</param>
+    /// <param name="HIPASS">Input argument #3</param>
+    /// <param name="LOWPASS">Input argument #4</param>
+    /// <param name="THRESHOLD">Input argument #5</param>
+    /// <param name="MINREG">Input argument #6</param>
     ///
-    public void gui_cellcount(Object logfile, Object expname, Object subfolder, Object 
-                        HIPASS, Object LOWPASS, Object THRESHOLD)
+    public void gui_cellcount(Object logfile, Object expname, Object HIPASS, Object 
+                        LOWPASS, Object THRESHOLD, Object MINREG)
     {
-      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, subfolder, HIPASS, LOWPASS, THRESHOLD);
+      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, HIPASS, LOWPASS, THRESHOLD, MINREG);
     }
 
 
@@ -281,16 +281,16 @@ namespace gui_cellcountNative
     /// </remarks>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
-    /// <param name="LOWPASS">Input argument #5</param>
-    /// <param name="THRESHOLD">Input argument #6</param>
-    /// <param name="MINREG">Input argument #7</param>
+    /// <param name="HIPASS">Input argument #3</param>
+    /// <param name="LOWPASS">Input argument #4</param>
+    /// <param name="THRESHOLD">Input argument #5</param>
+    /// <param name="MINREG">Input argument #6</param>
+    /// <param name="CONFLVL">Input argument #7</param>
     ///
-    public void gui_cellcount(Object logfile, Object expname, Object subfolder, Object 
-                        HIPASS, Object LOWPASS, Object THRESHOLD, Object MINREG)
+    public void gui_cellcount(Object logfile, Object expname, Object HIPASS, Object 
+                        LOWPASS, Object THRESHOLD, Object MINREG, Object CONFLVL)
     {
-      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, subfolder, HIPASS, LOWPASS, THRESHOLD, MINREG);
+      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL);
     }
 
 
@@ -304,18 +304,18 @@ namespace gui_cellcountNative
     /// </remarks>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
-    /// <param name="LOWPASS">Input argument #5</param>
-    /// <param name="THRESHOLD">Input argument #6</param>
-    /// <param name="MINREG">Input argument #7</param>
-    /// <param name="CONFLVL">Input argument #8</param>
+    /// <param name="HIPASS">Input argument #3</param>
+    /// <param name="LOWPASS">Input argument #4</param>
+    /// <param name="THRESHOLD">Input argument #5</param>
+    /// <param name="MINREG">Input argument #6</param>
+    /// <param name="CONFLVL">Input argument #7</param>
+    /// <param name="SMIN">Input argument #8</param>
     ///
-    public void gui_cellcount(Object logfile, Object expname, Object subfolder, Object 
-                        HIPASS, Object LOWPASS, Object THRESHOLD, Object MINREG, Object 
-                        CONFLVL)
+    public void gui_cellcount(Object logfile, Object expname, Object HIPASS, Object 
+                        LOWPASS, Object THRESHOLD, Object MINREG, Object CONFLVL, Object 
+                        SMIN)
     {
-      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, subfolder, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL);
+      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL, SMIN);
     }
 
 
@@ -329,19 +329,19 @@ namespace gui_cellcountNative
     /// </remarks>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
-    /// <param name="LOWPASS">Input argument #5</param>
-    /// <param name="THRESHOLD">Input argument #6</param>
-    /// <param name="MINREG">Input argument #7</param>
-    /// <param name="CONFLVL">Input argument #8</param>
-    /// <param name="SMIN">Input argument #9</param>
+    /// <param name="HIPASS">Input argument #3</param>
+    /// <param name="LOWPASS">Input argument #4</param>
+    /// <param name="THRESHOLD">Input argument #5</param>
+    /// <param name="MINREG">Input argument #6</param>
+    /// <param name="CONFLVL">Input argument #7</param>
+    /// <param name="SMIN">Input argument #8</param>
+    /// <param name="SMAX">Input argument #9</param>
     ///
-    public void gui_cellcount(Object logfile, Object expname, Object subfolder, Object 
-                        HIPASS, Object LOWPASS, Object THRESHOLD, Object MINREG, Object 
-                        CONFLVL, Object SMIN)
+    public void gui_cellcount(Object logfile, Object expname, Object HIPASS, Object 
+                        LOWPASS, Object THRESHOLD, Object MINREG, Object CONFLVL, Object 
+                        SMIN, Object SMAX)
     {
-      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, subfolder, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL, SMIN);
+      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL, SMIN, SMAX);
     }
 
 
@@ -355,48 +355,20 @@ namespace gui_cellcountNative
     /// </remarks>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
-    /// <param name="LOWPASS">Input argument #5</param>
-    /// <param name="THRESHOLD">Input argument #6</param>
-    /// <param name="MINREG">Input argument #7</param>
-    /// <param name="CONFLVL">Input argument #8</param>
-    /// <param name="SMIN">Input argument #9</param>
-    /// <param name="SMAX">Input argument #10</param>
+    /// <param name="HIPASS">Input argument #3</param>
+    /// <param name="LOWPASS">Input argument #4</param>
+    /// <param name="THRESHOLD">Input argument #5</param>
+    /// <param name="MINREG">Input argument #6</param>
+    /// <param name="CONFLVL">Input argument #7</param>
+    /// <param name="SMIN">Input argument #8</param>
+    /// <param name="SMAX">Input argument #9</param>
+    /// <param name="koef">Input argument #10</param>
     ///
-    public void gui_cellcount(Object logfile, Object expname, Object subfolder, Object 
-                        HIPASS, Object LOWPASS, Object THRESHOLD, Object MINREG, Object 
-                        CONFLVL, Object SMIN, Object SMAX)
+    public void gui_cellcount(Object logfile, Object expname, Object HIPASS, Object 
+                        LOWPASS, Object THRESHOLD, Object MINREG, Object CONFLVL, Object 
+                        SMIN, Object SMAX, Object koef)
     {
-      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, subfolder, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL, SMIN, SMAX);
-    }
-
-
-    /// <summary>
-    /// Provides a void output, 11-input Objectinterface to the gui_cellcount MATLAB
-    /// function.
-    /// </summary>
-    /// <remarks>
-    /// M-Documentation:
-    /// Predefined values for sstat
-    /// </remarks>
-    /// <param name="logfile">Input argument #1</param>
-    /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
-    /// <param name="LOWPASS">Input argument #5</param>
-    /// <param name="THRESHOLD">Input argument #6</param>
-    /// <param name="MINREG">Input argument #7</param>
-    /// <param name="CONFLVL">Input argument #8</param>
-    /// <param name="SMIN">Input argument #9</param>
-    /// <param name="SMAX">Input argument #10</param>
-    /// <param name="koef">Input argument #11</param>
-    ///
-    public void gui_cellcount(Object logfile, Object expname, Object subfolder, Object 
-                        HIPASS, Object LOWPASS, Object THRESHOLD, Object MINREG, Object 
-                        CONFLVL, Object SMIN, Object SMAX, Object koef)
-    {
-      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, subfolder, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL, SMIN, SMAX, koef);
+      mcr.EvaluateFunction(0, "gui_cellcount", logfile, expname, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL, SMIN, SMAX, koef);
     }
 
 
@@ -468,14 +440,14 @@ namespace gui_cellcountNative
     /// <param name="numArgsOut">The number of output arguments to return.</param>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
+    /// <param name="HIPASS">Input argument #3</param>
     /// <returns>An Array of length "numArgsOut" containing the output
     /// arguments.</returns>
     ///
     public Object[] gui_cellcount(int numArgsOut, Object logfile, Object expname, Object 
-                            subfolder)
+                            HIPASS)
     {
-      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, subfolder);
+      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, HIPASS);
     }
 
 
@@ -490,15 +462,15 @@ namespace gui_cellcountNative
     /// <param name="numArgsOut">The number of output arguments to return.</param>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
+    /// <param name="HIPASS">Input argument #3</param>
+    /// <param name="LOWPASS">Input argument #4</param>
     /// <returns>An Array of length "numArgsOut" containing the output
     /// arguments.</returns>
     ///
     public Object[] gui_cellcount(int numArgsOut, Object logfile, Object expname, Object 
-                            subfolder, Object HIPASS)
+                            HIPASS, Object LOWPASS)
     {
-      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, subfolder, HIPASS);
+      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, HIPASS, LOWPASS);
     }
 
 
@@ -513,16 +485,16 @@ namespace gui_cellcountNative
     /// <param name="numArgsOut">The number of output arguments to return.</param>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
-    /// <param name="LOWPASS">Input argument #5</param>
+    /// <param name="HIPASS">Input argument #3</param>
+    /// <param name="LOWPASS">Input argument #4</param>
+    /// <param name="THRESHOLD">Input argument #5</param>
     /// <returns>An Array of length "numArgsOut" containing the output
     /// arguments.</returns>
     ///
     public Object[] gui_cellcount(int numArgsOut, Object logfile, Object expname, Object 
-                            subfolder, Object HIPASS, Object LOWPASS)
+                            HIPASS, Object LOWPASS, Object THRESHOLD)
     {
-      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, subfolder, HIPASS, LOWPASS);
+      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, HIPASS, LOWPASS, THRESHOLD);
     }
 
 
@@ -537,17 +509,17 @@ namespace gui_cellcountNative
     /// <param name="numArgsOut">The number of output arguments to return.</param>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
-    /// <param name="LOWPASS">Input argument #5</param>
-    /// <param name="THRESHOLD">Input argument #6</param>
+    /// <param name="HIPASS">Input argument #3</param>
+    /// <param name="LOWPASS">Input argument #4</param>
+    /// <param name="THRESHOLD">Input argument #5</param>
+    /// <param name="MINREG">Input argument #6</param>
     /// <returns>An Array of length "numArgsOut" containing the output
     /// arguments.</returns>
     ///
     public Object[] gui_cellcount(int numArgsOut, Object logfile, Object expname, Object 
-                            subfolder, Object HIPASS, Object LOWPASS, Object THRESHOLD)
+                            HIPASS, Object LOWPASS, Object THRESHOLD, Object MINREG)
     {
-      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, subfolder, HIPASS, LOWPASS, THRESHOLD);
+      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, HIPASS, LOWPASS, THRESHOLD, MINREG);
     }
 
 
@@ -562,19 +534,19 @@ namespace gui_cellcountNative
     /// <param name="numArgsOut">The number of output arguments to return.</param>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
-    /// <param name="LOWPASS">Input argument #5</param>
-    /// <param name="THRESHOLD">Input argument #6</param>
-    /// <param name="MINREG">Input argument #7</param>
+    /// <param name="HIPASS">Input argument #3</param>
+    /// <param name="LOWPASS">Input argument #4</param>
+    /// <param name="THRESHOLD">Input argument #5</param>
+    /// <param name="MINREG">Input argument #6</param>
+    /// <param name="CONFLVL">Input argument #7</param>
     /// <returns>An Array of length "numArgsOut" containing the output
     /// arguments.</returns>
     ///
     public Object[] gui_cellcount(int numArgsOut, Object logfile, Object expname, Object 
-                            subfolder, Object HIPASS, Object LOWPASS, Object THRESHOLD, 
-                            Object MINREG)
+                            HIPASS, Object LOWPASS, Object THRESHOLD, Object MINREG, 
+                            Object CONFLVL)
     {
-      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, subfolder, HIPASS, LOWPASS, THRESHOLD, MINREG);
+      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL);
     }
 
 
@@ -589,20 +561,20 @@ namespace gui_cellcountNative
     /// <param name="numArgsOut">The number of output arguments to return.</param>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
-    /// <param name="LOWPASS">Input argument #5</param>
-    /// <param name="THRESHOLD">Input argument #6</param>
-    /// <param name="MINREG">Input argument #7</param>
-    /// <param name="CONFLVL">Input argument #8</param>
+    /// <param name="HIPASS">Input argument #3</param>
+    /// <param name="LOWPASS">Input argument #4</param>
+    /// <param name="THRESHOLD">Input argument #5</param>
+    /// <param name="MINREG">Input argument #6</param>
+    /// <param name="CONFLVL">Input argument #7</param>
+    /// <param name="SMIN">Input argument #8</param>
     /// <returns>An Array of length "numArgsOut" containing the output
     /// arguments.</returns>
     ///
     public Object[] gui_cellcount(int numArgsOut, Object logfile, Object expname, Object 
-                            subfolder, Object HIPASS, Object LOWPASS, Object THRESHOLD, 
-                            Object MINREG, Object CONFLVL)
+                            HIPASS, Object LOWPASS, Object THRESHOLD, Object MINREG, 
+                            Object CONFLVL, Object SMIN)
     {
-      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, subfolder, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL);
+      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL, SMIN);
     }
 
 
@@ -617,21 +589,21 @@ namespace gui_cellcountNative
     /// <param name="numArgsOut">The number of output arguments to return.</param>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
-    /// <param name="LOWPASS">Input argument #5</param>
-    /// <param name="THRESHOLD">Input argument #6</param>
-    /// <param name="MINREG">Input argument #7</param>
-    /// <param name="CONFLVL">Input argument #8</param>
-    /// <param name="SMIN">Input argument #9</param>
+    /// <param name="HIPASS">Input argument #3</param>
+    /// <param name="LOWPASS">Input argument #4</param>
+    /// <param name="THRESHOLD">Input argument #5</param>
+    /// <param name="MINREG">Input argument #6</param>
+    /// <param name="CONFLVL">Input argument #7</param>
+    /// <param name="SMIN">Input argument #8</param>
+    /// <param name="SMAX">Input argument #9</param>
     /// <returns>An Array of length "numArgsOut" containing the output
     /// arguments.</returns>
     ///
     public Object[] gui_cellcount(int numArgsOut, Object logfile, Object expname, Object 
-                            subfolder, Object HIPASS, Object LOWPASS, Object THRESHOLD, 
-                            Object MINREG, Object CONFLVL, Object SMIN)
+                            HIPASS, Object LOWPASS, Object THRESHOLD, Object MINREG, 
+                            Object CONFLVL, Object SMIN, Object SMAX)
     {
-      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, subfolder, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL, SMIN);
+      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL, SMIN, SMAX);
     }
 
 
@@ -646,54 +618,22 @@ namespace gui_cellcountNative
     /// <param name="numArgsOut">The number of output arguments to return.</param>
     /// <param name="logfile">Input argument #1</param>
     /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
-    /// <param name="LOWPASS">Input argument #5</param>
-    /// <param name="THRESHOLD">Input argument #6</param>
-    /// <param name="MINREG">Input argument #7</param>
-    /// <param name="CONFLVL">Input argument #8</param>
-    /// <param name="SMIN">Input argument #9</param>
-    /// <param name="SMAX">Input argument #10</param>
+    /// <param name="HIPASS">Input argument #3</param>
+    /// <param name="LOWPASS">Input argument #4</param>
+    /// <param name="THRESHOLD">Input argument #5</param>
+    /// <param name="MINREG">Input argument #6</param>
+    /// <param name="CONFLVL">Input argument #7</param>
+    /// <param name="SMIN">Input argument #8</param>
+    /// <param name="SMAX">Input argument #9</param>
+    /// <param name="koef">Input argument #10</param>
     /// <returns>An Array of length "numArgsOut" containing the output
     /// arguments.</returns>
     ///
     public Object[] gui_cellcount(int numArgsOut, Object logfile, Object expname, Object 
-                            subfolder, Object HIPASS, Object LOWPASS, Object THRESHOLD, 
-                            Object MINREG, Object CONFLVL, Object SMIN, Object SMAX)
+                            HIPASS, Object LOWPASS, Object THRESHOLD, Object MINREG, 
+                            Object CONFLVL, Object SMIN, Object SMAX, Object koef)
     {
-      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, subfolder, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL, SMIN, SMAX);
-    }
-
-
-    /// <summary>
-    /// Provides the standard 11-input Object interface to the gui_cellcount MATLAB
-    /// function.
-    /// </summary>
-    /// <remarks>
-    /// M-Documentation:
-    /// Predefined values for sstat
-    /// </remarks>
-    /// <param name="numArgsOut">The number of output arguments to return.</param>
-    /// <param name="logfile">Input argument #1</param>
-    /// <param name="expname">Input argument #2</param>
-    /// <param name="subfolder">Input argument #3</param>
-    /// <param name="HIPASS">Input argument #4</param>
-    /// <param name="LOWPASS">Input argument #5</param>
-    /// <param name="THRESHOLD">Input argument #6</param>
-    /// <param name="MINREG">Input argument #7</param>
-    /// <param name="CONFLVL">Input argument #8</param>
-    /// <param name="SMIN">Input argument #9</param>
-    /// <param name="SMAX">Input argument #10</param>
-    /// <param name="koef">Input argument #11</param>
-    /// <returns>An Array of length "numArgsOut" containing the output
-    /// arguments.</returns>
-    ///
-    public Object[] gui_cellcount(int numArgsOut, Object logfile, Object expname, Object 
-                            subfolder, Object HIPASS, Object LOWPASS, Object THRESHOLD, 
-                            Object MINREG, Object CONFLVL, Object SMIN, Object SMAX, 
-                            Object koef)
-    {
-      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, subfolder, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL, SMIN, SMAX, koef);
+      return mcr.EvaluateFunction(numArgsOut, "gui_cellcount", logfile, expname, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL, SMIN, SMAX, koef);
     }
 
 
@@ -714,7 +654,7 @@ namespace gui_cellcountNative
     /// <param name= "varArgsIn">Array of Object representing variable input
     /// arguments</param>
     ///
-    [MATLABSignature("gui_cellcount", 11, 0, 0)]
+    [MATLABSignature("gui_cellcount", 10, 0, 0)]
     protected void gui_cellcount(int numArgsOut, ref Object[] argsOut, Object[] argsIn, params Object[] varArgsIn)
     {
         mcr.EvaluateFunctionForTypeSafeCall("gui_cellcount", numArgsOut, ref argsOut, argsIn, varArgsIn);

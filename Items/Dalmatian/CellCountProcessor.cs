@@ -38,7 +38,7 @@ namespace GUI.Items.Dalmatian
       {
          CellCountMatlab mccount = new CellCountMatlab();
          mccount.gui_cellcount(0, new MWCharArray(synchronizer.getSynchFileName),
-            new MWCharArray(tempFileName), config.mainData.folderData.CellCountSubfolder,
+            new MWCharArray(tempFileName),
             config.variables.sfilterHipass,
             config.variables.sfilterLowpass, config.variables.trshold,
             config.variables.countMinRegion, config.variables.countConfLvl,
@@ -61,7 +61,7 @@ namespace GUI.Items.Dalmatian
          {
             if (Framework.Utils.CheckFolderForTifFiles(item.CellCountFolder))
             {
-               worksheet.Cells[row, 1].Value = item.SampleName.Trim(Framework.Utils.delims);
+               worksheet.Cells[row, 1].Value = item.CellCountFolder;
                row++;
             }
          }

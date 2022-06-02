@@ -38,7 +38,6 @@ namespace GUI.Items.Morph
          MorphMatlab mMorph = new MorphMatlab();
          mMorph.gui_morph(0, new MWCharArray(synchronizer.getSynchFileName),
             new MWCharArray(tempFileName),
-            new MWCharArray(config.mainData.folderData.MorphSaveSubfolder),
             new MWCharArray(config.AgeValue));
       }
 
@@ -49,6 +48,7 @@ namespace GUI.Items.Morph
          worksheet.Cells[row, 2].Value = "Var2";
          worksheet.Cells[row, 3].Value = "Var3";
          worksheet.Cells[row, 4].Value = "Var4";
+         worksheet.Cells[row, 5].Value = "Var5";
          row++;
 
          foreach (var item in config.mainData.dataGrid.Data)
@@ -63,25 +63,23 @@ namespace GUI.Items.Morph
             {
                if (!Framework.Utils.CheckFolderForTifFilesNoThrow(sampleTo))
                {
-                  sampleTo += @"\" + config.mainData.folderData.MorphToSubfolder;
+                  Framework.Utils.RemoveSubfolder(ref sampleTo, config.mainData.folderData.MorphSaveSubfolder);
+                  sampleTo +=  @"\" + config.mainData.folderData.MorphSaveSubfolder;
                }
             }
             else
             {
                saveTFileName = Framework.Utils.CreateSaveName(item.SampleName, item.InSampleName) + Framework.Data.FolderData.AtlasExtension;
-               if (Framework.Utils.CheckFolderForTifFilesNoThrow(item.MorphToFolder))
-               {
-                  sampleTo = item.MorphToFolder;
-               }
-               Framework.Utils.CheckFolderForTifFiles(sampleTo);
+               sampleTo = item.MorphToFolder;
             }
 
             if (Framework.Utils.CheckFolderForTifFiles(sampleFrom))
             {
                worksheet.Cells[row, 1].Value = sampleFrom;
                worksheet.Cells[row, 2].Value = sampleTo;
-               worksheet.Cells[row, 3].Value = saveTFileName;
-               worksheet.Cells[row, 4].Value = saveNIIFileName;
+               worksheet.Cells[row, 3].Value = item.MorphSaveFolder;
+               worksheet.Cells[row, 4].Value = saveTFileName;
+               worksheet.Cells[row, 5].Value = saveNIIFileName;
                item.ReloadTfiles(saveTFileName);
                row++;
             }

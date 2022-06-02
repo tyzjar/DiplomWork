@@ -1,4 +1,4 @@
-function gui_cellcount(logfile, expname, subfolder, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL, SMIN, SMAX, koef)
+function gui_cellcount(logfile, expname, HIPASS, LOWPASS, THRESHOLD, MINREG, CONFLVL, SMIN, SMAX, koef)
     
 %Predefined values for sstat
 
@@ -47,7 +47,7 @@ for u=1:Ng
     %считывать файл каждый раз
     
     LogProcess(logfile,'SampleName',myList{u,1});
-    tmp = strcat(myList{u,1},'\',subfolder);
+    tmp = myList{u,1};
     chdir(tmp);
     Imarisfolder = strcat(myList{u,1},'\',imsubfolder,'\');
     

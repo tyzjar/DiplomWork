@@ -65,8 +65,8 @@ namespace GUI.Items.Framework.Data
             return true;
          }
 
-         Utils.RemoveSubfolder(ref atl, MorphToSubfolder);
-         Utils.RemoveSubfolder(ref atlref, MorphToSubfolder);
+         Utils.RemoveSubfolder(ref atl, MorphSaveSubfolder);
+         Utils.RemoveSubfolder(ref atlref, MorphSaveSubfolder);
          folder = folder.Trim(Utils.delims);
 
          if (Equals(folder, atl))
@@ -113,21 +113,6 @@ namespace GUI.Items.Framework.Data
             {
                variables.InSampleText = value;
                OnPropertyChanged(nameof(InSampleText));
-            }
-         }
-      }
-      public string MorphToSubfolder
-      {
-         get
-         {
-            return variables.MorphToSubfolder;
-         }
-         set
-         {
-            if (value != variables.MorphToSubfolder)
-            {
-               variables.MorphToSubfolder = value;
-               OnPropertyChanged(nameof(MorphToSubfolder));
             }
          }
       }
@@ -274,7 +259,6 @@ namespace GUI.Items.Framework.Data
 
          OnPropertyChanged(nameof(AddFolderText));
          OnPropertyChanged(nameof(InSampleText));
-         OnPropertyChanged(nameof(MorphToSubfolder));
          OnPropertyChanged(nameof(MorphSaveSubfolder));
          OnPropertyChanged(nameof(MaskSubfolder));
          OnPropertyChanged(nameof(SampleSubfolder));
@@ -290,7 +274,6 @@ namespace GUI.Items.Framework.Data
       {
          public string AddFolderText = "";
          public string InSampleText = Atlas;
-         public string MorphToSubfolder = "Morph";
          public string MorphSaveSubfolder = "Morph";
          public string MaskSubfolder = "Masked";
          public string SampleSubfolder = "Pattern 1";

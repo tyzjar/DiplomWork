@@ -73,22 +73,22 @@ namespace GUI.Items.Framework.Data.DataGrid
 
          foreach (var file in AtlasTFiles)
          {
-            var fileName = SampleName + "\\" + file.FileName;
-            if ((!Directory.Exists(SampleName)) || (!File.Exists(fileName)))
+            var fileName = MorphSaveFolder + "\\" + file.FileName;
+            if ((!Directory.Exists(MorphSaveFolder)) || (!File.Exists(fileName)))
                return false;
          }
          return true;
       }
       public void AtlasTUpdate()
       {
-         if ((AtlasTFiles.Count == 0) && (Directory.Exists(SampleName)))
+         if ((AtlasTFiles.Count == 0) && (Directory.Exists(MorphSaveFolder)))
          {
             var str = new string[] {FolderData.Atlas + FolderData.AtlasExtension,
                FolderData.AtlasReference + FolderData.AtlasExtension};
 
             foreach (var file in str)
             {
-               if (File.Exists(SampleName + "\\" + file))
+               if (File.Exists(MorphSaveFolder + "\\" + file))
                {
                   AtlasTFiles.Add(new AtlasTransformationFile(file));
                   break;
@@ -126,6 +126,8 @@ namespace GUI.Items.Framework.Data.DataGrid
       {
          get
          {
+            Utils.RemoveSubfolder(ref SampleNameValue, folderData.SampleSubfolder);
+            Utils.RemoveSubfolder(ref SampleNameValue, folderData.CellCountSubfolder);
             return SampleNameValue;
          }
          set
@@ -139,7 +141,11 @@ namespace GUI.Items.Framework.Data.DataGrid
       }
       public string InSampleName
       {
-         get => InSampleNameValue;
+         get
+         {
+            Utils.RemoveSubfolder(ref InSampleNameValue, folderData.MorphSaveSubfolder);
+            return InSampleNameValue;
+         }
          set
          {
             if (!Equals(InSampleNameValue, value))
@@ -275,7 +281,13 @@ namespace GUI.Items.Framework.Data.DataGrid
       }
       public string CellCountFolder
       {
-         get => (SampleName + "\\" + folderData.CellCountSubfolder).Trim(Utils.delims);
+         get
+         {
+            if (Utils.CheckFolderForTifFilesNoThrow(SampleName))
+               return SampleName;
+
+            return (SampleName + "\\" + folderData.CellCountSubfolder).Trim(Utils.delims);
+         }
       }
       public string MorphSaveFolder
       {
@@ -284,7 +296,13 @@ namespace GUI.Items.Framework.Data.DataGrid
 
       public string MorphToFolder
       {
-         get => (SampleName + "\\" + folderData.MorphToSubfolder).Trim(Utils.delims);
+         get
+         {
+            if (Utils.CheckFolderForTifFilesNoThrow(InSampleName))
+               return InSampleName;
+
+            return (InSampleName + "\\" + folderData.MorphSaveSubfolder).Trim(Utils.delims);
+         }
       }
 
 

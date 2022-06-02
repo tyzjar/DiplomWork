@@ -109,7 +109,15 @@
     <fileset.resources />
     <fileset.depfun>
       <file>${PROJECT_ROOT}\LogProcess.m</file>
-      <file>P:\DiplomRabota\MatlabProgs\Rload.m</file>
+      <file>P:\DiplomRabota\MatlabProgs\KiryanovScripts\Rload.m</file>
+      <file>P:\DiplomRabota\MatlabProgs\KiryanovScripts\RprepareNii.m</file>
+      <file>P:\DiplomRabota\MatlabProgs\matlabTools\loadTiffStack.m</file>
+      <file>P:\DiplomRabota\MatlabProgs\matlabTools\NIfTI_20140122\make_nii.m</file>
+      <file>P:\DiplomRabota\MatlabProgs\matlabTools\NIfTI_20140122\save_nii.m</file>
+      <file>P:\DiplomRabota\MatlabProgs\matlabTools\NIfTI_20140122\save_nii_ext.m</file>
+      <file>P:\DiplomRabota\MatlabProgs\matlabTools\NIfTI_20140122\save_nii_hdr.m</file>
+      <file>P:\DiplomRabota\MatlabProgs\matlabTools\NIfTI_20140122\verify_nii_ext.m</file>
+      <file>P:\DiplomRabota\MatlabProgs\matlabTools\tiff2nii.m</file>
       <file>P:\DiplomRabota\MatlabProgs\Shuvaev_v3\mcov.m</file>
       <file>P:\DiplomRabota\MatlabProgs\Shuvaev_v3\mlog.m</file>
       <file>P:\DiplomRabota\MatlabProgs\Shuvaev_v3\mnlinsiman_resize.m</file>
