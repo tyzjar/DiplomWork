@@ -18,7 +18,7 @@
                 AutoGenerateColumns="False" MaxHeight="540">
             <DataGrid.Columns>
                <DataGridTextColumn Binding="{Binding SampleName, Mode=TwoWay}" Header="Samples" MinWidth="200" Width="*"/>
-               <DataGridTemplateColumn x:Name="AtlasStateColumn" Header="Atlas" MinWidth="40" MaxWidth="40" IsReadOnly="True">
+               <DataGridTemplateColumn x:Name="AtlasStateColumn" Header="Atlas" MinWidth="45" MaxWidth="45" IsReadOnly="True">
                   <DataGridTemplateColumn.CellTemplate>
                      <DataTemplate>
                         <Image Source="{Binding AtlasMorphStatePic}" MinWidth="15" MaxWidth="15"/>

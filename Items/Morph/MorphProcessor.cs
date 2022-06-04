@@ -38,7 +38,8 @@ namespace GUI.Items.Morph
          MorphMatlab mMorph = new MorphMatlab();
          mMorph.gui_morph(0, new MWCharArray(synchronizer.getSynchFileName),
             new MWCharArray(tempFileName),
-            new MWCharArray(config.AgeValue));
+            new MWCharArray(config.AgeValue),
+            config.variables.ZExtention);
       }
 
       protected override void PopulateBuffer(ExcelWorksheet worksheet)

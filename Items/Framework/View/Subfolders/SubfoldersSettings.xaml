@@ -7,7 +7,7 @@
         Background="{StaticResource MyColor1}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Subfolders settings" Height="650" Width="400"
+        Title="Subfolders settings" Height="600" Width="400"
         ResizeMode="NoResize"
         KeyDown="KeyEvents">
    <Grid>
@@ -78,7 +78,7 @@
                <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5,0">
                   ~   Images for morph will be taken from "Mask save subfolder". The transformations will be saved in sample folder to a file
                   'SampleFrom_to_SampleIn.mat'. For morph in Atlas or in AtlasReference you could populate field "Into sample" by "Atlas" or "AtlasReference".
-                  The transformations will be saved to a file "Atlas.mat" or "AtlasReference.mat". If these files aren't actual anymore its could be deleted.
+                  The transformations will be saved to a file "Atlas.mat" or "AtlasReference.mat". If these files aren't actual anymore they could be deleted.
                </TextBlock>
                <Grid Margin="5,5,5,5" Grid.Row="0">
                   <Grid.ColumnDefinitions>
@@ -156,7 +156,6 @@
                      Template="{StaticResource NewButtonControlTemplate}"
                      Command = "{Binding SelectAtlasReferenceFolder}"/>
                   </Grid>
-
 
                </Grid>
             </StackPanel>

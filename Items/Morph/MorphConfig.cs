@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Newtonsoft.Json;
@@ -27,6 +28,7 @@ namespace GUI.Items.Morph
 
       public bool Halves { get => variables.Halves; set { variables.Halves = value; OnPropertyChanged(nameof(Halves)); } }
       public string AgeValue { get => variables.AgeValue; set { variables.AgeValue = value; OnPropertyChanged(nameof(AgeValue)); } }
+      public double ZExtention { get => variables.ZExtention; set { variables.ZExtention = Convert.ToDouble(value); OnPropertyChanged(nameof(ZExtention)); } }
 
       public static string[] AgeValues = { "adult", "young" };
 
@@ -42,6 +44,7 @@ namespace GUI.Items.Morph
       {
          public bool Halves { get; set; } = false;
          public string AgeValue { get; set; } = AgeValues[0];
+         public double ZExtention = 1.0;
       }
       public Variables variables = new Variables();
    }

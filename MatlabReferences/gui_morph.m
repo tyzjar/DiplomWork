@@ -6,8 +6,10 @@ Ng=size(t,1);
 
 if isempty(varargin)
     age  = 'adult';
+    ZCoef = 1;
 else
-    age  = varargin{1}
+    age  = varargin{1};
+    ZCoef = varargin{2};
 end
 
 LogProcess(logfile,'Progressbar',num2str(0),num2str(Ng));
@@ -23,9 +25,9 @@ for i=1:Ng
     LogProcess(logfile,'Operation',strcat('Sample', 32, '"', RegistrationSample, '"'));
     LogProcess(logfile,'SampleName',strcat('is registering in sample', 32, '"', OriginalSample, '"'));
     
-    IN=Rload(OriginalSample , 1, 1.6)/65535;
+    IN=Rload(OriginalSample , 1, ZCoef)/65535;
     [M,N,L]=size(IN);
-    im=Rload(RegistrationSample , 1, 1.6)/65535;
+    im=Rload(RegistrationSample , 1, ZCoef)/65535;
     [m,n,l]=size(im);
     
     while true
@@ -45,7 +47,7 @@ for i=1:Ng
                    coef = round(l / (l + dz),2) + 0.01;
            end
            fprintf('dx=%d dy=%d dz=%d coef=%d\n',dx,dy,dz,coef);
-           im=Rload(RegistrationSample, coef, 1.6)/65535;
+           im=Rload(RegistrationSample, coef, ZCoef)/65535;
            [m,n,l]=size(im);
        end
        
