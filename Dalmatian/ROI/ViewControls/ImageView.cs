@@ -142,8 +142,8 @@ namespace Dalmatian.ROI
 
          if ((imState.ImStartWidth > mainCanvas.ActualWidth) || (imState.ImStartHeight > mainCanvas.ActualHeight))
          {
-            imState.StartScale = imState.Scale * Math.Max(Math.Min(mainCanvas.ActualWidth / imState.ImStartWidth,
-                                      mainCanvas.ActualHeight / imState.ImStartHeight), ImageState.с_minScale);
+            imState.StartScale = imState.Scale * Math.Max(Math.Min(mainCanvas.ActualWidth / (imState.Scale * imState.ImStartWidth),
+                                      mainCanvas.ActualHeight / (imState.Scale * imState.ImStartHeight)), ImageState.с_minScale);
             Reset();
          }
 
