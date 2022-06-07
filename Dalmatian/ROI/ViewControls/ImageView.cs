@@ -168,8 +168,8 @@ namespace Dalmatian.ROI
          {
             var p = Segment.DeScalePoint(e.GetPosition(segmentsList[SegmentIndex].pathBox), Scale);
             segmentsList[SegmentIndex].gGroup.Children.Add(new LineGeometry(mouseState.p_last, p));
-            mouseState.p_last = p;
             segmentsList[SegmentIndex].AddPoint(p);
+            mouseState.p_last = p;
          }
       }
       public void MouseLeftPress(object sender, RoutedEventArgs e)

@@ -235,10 +235,10 @@ namespace Dalmatian.ROI
          newSegment.Width = w;
          newSegment.Height = h;
 
-         RenderSegment(w, h);
-
          newSegment.Data = gGroup;
          pathBox.Child = newSegment;
+
+         RenderSegment(w, h);
 
          return pathBox;
       }
@@ -330,7 +330,7 @@ namespace Dalmatian.ROI
             var point = orderPoints[i];
             if ((left < point.X) && (point.X < right) && (top < point.Y) && (point.Y < bot))
             {
-               MessageBox.Show(gGroup.Children.Remove(drawPoints[orderPoints[i]]).ToString());
+               gGroup.Children.Remove(drawPoints[orderPoints[i]]);
                drawPoints.Remove(orderPoints[i]);
                orderPoints.RemoveAt(i);
                i--;
@@ -372,7 +372,7 @@ namespace Dalmatian.ROI
                if (!drawPoints.ContainsKey(x.Current))
                {
                   drawPoints.Add(x.Current, new LineGeometry(x.Current, x.Current));
-                  gGroup.Children.Add(new LineGeometry(x.Current, x.Current));
+                  gGroup.Children.Add(drawPoints[x.Current]);
                }
             }
          }

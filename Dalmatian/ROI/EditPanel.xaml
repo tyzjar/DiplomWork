@@ -47,7 +47,7 @@
          <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                <ToggleButton Width="30" Height="30" IsChecked="{Binding EraserOn, Mode=TwoWay}">
-                  <Image Source="Eraser.png" MinWidth="25" MaxWidth="25"/>
+                  <Image Source="Eraser.png" MinWidth="2" MaxWidth="25"/>
                </ToggleButton>
                <Button  Margin="5,0,0,0"
                                     Style="{StaticResource BaseStyle}" Width="100" HorizontalAlignment="Center"
