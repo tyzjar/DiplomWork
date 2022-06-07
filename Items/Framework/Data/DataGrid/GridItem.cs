@@ -126,7 +126,7 @@ namespace GUI.Items.Framework.Data.DataGrid
       {
          get
          {
-            Utils.RemoveSubfolder(ref SampleNameValue, folderData.SampleSubfolder);
+            //Utils.RemoveSubfolder(ref SampleNameValue, folderData.SampleSubfolder);
             Utils.RemoveSubfolder(ref SampleNameValue, folderData.CellCountSubfolder);
             return SampleNameValue;
          }

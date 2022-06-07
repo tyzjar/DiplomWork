@@ -46,8 +46,11 @@
       <Border Style="{StaticResource BorderStyle}" Grid.Column="0" Margin="2,2">
          <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+               <ToggleButton Width="30" Height="30" IsChecked="{Binding EraserOn, Mode=TwoWay}">
+                  <Image Source="Eraser.png" MinWidth="25" MaxWidth="25"/>
+               </ToggleButton>
                <Button  Margin="5,0,0,0"
-                                    Style="{StaticResource BaseStyle}" Width="110" HorizontalAlignment="Center"
+                                    Style="{StaticResource BaseStyle}" Width="100" HorizontalAlignment="Center"
                                     Template="{StaticResource NewButtonControlTemplate}"
                                     Height="30" Click="Button_Click_1" >
                   <StackPanel Orientation="Horizontal">
@@ -70,7 +73,7 @@
                   </StackPanel>
                   <Slider Margin="0,0" Width="100"
                           Value="{Binding CurrentThickness, Mode=TwoWay}"
-                          Minimum="1" Maximum="20" 
+                          Minimum="0.1" Maximum="30" 
                           IsSelectionRangeEnabled="True" Orientation="Horizontal" />
                </StackPanel>
             </StackPanel>

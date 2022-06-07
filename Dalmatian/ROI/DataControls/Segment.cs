@@ -102,14 +102,35 @@ namespace Dalmatian.ROI
          defaultInit();
       }
 
+      public void AddPoint(double x, double y)
+      {
+         orderPoints.Add(new Point(x, y));
+      }
+      public void AddPoint(Point p)
+      {
+         orderPoints.Add(p);
+      }
+      public void AddPoint(string p)
+      {
+         var a = p.Split(delimiter);
+         if (a.Length == 2)
+         {
+            orderPoints.Add(new Point(Convert.ToDouble(a[0]),
+               Convert.ToDouble(a[1])));
+         }
+      }
+      public void RemoveLast()
+      {
+         orderPoints.RemoveAt(orderPoints.Count - 1);
+      }
+      public void RemoveAll()
+      {
+         orderPoints.Clear();
+      }
+
       public abstract void defaultInit();
-      public abstract void AddPoint(double x, double y);
-      public abstract void AddPoint(Point p);
-      public abstract void AddPoint(string p);
-      public abstract void AddPointZ(Point p, double z);
-      public abstract void Removelast();
-      public abstract void RemoveAll();
-      public abstract List<string> ConvertToStrings();
+      public abstract void AddAndDrawPoint(Point p);
+      public abstract void DeletePoint(Point p);
       public abstract Viewbox DrawSegment(double w, double h);
       public abstract void RenderSegment(double w, double h);
       public abstract void Count(List<Point> cellPoints);
@@ -175,6 +196,8 @@ namespace Dalmatian.ROI
       protected double m_thickness_scale = 1;
       [JsonProperty]
       public int cellCount = 0;
+      [JsonProperty]
+      public List<Point> orderPoints = new List<Point>();
    }
 
    /// ------------------------------------------------------------------------------------------------------------
@@ -189,46 +212,21 @@ namespace Dalmatian.ROI
          m_thickness_scale = 1;
          Thickness = 3;
    }
-      public override void AddPoint(double x, double y)
+      public override void AddAndDrawPoint(Point p)
       {
-         orderPoints.Add(new Point(x, y));
+         if (orderPoints.Contains(p))
+            return;
+         AddPoint(p);
+         gGroup.Children.Add(new LineGeometry(p, p));
       }
-      public override void AddPoint(Point p)
-      {
-         orderPoints.Add(p);
-      }
-      public override void AddPoint(string p)
-      {
-         var a = p.Split(delimiter);
-         if (a.Length == 2)
-         {
-            orderPoints.Add(new Point(Convert.ToDouble(a[0]),
-               Convert.ToDouble(a[1])));
-         }
-      }
-      public override void AddPointZ(Point p, double z)
-      {
-         throw (new GUI.Items.Framework.StandartExceptions("AddPointZ does not overload", true));
-      }
-      public override void Removelast()
-      {
-         orderPoints.RemoveAt(orderPoints.Count-1);
-      }
-      public override void RemoveAll()
-      {
-         orderPoints.Clear();
-      }
-      public override List<string> ConvertToStrings()
-      {
-         List<string> str = new List<string>();
-         orderPoints.ForEach((Point  p) => { str.Add(PointToString(p)); });
-         return str;
-      }
+      public override void DeletePoint(Point p)
+      {}
       public override Viewbox DrawSegment(double w, double h)
       {
          pathBox = new Viewbox();
          Path newSegment = new Path();
          gGroup = new GeometryGroup();
+
          newSegment.StrokeStartLineCap = PenLineCap.Round;
          newSegment.StrokeEndLineCap = PenLineCap.Round;
          newSegment.StrokeThickness = m_thickness * m_thickness_scale;
@@ -249,7 +247,7 @@ namespace Dalmatian.ROI
          if (orderPoints.Count > 0)
          {
             var start = orderPoints.GetEnumerator();
-
+            gGroup.Children.Clear();
             if (start.MoveNext())
             {
                var x1 = start;
@@ -297,9 +295,6 @@ namespace Dalmatian.ROI
 
          return result;
       }
-
-      [JsonProperty]
-      public List<Point> orderPoints = new List<Point>();
    }
 
    /// ------------------------------------------------------------------------------------------------------------
@@ -314,46 +309,42 @@ namespace Dalmatian.ROI
          m_thickness_scale = 2;
          Thickness = 3;
       }
-      public override void AddPoint(double x, double y)
+      public override void AddAndDrawPoint(Point p)
       {
-         orderPoints.Add(new Point(x, y));
+         if (orderPoints.Contains(p))
+            return;
+
+         AddPoint(p);
+         drawPoints.Add(p, new LineGeometry(p, p));
+         gGroup.Children.Add(drawPoints[p]);
       }
-      public override void AddPoint(Point p)
+      public override void DeletePoint(Point p)
       {
-         orderPoints.Add(p);
-      }
-      public override void AddPoint(string p)
-      {
-         var a = p.Split(delimiter);
-         if (a.Length == 2)
+         var r = 5;
+         var left = p.X - Thickness - r;
+         var right = p.X + Thickness + r;
+         var top = p.Y - Thickness - r;
+         var bot = p.Y + Thickness + r;
+         for (int i = 0; i < orderPoints.Count; i++)
          {
-            orderPoints.Add(new Point(Convert.ToDouble(a[0]),
-               Convert.ToDouble(a[1])));
+            var point = orderPoints[i];
+            if ((left < point.X) && (point.X < right) && (top < point.Y) && (point.Y < bot))
+            {
+               MessageBox.Show(gGroup.Children.Remove(drawPoints[orderPoints[i]]).ToString());
+               drawPoints.Remove(orderPoints[i]);
+               orderPoints.RemoveAt(i);
+               i--;
+            }
          }
-      }
-      public override void AddPointZ(Point p, double z)
-      {
-         throw (new GUI.Items.Framework.StandartExceptions("AddPointZ does not overload", true));
-      }
-      public override void Removelast()
-      {
-         orderPoints.RemoveAt(orderPoints.Count - 1);
-      }
-      public override void RemoveAll()
-      {
-         orderPoints.Clear();
-      }
-      public override List<string> ConvertToStrings()
-      {
-         List<string> str = new List<string>();
-         orderPoints.ForEach((Point p) => { str.Add(PointToString(p)); });
-         return str;
+         Count(null);
       }
       public override Viewbox DrawSegment(double w, double h)
       {
          pathBox = new Viewbox();
          Path newSegment = new Path();
          gGroup = new GeometryGroup();
+         drawPoints.Clear();
+
          newSegment.StrokeStartLineCap = PenLineCap.Round;
          newSegment.StrokeEndLineCap = PenLineCap.Round;
          newSegment.StrokeThickness = m_thickness * m_thickness_scale;
@@ -362,12 +353,12 @@ namespace Dalmatian.ROI
          newSegment.Width = w;
          newSegment.Height = h;
 
-         RenderSegment(w,h);
+         RenderSegment(w, h);
 
          newSegment.Data = gGroup;
          pathBox.Child = newSegment;
-
          Count(null);
+
          return pathBox;
       }
       public override void RenderSegment(double w, double h)
@@ -378,7 +369,11 @@ namespace Dalmatian.ROI
 
             while (x.MoveNext())
             {
-               gGroup.Children.Add(new LineGeometry(x.Current, x.Current));
+               if (!drawPoints.ContainsKey(x.Current))
+               {
+                  drawPoints.Add(x.Current, new LineGeometry(x.Current, x.Current));
+                  gGroup.Children.Add(new LineGeometry(x.Current, x.Current));
+               }
             }
          }
       }
@@ -391,8 +386,6 @@ namespace Dalmatian.ROI
       {
          return orderPoints;
       }
-
-      [JsonProperty]
-      public List<Point> orderPoints = new List<Point>();
+      public Dictionary<Point, Geometry> drawPoints = new Dictionary<Point, Geometry>();
    }
 }

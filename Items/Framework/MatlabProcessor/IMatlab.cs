@@ -3,7 +3,6 @@ using System.IO;
 using System;
 using OfficeOpenXml;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace GUI.Items.Framework.MatlabProcessor
 {
@@ -90,16 +89,12 @@ namespace GUI.Items.Framework.MatlabProcessor
          }
 
          SynchronizationContext uiContext = state as SynchronizationContext;
-         uiContext.Send(OnProcessEnd, "update");
+         uiContext.Send((object objState) => { EventProcessEnd(); }, "update");
 
          /// whait to synchronizer end
          synchronizer.mainThread.Join();
 
          working = false;
-      }
-      public void OnProcessEnd(object state)
-      {
-         EventProcessEnd();
       }
 
       protected abstract void MatlabThread();

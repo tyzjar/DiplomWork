@@ -175,17 +175,25 @@ namespace Dalmatian.ROI
       public void MouseLeftPress(object sender, RoutedEventArgs e)
       {
          var p = Segment.DeScalePoint((e as MouseEventArgs).GetPosition(segmentsList[SegmentIndex].pathBox), Scale);
-         segmentsList[SegmentIndex].AddPoint(p);
-         segmentsList[SegmentIndex].gGroup.Children.Add(new LineGeometry(p, p));
-         if (SegmentIndex == 0)
+
+         if (EraserOn)
          {
-            segmentsList[0].Count(null);
+            segmentsList[SegmentIndex].DeletePoint(p);
          }
          else
          {
-            mouseState.b_pressed = true;
+            segmentsList[SegmentIndex].AddAndDrawPoint(p);
+
+            if (SegmentIndex == 0)
+            {
+               segmentsList[0].Count(null);
+            }
+            else
+            {
+               mouseState.b_pressed = true;
+            }
          }
-         
+
          mouseState.p_last = p;
       }
       public void MouseLeftUp(object sender, RoutedEventArgs e)
@@ -435,6 +443,7 @@ namespace Dalmatian.ROI
             OnPropertyChanged("CurrentThicknessView");
          }
       }
+      public bool EraserOn { get; set; } = false;
       public BindingList<Segment> SegmentsList { get { return segmentsList; }  }
 
       public int ScaleCount { get; set; } = 1000;

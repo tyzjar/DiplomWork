@@ -32,6 +32,7 @@ namespace GUI.Items.Dalmatian
          synchronizer.AddSynchObject(nameof(Progressbar), Progressbar);
 
          EventProcessStart += PrepareLoad;
+         EventProcessEnd += UpdateCellsNumbers;
       }
 
       protected override void MatlabThread()
@@ -44,11 +45,6 @@ namespace GUI.Items.Dalmatian
             config.variables.countMinRegion, config.variables.countConfLvl,
             config.variables.countRMin, config.variables.countRMax,
             config.variables.countk);
-
-         foreach (var item in config.mainData.dataGrid.Data)
-         {
-            config.segmentationControl.ImportComand(item, item.CellCountFolder + "\\cells.txt");
-         }
       }
 
       protected override void PopulateBuffer(ExcelWorksheet worksheet)
@@ -64,6 +60,14 @@ namespace GUI.Items.Dalmatian
                worksheet.Cells[row, 1].Value = item.CellCountFolder;
                row++;
             }
+         }
+      }
+
+      void UpdateCellsNumbers()
+      {
+         foreach (var item in config.mainData.dataGrid.Data)
+         {
+            config.segmentationControl.ImportComand(item, item.CellCountFolder + "\\cells.txt");
          }
       }
 
