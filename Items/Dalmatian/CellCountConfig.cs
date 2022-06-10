@@ -303,11 +303,11 @@ namespace GUI.Items.Dalmatian
       public override SaveVariables GetVariables() => variables;
       public class Variables : Framework.ConfigItem.SaveVariables
       { 
-         public double sfilterLowpass { get; set; } = 2;
-         public double sfilterHipass { get; set; } = 100;
+         public double sfilterLowpass { get; set; } = 1;
+         public double sfilterHipass { get; set; } = 5;
          public double trshold { get; set; } = 0;
          public double mfilterRad { get; set; } = 15;
-         public double countMinRegion { get; set; } = 100;
+         public double countMinRegion { get; set; } = 15;
          public double countConfLvl { get; set; } = 0.1;
          public double countRMin { get; set; } = 0;
          public double countRMax { get; set; } = 15;

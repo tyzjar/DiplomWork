@@ -22,13 +22,10 @@ namespace Dalmatian.ROI
    {
       public event VoidHandler onScale = () => { };
 
-      public ImageState(double w, double h, double s)
+      public ImageState(double w, double h)
       {
          ImStartWidth = w;
          ImStartHeight = h;
-
-         scale = s;
-         StartScale = s;
       }
 
       public void ResetImageState(double w, double h)
@@ -38,8 +35,6 @@ namespace Dalmatian.ROI
                MessageBox.Show("Image size was changed. PLease check the sample!",
                   "Exeption", MessageBoxButton.OK, MessageBoxImage.Warning);
 
-         scale = ImCurrentWidht / w;
-
          ImStartWidth = w;
          ImStartHeight = h;
          onScale();
@@ -47,7 +42,8 @@ namespace Dalmatian.ROI
 
       public void SetScaleBySize(double newW, double newH)
       {
-         Scale = newW / ImStartWidth;
+         if((ImStartWidth!=0)&&(newW != 0))
+            Scale = newW / ImStartWidth;
       }
 
       public double ImCurrentWidht
@@ -99,7 +95,7 @@ namespace Dalmatian.ROI
 
          mainCanvas = new Canvas();
          mainImage = new Image();
-         imState = new ImageState(0, 0, 1);
+         imState = new ImageState(0, 0);
 
          mainCanvas.Children.Add(mainImage);
 
