@@ -118,7 +118,12 @@ namespace GUI.Items.Dalmatian
          var delimeter = ',';
          int x, y, z, sId;
          var AllCells = sl[0];
-         AllCells.RemoveAll();
+
+         foreach (var item in sl)
+         {
+            item.RemoveAll();
+         }
+
          while ((line = workFile.ReadLine()) != null)
          {
             var objectData = line.Split(delimeter);

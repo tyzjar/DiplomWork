@@ -1,10 +1,8 @@
 ﻿using GUI.Items.Framework.MatlabProcessor;
 using OfficeOpenXml;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using gui_segmentscellcount;
+using MathWorks.MATLAB.NET.Arrays;
 
 namespace GUI.Items.Dalmatian.Segments
 {
@@ -35,14 +33,9 @@ namespace GUI.Items.Dalmatian.Segments
 
       protected override void MatlabThread()
       {
-         //CellCountMatlab mccount = new CellCountMatlab();
-         //mccount.gui_cellcount(0, new MWCharArray(synchronizer.getSynchFileName),
-         //   new MWCharArray(tempFileName),
-         //   config.variables.sfilterHipass,
-         //   config.variables.sfilterLowpass, config.variables.trshold,
-         //   config.variables.countMinRegion, config.variables.countConfLvl,
-         //   config.variables.countRMin, config.variables.countRMax,
-         //   config.variables.countk);
+         SegmentsCount mccount = new SegmentsCount();
+         mccount.gui_segmentscellcount(0, new MWCharArray(synchronizer.getSynchFileName),
+            new MWCharArray(tempFileName));
       }
 
       protected override void PopulateBuffer(ExcelWorksheet worksheet)

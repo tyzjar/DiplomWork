@@ -16,13 +16,13 @@ namespace GUI.Items.Dalmatian
 
       public void AddRangeSegments(Segment segment)
       {
-         //if (segment.Childrens != null)
-         //{
-         //   foreach (var item in segment.Childrens)
-         //   {
-         //      AddRangeSegments(item);
-         //   }
-         //}
+         if (segment.Childrens != null)
+         {
+            foreach (var item in segment.Childrens)
+            {
+               AddRangeSegments(item);
+            }
+         }
 
          ViewSegments.AddRange(segment.Childrens);
       }
