@@ -12,5 +12,6 @@ namespace GUI.Items.Dalmatian
       public abstract int ExportComand(Framework.Data.DataGrid.GridItem param,
          ExcelWorksheet worksheet, int row, int col);
       public abstract void ImportComand(Framework.Data.DataGrid.GridItem param, string fileName);
+      public abstract void CalculateSegments(Framework.Data.DataGrid.GridItem param, string fileName);
    }
 }

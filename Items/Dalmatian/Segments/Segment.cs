@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace GUI.Items.Dalmatian
 {
@@ -29,10 +30,38 @@ namespace GUI.Items.Dalmatian
       {
          SegmentName = "default name";
       }
+      public bool CheckId(int Id)
+      {
+         if (this.Id == Id)
+            return true;
 
-      //public virtual void Count() { }
-      public virtual void AddPoint(int x, int y, int z) { }
-      public virtual void RemoveAll() { }
+         foreach (var child in Childrens)
+         {
+            if (child.CheckId(Id))
+               return true;
+         }
+         return false;
+      }
+
+
+      public virtual void Count() 
+      {
+         CellNumber = Cells.Count;
+         OnPropertyChanged("CellNumber");
+      }
+      public virtual void AddPoint(int x, int y, int z) 
+      {
+         Cells.Add(new Point3d(x, y, z));
+         CellNumber++;
+         OnPropertyChanged("CellNumber");
+      }
+      public virtual void RemoveAll() 
+      {
+         Cells.Clear();
+         CellNumber = 0;
+         OnPropertyChanged("CellNumber");
+      }
+
 
       [JsonProperty("name")]
       public string SegmentName { get; set; }
@@ -41,23 +70,13 @@ namespace GUI.Items.Dalmatian
       [JsonProperty("children")]
       public List<Segment> Childrens = new List<Segment>();
       public int CellNumber { get; set; } = 0;
-   }
+      public List<Point3d> Cells = new List<Point3d>();
+    }
 
    class CellSegment : Segment
    {
       public CellSegment(string name) : base(name)
       { }
-
-      public override void AddPoint(int x, int y, int z) 
-      {
-         Cells.Add(new Point3d(x,y,z));
-      }
-      public override void RemoveAll()
-      {
-         Cells.Clear(); 
-      }
-
-      public List<Point3d> Cells = new List<Point3d>();
    }
 
    class FigureSegment : Segment

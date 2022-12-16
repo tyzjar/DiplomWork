@@ -193,6 +193,15 @@
                               Template="{StaticResource NewButtonControlTemplate}"
                               Command = "{Binding ExportCommand}"/>
                   </StackPanel>
+                   <!-- Count in segments-->
+                   <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center"
+                               Margin="0,0,10,0">
+                            <Button Content="Count in segments" Margin="0,5"
+                              Style="{StaticResource BaseStyle}" Width="120"
+                              Template="{StaticResource NewButtonControlTemplate}"
+                              Command = "{Binding SegmentsCountCommand}" Height="23"
+                              Name="cSegmentsButton"/>
+                        </StackPanel>
                </StackPanel>
             </Border>
          </StackPanel>

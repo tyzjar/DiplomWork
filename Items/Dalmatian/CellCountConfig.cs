@@ -79,6 +79,7 @@ namespace GUI.Items.Dalmatian
          sfilterPreview = new Preview.sFilterPreview(this, "sFilterPreview");
          thresholdPreview = new Preview.ThresholdPreview(this, "ThresholdPreview");
          originalView = new Preview.OriginalView(this, "OriginalView");
+         segmentsCount = new Segments.SegmentCountHelper(this, "3dCountHelper");
 
          /// Buttons events
          CommonPreviewCommand = new Framework.DelegateCommand((object param) => {
@@ -100,6 +101,9 @@ namespace GUI.Items.Dalmatian
          ExportCommand = new Framework.DelegateCommand((object param) => {
             ExportCell();
          });
+         SegmentsCountCommand = new Framework.DelegateCommand((object param) => {
+            segmentsCount.StartProcess();
+         });
          sFilterHelpCommand = new Framework.DelegateCommand((object param) => {
             helper.StartHelp(1);
          });
@@ -120,6 +124,7 @@ namespace GUI.Items.Dalmatian
       public ICommand ThresholdCommand { get; private set; }
       public ICommand OriginalViewCommand { get; private set; }
       public ICommand SegmentCommand { get; private set; }
+      public ICommand SegmentsCountCommand { get; private set; }
       public ICommand SelectedChangedCommand { get; private set; }
       public ICommand ExportCommand { get; private set; }
       public ICommand sFilterHelpCommand { get; private set; }
@@ -137,6 +142,7 @@ namespace GUI.Items.Dalmatian
       private Preview.sFilterPreview sfilterPreview;
       private Preview.ThresholdPreview thresholdPreview;
       private Preview.OriginalView originalView;
+      private Segments.SegmentCountHelper segmentsCount;
       public string sfilterLowpass
       {
          get

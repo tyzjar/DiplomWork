@@ -25,6 +25,9 @@ namespace GUI.Items.Dalmatian
 
          this.DataContext = config;
          SelectPanel.Content = new GUI.Items.Framework.SelectedPanel(mainData_.openSaveEvents);
+
+         if (mainData_.dalmatian)
+            this.cSegmentsButton.Visibility = Visibility.Hidden;
       }
 
    }

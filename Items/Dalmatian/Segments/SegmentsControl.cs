@@ -49,15 +49,15 @@ namespace GUI.Items.Dalmatian
                applyToAllSegment();
             });
 
-            // Count button
-            Count = new Framework.DelegateCommand((object param) => {
-               count();
-            });
+            //// Count button
+            //Count = new Framework.DelegateCommand((object param) => {
+            //   count();
+            //});
 
-            // Count all button
-            CountAll = new Framework.DelegateCommand((object param) => {
-               countAll();
-            });
+            //// Count all button
+            //CountAll = new Framework.DelegateCommand((object param) => {
+            //   countAll();
+            //});
 
             // Select new file (Atlas) button
             SelectAtlasTFile = new Framework.DelegateCommand((object param) => {
