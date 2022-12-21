@@ -8,7 +8,6 @@ using System.Windows.Shapes;
 
 namespace Dalmatian.ROI
 {
-
    public class UnorderMap
    {
       public void Add(double x_, double y_)

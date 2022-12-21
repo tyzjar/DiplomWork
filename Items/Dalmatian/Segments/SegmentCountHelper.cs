@@ -33,9 +33,9 @@ namespace GUI.Items.Dalmatian.Segments
 
       protected override void MatlabThread()
       {
-         SegmentsCount mccount = new SegmentsCount();
+         SegmentsCountMatlab mccount = new SegmentsCountMatlab();
          mccount.gui_segmentscellcount(0, new MWCharArray(synchronizer.getSynchFileName),
-            new MWCharArray(tempFileName));
+            new MWCharArray(tempFileName), new MWCharArray(config.mainData.folderData.AtlasFolder));
       }
 
       protected override void PopulateBuffer(ExcelWorksheet worksheet)

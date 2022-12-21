@@ -122,6 +122,12 @@ namespace Dalmatian.ROI
          (param.Segments as SegmentListControl).CountAll();
       }
 
+      public override void CalculateSegments(GUI.Items.Framework.Data.DataGrid.GridItem param, string fileName)
+      {
+         // this dont work for dalmation programm
+         (param.Segments as SegmentListControl).CountAll();
+      }
+
       private ROI.SegmentationPanel panel;
    }
 }

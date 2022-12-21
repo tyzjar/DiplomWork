@@ -10,6 +10,7 @@ LogProcess(logfile,'Operation','Segments count');
 LogProcess(logfile,'SampleName','');
 LogProcess(logfile,'Progressbar',num2str(0),num2str(1));
 
+atlasname = strcat(atlasname,'\*.tif');
 atl = Rload(atlasname, 1, 1);
 
 for u=1:Ng

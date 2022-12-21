@@ -29,14 +29,18 @@ namespace GUI.Items.Dalmatian
             panel.SegmentsDataGrid.MaxHeight = 380;
             ViewWindow.SegmentationPanelView.Content = panel;
 
-            apanel.AtlasFileNamesGrid.ItemsSource = item.AtlasTFiles;
-            ViewWindow.AtlasPanelView.Content = apanel;
+            //apanel.AtlasFileNamesGrid.ItemsSource = item.AtlasTFiles;
+            //ViewWindow.AtlasPanelView.Content = apanel;
 
             ViewWindow.DataContext = this;
 
             // Add segment button
             AddSegment = new Framework.DelegateCommand((object param) => {
                addSegment();
+            });
+
+            AddAllSegments = new Framework.DelegateCommand((object param) => {
+               addAllSegments();
             });
 
             // Delete segment button
@@ -111,6 +115,25 @@ namespace GUI.Items.Dalmatian
             }
 
             selectedList.segmentsList.Add(ViewWindow.SegmentNameBox.SelectedItem as Segment);
+         }
+         catch (Framework.StandartExceptions sex)
+         {
+            MessageBox.Show(sex.Message, "Info",
+               MessageBoxButton.OK, sex.critical ? MessageBoxImage.Warning
+               : MessageBoxImage.Information);
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+         }
+      }
+
+      void addAllSegments()
+      {
+         try
+         {
+            selectedList.Reset(loadSegments.ViewSegments);
          }
          catch (Framework.StandartExceptions sex)
          {
@@ -210,6 +233,7 @@ namespace GUI.Items.Dalmatian
 
       #region ComandControl
       public ICommand AddSegment { get; private set; }
+      public ICommand AddAllSegments { get; private set; }
       public ICommand DeleteSegment { get; private set; }
       public ICommand ApplyToAllSegment { get; private set; }
       public ICommand Count { get; private set; }
