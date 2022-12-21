@@ -123,6 +123,9 @@ namespace GUI.Items.Dalmatian
          originalView = new Preview.OriginalView(this, "OriginalView");
          segmentsCount = new Segments.SegmentCountHelper(this, "3dCountHelper");
 
+         segmentsCount.EventProcessEnd += swapToView;
+         segmentsCount.EventProcessStart += swapToLoad;
+
          /// Buttons events
          CommonPreviewCommand = new Framework.DelegateCommand((object param) => {
             commonPreview.StartProcess();

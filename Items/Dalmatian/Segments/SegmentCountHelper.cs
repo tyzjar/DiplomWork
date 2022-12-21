@@ -3,6 +3,8 @@ using OfficeOpenXml;
 
 using gui_segmentscellcount;
 using MathWorks.MATLAB.NET.Arrays;
+using System.Windows;
+using System;
 
 namespace GUI.Items.Dalmatian.Segments
 {
@@ -56,9 +58,17 @@ namespace GUI.Items.Dalmatian.Segments
 
       void UpdateCellsNumbers()
       {
-         foreach (var item in config.mainData.dataGrid.Data)
+         try
          {
-            config.segmentationControl.CalculateSegments(item, item.CellCountFolder + "\\cells_segments.txt");
+            foreach (var item in config.mainData.dataGrid.Data)
+            {
+               config.segmentationControl.CalculateSegments(item, item.CellCountFolder + "\\cells_segments.txt");
+            }
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
          }
       }
 

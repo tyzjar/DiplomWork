@@ -49,7 +49,7 @@ namespace GUI.Items.Dalmatian
          foreach (var item in segmentsList)
          {
             worksheet.Cells[row, col].Value = item.Id.ToString();
-            worksheet.Cells[row+1, col].Value = item.SegmentName + " (" + item.Id.ToString() + ")";
+            worksheet.Cells[row+1, col].Value = item.SegmentName;
             ++col;
          }
          row = row + 2;

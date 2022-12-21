@@ -65,9 +65,17 @@ namespace GUI.Items.Dalmatian
 
       void UpdateCellsNumbers()
       {
-         foreach (var item in config.mainData.dataGrid.Data)
+         try
          {
-            config.segmentationControl.ImportComand(item, item.CellCountFolder + "\\cells.txt");
+            foreach (var item in config.mainData.dataGrid.Data)
+            {
+               config.segmentationControl.ImportComand(item, item.CellCountFolder + "\\cells.txt");
+            }
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
          }
       }
 

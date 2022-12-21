@@ -33,5 +33,5 @@ namespace GUI.Items.Dalmatian
          }
       }
 
-   }
+    }
 }
