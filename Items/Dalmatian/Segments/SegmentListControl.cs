@@ -21,7 +21,7 @@ namespace GUI.Items.Dalmatian
       { }
 
 
-      public int Export(ExcelWorksheet worksheet, int row, int col)
+      public int ExportRow(ExcelWorksheet worksheet, int row, int col)
       {
          int count = 0;
 
@@ -35,7 +35,25 @@ namespace GUI.Items.Dalmatian
 
          return count;
       }
-
+      public void ExportCol(ExcelWorksheet worksheet, ref int row, int col)
+      {
+         foreach (var item in segmentsList)
+         {
+            worksheet.Cells[row, col].Value = item.CellNumber;
+            ++col;
+         }
+         row = row + 1;
+      }
+      public void CreateCols(ExcelWorksheet worksheet, ref int row, int col)
+      {
+         foreach (var item in segmentsList)
+         {
+            worksheet.Cells[row, col].Value = item.Id.ToString();
+            worksheet.Cells[row+1, col].Value = item.SegmentName + " (" + item.Id.ToString() + ")";
+            ++col;
+         }
+         row = row + 2;
+      }
       public void Reset(List<Segment> ns)
       {
          segmentsList.Clear();

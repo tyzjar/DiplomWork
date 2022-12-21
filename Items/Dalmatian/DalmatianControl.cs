@@ -62,7 +62,7 @@ namespace GUI.Items.Dalmatian
             if (param == null)
                throw (GUI.Items.Framework.StandartExceptions.NoSelectedItem());
 
-            var i = (param.Segments as SegmentListControl).Export(worksheet, row, col + 1);
+            var i = (param.Segments as SegmentListControl).ExportRow(worksheet, row, col + 1);
             worksheet.Cells[row, col, row + i - 1, col].Merge = true;
             worksheet.Cells[row, col, row + i - 1, col].Value = param.SampleName;
             worksheet.Cells[row, col, row + i - 1, col].Style.VerticalAlignment =
@@ -85,6 +85,7 @@ namespace GUI.Items.Dalmatian
          }
          return 0;
       }
+
       public override void ImportComand(Framework.Data.DataGrid.GridItem param, string fileName)
       {
          FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);

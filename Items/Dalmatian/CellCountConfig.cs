@@ -6,6 +6,7 @@ using System.Windows;
 using System.Collections.Generic;
 using Microsoft.Win32;
 using System.IO;
+using OfficeOpenXml.Style;
 
 namespace GUI.Items.Dalmatian
 {
@@ -71,6 +72,47 @@ namespace GUI.Items.Dalmatian
                MessageBoxButton.OK, MessageBoxImage.Error);
          }
       }
+      public void ExportCommonCells()
+      {
+         try
+         {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Instruction File | *.xlsx";
+            saveFileDialog.DefaultExt = "xlsx";
+            saveFileDialog.FileName = "Cells Report " + Path.GetFileNameWithoutExtension(mainData.openSaveEvents.SelectedProjectFile);
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+               FileStream workFile = File.Create(saveFileDialog.FileName);
+               ExcelPackage excelPackage = new ExcelPackage(workFile);
+               var wsh = excelPackage.Workbook.Worksheets.Add("Dalmatian");
+
+               var row = 1;
+               var col = 1;
+
+               if (mainData.dataGrid.Data.Count == 0)
+                  return;
+
+               (mainData.dataGrid.Data[0].Segments as SegmentListControl).CreateCols(wsh, ref row, col + 1);
+
+               foreach (var item in mainData.dataGrid.Data)
+               {
+                  wsh.Cells[row, col].Value = item.SampleName;
+                  (item.Segments as SegmentListControl).ExportCol(wsh, ref row, col+1);
+               }
+
+               wsh.Cells.AutoFitColumns();
+               wsh.Column(1).Width = 60;
+               excelPackage.SaveAs(workFile);
+               workFile.Close();
+            }
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+         }
+      }
 
       protected override void Initialize()
       {
@@ -101,6 +143,9 @@ namespace GUI.Items.Dalmatian
          ExportCommand = new Framework.DelegateCommand((object param) => {
             ExportCell();
          });
+         ExportCommonCommand = new Framework.DelegateCommand((object param) => {
+            ExportCommonCells();
+         });
          SegmentsCountCommand = new Framework.DelegateCommand((object param) => {
             segmentsCount.StartProcess();
          });
@@ -127,6 +172,7 @@ namespace GUI.Items.Dalmatian
       public ICommand SegmentsCountCommand { get; private set; }
       public ICommand SelectedChangedCommand { get; private set; }
       public ICommand ExportCommand { get; private set; }
+      public ICommand ExportCommonCommand { get; private set; }
       public ICommand sFilterHelpCommand { get; private set; }
       public ICommand ThresholdHelpCommand { get; private set; }
       public ICommand CountHelpCommand { get; private set; }

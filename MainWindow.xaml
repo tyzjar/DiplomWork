@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="3d Segmentation" MinHeight="660" Height="660" Width="940">
+        Title="3d Segmentation" MinHeight="660" Height="690" Width="940">
    <TabControl x:Name="Tabs" 
                Background="{StaticResource MyColor1}">
       <TabItem x:Name="Preprocessing" Header="Preprocessing" />

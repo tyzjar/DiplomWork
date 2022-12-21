@@ -27,7 +27,10 @@ namespace GUI.Items.Dalmatian
          SelectPanel.Content = new GUI.Items.Framework.SelectedPanel(mainData_.openSaveEvents);
 
          if (mainData_.dalmatian)
+         {
+            this.cExportCommonTable.Visibility = Visibility.Hidden;
             this.cSegmentsButton.Visibility = Visibility.Hidden;
+         }
       }
 
    }
