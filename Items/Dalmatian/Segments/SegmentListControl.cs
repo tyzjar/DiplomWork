@@ -2,6 +2,8 @@
 using OfficeOpenXml;
 using System.ComponentModel;
 using GUI.Items.Framework.Data.DataGrid;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace GUI.Items.Dalmatian
 {
@@ -54,7 +56,19 @@ namespace GUI.Items.Dalmatian
          }
          row = row + 2;
       }
-      public void Reset(List<Segment> ns)
+
+      public void Delete(IEnumerable<Segment> delete_items)
+      {
+         foreach (var item in delete_items)
+         {
+            if (!(item is CellSegment))
+            {
+               segmentsList.Remove(item);
+            }
+         }
+      }
+
+      public void Reset(IEnumerable<Segment> ns)
       {
          segmentsList.Clear();
          segmentsList.Add(new CellSegment(CellChanel));
@@ -62,6 +76,15 @@ namespace GUI.Items.Dalmatian
          foreach (var item in ns) 
          {
             segmentsList.Add(item);
+         }
+      }
+      public void ResetByCopy(IEnumerable<Segment> ns)
+      {
+         segmentsList.Clear();
+
+         foreach (var item in ns)
+         {
+            segmentsList.Add(item.Clone());
          }
       }
 

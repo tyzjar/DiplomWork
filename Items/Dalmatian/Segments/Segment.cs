@@ -43,7 +43,6 @@ namespace GUI.Items.Dalmatian
          return false;
       }
 
-
       public virtual void Count() 
       {
          CellNumber = Cells.Count;
@@ -61,7 +60,17 @@ namespace GUI.Items.Dalmatian
          CellNumber = 0;
          OnPropertyChanged("CellNumber");
       }
+      public Segment Clone()
+      {
+         var ns = new Segment();
+         ns.SegmentName = SegmentName;
+         ns.Id = Id;
 
+         foreach(var item in Childrens)
+            ns.Childrens.Add(item.Clone());
+
+         return ns;
+      }
 
       [JsonProperty("name")]
       public string SegmentName { get; set; }

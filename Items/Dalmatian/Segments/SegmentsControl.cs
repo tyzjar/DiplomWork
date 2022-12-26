@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -151,18 +152,20 @@ namespace GUI.Items.Dalmatian
       void deleteSegment()
       {
          var i = panel.SegmentsDataGrid.SelectedIndex;
-         if (i > 0)
+
+         try
          {
-            try
-            {
-               selectedList.segmentsList.RemoveAt(i);
-               panel.SegmentsDataGrid.SelectedIndex = i - 1;
-            }
-            catch (Exception ex)
-            {
-               MessageBox.Show(ex.Message, "Exeption",
-                  MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            selectedList.Delete(panel.SegmentsDataGrid.SelectedItems.OfType<Segment>().ToList());
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Exeption",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+         }
+
+         if (selectedList.segmentsList.Count > 1)
+         {
+            panel.SegmentsDataGrid.SelectedIndex = 1;
          }
       }
 
@@ -172,7 +175,8 @@ namespace GUI.Items.Dalmatian
          {
             foreach (var item in mainData.dataGrid.Data)
             {
-               item.Segments = selectedList;
+               if(item.Segments != selectedList)
+                  (item.Segments as SegmentListControl).ResetByCopy(selectedList.segmentsList);
             }
          }
          catch (Exception ex)
